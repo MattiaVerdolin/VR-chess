@@ -71,8 +71,7 @@ TestResults/
 *.bak
 *.swp
 *.sln.docstates
-x64/
-x86/
+
 
 $RECYCLE.Bin/
 
