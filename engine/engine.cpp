@@ -19,6 +19,7 @@
     #include "textManager.h"
     #include "glm/glm.hpp"
     #include "glm/gtc/type_ptr.hpp"
+    #include <GL/glew.h>
     #include "GL/freeglut.h"
     #include "fileOVOReader.h"
     #include "list.h"
@@ -161,6 +162,18 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, glm::value_ptr(gAmbient));
 
    FreeImage_Initialise();
+
+   //GLEW INIT
+   GLenum err = glewInit();
+   if (err != GLEW_OK)
+   {
+       //Error
+   }
+
+   if (!glewIsSupported("GL_VERSION_2_1"))
+   {
+       //DAJE ROMA
+   }
 
    // Done:
    std::cout << "[>] " << LIB_NAME << " initialized" << std::endl;
