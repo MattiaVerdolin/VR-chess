@@ -1,0 +1,76 @@
+\doxysection{material.\+h}
+\hypertarget{material_8h_source}{}\label{material_8h_source}\index{engine/material.h@{engine/material.h}}
+\mbox{\hyperlink{material_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Project-\/specific\ headers}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{object_8h}{object.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{texture_8h}{texture.h}}"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ MAIN\ MATERIAL\ CLASS\ //}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_material_a013564c944720310144f297fa0c3e2d4}{Material}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}}\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_material_a013564c944720310144f297fa0c3e2d4}{Material}}(\textcolor{keyword}{const}\ std::string\&\ name\ =\ \textcolor{stringliteral}{"{}defaultMaterial"{}});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_material_a013564c944720310144f297fa0c3e2d4}{Material}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_material_a013564c944720310144f297fa0c3e2d4}{Material}}\&\ other);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_material_ac61ec3cbd9a4ca9e59ef8fd8e74406ab}{\string~Material}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_material_a013564c944720310144f297fa0c3e2d4}{Material}}\&\ \mbox{\hyperlink{class_material_aa114078f437ae09781af21ed23dfce45}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_material_a013564c944720310144f297fa0c3e2d4}{Material}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_object_afff98e03fa9337beab8c42cb4dc4ffb7}{render}}(\textcolor{keyword}{const}\ glm::mat4\&\ matrix\ =\ glm::mat4(1.0f))\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_object_a1d8a4587502276b6d157e3c2ab0a2dca}{parse}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ data,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ position)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Setters\ and\ getters\ for\ material\ properties}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_material_a4729eb07e436a455a9cd87c52d4c6141}{setAlpha}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ alpha);}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ \mbox{\hyperlink{class_material_a488a35f63d8d166e3c76ffa32f9f658b}{getAlpha}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_material_a8afc802783b3c8f70e6cf9410d779eb7}{setEmission}}(\textcolor{keyword}{const}\ glm::vec3\&\ emission);}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{class_material_a08f30a15f2cfe4430b0dc18bc89ef1a3}{getEmission}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_material_a749ff888223a1c0d0e2f49aa451a5ebb}{setAmbient}}(\textcolor{keyword}{const}\ glm::vec3\&\ ambient);}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{class_material_a69c2110c5768c088cf3e2ec1739e12e4}{getAmbient}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_material_a91fb0c8d4020d62bdf4b37f8c79bc1a9}{setSpecular}}(\textcolor{keyword}{const}\ glm::vec3\&\ specular);}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{class_material_a422497e8dafbbb04ea5add4590d66013}{getSpecular}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_material_a74f9d5996da8a2f24db8daff8a4b4bd4}{setDiffuse}}(\textcolor{keyword}{const}\ glm::vec3\&\ diffuse);}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{class_material_a9ba405df6faa50f830a54682450c397f}{getDiffuse}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_material_a24b1f8bc201bc8aad012391927fb4c95}{setShininess}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ shininess);}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ \mbox{\hyperlink{class_material_a465eed2656271d4ab414c048c2b09515}{getShininess}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_material_abf79ffb83ac049ebaa48fc5b47635ea2}{setTexture}}(\mbox{\hyperlink{class_texture}{Texture}}*\ texture);}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_texture}{Texture}}*\ \mbox{\hyperlink{class_material_a07946c5acec3285e92ea7b69c29607cd}{getTexture}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_material_afd846bce44c1e226f3d43587acd4b569}{setEnableTexture}}();}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_material_aa8a5144da2aa562990f611d8457fb358}{setDisableTexture}}();}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_material_ad7cd8c42e37b4c1156e5496f2329f338}{isTextureExists}}();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{static}\ std::map<std::string,\ Texture*>\ \mbox{\hyperlink{class_material_a03ca5f5fc86b8c6b0cbd6e7cff19461c}{m\_texturesMap}};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{class_texture}{Texture}}*\ \mbox{\hyperlink{class_material_a07946c5acec3285e92ea7b69c29607cd}{getTexture}}(\textcolor{keyword}{const}\ std::string\&\ textureName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_material_af96d120064003789cab46539fb93c472}{m\_alpha}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_material_a91a6b0769e828fc9c4f21f1d9f8b35a8}{m\_emission}};\ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_material_ab3b04455ca3a29eea275fe5dd6f70b9b}{m\_ambient}};\ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_material_a472d9632e7e9db1e9d6db0e5a40a4cc3}{m\_specular}};\ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_material_a4655998d1721cb070f1e4f92d0dbc239}{m\_diffuse}};\ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_material_ac6870095f155d023adb9fa1d02f9be4c}{m\_shininess}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{class_texture}{Texture}}*\ \mbox{\hyperlink{class_material_a5c03a7d19041a2d34dd0a27583695081}{m\_texture}};\ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \};}
+
+\end{DoxyCode}

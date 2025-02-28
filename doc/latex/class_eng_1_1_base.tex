@@ -1,0 +1,356 @@
+\doxysection{Eng\+::Base Class Reference}
+\hypertarget{class_eng_1_1_base}{}\label{class_eng_1_1_base}\index{Eng::Base@{Eng::Base}}
+
+
+Main class for the graphics engine. Implements the Singleton pattern.  
+
+
+
+
+{\ttfamily \#include $<$engine.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Reserved}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_eng_1_1_base}{Base} class reserved structure (using PIMPL/\+Bridge design pattern \href{https://en.wikipedia.org/wiki/Opaque_pointer}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Opaque\+\_\+pointer}}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}{Base}} (\mbox{\hyperlink{class_eng_1_1_base}{Base}} const \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor to prevent copying of the \doxylink{class_eng_1_1_base}{Base} instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eng_1_1_base_ae0700f06fa814dd024290dcd2b1a3157}{\texorpdfstring{$\sim$}{\string~}\+Base}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_eng_1_1_base}{Base} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_ac4eb1f66179273abba59260a6b4c5cbd}{operator=}} (\mbox{\hyperlink{class_eng_1_1_base}{Base}} const \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator to prevent assignment of the \doxylink{class_eng_1_1_base}{Base} instance. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_eng_1_1_base_afc0dd380b8955e2313d41893e630be12}{init}} (void(\texorpdfstring{$\ast$}{*}close\+Call\+Back)()=nullptr)
+\begin{DoxyCompactList}\small\item\em Initialize the engine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_af6ed5042d5fb8d46b3bd339ecc916d33}{set\+Keyboard\+Callback}} (void(\texorpdfstring{$\ast$}{*}callback)(unsigned char, int, int))
+\begin{DoxyCompactList}\small\item\em Set the keyboard callback function for user input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_a75805b6798f1681d3aea8bd134656b07}{set\+Special\+Callback}} (void(\texorpdfstring{$\ast$}{*}callback)(int, int, int))
+\begin{DoxyCompactList}\small\item\em Set the special key callback function for user input. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_eng_1_1_base_afd7e1923deb411907695c0b27114f62a}{free}} ()
+\begin{DoxyCompactList}\small\item\em Free resources used by the engine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_a5d9ba3e2afa46a0717a0566c2f44f724}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear the current scene. \end{DoxyCompactList}\item 
+const float \& \mbox{\hyperlink{class_eng_1_1_base_a40b6f6e35aabe4de18d27f56fb8537ab}{get\+FPS}} ()
+\begin{DoxyCompactList}\small\item\em Get the current frames per second (FPS) value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_a91aaec73e036ebafe769980277777d90}{load}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Load a scene from a specified file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_a0c7d5052a4d2214589d83cbad4e0b9a9}{pass\+Scene}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}root\+Node)
+\begin{DoxyCompactList}\small\item\em Pass a scene to the engine for rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_a6c17fc3be4ea9d5d4af115ccc2cfdadd}{clear\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Clear the current scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_a3178a2cc100b772ea521d3b441c7d718}{begin3D}} (\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}camera1, \mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}camera2, const std\+::list$<$ std\+::string $>$ \&layers)
+\begin{DoxyCompactList}\small\item\em Start 3D rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_a974e6386722fb13945002c4f5c150b57}{end3D}} ()
+\begin{DoxyCompactList}\small\item\em End 3D rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_ae3678d41d28398d92b37258ac9fa5695}{swap}} ()
+\begin{DoxyCompactList}\small\item\em Swap the buffers for rendering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_eng_1_1_base}{Base}} \& \mbox{\hyperlink{class_eng_1_1_base_a3c21bcd7bace09d5913ced6de5b15518}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the singleton instance of the \doxylink{class_eng_1_1_base}{Base} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eng_1_1_base_aa4056f5a3edbc6f4d1764d6cec20e16d}{handle\+Reshape}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Private method to handle window reshaping. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eng_1_1_base_a46524a1c562ab3afca032e44a00ce7c6}{Base}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor for the singleton instance. Initializes internal resources for the engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Reserved}} $>$ \mbox{\hyperlink{class_eng_1_1_base_a17dea5630935db11dec6d91c9fc88693}{reserved}}
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_eng_1_1_base_1_1_reserved}{Reserved} structure for internal use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_eng_1_1_base}{Eng\+::\+Base}} \mbox{\hyperlink{class_eng_1_1_base_ad981031db3f340f6674922fcc72dacbb}{instance}}
+\begin{DoxyCompactList}\small\item\em The singleton instance of the engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main class for the graphics engine. Implements the Singleton pattern. 
+
+The {\ttfamily \doxylink{class_eng_1_1_base}{Base}} class is responsible for initializing the engine, managing scenes, handling user input, and managing frame rate. It is designed as a singleton to ensure only one instance of the engine exists. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}\index{Eng::Base@{Eng::Base}!Base@{Base}}
+\index{Base@{Base}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{Base()}{Base()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69} 
+Eng\+::\+Base\+::\+Base (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eng_1_1_base}{Base}} const \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy constructor to prevent copying of the \doxylink{class_eng_1_1_base}{Base} instance. 
+
+\Hypertarget{class_eng_1_1_base_ae0700f06fa814dd024290dcd2b1a3157}\index{Eng::Base@{Eng::Base}!````~Base@{\texorpdfstring{$\sim$}{\string~}Base}}
+\index{````~Base@{\texorpdfstring{$\sim$}{\string~}Base}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Base()}{\string~Base()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_ae0700f06fa814dd024290dcd2b1a3157} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::\texorpdfstring{$\sim$}{\string~}\+Base (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{class_eng_1_1_base}{Base} class. 
+
+Cleans up resources used by the graphics engine.
+
+Destructor. \Hypertarget{class_eng_1_1_base_a46524a1c562ab3afca032e44a00ce7c6}\index{Eng::Base@{Eng::Base}!Base@{Base}}
+\index{Base@{Base}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{Base()}{Base()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a46524a1c562ab3afca032e44a00ce7c6} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::\+Base (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private constructor for the singleton instance. Initializes internal resources for the engine. 
+
+Constructor. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eng_1_1_base_a3178a2cc100b772ea521d3b441c7d718}\index{Eng::Base@{Eng::Base}!begin3D@{begin3D}}
+\index{begin3D@{begin3D}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{begin3D()}{begin3D()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a3178a2cc100b772ea521d3b441c7d718} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::begin3D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}}]{main\+Camera}{, }\item[{\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}}]{menu\+Camera}{, }\item[{const std\+::list$<$ std\+::string $>$ \&}]{menu}{}\end{DoxyParamCaption})}
+
+
+
+Start 3D rendering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera1} & A pointer to the first camera. \\
+\hline
+{\em camera2} & A pointer to the second camera. \\
+\hline
+{\em layers} & A list of layers to be rendered.\\
+\hline
+\end{DoxyParams}
+passing all node of the scene and save them into a list \Hypertarget{class_eng_1_1_base_a5d9ba3e2afa46a0717a0566c2f44f724}\index{Eng::Base@{Eng::Base}!clear@{clear}}
+\index{clear@{clear}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a5d9ba3e2afa46a0717a0566c2f44f724} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear the current scene. 
+
+Clear the screen. \Hypertarget{class_eng_1_1_base_a6c17fc3be4ea9d5d4af115ccc2cfdadd}\index{Eng::Base@{Eng::Base}!clearScene@{clearScene}}
+\index{clearScene@{clearScene}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{clearScene()}{clearScene()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a6c17fc3be4ea9d5d4af115ccc2cfdadd} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::clear\+Scene (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear the current scene. 
+
+clear all list of the scene \Hypertarget{class_eng_1_1_base_a974e6386722fb13945002c4f5c150b57}\index{Eng::Base@{Eng::Base}!end3D@{end3D}}
+\index{end3D@{end3D}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{end3D()}{end3D()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a974e6386722fb13945002c4f5c150b57} 
+void Eng\+::\+Base\+::end3D (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+End 3D rendering. 
+
+\Hypertarget{class_eng_1_1_base_afd7e1923deb411907695c0b27114f62a}\index{Eng::Base@{Eng::Base}!free@{free}}
+\index{free@{free}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{free()}{free()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_afd7e1923deb411907695c0b27114f62a} 
+bool \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::free (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Free resources used by the engine. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the engine was successfully freed, {\ttfamily false} otherwise.
+\end{DoxyReturn}
+Free internal components. \begin{DoxyReturn}{Returns}
+TF 
+\end{DoxyReturn}
+\Hypertarget{class_eng_1_1_base_a40b6f6e35aabe4de18d27f56fb8537ab}\index{Eng::Base@{Eng::Base}!getFPS@{getFPS}}
+\index{getFPS@{getFPS}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{getFPS()}{getFPS()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a40b6f6e35aabe4de18d27f56fb8537ab} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} float \& Eng\+::\+Base\+::get\+FPS (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get the current frames per second (FPS) value. 
+
+\begin{DoxyReturn}{Returns}
+The current FPS value. 
+\end{DoxyReturn}
+\Hypertarget{class_eng_1_1_base_a3c21bcd7bace09d5913ced6de5b15518}\index{Eng::Base@{Eng::Base}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a3c21bcd7bace09d5913ced6de5b15518} 
+\mbox{\hyperlink{class_eng_1_1_base}{Eng\+::\+Base}} \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \& Eng\+::\+Base\+::get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the singleton instance of the \doxylink{class_eng_1_1_base}{Base} class. 
+
+\begin{DoxyReturn}{Returns}
+The singleton instance of \doxylink{class_eng_1_1_base}{Base}.
+\end{DoxyReturn}
+Gets a reference to the (unique) singleton instance. \begin{DoxyReturn}{Returns}
+reference to singleton instance 
+\end{DoxyReturn}
+\Hypertarget{class_eng_1_1_base_aa4056f5a3edbc6f4d1764d6cec20e16d}\index{Eng::Base@{Eng::Base}!handleReshape@{handleReshape}}
+\index{handleReshape@{handleReshape}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{handleReshape()}{handleReshape()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_aa4056f5a3edbc6f4d1764d6cec20e16d} 
+void Eng\+::\+Base\+::handle\+Reshape (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private method to handle window reshaping. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The new width of the window. \\
+\hline
+{\em height} & The new height of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eng_1_1_base_afc0dd380b8955e2313d41893e630be12}\index{Eng::Base@{Eng::Base}!init@{init}}
+\index{init@{init}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_afc0dd380b8955e2313d41893e630be12} 
+bool \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::init (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{close\+Call\+Back~}{)() = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Initialize the engine. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if initialization is successful, {\ttfamily false} otherwise.
+\end{DoxyReturn}
+Init internal components. \begin{DoxyReturn}{Returns}
+TF 
+\end{DoxyReturn}
+\Hypertarget{class_eng_1_1_base_a91aaec73e036ebafe769980277777d90}\index{Eng::Base@{Eng::Base}!load@{load}}
+\index{load@{load}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a91aaec73e036ebafe769980277777d90} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::load (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Load a scene from a specified file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the scene file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the root node of the loaded scene. 
+\end{DoxyReturn}
+\Hypertarget{class_eng_1_1_base_ac4eb1f66179273abba59260a6b4c5cbd}\index{Eng::Base@{Eng::Base}!operator=@{operator=}}
+\index{operator=@{operator=}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_ac4eb1f66179273abba59260a6b4c5cbd} 
+void Eng\+::\+Base\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eng_1_1_base}{Base}} const \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy assignment operator to prevent assignment of the \doxylink{class_eng_1_1_base}{Base} instance. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the \doxylink{class_eng_1_1_base}{Base} instance. 
+\end{DoxyReturn}
+\Hypertarget{class_eng_1_1_base_a0c7d5052a4d2214589d83cbad4e0b9a9}\index{Eng::Base@{Eng::Base}!passScene@{passScene}}
+\index{passScene@{passScene}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{passScene()}{passScene()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a0c7d5052a4d2214589d83cbad4e0b9a9} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::pass\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root\+Node}{}\end{DoxyParamCaption})}
+
+
+
+Pass a scene to the engine for rendering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root\+Node} & A pointer to the root node of the scene.\\
+\hline
+\end{DoxyParams}
+passing all node of the scene and save them into a list \Hypertarget{class_eng_1_1_base_af6ed5042d5fb8d46b3bd339ecc916d33}\index{Eng::Base@{Eng::Base}!setKeyboardCallback@{setKeyboardCallback}}
+\index{setKeyboardCallback@{setKeyboardCallback}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{setKeyboardCallback()}{setKeyboardCallback()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_af6ed5042d5fb8d46b3bd339ecc916d33} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::set\+Keyboard\+Callback (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(unsigned char, int, int)}\end{DoxyParamCaption})}
+
+
+
+Set the keyboard callback function for user input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback function to handle keyboard events. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eng_1_1_base_a75805b6798f1681d3aea8bd134656b07}\index{Eng::Base@{Eng::Base}!setSpecialCallback@{setSpecialCallback}}
+\index{setSpecialCallback@{setSpecialCallback}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{setSpecialCallback()}{setSpecialCallback()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a75805b6798f1681d3aea8bd134656b07} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::set\+Special\+Callback (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(int, int, int)}\end{DoxyParamCaption})}
+
+
+
+Set the special key callback function for user input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback function to handle special key events. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eng_1_1_base_ae3678d41d28398d92b37258ac9fa5695}\index{Eng::Base@{Eng::Base}!swap@{swap}}
+\index{swap@{swap}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_ae3678d41d28398d92b37258ac9fa5695} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::swap (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Swap the buffers for rendering. 
+
+Swap buffers. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_eng_1_1_base_ad981031db3f340f6674922fcc72dacbb}\index{Eng::Base@{Eng::Base}!instance@{instance}}
+\index{instance@{instance}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{instance}{instance}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_ad981031db3f340f6674922fcc72dacbb} 
+\mbox{\hyperlink{class_eng_1_1_base}{Eng\+::\+Base}} Eng\+::\+Base\+::instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The singleton instance of the engine. 
+
+\Hypertarget{class_eng_1_1_base_a17dea5630935db11dec6d91c9fc88693}\index{Eng::Base@{Eng::Base}!reserved@{reserved}}
+\index{reserved@{reserved}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{reserved}{reserved}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a17dea5630935db11dec6d91c9fc88693} 
+std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Reserved}}$>$ Eng\+::\+Base\+::reserved\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{struct_eng_1_1_base_1_1_reserved}{Reserved} structure for internal use. 
+
+Unique pointer to the reserved structure 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{engine_8h}{engine.\+h}}\item 
+engine/\mbox{\hyperlink{engine_8cpp}{engine.\+cpp}}\end{DoxyCompactItemize}

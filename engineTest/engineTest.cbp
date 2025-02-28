@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="engineTest" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/engineTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add directory="../engine/bin/Debug" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/engineTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add directory="../engine/bin/Release" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="../engine" />
+			<Add directory="../dependencies/glm/include" />
+		</Compiler>
+		<Linker>
+			<Add library="engine" />
+			<Add library="gmock" />
+			<Add library="gtest" />
+		</Linker>
+		<Unit filename="directLightTest.cpp" />
+		<Unit filename="directLightTest.h" />
+		<Unit filename="fileOVOReaderTest.cpp" />
+		<Unit filename="fileOVOReaderTest.h" />
+		<Unit filename="listTest.cpp" />
+		<Unit filename="listTest.h" />
+		<Unit filename="mockCamera.h" />
+		<Unit filename="mockLight.h" />
+		<Unit filename="mockList.h" />
+		<Unit filename="mockNode.h" />
+		<Unit filename="nodeTest.cpp" />
+		<Unit filename="nodeTest.h" />
+		<Unit filename="notificationServiceTest.cpp" />
+		<Unit filename="notificationServiceTest.h" />
+		<Unit filename="objectTest.cpp" />
+		<Unit filename="objectTest.h" />
+		<Unit filename="omniLightTest.cpp" />
+		<Unit filename="omniLightTest.h" />
+		<Unit filename="orthoCameraTest.cpp" />
+		<Unit filename="orthoCameraTest.h" />
+		<Unit filename="spotLightTest.cpp" />
+		<Unit filename="spotLightTest.h" />
+		<Unit filename="test.cpp" />
+		<Unit filename="test.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

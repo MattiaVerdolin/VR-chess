@@ -1,0 +1,43 @@
+\doxysection{texture.\+h}
+\hypertarget{texture_8h_source}{}\label{texture_8h_source}\index{engine/texture.h@{engine/texture.h}}
+\mbox{\hyperlink{texture_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{object_8h}{object.h}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ MAIN\ TEXTURE\ CLASS\ //}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_texture_ad844373238930d60747526db8df6d20e}{Texture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_texture_ad844373238930d60747526db8df6d20e}{Texture}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_texture_ad844373238930d60747526db8df6d20e}{\string~Texture}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_object_afff98e03fa9337beab8c42cb4dc4ffb7}{render}}(\textcolor{keyword}{const}\ glm::mat4\&\ matrix\ =\ glm::mat4(1.0f))\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_object_a1d8a4587502276b6d157e3c2ab0a2dca}{parse}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ data,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ position)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_texture_1_1_reserved}{Reserved}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ std::unique\_ptr<Reserved>\ \mbox{\hyperlink{class_texture_a78674d1cfd5c0f3d69c6e4a16b9094a9}{m\_reserved}};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_texture_a86a121e3a310fa041a248638d4a46d9a}{isAnisotropicSupported}};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_texture_a81e5d2144e0837abd386f6da6e76eb1f}{anisotropicLevel}};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_texture_a82ef0bf604ce91c83c2630fe055d154a}{isAnisotropicAlreadySet}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_texture_ad7677ef3dd7e759713520e717270f11f}{setAnisotropicFilter}}();}
+\DoxyCodeLine{00104\ \};}
+
+\end{DoxyCode}

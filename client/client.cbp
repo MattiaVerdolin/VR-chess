@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="client" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/client" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add directory="../engine/bin/Debug" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/client" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add directory="../engine/bin/Release" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-std=c++20" />
+			<Add option="-fexceptions" />
+			<Add directory="../engine" />
+			<Add directory="../dependencies/glm/include" />
+		</Compiler>
+		<Linker>
+			<Add library="engine" />
+		</Linker>
+		<Unit filename="cameraManager.cpp" />
+		<Unit filename="cameraManager.h" />
+		<Unit filename="gameManager.cpp" />
+		<Unit filename="gameManager.h" />
+		<Unit filename="gameStatus.h" />
+		<Unit filename="historyManager.cpp" />
+		<Unit filename="historyManager.h" />
+		<Unit filename="lightManager.cpp" />
+		<Unit filename="lightManager.h" />
+		<Unit filename="listOfPieces.cpp" />
+		<Unit filename="listOfPieces.h" />
+		<Unit filename="listOfPiecesManager.cpp" />
+		<Unit filename="listOfPiecesManager.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="movementManager.cpp" />
+		<Unit filename="movementManager.h" />
+		<Unit filename="onStateUpdate.cpp" />
+		<Unit filename="onStateUpdate.h" />
+		<Unit filename="piece.cpp" />
+		<Unit filename="piece.h" />
+		<Unit filename="statusManager.cpp" />
+		<Unit filename="statusManager.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

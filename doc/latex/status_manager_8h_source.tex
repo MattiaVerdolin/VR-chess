@@ -1,0 +1,67 @@
+\doxysection{status\+Manager.\+h}
+\hypertarget{status_manager_8h_source}{}\label{status_manager_8h_source}\index{client/statusManager.h@{client/statusManager.h}}
+\mbox{\hyperlink{status_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game_status_8h}{gameStatus.h}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{on_state_update_8h}{onStateUpdate.h}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{engine_8h}{engine.h}}"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_status_manager_a11378a286cd8975dd80d1fc55b2b87c9}{StatusManager}}\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_status_manager_a11378a286cd8975dd80d1fc55b2b87c9}{StatusManager}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_status_manager_a11378a286cd8975dd80d1fc55b2b87c9}{StatusManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_status_manager_a11378a286cd8975dd80d1fc55b2b87c9}{StatusManager}}\&\ \mbox{\hyperlink{class_status_manager_abff163ed962a77b4c6a0704e67e09477}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_status_manager_a11378a286cd8975dd80d1fc55b2b87c9}{StatusManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_status_manager_a857013103366741c630cd33c62f1537a}{\string~StatusManager}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_status_manager_a11378a286cd8975dd80d1fc55b2b87c9}{StatusManager}}\&\ \mbox{\hyperlink{class_status_manager_a6a3229097c3198f4905b922aee1c9191}{getInstance}}();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_status_manager_a3bcc7c2715708eebc62f9293dcb69016}{subscribeListener}}(\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{GameStatus}}\ gameState,\ \mbox{\hyperlink{class_on_state_update_listener}{OnStateUpdateListener}}*\ listener);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_status_manager_abbc93e408a44b505260fffe6d698b2d7}{unsubscribeListener}}(\mbox{\hyperlink{class_on_state_update_listener}{OnStateUpdateListener}}*\ listener);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_status_manager_aed84825ee1d1af4458c3a556e5c95b55}{addGameStatusAndCallbacks}}(}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{GameStatus}}\&\ gameStatus,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ (*keyboardCallback)(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char},\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int})\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ (*specialKeyCallback)(\textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int})\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::list<std::string>\ menu\ =\ std::list<std::string>()}
+\DoxyCodeLine{00088\ \ \ \ \ );}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_status_manager_a0b0ac196c2d6eacb7de48245268bb281}{changeState}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{GameStatus}}\&\ gameStatus);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ std::list<std::string>\ \mbox{\hyperlink{class_status_manager_a18e536b0c54d9ff93b419c7c9a49d32b}{getMenu}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{GameStatus}}\ \mbox{\hyperlink{class_status_manager_a6a7927c732f1f4d6366ea2cf5a3071fa}{getCurrentGameStatus}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{class_status_manager_a2e23ab419ea2b65c7c75208891a72445}{StatusManager}}();}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00119\ \ \ \ \ void\ (*\mbox{\hyperlink{class_status_manager_aa62e761db64fbfeb3d400cad3999ad80}{getKeyboardCallback}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{GameStatus}}\&\ gameStatus))(\textcolor{keywordtype}{unsigned}\ char,\ int,\ int);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00126\ \ \ \ \ void\ (*\mbox{\hyperlink{class_status_manager_a63249f1f18d461a79b3c3dc841128ebe}{getSpecialKeyCallback}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{GameStatus}}\&\ gameStatus))(int,\ int,\ int);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_status_manager_1_1_reserved}{Reserved}};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00138\ \ \ \ \ std::map<GameStatus,\ Reserved>\ \mbox{\hyperlink{class_status_manager_ab4ff31cf6401dae6a84a11d0fb5ff55b}{m\_reserved}};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{GameStatus}}\ \mbox{\hyperlink{class_status_manager_a51f09b36feb0ef8b3174981a6f1d558f}{m\_currentState}};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00148\ \ \ \ \ std::map<GameStatus,\ std::list<OnStateUpdateListener*>>\ \mbox{\hyperlink{class_status_manager_ab1099d07e37edc4b0e276aaba3c2cd5a}{m\_listener}};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{class_eng_1_1_base}{Eng::Base}}\&\ \mbox{\hyperlink{class_status_manager_aa0234e4bfe3d5ddc2d86d1cd0826f7b7}{m\_engine}};}
+\DoxyCodeLine{00154\ \};}
+
+\end{DoxyCode}

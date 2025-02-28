@@ -1,0 +1,78 @@
+\doxysection{client/camera\+Manager.h File Reference}
+\hypertarget{camera_manager_8h}{}\label{camera_manager_8h}\index{client/cameraManager.h@{client/cameraManager.h}}
+
+
+Manages multiple cameras for rendering a 3D chessboard game scene.  
+
+
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include "{}on\+State\+Update.\+h"{}}\newline
+{\ttfamily \#include "{}status\+Manager.\+h"{}}\newline
+{\ttfamily \#include "{}movement\+Manager.\+h"{}}\newline
+{\ttfamily \#include "{}persp\+Camera.\+h"{}}\newline
+{\ttfamily \#include "{}ortho\+Camera.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_camera_manager}{Camera\+Manager}}
+\begin{DoxyCompactList}\small\item\em Singleton class for managing cameras in a 3D rendering scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{camera_manager_8h_a6fcdcd8d56e3910f94796a2559a715a6}{MAIN\+\_\+\+CAMERA}}~"{}first\+Camera"{}
+\begin{DoxyCompactList}\small\item\em Macro definitions for default cameras names. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{camera_manager_8h_a8c5a7dfbaf1d0e34a518ea0a05a2d782}{CHESSBOARD\+\_\+\+CAMERA}}~"{}chessboard\+Camera"{}
+\item 
+\#define \mbox{\hyperlink{camera_manager_8h_a30fdedee8cda6c5356a5fa1897ddfa19}{PLAYER\+\_\+\+WHITE\+\_\+\+CAMERA}}~"{}player\+White\+Camera"{}
+\item 
+\#define \mbox{\hyperlink{camera_manager_8h_a100197b8b3cc490cf776e1078a403bbe}{PLAYER\+\_\+\+BLACK\+\_\+\+CAMERA}}~"{}player\+Black\+Camera"{}
+\item 
+\#define \mbox{\hyperlink{camera_manager_8h_aa029b0c85142165692c8afaac1c9ff8f}{MENU\+\_\+\+CAMERA}}~"{}menu\+Camera"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages multiple cameras for rendering a 3D chessboard game scene. 
+
+This file declares the \doxylink{class_camera_manager}{Camera\+Manager} class, which is responsible for handling multiple cameras, including their creation, management, and transitions during different game states. It provides methods to add, remove, and find cameras by name and also handles camera movement and state updates.
+
+\begin{DoxyAuthor}{Authors}
+Luca Fantò (C) SUPSI Mattia Cainarca (C) SUPSI Antonio Marroffino (C) SUPSI 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{camera_manager_8h_a8c5a7dfbaf1d0e34a518ea0a05a2d782}\index{cameraManager.h@{cameraManager.h}!CHESSBOARD\_CAMERA@{CHESSBOARD\_CAMERA}}
+\index{CHESSBOARD\_CAMERA@{CHESSBOARD\_CAMERA}!cameraManager.h@{cameraManager.h}}
+\doxysubsubsection{\texorpdfstring{CHESSBOARD\_CAMERA}{CHESSBOARD\_CAMERA}}
+{\footnotesize\ttfamily \label{camera_manager_8h_a8c5a7dfbaf1d0e34a518ea0a05a2d782} 
+\#define CHESSBOARD\+\_\+\+CAMERA~"{}chessboard\+Camera"{}}
+
+\Hypertarget{camera_manager_8h_a6fcdcd8d56e3910f94796a2559a715a6}\index{cameraManager.h@{cameraManager.h}!MAIN\_CAMERA@{MAIN\_CAMERA}}
+\index{MAIN\_CAMERA@{MAIN\_CAMERA}!cameraManager.h@{cameraManager.h}}
+\doxysubsubsection{\texorpdfstring{MAIN\_CAMERA}{MAIN\_CAMERA}}
+{\footnotesize\ttfamily \label{camera_manager_8h_a6fcdcd8d56e3910f94796a2559a715a6} 
+\#define MAIN\+\_\+\+CAMERA~"{}first\+Camera"{}}
+
+
+
+Macro definitions for default cameras names. 
+
+Defines the default names for the cameras used in the scene. \Hypertarget{camera_manager_8h_aa029b0c85142165692c8afaac1c9ff8f}\index{cameraManager.h@{cameraManager.h}!MENU\_CAMERA@{MENU\_CAMERA}}
+\index{MENU\_CAMERA@{MENU\_CAMERA}!cameraManager.h@{cameraManager.h}}
+\doxysubsubsection{\texorpdfstring{MENU\_CAMERA}{MENU\_CAMERA}}
+{\footnotesize\ttfamily \label{camera_manager_8h_aa029b0c85142165692c8afaac1c9ff8f} 
+\#define MENU\+\_\+\+CAMERA~"{}menu\+Camera"{}}
+
+\Hypertarget{camera_manager_8h_a100197b8b3cc490cf776e1078a403bbe}\index{cameraManager.h@{cameraManager.h}!PLAYER\_BLACK\_CAMERA@{PLAYER\_BLACK\_CAMERA}}
+\index{PLAYER\_BLACK\_CAMERA@{PLAYER\_BLACK\_CAMERA}!cameraManager.h@{cameraManager.h}}
+\doxysubsubsection{\texorpdfstring{PLAYER\_BLACK\_CAMERA}{PLAYER\_BLACK\_CAMERA}}
+{\footnotesize\ttfamily \label{camera_manager_8h_a100197b8b3cc490cf776e1078a403bbe} 
+\#define PLAYER\+\_\+\+BLACK\+\_\+\+CAMERA~"{}player\+Black\+Camera"{}}
+
+\Hypertarget{camera_manager_8h_a30fdedee8cda6c5356a5fa1897ddfa19}\index{cameraManager.h@{cameraManager.h}!PLAYER\_WHITE\_CAMERA@{PLAYER\_WHITE\_CAMERA}}
+\index{PLAYER\_WHITE\_CAMERA@{PLAYER\_WHITE\_CAMERA}!cameraManager.h@{cameraManager.h}}
+\doxysubsubsection{\texorpdfstring{PLAYER\_WHITE\_CAMERA}{PLAYER\_WHITE\_CAMERA}}
+{\footnotesize\ttfamily \label{camera_manager_8h_a30fdedee8cda6c5356a5fa1897ddfa19} 
+\#define PLAYER\+\_\+\+WHITE\+\_\+\+CAMERA~"{}player\+White\+Camera"{}}
+

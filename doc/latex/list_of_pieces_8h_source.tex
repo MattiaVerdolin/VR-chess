@@ -1,0 +1,45 @@
+\doxysection{list\+Of\+Pieces.\+h}
+\hypertarget{list_of_pieces_8h_source}{}\label{list_of_pieces_8h_source}\index{client/listOfPieces.h@{client/listOfPieces.h}}
+\mbox{\hyperlink{list_of_pieces_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Project-\/specific\ headers}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{piece_8h}{piece.h}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_list_of_pieces_a62d3ceb40c3be83a699e4fde468d5c10}{ListOfPieces}}}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces_a62d3ceb40c3be83a699e4fde468d5c10}{ListOfPieces}}(\textcolor{keyword}{const}\ std::vector<Piece*>\&\ pieces);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces_abcbc646357275f6ca5a5ceb821ece2fa}{\string~ListOfPieces}}();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces_a62d3ceb40c3be83a699e4fde468d5c10}{ListOfPieces}}*\ \mbox{\hyperlink{class_list_of_pieces_a79f4b2185706c2850347f4bfb20a965d}{clone}}();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_list_of_pieces_a7a9783853d009af10c63a531f2689d96}{removePiece}}(\mbox{\hyperlink{class_piece}{Piece}}*\ piece);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_ae54e73d91ea380ac28c1bd81db42b4af}{clearList}}();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_list_of_pieces_a2ef91b5330a02f049d0e61115fff33a3}{getSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{class_piece}{Piece}}*\ \mbox{\hyperlink{class_list_of_pieces_a61f58012090968a83c666e187938f276}{getPieceByIndex}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{class_piece}{Piece}}*\ \mbox{\hyperlink{class_list_of_pieces_a12523b78a512a96239faa4e7cc4b8e2b}{getPieceByCoordinates}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ row,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ col)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_list_of_pieces_a666792da7f96b5617b5e58299ac11fba}{getNumberOfPiecesByCoordinates}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ row,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ col)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces_a62d3ceb40c3be83a699e4fde468d5c10}{ListOfPieces}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_list_of_pieces_a62d3ceb40c3be83a699e4fde468d5c10}{ListOfPieces}}\&\ other);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00136\ \ \ \ \ std::vector<Piece*>\ \mbox{\hyperlink{class_list_of_pieces_a548e4d5205db0315229b958f03a9421a}{m\_listOfPieces}};}
+\DoxyCodeLine{00137\ \};}
+
+\end{DoxyCode}

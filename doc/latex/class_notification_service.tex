@@ -1,0 +1,241 @@
+\doxysection{Notification\+Service Class Reference}
+\hypertarget{class_notification_service}{}\label{class_notification_service}\index{NotificationService@{NotificationService}}
+
+
+Singleton class for managing event listeners and notifying them of events.  
+
+
+
+
+{\ttfamily \#include $<$notification\+Service.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_notification_service_a75c5af349d902bca6993714e842696a6}{Notification\+Service}} (const \mbox{\hyperlink{class_notification_service}{Notification\+Service}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor to prevent copying of the \doxylink{class_notification_service}{Notification\+Service} instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_notification_service}{Notification\+Service}} \& \mbox{\hyperlink{class_notification_service_ac89795026dce05e40a647f96c98ae101}{operator=}} (const \mbox{\hyperlink{class_notification_service}{Notification\+Service}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator to prevent assignment of the \doxylink{class_notification_service}{Notification\+Service} instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_notification_service_a20b261e3da426199ab4ea7ad25be9f2c}{\texorpdfstring{$\sim$}{\string~}\+Notification\+Service}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_notification_service}{Notification\+Service} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_notification_service_a8bace961c1be8f9531c0dd901f72ff9c}{subscribe\+Listener}} (\mbox{\hyperlink{class_reshape_listener}{Reshape\+Listener}} \texorpdfstring{$\ast$}{*}listener)
+\begin{DoxyCompactList}\small\item\em Subscribe a listener for window reshape events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_notification_service_a2c586f800ab97525ebb057e1353789b9}{subscribe\+Listener}} (\mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}} \texorpdfstring{$\ast$}{*}listener)
+\begin{DoxyCompactList}\small\item\em Subscribe a listener for matrix change events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_notification_service_a9984988a72c6627af65a91529f84f000}{unsubscribe\+Listener}} (\mbox{\hyperlink{class_reshape_listener}{Reshape\+Listener}} \texorpdfstring{$\ast$}{*}listener)
+\begin{DoxyCompactList}\small\item\em Unsubscribe a listener from window reshape events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_notification_service_a5aae5023a463f57b627bf5075fd52ffc}{unsubscribe\+Listener}} (\mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}} \texorpdfstring{$\ast$}{*}listener)
+\begin{DoxyCompactList}\small\item\em Unsubscribe a listener from matrix change events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_notification_service_a400e20c0a800fc133e2634897cc14b1d}{notify\+On\+Reshape\+Window}} (int width, int height) const
+\begin{DoxyCompactList}\small\item\em Notify all subscribed Reshape\+Listeners of a window reshape event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_notification_service_ab5f5507308e90d7f81b45394c2d43e8a}{notify\+On\+Change\+Matrix}} (const unsigned int \&matrix\+Id) const
+\begin{DoxyCompactList}\small\item\em Notify all subscribed Change\+Matrix\+Listeners of a matrix change event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_notification_service}{Notification\+Service}} \& \mbox{\hyperlink{class_notification_service_aa97b4f28bbe826560803072d37ad3d67}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the singleton instance of \doxylink{class_notification_service}{Notification\+Service}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_notification_service_ad9d87a5982c0265a51e2cfc2dcf628a6}{Notification\+Service}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor for the singleton instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_reshape_listener}{Reshape\+Listener}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_notification_service_a20a234b2d77a82a7e3a84f14e41ab1e3}{m\+\_\+reshape\+Listeners}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_list}{List} of subscribers to window reshape events. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_notification_service_ae5e0e14893e836b2acc66591b20106ce}{m\+\_\+change\+Matrix\+Listeners}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_list}{List} of subscribers to matrix change events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Singleton class for managing event listeners and notifying them of events. 
+
+The \doxylink{class_notification_service}{Notification\+Service} class provides functionality to subscribe and unsubscribe listeners to window reshape and matrix change events. It ensures that when an event occurs, all subscribed listeners are notified. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_notification_service_a75c5af349d902bca6993714e842696a6}\index{NotificationService@{NotificationService}!NotificationService@{NotificationService}}
+\index{NotificationService@{NotificationService}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{NotificationService()}{NotificationService()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_notification_service_a75c5af349d902bca6993714e842696a6} 
+Notification\+Service\+::\+Notification\+Service (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_notification_service}{Notification\+Service}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy constructor to prevent copying of the \doxylink{class_notification_service}{Notification\+Service} instance. 
+
+\Hypertarget{class_notification_service_a20b261e3da426199ab4ea7ad25be9f2c}\index{NotificationService@{NotificationService}!````~NotificationService@{\texorpdfstring{$\sim$}{\string~}NotificationService}}
+\index{````~NotificationService@{\texorpdfstring{$\sim$}{\string~}NotificationService}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}NotificationService()}{\string~NotificationService()}}
+{\footnotesize\ttfamily \label{class_notification_service_a20b261e3da426199ab4ea7ad25be9f2c} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Notification\+Service\+::\texorpdfstring{$\sim$}{\string~}\+Notification\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{class_notification_service}{Notification\+Service} class. 
+
+Cleans up the resources and ensures proper cleanup of listener subscriptions. \Hypertarget{class_notification_service_ad9d87a5982c0265a51e2cfc2dcf628a6}\index{NotificationService@{NotificationService}!NotificationService@{NotificationService}}
+\index{NotificationService@{NotificationService}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{NotificationService()}{NotificationService()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_notification_service_ad9d87a5982c0265a51e2cfc2dcf628a6} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Notification\+Service\+::\+Notification\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private constructor for the singleton instance. 
+
+This constructor is private to ensure that the class can only be instantiated once through the get\+Instance method. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_notification_service_aa97b4f28bbe826560803072d37ad3d67}\index{NotificationService@{NotificationService}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_notification_service_aa97b4f28bbe826560803072d37ad3d67} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_notification_service}{Notification\+Service}} \& Notification\+Service\+::get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the singleton instance of \doxylink{class_notification_service}{Notification\+Service}. 
+
+\begin{DoxyReturn}{Returns}
+The singleton instance of \doxylink{class_notification_service}{Notification\+Service}. 
+\end{DoxyReturn}
+\Hypertarget{class_notification_service_ab5f5507308e90d7f81b45394c2d43e8a}\index{NotificationService@{NotificationService}!notifyOnChangeMatrix@{notifyOnChangeMatrix}}
+\index{notifyOnChangeMatrix@{notifyOnChangeMatrix}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{notifyOnChangeMatrix()}{notifyOnChangeMatrix()}}
+{\footnotesize\ttfamily \label{class_notification_service_ab5f5507308e90d7f81b45394c2d43e8a} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Notification\+Service\+::notify\+On\+Change\+Matrix (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{matrix\+Id}{}\end{DoxyParamCaption}) const}
+
+
+
+Notify all subscribed Change\+Matrix\+Listeners of a matrix change event. 
+
+This method calls the on\+Matrix\+Change method on all subscribed \doxylink{class_change_matrix_listener}{Change\+Matrix\+Listener} instances, passing the matrix ID that has changed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix\+Id} & The ID of the matrix that was changed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_notification_service_a400e20c0a800fc133e2634897cc14b1d}\index{NotificationService@{NotificationService}!notifyOnReshapeWindow@{notifyOnReshapeWindow}}
+\index{notifyOnReshapeWindow@{notifyOnReshapeWindow}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{notifyOnReshapeWindow()}{notifyOnReshapeWindow()}}
+{\footnotesize\ttfamily \label{class_notification_service_a400e20c0a800fc133e2634897cc14b1d} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Notification\+Service\+::notify\+On\+Reshape\+Window (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption}) const}
+
+
+
+Notify all subscribed Reshape\+Listeners of a window reshape event. 
+
+This method calls the on\+Window\+Reshape method on all subscribed \doxylink{class_reshape_listener}{Reshape\+Listener} instances, passing the new window dimensions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The new width of the window. \\
+\hline
+{\em height} & The new height of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_notification_service_ac89795026dce05e40a647f96c98ae101}\index{NotificationService@{NotificationService}!operator=@{operator=}}
+\index{operator=@{operator=}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_notification_service_ac89795026dce05e40a647f96c98ae101} 
+\mbox{\hyperlink{class_notification_service}{Notification\+Service}} \& Notification\+Service\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_notification_service}{Notification\+Service}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy assignment operator to prevent assignment of the \doxylink{class_notification_service}{Notification\+Service} instance. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the \doxylink{class_notification_service}{Notification\+Service} instance. 
+\end{DoxyReturn}
+\Hypertarget{class_notification_service_a2c586f800ab97525ebb057e1353789b9}\index{NotificationService@{NotificationService}!subscribeListener@{subscribeListener}}
+\index{subscribeListener@{subscribeListener}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{subscribeListener()}{subscribeListener()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_notification_service_a2c586f800ab97525ebb057e1353789b9} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Notification\+Service\+::subscribe\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{}\end{DoxyParamCaption})}
+
+
+
+Subscribe a listener for matrix change events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & The \doxylink{class_change_matrix_listener}{Change\+Matrix\+Listener} to subscribe. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_notification_service_a8bace961c1be8f9531c0dd901f72ff9c}\index{NotificationService@{NotificationService}!subscribeListener@{subscribeListener}}
+\index{subscribeListener@{subscribeListener}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{subscribeListener()}{subscribeListener()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_notification_service_a8bace961c1be8f9531c0dd901f72ff9c} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Notification\+Service\+::subscribe\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_reshape_listener}{Reshape\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{}\end{DoxyParamCaption})}
+
+
+
+Subscribe a listener for window reshape events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & The \doxylink{class_reshape_listener}{Reshape\+Listener} to subscribe. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_notification_service_a5aae5023a463f57b627bf5075fd52ffc}\index{NotificationService@{NotificationService}!unsubscribeListener@{unsubscribeListener}}
+\index{unsubscribeListener@{unsubscribeListener}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{unsubscribeListener()}{unsubscribeListener()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_notification_service_a5aae5023a463f57b627bf5075fd52ffc} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Notification\+Service\+::unsubscribe\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{}\end{DoxyParamCaption})}
+
+
+
+Unsubscribe a listener from matrix change events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & The \doxylink{class_change_matrix_listener}{Change\+Matrix\+Listener} to unsubscribe. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_notification_service_a9984988a72c6627af65a91529f84f000}\index{NotificationService@{NotificationService}!unsubscribeListener@{unsubscribeListener}}
+\index{unsubscribeListener@{unsubscribeListener}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{unsubscribeListener()}{unsubscribeListener()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_notification_service_a9984988a72c6627af65a91529f84f000} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Notification\+Service\+::unsubscribe\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_reshape_listener}{Reshape\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{}\end{DoxyParamCaption})}
+
+
+
+Unsubscribe a listener from window reshape events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & The \doxylink{class_reshape_listener}{Reshape\+Listener} to unsubscribe. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_notification_service_ae5e0e14893e836b2acc66591b20106ce}\index{NotificationService@{NotificationService}!m\_changeMatrixListeners@{m\_changeMatrixListeners}}
+\index{m\_changeMatrixListeners@{m\_changeMatrixListeners}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{m\_changeMatrixListeners}{m\_changeMatrixListeners}}
+{\footnotesize\ttfamily \label{class_notification_service_ae5e0e14893e836b2acc66591b20106ce} 
+std\+::vector$<$\mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}}\texorpdfstring{$\ast$}{*}$>$ Notification\+Service\+::m\+\_\+change\+Matrix\+Listeners\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{class_list}{List} of subscribers to matrix change events. 
+
+\Hypertarget{class_notification_service_a20a234b2d77a82a7e3a84f14e41ab1e3}\index{NotificationService@{NotificationService}!m\_reshapeListeners@{m\_reshapeListeners}}
+\index{m\_reshapeListeners@{m\_reshapeListeners}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{m\_reshapeListeners}{m\_reshapeListeners}}
+{\footnotesize\ttfamily \label{class_notification_service_a20a234b2d77a82a7e3a84f14e41ab1e3} 
+std\+::vector$<$\mbox{\hyperlink{class_reshape_listener}{Reshape\+Listener}}\texorpdfstring{$\ast$}{*}$>$ Notification\+Service\+::m\+\_\+reshape\+Listeners\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{class_list}{List} of subscribers to window reshape events. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{notification_service_8h}{notification\+Service.\+h}}\item 
+engine/\mbox{\hyperlink{notification_service_8cpp}{notification\+Service.\+cpp}}\end{DoxyCompactItemize}

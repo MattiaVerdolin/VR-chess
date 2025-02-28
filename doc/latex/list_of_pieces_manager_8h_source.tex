@@ -1,0 +1,90 @@
+\doxysection{list\+Of\+Pieces\+Manager.\+h}
+\hypertarget{list_of_pieces_manager_8h_source}{}\label{list_of_pieces_manager_8h_source}\index{client/listOfPiecesManager.h@{client/listOfPiecesManager.h}}
+\mbox{\hyperlink{list_of_pieces_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Project-\/specific\ headers}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{list_of_pieces_8h}{listOfPieces.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{movement_manager_8h}{movementManager.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{on_state_update_8h}{onStateUpdate.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{status_manager_8h}{statusManager.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}glm/glm.hpp"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}glm/gtc/matrix\_transform.hpp"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_list_of_pieces_manager_a4b4f1d552166871029d7c6db5a9b048b}{ListOfPiecesManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_on_state_update_listener_a4c51d36e1eea93d42e57f3fa63feafaf}{OnStateUpdateListener}}\ \{}
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces_manager_a4b4f1d552166871029d7c6db5a9b048b}{ListOfPiecesManager}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_list_of_pieces_manager_a4b4f1d552166871029d7c6db5a9b048b}{ListOfPiecesManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces_manager_a4b4f1d552166871029d7c6db5a9b048b}{ListOfPiecesManager}}\&\ \mbox{\hyperlink{class_list_of_pieces_manager_a203979d1178fce558dbe8d6f1e477525}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_list_of_pieces_manager_a4b4f1d552166871029d7c6db5a9b048b}{ListOfPiecesManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces_manager_a8f745bb781971ff59b6b03faae2a802e}{\string~ListOfPiecesManager}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_list_of_pieces_manager_a4b4f1d552166871029d7c6db5a9b048b}{ListOfPiecesManager}}\&\ \mbox{\hyperlink{class_list_of_pieces_manager_a64ee2adc429924ad97dc24579452ce04}{getInstance}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_list_of_pieces_manager_aa0b7da85d0959a4b07d4fa65a509114a}{initialize}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_piece}{Piece}}*\ \mbox{\hyperlink{class_list_of_pieces_manager_a0c8d43a7eaa4e1a8ab14a7c785e7f9c0}{getChoosenPiece}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_a0acac74128d0c62fc363eb82d3d2485c}{moveChooseNodeLeft}}();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_a5d346b89d7aaeecf1a76c2a7b3795bc5}{moveChooseNodeRight}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_ada86839c29d065adc3aa7f204e353e67}{confirmChoice}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_a9b0edf2883e30010d35f9fe5fb556c55}{deleteChoice}}();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_list_of_pieces_manager_ac1b0a29c942ad60c4640759d92da9cf2}{confirmMove}}();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_a72e6593f72e8ef38e8fc1c0a258a7f06}{updateSelectPointer}}();}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces}{ListOfPieces}}*\ \mbox{\hyperlink{class_list_of_pieces_manager_a4965cda78c62d9da02e25dcea015ed7c}{getWhitePieces}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces}{ListOfPieces}}*\ \mbox{\hyperlink{class_list_of_pieces_manager_a7fb2cf963d2be6628c0060f21dac8464}{getBlackPieces}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_aee2f02c2a2aecd71b484e170b95c0fda}{updateChessboard}}(\mbox{\hyperlink{class_list_of_pieces}{ListOfPieces}}*\ whiteList,\ \mbox{\hyperlink{class_list_of_pieces}{ListOfPieces}}*\ blackList);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_list_of_pieces_manager_a1add9aa78d5241ed85baf9cb6ac0176f}{isGameFinished}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces_manager_a55afd325baf1b5f5b114cdfda2c0052a}{ListOfPiecesManager}}();}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces}{ListOfPieces}}*\ \mbox{\hyperlink{class_list_of_pieces_manager_ae7eb5366c61cf3b0695e2132d524e188}{getCurrentList}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_a38bc6325f9c9b06e64559664603fea01}{moveChooseNode}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ sign);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_a6be8d127ec8c47dca21c1bad548bafd9}{preGameHandler}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_afb5404d7c1183c1b10917da870c85f72}{choiceHandler}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_aa2ce3e455e59d49ff829a92ec62995a3}{endGameHandler}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_a0691ce4a123c0f35e098c6a2e10a90ef}{buildChessboard}}();}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_a6e03ecef7798ddf1c19eba4edf3cfd78}{clearLists}}();}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_of_pieces_manager_ab5767ca41766b33b7506736c179e1ab1}{createShadow}}();}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{class_movement_manager}{MovementManager}}\&\ \mbox{\hyperlink{class_list_of_pieces_manager_abcb85eb23f4e4e44fb964437da19eb1e}{m\_movementManager}};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{class_status_manager}{StatusManager}}\&\ \mbox{\hyperlink{class_list_of_pieces_manager_ae28c8d3d938e1db8d1d595373376f485}{m\_statusManager}};}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces}{ListOfPieces}}*\ \mbox{\hyperlink{class_list_of_pieces_manager_af47d3bb89c0f3deaa7f52cf656188850}{m\_whiteList}};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00197\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces}{ListOfPieces}}*\ \mbox{\hyperlink{class_list_of_pieces_manager_a321662aa427d67aef00ec506942a8ef5}{m\_blackList}};}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00202\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_list_of_pieces_manager_ae62f754f5e1a75b8ac76d4ce6a72fb7c}{m\_selectPointer}};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_list_of_pieces_manager_a1e7e062711a0237995e2b90a8dcff846}{m\_iteratorOnList}};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_list_of_pieces_manager_a4330f3f3e27ab9f17f695b8ca0053e44}{m\_rotationAngle}};}
+\DoxyCodeLine{00213\ \};}
+
+\end{DoxyCode}

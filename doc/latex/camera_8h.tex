@@ -1,0 +1,25 @@
+\doxysection{engine/camera.h File Reference}
+\hypertarget{camera_8h}{}\label{camera_8h}\index{engine/camera.h@{engine/camera.h}}
+
+
+Declaration of the \doxylink{class_camera}{Camera} class, an abstract base class for camera objects.  
+
+
+{\ttfamily \#include "{}node.\+h"{}}\newline
+{\ttfamily \#include "{}glm/gtc/matrix\+\_\+transform.\+hpp"{}}\newline
+{\ttfamily \#include "{}notification\+Service.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_camera}{Camera}}
+\begin{DoxyCompactList}\small\item\em Abstract base \doxylink{class_camera}{Camera} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaration of the \doxylink{class_camera}{Camera} class, an abstract base class for camera objects. 
+
+This file defines the abstract base class for a camera in a 3D scene. The camera defines the projection matrix and handles the window resizing event to update the projection matrix accordingly. Subclasses of this class implement different types of camera behavior (e.\+g., perspective, orthographic).
+
+\begin{DoxyAuthor}{Authors}
+Luca Fantò (C) SUPSI \mbox{[}\href{mailto:luca.fanto@student.supsi.ch}{\texttt{ luca.\+fanto@student.\+supsi.\+ch}}\mbox{]} Mattia Cainarca (C) SUPSI \mbox{[}\href{mailto:mattia.cainarca@student.supsi.ch}{\texttt{ mattia.\+cainarca@student.\+supsi.\+ch}}\mbox{]} Antonio Marroffino (C) SUPSI \mbox{[}\href{mailto:antonio.marroffino@student.supsi.ch}{\texttt{ antonio.\+marroffino@student.\+supsi.\+ch}}\mbox{]} 
+\end{DoxyAuthor}

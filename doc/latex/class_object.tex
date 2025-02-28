@@ -1,0 +1,264 @@
+\doxysection{Object Class Reference}
+\hypertarget{class_object}{}\label{class_object}\index{Object@{Object}}
+
+
+Abstract base class for 3D objects in a rendering engine.  
+
+
+
+
+{\ttfamily \#include $<$object.\+h$>$}
+
+Inheritance diagram for Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_object}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_object_a226f2ae2af766b77d83c09a4d766b725}{\texorpdfstring{$\sim$}{\string~}\+Object}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_object}{Object} class. \end{DoxyCompactList}\item 
+const unsigned int \& \mbox{\hyperlink{class_object_a0ecb533178d82ce77fb1a5f855cfade2}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the ID of the object. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{class_object_a623e33bd86ef50533cc07371731dd7c3}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{set\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_object_afff98e03fa9337beab8c42cb4dc4ffb7}{render}} (const glm\+::mat4 \&transform=glm\+::mat4(1.\+0f))=0
+\begin{DoxyCompactList}\small\item\em Render the object with a given transformation matrix. \end{DoxyCompactList}\item 
+virtual const unsigned int \mbox{\hyperlink{class_object_a1d8a4587502276b6d157e3c2ab0a2dca}{parse}} (const char \texorpdfstring{$\ast$}{*}buffer, unsigned int \&offset)=0
+\begin{DoxyCompactList}\small\item\em Parse the object from a character buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}} (const std\+::string \&name="{}default\+Object"{})
+\begin{DoxyCompactList}\small\item\em Constructor with a specified name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_object_a8ec02d9e52b3cf8b5ba6cf3fa00efa00}{Object}} (const \mbox{\hyperlink{class_object}{Object}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_object}{Object}} \& \mbox{\hyperlink{class_object_aadbc7fb1c935f6776fbbbec7cc5275f4}{operator=}} (const \mbox{\hyperlink{class_object}{Object}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_ae3d9ac140621b21e594f0aca898f9042}{create\+New\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Generate a new unique ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a50ff4bf85922f0c8ef5b9fb07e2f5846}{m\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em The unique ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_a8b83c95c705d2c3ba0d081fe1710f48d}{m\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em The name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \mbox{\hyperlink{class_object_aaefcf7f86a144fd323e2c124df65bd52}{m\+\_\+cnt\+\_\+object}} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Counter to keep track of the number of objects and generate unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for 3D objects in a rendering engine. 
+
+The \doxylink{class_object}{Object} class provides common functionality such as ID generation, name management, and a virtual render method that must be implemented by derived classes. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_object_a226f2ae2af766b77d83c09a4d766b725}\index{Object@{Object}!````~Object@{\texorpdfstring{$\sim$}{\string~}Object}}
+\index{````~Object@{\texorpdfstring{$\sim$}{\string~}Object}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Object()}{\string~Object()}}
+{\footnotesize\ttfamily \label{class_object_a226f2ae2af766b77d83c09a4d766b725} 
+virtual Object\+::\texorpdfstring{$\sim$}{\string~}\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{class_object}{Object} class. 
+
+\Hypertarget{class_object_a40cdf32d8f757356eba76b905a456368}\index{Object@{Object}!Object@{Object}}
+\index{Object@{Object}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{Object()}{Object()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_object_a40cdf32d8f757356eba76b905a456368} 
+\mbox{\hyperlink{object_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Object\+::\+Object (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{ = {\ttfamily "{}defaultObject"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Constructor with a specified name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the object (default is "{}default\+Object"{}). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_object_a8ec02d9e52b3cf8b5ba6cf3fa00efa00}\index{Object@{Object}!Object@{Object}}
+\index{Object@{Object}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{Object()}{Object()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_object_a8ec02d9e52b3cf8b5ba6cf3fa00efa00} 
+\mbox{\hyperlink{object_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Object\+::\+Object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_object}{Object}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{class_object}{Object} instance to copy. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_object_ae3d9ac140621b21e594f0aca898f9042}\index{Object@{Object}!createNewId@{createNewId}}
+\index{createNewId@{createNewId}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{createNewId()}{createNewId()}}
+{\footnotesize\ttfamily \label{class_object_ae3d9ac140621b21e594f0aca898f9042} 
+unsigned int \mbox{\hyperlink{object_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Object\+::create\+New\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Generate a new unique ID. 
+
+\begin{DoxyReturn}{Returns}
+The newly generated unique ID. 
+\end{DoxyReturn}
+\Hypertarget{class_object_a0ecb533178d82ce77fb1a5f855cfade2}\index{Object@{Object}!getId@{getId}}
+\index{getId@{getId}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{class_object_a0ecb533178d82ce77fb1a5f855cfade2} 
+const \mbox{\hyperlink{object_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int \& Object\+::get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieve the ID of the object. 
+
+\begin{DoxyReturn}{Returns}
+A constant reference to the object\textquotesingle{}s ID. 
+\end{DoxyReturn}
+\Hypertarget{class_object_a623e33bd86ef50533cc07371731dd7c3}\index{Object@{Object}!getName@{getName}}
+\index{getName@{getName}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{class_object_a623e33bd86ef50533cc07371731dd7c3} 
+const \mbox{\hyperlink{object_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} std\+::string \& Object\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieve the name of the object. 
+
+\begin{DoxyReturn}{Returns}
+A constant reference to the object\textquotesingle{}s name. 
+\end{DoxyReturn}
+\Hypertarget{class_object_aadbc7fb1c935f6776fbbbec7cc5275f4}\index{Object@{Object}!operator=@{operator=}}
+\index{operator=@{operator=}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_object_aadbc7fb1c935f6776fbbbec7cc5275f4} 
+\mbox{\hyperlink{object_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_object}{Object}} \& Object\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_object}{Object}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Copy assignment operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{class_object}{Object} instance to assign. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the assigned \doxylink{class_object}{Object} instance. 
+\end{DoxyReturn}
+\Hypertarget{class_object_a1d8a4587502276b6d157e3c2ab0a2dca}\index{Object@{Object}!parse@{parse}}
+\index{parse@{parse}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{class_object_a1d8a4587502276b6d157e3c2ab0a2dca} 
+virtual const unsigned int Object\+::parse (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{unsigned int \&}]{offset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Parse the object from a character buffer. 
+
+This method is pure virtual and must be implemented by derived classes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & The character buffer containing object data. \\
+\hline
+{\em offset} & The current offset within the buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new offset after parsing the object. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_camera_a87fec34cb8956f2b8b22e997a53d7030}{Camera}}, \mbox{\hyperlink{class_light_a9c2b3894860997c534ad58cf233231aa}{Light}}, \mbox{\hyperlink{class_material_adf701a1c684a4661d4b98859a8fa6abf}{Material}}, \mbox{\hyperlink{class_mesh_add68ca4ef348ad8baf88f38488f53599}{Mesh}}, \mbox{\hyperlink{class_node_a2a71e920c29f9ed353b07e12ec4ec552}{Node}}, \mbox{\hyperlink{class_spot_light_a3876c652aeb74872e91d1262b18fcfb3}{Spot\+Light}}, and \mbox{\hyperlink{class_texture_aa03e5bb53ff3406057d6768679226550}{Texture}}.
+
+\Hypertarget{class_object_afff98e03fa9337beab8c42cb4dc4ffb7}\index{Object@{Object}!render@{render}}
+\index{render@{render}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_object_afff98e03fa9337beab8c42cb4dc4ffb7} 
+virtual void Object\+::render (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{transform}{ = {\ttfamily glm\+:\+:mat4(1.0f)}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Render the object with a given transformation matrix. 
+
+This method is pure virtual and must be implemented by derived classes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transformation matrix to apply (default is the identity matrix). \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_camera_a462f50e69b551da89e7c5c5e94b6338b}{Camera}}, \mbox{\hyperlink{class_direct_light_abbc9e845d97f6e7e7671a811c5c55ca0}{Direct\+Light}}, \mbox{\hyperlink{class_light_aa7c94186ffb48c88058dea96547c8f3c}{Light}}, \mbox{\hyperlink{class_material_adba6a1994c7bf7ca45aee17a80082965}{Material}}, \mbox{\hyperlink{class_mesh_adb9bc66f2daa714ad363690db5ad2bf0}{Mesh}}, \mbox{\hyperlink{class_node_a93d7587db1e3b5c4d92b29fc83e702ec}{Node}}, \mbox{\hyperlink{class_omni_light_a7f98cf3897eb5232e877afe838477a74}{Omni\+Light}}, \mbox{\hyperlink{class_spot_light_a61d103f5a649b1282ed06009f1e0c42d}{Spot\+Light}}, and \mbox{\hyperlink{class_texture_a46b4b64eebd715c36997577c51690a89}{Texture}}.
+
+\Hypertarget{class_object_a2353e70d1cd4e3d478b70611cc53e191}\index{Object@{Object}!setName@{setName}}
+\index{setName@{setName}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily \label{class_object_a2353e70d1cd4e3d478b70611cc53e191} 
+void \mbox{\hyperlink{object_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Object\+::set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Set the name of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The new name to assign to the object. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_object_aaefcf7f86a144fd323e2c124df65bd52}\index{Object@{Object}!m\_cnt\_object@{m\_cnt\_object}}
+\index{m\_cnt\_object@{m\_cnt\_object}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{m\_cnt\_object}{m\_cnt\_object}}
+{\footnotesize\ttfamily \label{class_object_aaefcf7f86a144fd323e2c124df65bd52} 
+\mbox{\hyperlink{object_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int Object\+::m\+\_\+cnt\+\_\+object \{ 0 \}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Counter to keep track of the number of objects and generate unique IDs. 
+
+\Hypertarget{class_object_a50ff4bf85922f0c8ef5b9fb07e2f5846}\index{Object@{Object}!m\_id@{m\_id}}
+\index{m\_id@{m\_id}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{m\_id}{m\_id}}
+{\footnotesize\ttfamily \label{class_object_a50ff4bf85922f0c8ef5b9fb07e2f5846} 
+unsigned int Object\+::m\+\_\+id\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The unique ID of the object. 
+
+\Hypertarget{class_object_a8b83c95c705d2c3ba0d081fe1710f48d}\index{Object@{Object}!m\_name@{m\_name}}
+\index{m\_name@{m\_name}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{m\_name}{m\_name}}
+{\footnotesize\ttfamily \label{class_object_a8b83c95c705d2c3ba0d081fe1710f48d} 
+std\+::string Object\+::m\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The name of the object. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{object_8h}{object.\+h}}\item 
+engine/\mbox{\hyperlink{object_8cpp}{object.\+cpp}}\end{DoxyCompactItemize}

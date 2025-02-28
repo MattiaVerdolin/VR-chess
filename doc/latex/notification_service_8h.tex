@@ -1,0 +1,26 @@
+\doxysection{engine/notification\+Service.h File Reference}
+\hypertarget{notification_service_8h}{}\label{notification_service_8h}\index{engine/notificationService.h@{engine/notificationService.h}}
+
+
+Declaration of the \doxylink{class_notification_service}{Notification\+Service} class for managing listeners and notifications.  
+
+
+{\ttfamily \#include "{}reshape\+Listener.\+h"{}}\newline
+{\ttfamily \#include "{}change\+Matrix\+Listener.\+h"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_notification_service}{Notification\+Service}}
+\begin{DoxyCompactList}\small\item\em Singleton class for managing event listeners and notifying them of events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaration of the \doxylink{class_notification_service}{Notification\+Service} class for managing listeners and notifications. 
+
+This file defines the \doxylink{class_notification_service}{Notification\+Service} class, which allows subscribing and unsubscribing listeners for window reshape and matrix change events. It also provides methods to notify all subscribers of these events.
+
+\begin{DoxyAuthor}{Authors}
+Luca Fantò (C) SUPSI \mbox{[}\href{mailto:luca.fanto@student.supsi.ch}{\texttt{ luca.\+fanto@student.\+supsi.\+ch}}\mbox{]} Mattia Cainarca (C) SUPSI \mbox{[}\href{mailto:mattia.cainarca@student.supsi.ch}{\texttt{ mattia.\+cainarca@student.\+supsi.\+ch}}\mbox{]} Antonio Marroffino (C) SUPSI \mbox{[}\href{mailto:antonio.marroffino@student.supsi.ch}{\texttt{ antonio.\+marroffino@student.\+supsi.\+ch}}\mbox{]} 
+\end{DoxyAuthor}

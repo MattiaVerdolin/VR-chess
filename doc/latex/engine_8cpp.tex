@@ -1,0 +1,66 @@
+\doxysection{engine/engine.cpp File Reference}
+\hypertarget{engine_8cpp}{}\label{engine_8cpp}\index{engine/engine.cpp@{engine/engine.cpp}}
+
+
+Graphics engine main file.  
+
+
+{\ttfamily \#include "{}engine.\+h"{}}\newline
+{\ttfamily \#include "{}notification\+Service.\+h"{}}\newline
+{\ttfamily \#include "{}text\+Manager.\+h"{}}\newline
+{\ttfamily \#include "{}glm/glm.\+hpp"{}}\newline
+{\ttfamily \#include "{}glm/gtc/type\+\_\+ptr.\+hpp"{}}\newline
+{\ttfamily \#include "{}GL/freeglut.\+h"{}}\newline
+{\ttfamily \#include "{}file\+OVOReader.\+h"{}}\newline
+{\ttfamily \#include "{}list.\+h"{}}\newline
+{\ttfamily \#include "{}Free\+Image.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$source\+\_\+location$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Eng\+::\+Base\+::\+Reserved}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_eng_1_1_base}{Base} class reserved structure (using PIMPL/\+Bridge design pattern \href{https://en.wikipedia.org/wiki/Opaque_pointer}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Opaque\+\_\+pointer}}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{engine_8cpp_abaf7d77bd2fc7eb6125fa605bd645b67}{frame\+Count}} = 0
+\item 
+float \mbox{\hyperlink{engine_8cpp_a4f50e96f11c68d45dc109185efe011ad}{fps}} = 0.\+0f
+\item 
+int \mbox{\hyperlink{engine_8cpp_aaa2bba9b04515c5bbf5c04d20f672b12}{previous\+Time}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Graphics engine main file. 
+
+\begin{DoxyAuthor}{Author}
+Luca Fantò (C) SUPSI \mbox{[}\href{mailto:luca.fanto@student.supsi.ch}{\texttt{ luca.\+fanto@student.\+supsi.\+ch}}\mbox{]} 
+
+Mattia Cainarca (C) SUPSI \mbox{[}\href{mailto:mattia.cainarca@student.supsi.ch}{\texttt{ mattia.\+cainarca@student.\+supsi.\+ch}}\mbox{]} 
+
+Antonio Marroffino (C) SUPSI \mbox{[}\href{mailto:antonio.marroffino@student.supsi.ch}{\texttt{ antonio.\+marroffino@student.\+supsi.\+ch}}\mbox{]} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{engine_8cpp_a4f50e96f11c68d45dc109185efe011ad}\index{engine.cpp@{engine.cpp}!fps@{fps}}
+\index{fps@{fps}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{fps}{fps}}
+{\footnotesize\ttfamily \label{engine_8cpp_a4f50e96f11c68d45dc109185efe011ad} 
+float fps = 0.\+0f}
+
+\Hypertarget{engine_8cpp_abaf7d77bd2fc7eb6125fa605bd645b67}\index{engine.cpp@{engine.cpp}!frameCount@{frameCount}}
+\index{frameCount@{frameCount}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{frameCount}{frameCount}}
+{\footnotesize\ttfamily \label{engine_8cpp_abaf7d77bd2fc7eb6125fa605bd645b67} 
+int frame\+Count = 0}
+
+\Hypertarget{engine_8cpp_aaa2bba9b04515c5bbf5c04d20f672b12}\index{engine.cpp@{engine.cpp}!previousTime@{previousTime}}
+\index{previousTime@{previousTime}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{previousTime}{previousTime}}
+{\footnotesize\ttfamily \label{engine_8cpp_aaa2bba9b04515c5bbf5c04d20f672b12} 
+int previous\+Time = 0}
+

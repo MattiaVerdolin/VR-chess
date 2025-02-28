@@ -1,0 +1,76 @@
+\doxysection{camera\+Manager.\+h}
+\hypertarget{camera_manager_8h_source}{}\label{camera_manager_8h_source}\index{client/cameraManager.h@{client/cameraManager.h}}
+\mbox{\hyperlink{camera_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Project-\/specific\ headers}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{on_state_update_8h}{onStateUpdate.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{status_manager_8h}{statusManager.h}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{movement_manager_8h}{movementManager.h}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{persp_camera_8h}{perspCamera.h}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ortho_camera_8h}{orthoCamera.h}}"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ MAIN\_CAMERA\ "{}firstCamera"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ CHESSBOARD\_CAMERA\ "{}chessboardCamera"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ PLAYER\_WHITE\_CAMERA\ "{}playerWhiteCamera"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ PLAYER\_BLACK\_CAMERA\ "{}playerBlackCamera"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ MENU\_CAMERA\ "{}menuCamera"{}}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ CAMERA\ MANAGER\ //}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_camera_manager_a337865ab18c1a8bfc32d6bc65c294ebc}{CameraManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_on_state_update_listener_a4c51d36e1eea93d42e57f3fa63feafaf}{OnStateUpdateListener}}}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_camera_manager_a337865ab18c1a8bfc32d6bc65c294ebc}{CameraManager}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_camera_manager_a337865ab18c1a8bfc32d6bc65c294ebc}{CameraManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_camera_manager_a337865ab18c1a8bfc32d6bc65c294ebc}{CameraManager}}\&\ \mbox{\hyperlink{class_camera_manager_aa7dd363a0c38f52c60d0981ad1be87a6}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_camera_manager_a337865ab18c1a8bfc32d6bc65c294ebc}{CameraManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_camera_manager_a7a5d263f3fc28809d6c8c3935e571143}{\string~CameraManager}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_camera_manager_a337865ab18c1a8bfc32d6bc65c294ebc}{CameraManager}}\&\ \mbox{\hyperlink{class_camera_manager_ac7e6b0996395dcaaa889d17d5a8a639e}{getInstance}}();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_manager_ac796e1405cb4440b42cbddd657cbff6a}{initialize}}();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_camera_manager_a1ef068a8b72428ee0bb7a0aefb5eb068}{addNewCamera}}(\mbox{\hyperlink{class_camera}{Camera}}*\ newCamera,\ \mbox{\hyperlink{class_node}{Node}}*\ parentNode\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_camera_manager_a50e2c7bb6885c55a8c08016d8081f8e1}{removeCamera}}(\textcolor{keyword}{const}\ std::string\&\ cameraName,\ \mbox{\hyperlink{class_node}{Node}}*\ parentNode\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_camera_manager_a2a341c28fb85681fb93d5517193c2e87}{setNewMainCamera}}(\textcolor{keyword}{const}\ std::string\&\ cameraName,\ \mbox{\hyperlink{class_node}{Node}}*\ parentNode\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{class_camera}{Camera}}*\ \mbox{\hyperlink{class_camera_manager_a652cdf4acaf87b557e037725a33fb9ed}{getMainCamera}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_node}{Node}}*\ parentNode\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{class_camera}{Camera}}*\ \mbox{\hyperlink{class_camera_manager_ad96fdedfc2a7ccf7b563a96e944859b5}{findCameraByName}}(\textcolor{keyword}{const}\ std::string\&\ cameraName,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_node}{Node}}*\ parentNode\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_manager_ae1f87332df74c9f4693b417fc94e36e0}{moveCameraRight}}();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_manager_aa8880103ac1f7bcca9e58f30e2767a0d}{moveCameraLeft}}();}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_manager_a2456c7dd81bc3849213439136e1fa8a7}{moveCameraUp}}();}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_manager_a7a6e25590403b9d7efa4d70b29601247}{moveCameraDown}}();}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{class_camera_manager_ab66d897f3d5f01efe7e4368f16c42d7f}{CameraManager}}();}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_manager_ae9daad88d4c752ead72590eadbcd14b8}{createCameras}}();}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_manager_a983fe356f39b4e59aaeb43e66f1a9649}{preGameHandler}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_manager_ae6445a8b0e55b9c65ea5ec9a3677c0a9}{choiceHandler}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_manager_a015b28d0d726b76b654e86b42ff4ab26}{endGameHandler}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{class_status_manager}{StatusManager}}\&\ \mbox{\hyperlink{class_camera_manager_a442a35ae98e2d5f4d6f7722737b90553}{m\_statusManager}};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{class_movement_manager}{MovementManager}}\&\ \mbox{\hyperlink{class_camera_manager_ae599cfb2c60480c77b2b7f4516f5f5e5}{m\_movementManager}};}
+\DoxyCodeLine{00176\ \};}
+
+\end{DoxyCode}

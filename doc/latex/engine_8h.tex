@@ -1,0 +1,69 @@
+\doxysection{engine/engine.h File Reference}
+\hypertarget{engine_8h}{}\label{engine_8h}\index{engine/engine.h@{engine/engine.h}}
+
+
+Main include file for the graphics engine.  
+
+
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include "{}node.\+h"{}}\newline
+{\ttfamily \#include "{}camera.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eng_1_1_base}{Eng\+::\+Base}}
+\begin{DoxyCompactList}\small\item\em Main class for the graphics engine. Implements the Singleton pattern. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_eng}{Eng}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{engine_8h_a6e43beaa714b1bf01ce2271440786e38}{LIB\+\_\+\+NAME}}~"{}My Graphics Engine v0.\+1a"{}
+\begin{DoxyCompactList}\small\item\em Library credits for release version. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{engine_8h_a1418b909446cf0c11d3f26ef91d8e850}{LIB\+\_\+\+VERSION}}~10
+\begin{DoxyCompactList}\small\item\em Library version (divide by 10) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{engine_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main include file for the graphics engine. 
+
+This file defines the main class for the graphics engine, {\ttfamily Base}, which follows the Singleton design pattern. The class provides methods for initialization, scene management, and rendering. It also includes functions for handling user input and managing FPS.
+
+\begin{DoxyAuthor}{Authors}
+Luca Fantò (C) SUPSI \mbox{[}\href{mailto:luca.fanto@student.supsi.ch}{\texttt{ luca.\+fanto@student.\+supsi.\+ch}}\mbox{]} Mattia Cainarca (C) SUPSI \mbox{[}\href{mailto:mattia.cainarca@student.supsi.ch}{\texttt{ mattia.\+cainarca@student.\+supsi.\+ch}}\mbox{]} Antonio Marroffino (C) SUPSI \mbox{[}\href{mailto:antonio.marroffino@student.supsi.ch}{\texttt{ antonio.\+marroffino@student.\+supsi.\+ch}}\mbox{]} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{engine_8h_a2ef14742296b6d1fdaf5e70dfdd60996}\index{engine.h@{engine.h}!ENG\_API@{ENG\_API}}
+\index{ENG\_API@{ENG\_API}!engine.h@{engine.h}}
+\doxysubsubsection{\texorpdfstring{ENG\_API}{ENG\_API}}
+{\footnotesize\ttfamily \label{engine_8h_a2ef14742296b6d1fdaf5e70dfdd60996} 
+\#define ENG\+\_\+\+API}
+
+\Hypertarget{engine_8h_a6e43beaa714b1bf01ce2271440786e38}\index{engine.h@{engine.h}!LIB\_NAME@{LIB\_NAME}}
+\index{LIB\_NAME@{LIB\_NAME}!engine.h@{engine.h}}
+\doxysubsubsection{\texorpdfstring{LIB\_NAME}{LIB\_NAME}}
+{\footnotesize\ttfamily \label{engine_8h_a6e43beaa714b1bf01ce2271440786e38} 
+\#define LIB\+\_\+\+NAME~"{}My Graphics Engine v0.\+1a"{}}
+
+
+
+Library credits for release version. 
+
+\Hypertarget{engine_8h_a1418b909446cf0c11d3f26ef91d8e850}\index{engine.h@{engine.h}!LIB\_VERSION@{LIB\_VERSION}}
+\index{LIB\_VERSION@{LIB\_VERSION}!engine.h@{engine.h}}
+\doxysubsubsection{\texorpdfstring{LIB\_VERSION}{LIB\_VERSION}}
+{\footnotesize\ttfamily \label{engine_8h_a1418b909446cf0c11d3f26ef91d8e850} 
+\#define LIB\+\_\+\+VERSION~10}
+
+
+
+Library version (divide by 10) 
+

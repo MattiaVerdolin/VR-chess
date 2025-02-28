@@ -1,0 +1,71 @@
+\doxysection{Change\+Matrix\+Listener Class Reference}
+\hypertarget{class_change_matrix_listener}{}\label{class_change_matrix_listener}\index{ChangeMatrixListener@{ChangeMatrixListener}}
+
+
+Interface for receiving notifications when a matrix changes.  
+
+
+
+
+{\ttfamily \#include $<$change\+Matrix\+Listener.\+h$>$}
+
+Inheritance diagram for Change\+Matrix\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_change_matrix_listener}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_change_matrix_listener_ad60053b99dda20a9ce16555c10ac0695}{\texorpdfstring{$\sim$}{\string~}\+Change\+Matrix\+Listener}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_change_matrix_listener}{Change\+Matrix\+Listener} class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_change_matrix_listener_af309992d69f2ea31a8d4dd249bc3731b}{on\+Matrix\+Change}} (const unsigned int \&matrix\+Id)=0
+\begin{DoxyCompactList}\small\item\em Callback method to be called when a matrix change occurs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for receiving notifications when a matrix changes. 
+
+The \doxylink{class_change_matrix_listener}{Change\+Matrix\+Listener} interface defines a method that is called whenever a matrix is changed. Classes that want to receive these notifications must implement the on\+Matrix\+Change method. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_change_matrix_listener_ad60053b99dda20a9ce16555c10ac0695}\index{ChangeMatrixListener@{ChangeMatrixListener}!````~ChangeMatrixListener@{\texorpdfstring{$\sim$}{\string~}ChangeMatrixListener}}
+\index{````~ChangeMatrixListener@{\texorpdfstring{$\sim$}{\string~}ChangeMatrixListener}!ChangeMatrixListener@{ChangeMatrixListener}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ChangeMatrixListener()}{\string~ChangeMatrixListener()}}
+{\footnotesize\ttfamily \label{class_change_matrix_listener_ad60053b99dda20a9ce16555c10ac0695} 
+virtual Change\+Matrix\+Listener\+::\texorpdfstring{$\sim$}{\string~}\+Change\+Matrix\+Listener (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Virtual destructor for the \doxylink{class_change_matrix_listener}{Change\+Matrix\+Listener} class. 
+
+Ensures proper cleanup of derived class resources when a \doxylink{class_change_matrix_listener}{Change\+Matrix\+Listener} is destroyed. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_change_matrix_listener_af309992d69f2ea31a8d4dd249bc3731b}\index{ChangeMatrixListener@{ChangeMatrixListener}!onMatrixChange@{onMatrixChange}}
+\index{onMatrixChange@{onMatrixChange}!ChangeMatrixListener@{ChangeMatrixListener}}
+\doxysubsubsection{\texorpdfstring{onMatrixChange()}{onMatrixChange()}}
+{\footnotesize\ttfamily \label{class_change_matrix_listener_af309992d69f2ea31a8d4dd249bc3731b} 
+virtual void Change\+Matrix\+Listener\+::on\+Matrix\+Change (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{matrix\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Callback method to be called when a matrix change occurs. 
+
+This method must be implemented by any class that wishes to listen for matrix changes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix\+Id} & The ID of the matrix that was changed. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_list_a0b474c6e4ae708dfe93fb8a5799b623d}{List}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{change_matrix_listener_8h}{change\+Matrix\+Listener.\+h}}\end{DoxyCompactItemize}

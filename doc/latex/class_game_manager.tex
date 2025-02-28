@@ -1,0 +1,455 @@
+\doxysection{Game\+Manager Class Reference}
+\hypertarget{class_game_manager}{}\label{class_game_manager}\index{GameManager@{GameManager}}
+
+
+Singleton class responsible for managing the game state, input handling, and transitioning between different game modes.  
+
+
+
+
+{\ttfamily \#include $<$game\+Manager.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_game_manager_1_1_reserved}{Reserved}}
+\begin{DoxyCompactList}\small\item\em Struct to hold references to various game subsystems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_manager_a5af1609aaeb8c7c74356a108c1d16ba8}{Game\+Manager}} (const \mbox{\hyperlink{class_game_manager}{Game\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor to prevent copying of the singleton instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_manager}{Game\+Manager}} \& \mbox{\hyperlink{class_game_manager_a4f30ff58781438a8814e009a55c6de65}{operator=}} (const \mbox{\hyperlink{class_game_manager}{Game\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator to prevent copying of the singleton instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_manager_aaae63e38e358379c1fe507c5197a8435}{\texorpdfstring{$\sim$}{\string~}\+Game\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor to release resources associated with the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_ae272eb0bf4e4987797fcff97723819cc}{start\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Starts the game by loading the scene and initializing necessary components. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_game_manager}{Game\+Manager}} \& \mbox{\hyperlink{class_game_manager_a62c0bd2e38276cc3805fb38a85890d42}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Returns the singleton instance of \doxylink{class_game_manager}{Game\+Manager}. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_game_manager_ac5e2d862b4c5ef4bd31bc8a288ce6b38}{set\+Root\+Node}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}root\+Node)
+\begin{DoxyCompactList}\small\item\em Sets the root node for the game scene. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_game_manager_ac81e49dcab325cf42543984b4329cd8c}{get\+Root\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Returns the root node of the game scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_game_manager_aef68a010d8d68ac53cfa28f8486c7501}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the game components. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_ac8beed097aba6325580d17936f8cec9b}{game\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Main game loop that processes game logic and rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_aaf6db3af66acd4d2406e1ab68fe1c0d6}{reset\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Resets the game state to the initial pre-\/game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_a7b9feab324e0c5332e8a4d7395242048}{create\+Graphics\+List}} ()
+\begin{DoxyCompactList}\small\item\em Creates the graphics list for the game scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_ad877bbd2fd9f3af0e1795d41cd8bf70a}{keyboard\+Callback\+Pre\+Game}} (unsigned char key, int mouseX, int mouseY)
+\begin{DoxyCompactList}\small\item\em Handles keyboard input during the pre-\/game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_ab9b57991986188bc670bfc86ea2114dc}{special\+Key\+Callback\+Pre\+Game}} (int key, int mouseX, int mouseY)
+\begin{DoxyCompactList}\small\item\em Handles special key input during the pre-\/game state. \end{DoxyCompactList}\item 
+std\+::list$<$ std\+::string $>$ \mbox{\hyperlink{class_game_manager_aa8b4ec5502cad7cf9feb6abc7a0ed1f5}{menu\+Pre\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Displays the menu options during the pre-\/game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_aaa261a78577c586a08f88622ec0aabe8}{keyboard\+Callback\+Choice}} (unsigned char key, int mouseX, int mouseY)
+\begin{DoxyCompactList}\small\item\em Handles keyboard input during the choice state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_a736867efd3565c2833b25561ce2193c2}{special\+Key\+Callback\+Choice}} (int key, int mouseX, int mouseY)
+\begin{DoxyCompactList}\small\item\em Handles special key input during the choice state. \end{DoxyCompactList}\item 
+std\+::list$<$ std\+::string $>$ \mbox{\hyperlink{class_game_manager_ad37640aad77022f3d88624732b1a7e36}{menu\+Choice}} ()
+\begin{DoxyCompactList}\small\item\em Displays the menu options during the choice state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_ad3b1d72ffe6a9e2c2db0808fff024e8b}{keyboard\+Callback\+Game}} (unsigned char key, int mouseX, int mouseY)
+\begin{DoxyCompactList}\small\item\em Handles keyboard input during the game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_a0d7e5da8e095c6aa06f715c3cbbe46c8}{special\+Key\+Callback\+Game}} (int key, int mouseX, int mouseY)
+\begin{DoxyCompactList}\small\item\em Handles special key input during the game state. \end{DoxyCompactList}\item 
+std\+::list$<$ std\+::string $>$ \mbox{\hyperlink{class_game_manager_a0bccb432b6fcde50883122f513c57943}{menu\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Displays the menu options during the game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_a5fc0cb9458fadcb3bec9b6c3172ffc61}{keyboard\+Callback\+End\+Game}} (unsigned char key, int mouseX, int mouseY)
+\begin{DoxyCompactList}\small\item\em Handles keyboard input during the end game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_a54e5b83e46e022b4e48a6ecae4615f1f}{special\+Key\+Callback\+End\+Game}} (int key, int mouseX, int mouseY)
+\begin{DoxyCompactList}\small\item\em Handles special key input during the end game state. \end{DoxyCompactList}\item 
+std\+::list$<$ std\+::string $>$ \mbox{\hyperlink{class_game_manager_ae7d2631cd4bcf7889830e3ca1ccbb5f6}{menu\+End\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Displays the menu options during the end game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_ac641bed415cbf1ec7406488bbf787df0}{close\+Call\+Back}} ()
+\begin{DoxyCompactList}\small\item\em Handles the callback for closing the application. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_manager_aa0e2424dc1a39d380e5b6605b179bf05}{Game\+Manager}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_game_manager_1_1_reserved}{Reserved}} $>$ \mbox{\hyperlink{class_game_manager_a64eeb1f3d4ed0d4ea1d75c1fb11c8e0b}{m\+\_\+reserved}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Singleton class responsible for managing the game state, input handling, and transitioning between different game modes. 
+
+The \doxylink{class_game_manager}{Game\+Manager} class controls the game flow by maintaining and managing various game subsystems such as camera, status, movement, light, history, and game pieces. It also handles user input for camera control, light toggling, piece movement, and game state transitions (pre-\/game, in-\/game, and end-\/game).
+
+This class follows the Singleton pattern, meaning only one instance of \doxylink{class_game_manager}{Game\+Manager} can exist during the game lifecycle. It handles the game loop, processes user inputs via keyboard and special keys, and ensures that the appropriate actions are taken at each stage of the game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_manager_a5af1609aaeb8c7c74356a108c1d16ba8}\index{GameManager@{GameManager}!GameManager@{GameManager}}
+\index{GameManager@{GameManager}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{GameManager()}{GameManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_game_manager_a5af1609aaeb8c7c74356a108c1d16ba8} 
+Game\+Manager\+::\+Game\+Manager (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_game_manager}{Game\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy constructor to prevent copying of the singleton instance. 
+
+\Hypertarget{class_game_manager_aaae63e38e358379c1fe507c5197a8435}\index{GameManager@{GameManager}!````~GameManager@{\texorpdfstring{$\sim$}{\string~}GameManager}}
+\index{````~GameManager@{\texorpdfstring{$\sim$}{\string~}GameManager}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GameManager()}{\string~GameManager()}}
+{\footnotesize\ttfamily \label{class_game_manager_aaae63e38e358379c1fe507c5197a8435} 
+Game\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Game\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor to release resources associated with the game. 
+
+This destructor is responsible for cleaning up all resources allocated by the \doxylink{class_game_manager}{Game\+Manager}. It performs the following operations\+:
+\begin{DoxyItemize}
+\item Frees the engine resources by calling {\ttfamily free()} on the {\ttfamily engine} instance.
+\item Deletes the {\ttfamily root\+Reset\+Node} and {\ttfamily root\+Node}, which represent the root nodes in the game scene.
+\end{DoxyItemize}
+
+This ensures that all game subsystems are properly cleaned up and that memory is freed when the {\ttfamily \doxylink{class_game_manager}{Game\+Manager}} instance is destroyed, helping to prevent memory leaks. \Hypertarget{class_game_manager_aa0e2424dc1a39d380e5b6605b179bf05}\index{GameManager@{GameManager}!GameManager@{GameManager}}
+\index{GameManager@{GameManager}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{GameManager()}{GameManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_game_manager_aa0e2424dc1a39d380e5b6605b179bf05} 
+Game\+Manager\+::\+Game\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_manager_ac641bed415cbf1ec7406488bbf787df0}\index{GameManager@{GameManager}!closeCallBack@{closeCallBack}}
+\index{closeCallBack@{closeCallBack}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{closeCallBack()}{closeCallBack()}}
+{\footnotesize\ttfamily \label{class_game_manager_ac641bed415cbf1ec7406488bbf787df0} 
+void Game\+Manager\+::close\+Call\+Back (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles the callback for closing the application. 
+
+This method is invoked when the application needs to shut down. It updates the internal state to indicate that the application is no longer running, allowing for a graceful termination of the game loop and other ongoing processes. \Hypertarget{class_game_manager_a7b9feab324e0c5332e8a4d7395242048}\index{GameManager@{GameManager}!createGraphicsList@{createGraphicsList}}
+\index{createGraphicsList@{createGraphicsList}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{createGraphicsList()}{createGraphicsList()}}
+{\footnotesize\ttfamily \label{class_game_manager_a7b9feab324e0c5332e8a4d7395242048} 
+void Game\+Manager\+::create\+Graphics\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Creates the graphics list for the game scene. 
+
+\Hypertarget{class_game_manager_ac8beed097aba6325580d17936f8cec9b}\index{GameManager@{GameManager}!gameLoop@{gameLoop}}
+\index{gameLoop@{gameLoop}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{gameLoop()}{gameLoop()}}
+{\footnotesize\ttfamily \label{class_game_manager_ac8beed097aba6325580d17936f8cec9b} 
+void Game\+Manager\+::game\+Loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Main game loop that processes game logic and rendering. 
+
+\Hypertarget{class_game_manager_a62c0bd2e38276cc3805fb38a85890d42}\index{GameManager@{GameManager}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_game_manager_a62c0bd2e38276cc3805fb38a85890d42} 
+\mbox{\hyperlink{class_game_manager}{Game\+Manager}} \& Game\+Manager\+::get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the singleton instance of \doxylink{class_game_manager}{Game\+Manager}. 
+
+\begin{DoxyReturn}{Returns}
+Reference to the singleton \doxylink{class_game_manager}{Game\+Manager} instance. 
+\end{DoxyReturn}
+\Hypertarget{class_game_manager_ac81e49dcab325cf42543984b4329cd8c}\index{GameManager@{GameManager}!getRootNode@{getRootNode}}
+\index{getRootNode@{getRootNode}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{getRootNode()}{getRootNode()}}
+{\footnotesize\ttfamily \label{class_game_manager_ac81e49dcab325cf42543984b4329cd8c} 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Game\+Manager\+::get\+Root\+Node (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the root node of the game scene. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the root node. 
+\end{DoxyReturn}
+\Hypertarget{class_game_manager_aef68a010d8d68ac53cfa28f8486c7501}\index{GameManager@{GameManager}!initialize@{initialize}}
+\index{initialize@{initialize}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{class_game_manager_aef68a010d8d68ac53cfa28f8486c7501} 
+void Game\+Manager\+::initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the game components. 
+
+\Hypertarget{class_game_manager_aaa261a78577c586a08f88622ec0aabe8}\index{GameManager@{GameManager}!keyboardCallbackChoice@{keyboardCallbackChoice}}
+\index{keyboardCallbackChoice@{keyboardCallbackChoice}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{keyboardCallbackChoice()}{keyboardCallbackChoice()}}
+{\footnotesize\ttfamily \label{class_game_manager_aaa261a78577c586a08f88622ec0aabe8} 
+void Game\+Manager\+::keyboard\+Callback\+Choice (\begin{DoxyParamCaption}\item[{unsigned char}]{key}{, }\item[{int}]{mouseX}{, }\item[{int}]{mouseY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles keyboard input during the choice state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The pressed key. \\
+\hline
+{\em mouseX} & The mouse X position. \\
+\hline
+{\em mouseY} & The mouse Y position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_manager_a5fc0cb9458fadcb3bec9b6c3172ffc61}\index{GameManager@{GameManager}!keyboardCallbackEndGame@{keyboardCallbackEndGame}}
+\index{keyboardCallbackEndGame@{keyboardCallbackEndGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{keyboardCallbackEndGame()}{keyboardCallbackEndGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_a5fc0cb9458fadcb3bec9b6c3172ffc61} 
+void Game\+Manager\+::keyboard\+Callback\+End\+Game (\begin{DoxyParamCaption}\item[{unsigned char}]{key}{, }\item[{int}]{mouseX}{, }\item[{int}]{mouseY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles keyboard input during the end game state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The pressed key. \\
+\hline
+{\em mouseX} & The mouse X position. \\
+\hline
+{\em mouseY} & The mouse Y position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_manager_ad3b1d72ffe6a9e2c2db0808fff024e8b}\index{GameManager@{GameManager}!keyboardCallbackGame@{keyboardCallbackGame}}
+\index{keyboardCallbackGame@{keyboardCallbackGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{keyboardCallbackGame()}{keyboardCallbackGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_ad3b1d72ffe6a9e2c2db0808fff024e8b} 
+void Game\+Manager\+::keyboard\+Callback\+Game (\begin{DoxyParamCaption}\item[{unsigned char}]{key}{, }\item[{int}]{mouseX}{, }\item[{int}]{mouseY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles keyboard input during the game state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The pressed key. \\
+\hline
+{\em mouseX} & The mouse X position. \\
+\hline
+{\em mouseY} & The mouse Y position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_manager_ad877bbd2fd9f3af0e1795d41cd8bf70a}\index{GameManager@{GameManager}!keyboardCallbackPreGame@{keyboardCallbackPreGame}}
+\index{keyboardCallbackPreGame@{keyboardCallbackPreGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{keyboardCallbackPreGame()}{keyboardCallbackPreGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_ad877bbd2fd9f3af0e1795d41cd8bf70a} 
+void Game\+Manager\+::keyboard\+Callback\+Pre\+Game (\begin{DoxyParamCaption}\item[{unsigned char}]{key}{, }\item[{int}]{mouseX}{, }\item[{int}]{mouseY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles keyboard input during the pre-\/game state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The pressed key. \\
+\hline
+{\em mouseX} & The mouse X position. \\
+\hline
+{\em mouseY} & The mouse Y position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_manager_ad37640aad77022f3d88624732b1a7e36}\index{GameManager@{GameManager}!menuChoice@{menuChoice}}
+\index{menuChoice@{menuChoice}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{menuChoice()}{menuChoice()}}
+{\footnotesize\ttfamily \label{class_game_manager_ad37640aad77022f3d88624732b1a7e36} 
+std\+::list$<$ std\+::string $>$ Game\+Manager\+::menu\+Choice (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Displays the menu options during the choice state. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_list}{List} of menu options as strings. 
+\end{DoxyReturn}
+\Hypertarget{class_game_manager_ae7d2631cd4bcf7889830e3ca1ccbb5f6}\index{GameManager@{GameManager}!menuEndGame@{menuEndGame}}
+\index{menuEndGame@{menuEndGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{menuEndGame()}{menuEndGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_ae7d2631cd4bcf7889830e3ca1ccbb5f6} 
+std\+::list$<$ std\+::string $>$ Game\+Manager\+::menu\+End\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Displays the menu options during the end game state. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_list}{List} of menu options as strings. 
+\end{DoxyReturn}
+\Hypertarget{class_game_manager_a0bccb432b6fcde50883122f513c57943}\index{GameManager@{GameManager}!menuGame@{menuGame}}
+\index{menuGame@{menuGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{menuGame()}{menuGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_a0bccb432b6fcde50883122f513c57943} 
+std\+::list$<$ std\+::string $>$ Game\+Manager\+::menu\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Displays the menu options during the game state. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_list}{List} of menu options as strings. 
+\end{DoxyReturn}
+\Hypertarget{class_game_manager_aa8b4ec5502cad7cf9feb6abc7a0ed1f5}\index{GameManager@{GameManager}!menuPreGame@{menuPreGame}}
+\index{menuPreGame@{menuPreGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{menuPreGame()}{menuPreGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_aa8b4ec5502cad7cf9feb6abc7a0ed1f5} 
+std\+::list$<$ std\+::string $>$ Game\+Manager\+::menu\+Pre\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Displays the menu options during the pre-\/game state. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_list}{List} of menu options as strings. 
+\end{DoxyReturn}
+\Hypertarget{class_game_manager_a4f30ff58781438a8814e009a55c6de65}\index{GameManager@{GameManager}!operator=@{operator=}}
+\index{operator=@{operator=}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_game_manager_a4f30ff58781438a8814e009a55c6de65} 
+\mbox{\hyperlink{class_game_manager}{Game\+Manager}} \& Game\+Manager\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_game_manager}{Game\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy assignment operator to prevent copying of the singleton instance. 
+
+\Hypertarget{class_game_manager_aaf6db3af66acd4d2406e1ab68fe1c0d6}\index{GameManager@{GameManager}!resetGame@{resetGame}}
+\index{resetGame@{resetGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{resetGame()}{resetGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_aaf6db3af66acd4d2406e1ab68fe1c0d6} 
+void Game\+Manager\+::reset\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Resets the game state to the initial pre-\/game state. 
+
+\Hypertarget{class_game_manager_ac5e2d862b4c5ef4bd31bc8a288ce6b38}\index{GameManager@{GameManager}!setRootNode@{setRootNode}}
+\index{setRootNode@{setRootNode}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{setRootNode()}{setRootNode()}}
+{\footnotesize\ttfamily \label{class_game_manager_ac5e2d862b4c5ef4bd31bc8a288ce6b38} 
+void Game\+Manager\+::set\+Root\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root\+Node}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Sets the root node for the game scene. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root\+Node} & The root node to set for the scene. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_manager_a736867efd3565c2833b25561ce2193c2}\index{GameManager@{GameManager}!specialKeyCallbackChoice@{specialKeyCallbackChoice}}
+\index{specialKeyCallbackChoice@{specialKeyCallbackChoice}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{specialKeyCallbackChoice()}{specialKeyCallbackChoice()}}
+{\footnotesize\ttfamily \label{class_game_manager_a736867efd3565c2833b25561ce2193c2} 
+void Game\+Manager\+::special\+Key\+Callback\+Choice (\begin{DoxyParamCaption}\item[{int}]{key}{, }\item[{int}]{mouseX}{, }\item[{int}]{mouseY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles special key input during the choice state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The pressed special key. \\
+\hline
+{\em mouseX} & The mouse X position. \\
+\hline
+{\em mouseY} & The mouse Y position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_manager_a54e5b83e46e022b4e48a6ecae4615f1f}\index{GameManager@{GameManager}!specialKeyCallbackEndGame@{specialKeyCallbackEndGame}}
+\index{specialKeyCallbackEndGame@{specialKeyCallbackEndGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{specialKeyCallbackEndGame()}{specialKeyCallbackEndGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_a54e5b83e46e022b4e48a6ecae4615f1f} 
+void Game\+Manager\+::special\+Key\+Callback\+End\+Game (\begin{DoxyParamCaption}\item[{int}]{key}{, }\item[{int}]{mouseX}{, }\item[{int}]{mouseY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles special key input during the end game state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The pressed special key. \\
+\hline
+{\em mouseX} & The mouse X position. \\
+\hline
+{\em mouseY} & The mouse Y position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_manager_a0d7e5da8e095c6aa06f715c3cbbe46c8}\index{GameManager@{GameManager}!specialKeyCallbackGame@{specialKeyCallbackGame}}
+\index{specialKeyCallbackGame@{specialKeyCallbackGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{specialKeyCallbackGame()}{specialKeyCallbackGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_a0d7e5da8e095c6aa06f715c3cbbe46c8} 
+void Game\+Manager\+::special\+Key\+Callback\+Game (\begin{DoxyParamCaption}\item[{int}]{key}{, }\item[{int}]{mouseX}{, }\item[{int}]{mouseY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles special key input during the game state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The pressed special key. \\
+\hline
+{\em mouseX} & The mouse X position. \\
+\hline
+{\em mouseY} & The mouse Y position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_manager_ab9b57991986188bc670bfc86ea2114dc}\index{GameManager@{GameManager}!specialKeyCallbackPreGame@{specialKeyCallbackPreGame}}
+\index{specialKeyCallbackPreGame@{specialKeyCallbackPreGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{specialKeyCallbackPreGame()}{specialKeyCallbackPreGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_ab9b57991986188bc670bfc86ea2114dc} 
+void Game\+Manager\+::special\+Key\+Callback\+Pre\+Game (\begin{DoxyParamCaption}\item[{int}]{key}{, }\item[{int}]{mouseX}{, }\item[{int}]{mouseY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles special key input during the pre-\/game state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The pressed special key. \\
+\hline
+{\em mouseX} & The mouse X position. \\
+\hline
+{\em mouseY} & The mouse Y position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_manager_ae272eb0bf4e4987797fcff97723819cc}\index{GameManager@{GameManager}!startGame@{startGame}}
+\index{startGame@{startGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{startGame()}{startGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_ae272eb0bf4e4987797fcff97723819cc} 
+void Game\+Manager\+::start\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Starts the game by loading the scene and initializing necessary components. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_game_manager_a64eeb1f3d4ed0d4ea1d75c1fb11c8e0b}\index{GameManager@{GameManager}!m\_reserved@{m\_reserved}}
+\index{m\_reserved@{m\_reserved}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{m\_reserved}{m\_reserved}}
+{\footnotesize\ttfamily \label{class_game_manager_a64eeb1f3d4ed0d4ea1d75c1fb11c8e0b} 
+std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{struct_game_manager_1_1_reserved}{Reserved}}$>$ Game\+Manager\+::m\+\_\+reserved\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+client/\mbox{\hyperlink{game_manager_8h}{game\+Manager.\+h}}\item 
+client/\mbox{\hyperlink{game_manager_8cpp}{game\+Manager.\+cpp}}\end{DoxyCompactItemize}

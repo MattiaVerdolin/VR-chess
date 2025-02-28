@@ -1,0 +1,471 @@
+\doxysection{Camera Class Reference}
+\hypertarget{class_camera}{}\label{class_camera}\index{Camera@{Camera}}
+
+
+Abstract base \doxylink{class_camera}{Camera} class.  
+
+
+
+
+{\ttfamily \#include $<$camera.\+h$>$}
+
+Inheritance diagram for Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_camera}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_camera_a841407a21f5773b80c5868f499c20464}{\texorpdfstring{$\sim$}{\string~}\+Camera}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for cleaning up resources and unsubscribing from notifications. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_camera_a45d9b25f23a8862c296ab090701afa6d}{load\+Projection\+Matrix}} ()=0
+\begin{DoxyCompactList}\small\item\em Load the projection matrix for the camera. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_camera_a462f50e69b551da89e7c5c5e94b6338b}{render}} (const glm\+::mat4 \&matrix=glm\+::mat4(1.\+0f)) override
+\begin{DoxyCompactList}\small\item\em Render the camera\textquotesingle{}s view using a given transformation matrix. \end{DoxyCompactList}\item 
+virtual const unsigned int \mbox{\hyperlink{class_camera_a87fec34cb8956f2b8b22e997a53d7030}{parse}} (const char \texorpdfstring{$\ast$}{*}data, unsigned int \&position) override
+\begin{DoxyCompactList}\small\item\em Parse camera-\/specific data from a buffer. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_camera_a94aed57bd4b7289ac48278f12034bf75}{clone}} () const override=0
+\begin{DoxyCompactList}\small\item\em Clone the camera object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_camera_a9a11abb2096d56ff475dadb5d04a311d}{on\+Window\+Reshape}} (int width, int height) override
+\begin{DoxyCompactList}\small\item\em Handle window reshape events to update the projection matrix. \end{DoxyCompactList}\item 
+const glm\+::mat4 \mbox{\hyperlink{class_camera_a571575e6fb308585be0daa915721e1af}{get\+Inverse\+Camera\+Final\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the inverse of the camera\textquotesingle{}s final transformation matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_camera_a5611bb8579aaaaeceff5ceb9a18f0fc2}{set\+Main\+Camera}} (const bool \&val)
+\begin{DoxyCompactList}\small\item\em Set the camera as the main camera. \end{DoxyCompactList}\item 
+virtual const bool \& \mbox{\hyperlink{class_camera_a0070016701e33741275a9189861ba96c}{is\+Main\+Camera}} () const
+\begin{DoxyCompactList}\small\item\em Check if the camera is the main camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}} (const std\+::string \&name="{}default\+Node"{})
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_node_aed77b31cad399c65cfda3c360dd7276e}{\texorpdfstring{$\sim$}{\string~}\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \& \mbox{\hyperlink{class_node_a0f00e6eed35b20c18fd1e478e0bb3ce4}{operator=}} (const \mbox{\hyperlink{class_node}{Node}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a604d4c4bd5493e160ea46a10116aa6aa}{set\+Matrix}} (const glm\+::mat4 \&matrix)
+\begin{DoxyCompactList}\small\item\em Set the local transformation matrix for this node. \end{DoxyCompactList}\item 
+const glm\+::mat4 \& \mbox{\hyperlink{class_node_a785ab594e5c24a20e5500374d81f94c5}{get\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the local transformation matrix of this node. \end{DoxyCompactList}\item 
+virtual const glm\+::mat4 \mbox{\hyperlink{class_node_a732c684be378bc9c4865cab7be0d0478}{get\+Final\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Compute the final transformation matrix by combining with parent matrices. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a191c5eea56a77ff055098b9b77fd6f61}{find\+Node\+By\+Name}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Find a child node by its name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a2bd620d82b72a8f591e0895877c7c6b6}{get\+Main\+Camera}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the main camera node from the hierarchy. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a7b3c39f3ccdd7e142b5dd1f8f42b7d0c}{get\+Parent}} () const
+\begin{DoxyCompactList}\small\item\em Get the parent node of this node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a6758b19a0bd3dddc7d285a1efaa78a45}{add\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Add a child node to this node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_ae79ed0f497dab71a2b34607a3dc3ea2f}{remove\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Remove a child node from this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_aac680da08eb68b7e21be3b25a95ebad9}{remove\+Child\+By\+Position}} (const unsigned int \&position)
+\begin{DoxyCompactList}\small\item\em Remove a child node by its position in the child list. \end{DoxyCompactList}\item 
+const unsigned int \mbox{\hyperlink{class_node_a9a9d0580affc8d307bfc24fd46b86976}{get\+Number\+Of\+Children}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of children of this node. \end{DoxyCompactList}\item 
+virtual const std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_node_a93763767d6ca8e0d98f2bb04dfc58d72}{get\+Children}} () const
+\begin{DoxyCompactList}\small\item\em Get the child nodes of this node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a5cc54a3f7b5d0d2b6a15f2f871092488}{set\+Material}} (\mbox{\hyperlink{class_material}{Material}} \texorpdfstring{$\ast$}{*}material)
+\begin{DoxyCompactList}\small\item\em Assign a material to this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_material}{Material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a28317e6151f55c0bd77199853899ec14}{get\+Material}} () const
+\begin{DoxyCompactList}\small\item\em Get the material assigned to this node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ac5e09c5c3a1e6f32c1f424d963b58752}{set\+Enable\+Lighting}} (const bool \&val)
+\begin{DoxyCompactList}\small\item\em Enable or disable lighting for this node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_object_a226f2ae2af766b77d83c09a4d766b725}{\texorpdfstring{$\sim$}{\string~}\+Object}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_object}{Object} class. \end{DoxyCompactList}\item 
+const unsigned int \& \mbox{\hyperlink{class_object_a0ecb533178d82ce77fb1a5f855cfade2}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the ID of the object. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{class_object_a623e33bd86ef50533cc07371731dd7c3}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{set\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_reshape_listener}{Reshape\+Listener}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_reshape_listener_a59f7da873e620444bfb9de79d4452151}{\texorpdfstring{$\sim$}{\string~}\+Reshape\+Listener}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_reshape_listener}{Reshape\+Listener} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_camera_a4b2cb1fe351e872ae6aff9504be3e775}{Camera}} (const std\+::string \&name, const float \&width, const float \&height, const float \&near\+\_\+val, const float \&far\+\_\+val)
+\begin{DoxyCompactList}\small\item\em Constructor for initializing the camera with projection and viewport settings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_camera_ab2356385b120f8993fd382957f154e6c}{Camera}} (const \mbox{\hyperlink{class_camera}{Camera}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for creating a new \doxylink{class_camera}{Camera} object from an existing one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_camera}{Camera}} \& \mbox{\hyperlink{class_camera_a815562aa01b5ccfe876fcecbbcfb946d}{operator=}} (const \mbox{\hyperlink{class_camera}{Camera}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Assignment operator is deleted to prevent assignment of \doxylink{class_camera}{Camera} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_a387414723a55780eb3a4c9bd444e111e}{Node}} (const \mbox{\hyperlink{class_node}{Node}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_node_a086b5d264706c595ffe3c2da9b74e94c}{recursive\+Clone}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}new\+Node) const
+\begin{DoxyCompactList}\small\item\em Recursively clone this node\textquotesingle{}s children. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a261a9decc6026c848f224768e75536c2}{recursive\+Notify\+Change\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Notify the hierarchy of a matrix change. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a98fa2ead4269e42d7d27cce95f9235a5}{is\+Enable\+Lighting}} () const
+\begin{DoxyCompactList}\small\item\em Check if lighting is enabled for this node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}} (const std\+::string \&name="{}default\+Object"{})
+\begin{DoxyCompactList}\small\item\em Constructor with a specified name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_object_a8ec02d9e52b3cf8b5ba6cf3fa00efa00}{Object}} (const \mbox{\hyperlink{class_object}{Object}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_object}{Object}} \& \mbox{\hyperlink{class_object_aadbc7fb1c935f6776fbbbec7cc5275f4}{operator=}} (const \mbox{\hyperlink{class_object}{Object}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_ae3d9ac140621b21e594f0aca898f9042}{create\+New\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Generate a new unique ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_camera_a26d7567bf34d14260f887a0382aeae29}{m\+\_\+projection\+Matrix}}
+\begin{DoxyCompactList}\small\item\em The camera\textquotesingle{}s projection matrix. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_camera_af8fb2e739bd3aba6fd4a2ff6f3949c51}{m\+\_\+is\+Current\+Camera}}
+\begin{DoxyCompactList}\small\item\em Flag indicating if this is the current active camera. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_camera_a6d655887e5e87b12e19094ec89b74449}{m\+\_\+width}}
+\begin{DoxyCompactList}\small\item\em The width of the camera\textquotesingle{}s viewport. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_camera_ab78d1297dea3f67d7e59c1c1a2cf52ab}{m\+\_\+height}}
+\begin{DoxyCompactList}\small\item\em The height of the camera\textquotesingle{}s viewport. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_camera_a88a4135705f989e598056d765b7a3494}{m\+\_\+near}}
+\begin{DoxyCompactList}\small\item\em The near clipping plane distance. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_camera_a244474dcfdd0115417b8218cbad547d1}{m\+\_\+far}}
+\begin{DoxyCompactList}\small\item\em The far clipping plane distance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_notification_service}{Notification\+Service}} \& \mbox{\hyperlink{class_camera_a16b8cd407c0a26ddf8ef99970db755f0}{m\+\_\+notification\+Service}}
+\begin{DoxyCompactList}\small\item\em The notification service instance for event handling. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_a4b08c324f54ebed78bb448a6a64a0e51}{m\+\_\+matrix}}
+\begin{DoxyCompactList}\small\item\em Local transformation matrix of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_afb679f84ec475d10a2c6fafb7130dac5}{m\+\_\+parent}}
+\begin{DoxyCompactList}\small\item\em Parent node of this node. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_node_aa53106aecc1036cd2d9f47a2bb289a0b}{m\+\_\+children}}
+\begin{DoxyCompactList}\small\item\em Child nodes of this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_material}{Material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a55e3fe37166de40f4259b4611f399b6a}{m\+\_\+material}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_material}{Material} assigned to this node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a8c670b312a88907a2511907ee514a75b}{m\+\_\+enable\+Lighting}}
+\begin{DoxyCompactList}\small\item\em Lighting enable flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a50ff4bf85922f0c8ef5b9fb07e2f5846}{m\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em The unique ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_a8b83c95c705d2c3ba0d081fe1710f48d}{m\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em The name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \mbox{\hyperlink{class_object_aaefcf7f86a144fd323e2c124df65bd52}{m\+\_\+cnt\+\_\+object}} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Counter to keep track of the number of objects and generate unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base \doxylink{class_camera}{Camera} class. 
+
+The \doxylink{class_camera}{Camera} class is an abstract base class for implementing different types of cameras in a 3D scene. The camera defines the projection matrix and provides an interface for handling camera-\/specific rendering and projection. It also handles window resizing to adjust the viewport and update the projection matrix. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_camera_a841407a21f5773b80c5868f499c20464}\index{Camera@{Camera}!````~Camera@{\texorpdfstring{$\sim$}{\string~}Camera}}
+\index{````~Camera@{\texorpdfstring{$\sim$}{\string~}Camera}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Camera()}{\string~Camera()}}
+{\footnotesize\ttfamily \label{class_camera_a841407a21f5773b80c5868f499c20464} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Camera\+::\texorpdfstring{$\sim$}{\string~}\+Camera (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor for cleaning up resources and unsubscribing from notifications. 
+
+\Hypertarget{class_camera_a4b2cb1fe351e872ae6aff9504be3e775}\index{Camera@{Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{Camera()}{Camera()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_camera_a4b2cb1fe351e872ae6aff9504be3e775} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Camera\+::\+Camera (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{const float \&}]{width}{, }\item[{const float \&}]{height}{, }\item[{const float \&}]{near\+\_\+val}{, }\item[{const float \&}]{far\+\_\+val}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Constructor for initializing the camera with projection and viewport settings. 
+
+This constructor initializes the camera with the given parameters, including its name, dimensions, near and far planes, and a default notification service for event handling.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the camera. \\
+\hline
+{\em width} & The width of the camera\textquotesingle{}s viewport. \\
+\hline
+{\em height} & The height of the camera\textquotesingle{}s viewport. \\
+\hline
+{\em near\+\_\+val} & The near clipping plane distance. \\
+\hline
+{\em far\+\_\+val} & The far clipping plane distance. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_camera_ab2356385b120f8993fd382957f154e6c}\index{Camera@{Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{Camera()}{Camera()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_camera_ab2356385b120f8993fd382957f154e6c} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Camera\+::\+Camera (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_camera}{Camera}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Copy constructor for creating a new \doxylink{class_camera}{Camera} object from an existing one. 
+
+This constructor creates a new \doxylink{class_camera}{Camera} object by copying the properties of an existing camera.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{class_camera}{Camera} object to copy. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_camera_a94aed57bd4b7289ac48278f12034bf75}\index{Camera@{Camera}!clone@{clone}}
+\index{clone@{clone}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \label{class_camera_a94aed57bd4b7289ac48278f12034bf75} 
+virtual \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Camera\+::clone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [pure virtual]}}
+
+
+
+Clone the camera object. 
+
+This method creates and returns a copy of the camera object. It is a pure virtual function, requiring subclasses to provide an implementation.
+
+\begin{DoxyReturn}{Returns}
+A new cloned camera object. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_node_a9777d266e9b52f648f3ce309133d1a57}{Node}}.
+
+
+
+Implemented in \mbox{\hyperlink{class_ortho_camera_af79adf5a4a81f269fee09e1151971794}{Ortho\+Camera}}, and \mbox{\hyperlink{class_persp_camera_a057de4d98b96f8a70d8f2d860721fdbe}{Persp\+Camera}}.
+
+\Hypertarget{class_camera_a571575e6fb308585be0daa915721e1af}\index{Camera@{Camera}!getInverseCameraFinalMatrix@{getInverseCameraFinalMatrix}}
+\index{getInverseCameraFinalMatrix@{getInverseCameraFinalMatrix}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{getInverseCameraFinalMatrix()}{getInverseCameraFinalMatrix()}}
+{\footnotesize\ttfamily \label{class_camera_a571575e6fb308585be0daa915721e1af} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::mat4 Camera\+::get\+Inverse\+Camera\+Final\+Matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get the inverse of the camera\textquotesingle{}s final transformation matrix. 
+
+This method returns the inverse of the camera\textquotesingle{}s final transformation matrix, which is used for various calculations, such as world-\/to-\/camera space transformations.
+
+\begin{DoxyReturn}{Returns}
+The inverse of the camera\textquotesingle{}s final transformation matrix. 
+\end{DoxyReturn}
+\Hypertarget{class_camera_a0070016701e33741275a9189861ba96c}\index{Camera@{Camera}!isMainCamera@{isMainCamera}}
+\index{isMainCamera@{isMainCamera}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{isMainCamera()}{isMainCamera()}}
+{\footnotesize\ttfamily \label{class_camera_a0070016701e33741275a9189861ba96c} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool \& Camera\+::is\+Main\+Camera (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Check if the camera is the main camera. 
+
+This method returns whether the camera is the main camera, typically used for rendering the scene.
+
+\begin{DoxyReturn}{Returns}
+True if this is the main camera, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_camera_a45d9b25f23a8862c296ab090701afa6d}\index{Camera@{Camera}!loadProjectionMatrix@{loadProjectionMatrix}}
+\index{loadProjectionMatrix@{loadProjectionMatrix}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{loadProjectionMatrix()}{loadProjectionMatrix()}}
+{\footnotesize\ttfamily \label{class_camera_a45d9b25f23a8862c296ab090701afa6d} 
+virtual void Camera\+::load\+Projection\+Matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Load the projection matrix for the camera. 
+
+This method is virtual and must be implemented in subclasses to load the appropriate projection matrix for the specific type of camera (e.\+g., perspective, orthographic). 
+
+Implemented in \mbox{\hyperlink{class_ortho_camera_a5707b069a29c74ec3296a1593fcac528}{Ortho\+Camera}}, and \mbox{\hyperlink{class_persp_camera_a1d18cc866c320f34954a89818d354297}{Persp\+Camera}}.
+
+\Hypertarget{class_camera_a9a11abb2096d56ff475dadb5d04a311d}\index{Camera@{Camera}!onWindowReshape@{onWindowReshape}}
+\index{onWindowReshape@{onWindowReshape}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{onWindowReshape()}{onWindowReshape()}}
+{\footnotesize\ttfamily \label{class_camera_a9a11abb2096d56ff475dadb5d04a311d} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Camera\+::on\+Window\+Reshape (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Handle window reshape events to update the projection matrix. 
+
+This method is called when the window is resized, and it updates the camera\textquotesingle{}s viewport and projection matrix to match the new window dimensions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The new width of the window. \\
+\hline
+{\em height} & The new height of the window. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_reshape_listener_af163f635cd4adf08c010b9e3ebe0e8b3}{Reshape\+Listener}}.
+
+\Hypertarget{class_camera_a815562aa01b5ccfe876fcecbbcfb946d}\index{Camera@{Camera}!operator=@{operator=}}
+\index{operator=@{operator=}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_camera_a815562aa01b5ccfe876fcecbbcfb946d} 
+\mbox{\hyperlink{class_camera}{Camera}} \& Camera\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_camera}{Camera}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [delete]}}
+
+
+
+Assignment operator is deleted to prevent assignment of \doxylink{class_camera}{Camera} objects. 
+
+\Hypertarget{class_camera_a87fec34cb8956f2b8b22e997a53d7030}\index{Camera@{Camera}!parse@{parse}}
+\index{parse@{parse}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{class_camera_a87fec34cb8956f2b8b22e997a53d7030} 
+virtual const unsigned int Camera\+::parse (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{unsigned int \&}]{position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Parse camera-\/specific data from a buffer. 
+
+This method parses the camera\textquotesingle{}s data from a given buffer. It can be overridden in subclasses to handle specific camera data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The buffer containing the camera\textquotesingle{}s data. \\
+\hline
+{\em position} & The current position in the buffer to start parsing from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of child nodes parsed. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_node_a2a71e920c29f9ed353b07e12ec4ec552}{Node}}.
+
+\Hypertarget{class_camera_a462f50e69b551da89e7c5c5e94b6338b}\index{Camera@{Camera}!render@{render}}
+\index{render@{render}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_camera_a462f50e69b551da89e7c5c5e94b6338b} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Camera\+::render (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{matrix}{ = {\ttfamily glm\+:\+:mat4(1.0f)}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Render the camera\textquotesingle{}s view using a given transformation matrix. 
+
+This method is responsible for setting up the Open\+GL matrices for rendering the scene from the camera\textquotesingle{}s viewpoint. It uses the camera\textquotesingle{}s projection matrix and modelview transformation to render the scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The transformation matrix to apply to the camera (default is the identity matrix). \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_node_a93d7587db1e3b5c4d92b29fc83e702ec}{Node}}.
+
+\Hypertarget{class_camera_a5611bb8579aaaaeceff5ceb9a18f0fc2}\index{Camera@{Camera}!setMainCamera@{setMainCamera}}
+\index{setMainCamera@{setMainCamera}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{setMainCamera()}{setMainCamera()}}
+{\footnotesize\ttfamily \label{class_camera_a5611bb8579aaaaeceff5ceb9a18f0fc2} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Camera\+::set\+Main\+Camera (\begin{DoxyParamCaption}\item[{const bool \&}]{val}{}\end{DoxyParamCaption})}
+
+
+
+Set the camera as the main camera. 
+
+This method marks the camera as the main camera, which may be used for rendering the scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & True if this camera should be set as the main camera, false otherwise. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_camera_a244474dcfdd0115417b8218cbad547d1}\index{Camera@{Camera}!m\_far@{m\_far}}
+\index{m\_far@{m\_far}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{m\_far}{m\_far}}
+{\footnotesize\ttfamily \label{class_camera_a244474dcfdd0115417b8218cbad547d1} 
+float Camera\+::m\+\_\+far\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The far clipping plane distance. 
+
+\Hypertarget{class_camera_ab78d1297dea3f67d7e59c1c1a2cf52ab}\index{Camera@{Camera}!m\_height@{m\_height}}
+\index{m\_height@{m\_height}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{m\_height}{m\_height}}
+{\footnotesize\ttfamily \label{class_camera_ab78d1297dea3f67d7e59c1c1a2cf52ab} 
+float Camera\+::m\+\_\+height\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The height of the camera\textquotesingle{}s viewport. 
+
+\Hypertarget{class_camera_af8fb2e739bd3aba6fd4a2ff6f3949c51}\index{Camera@{Camera}!m\_isCurrentCamera@{m\_isCurrentCamera}}
+\index{m\_isCurrentCamera@{m\_isCurrentCamera}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{m\_isCurrentCamera}{m\_isCurrentCamera}}
+{\footnotesize\ttfamily \label{class_camera_af8fb2e739bd3aba6fd4a2ff6f3949c51} 
+bool Camera\+::m\+\_\+is\+Current\+Camera\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Flag indicating if this is the current active camera. 
+
+\Hypertarget{class_camera_a88a4135705f989e598056d765b7a3494}\index{Camera@{Camera}!m\_near@{m\_near}}
+\index{m\_near@{m\_near}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{m\_near}{m\_near}}
+{\footnotesize\ttfamily \label{class_camera_a88a4135705f989e598056d765b7a3494} 
+float Camera\+::m\+\_\+near\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The near clipping plane distance. 
+
+\Hypertarget{class_camera_a16b8cd407c0a26ddf8ef99970db755f0}\index{Camera@{Camera}!m\_notificationService@{m\_notificationService}}
+\index{m\_notificationService@{m\_notificationService}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{m\_notificationService}{m\_notificationService}}
+{\footnotesize\ttfamily \label{class_camera_a16b8cd407c0a26ddf8ef99970db755f0} 
+\mbox{\hyperlink{class_notification_service}{Notification\+Service}}\& Camera\+::m\+\_\+notification\+Service\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The notification service instance for event handling. 
+
+\Hypertarget{class_camera_a26d7567bf34d14260f887a0382aeae29}\index{Camera@{Camera}!m\_projectionMatrix@{m\_projectionMatrix}}
+\index{m\_projectionMatrix@{m\_projectionMatrix}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{m\_projectionMatrix}{m\_projectionMatrix}}
+{\footnotesize\ttfamily \label{class_camera_a26d7567bf34d14260f887a0382aeae29} 
+glm\+::mat4 Camera\+::m\+\_\+projection\+Matrix\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The camera\textquotesingle{}s projection matrix. 
+
+This matrix is used for transforming the 3D scene from camera space to screen space. \Hypertarget{class_camera_a6d655887e5e87b12e19094ec89b74449}\index{Camera@{Camera}!m\_width@{m\_width}}
+\index{m\_width@{m\_width}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{m\_width}{m\_width}}
+{\footnotesize\ttfamily \label{class_camera_a6d655887e5e87b12e19094ec89b74449} 
+float Camera\+::m\+\_\+width\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The width of the camera\textquotesingle{}s viewport. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{camera_8h}{camera.\+h}}\item 
+engine/\mbox{\hyperlink{camera_8cpp}{camera.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,166 @@
+\doxysection{Text\+Manager Class Reference}
+\hypertarget{class_text_manager}{}\label{class_text_manager}\index{TextManager@{TextManager}}
+
+
+Class for managing text rendering.  
+
+
+
+
+{\ttfamily \#include $<$text\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_text_manager_a0284b848f6a8984debf2e35ae8905480}{Text\+Manager}} (const \mbox{\hyperlink{class_text_manager}{Text\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor to avoid unnecessary copies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_text_manager}{Text\+Manager}} \& \mbox{\hyperlink{class_text_manager_ac7a8e563e647084a3fad73ce1af2e02d}{operator=}} (const \mbox{\hyperlink{class_text_manager}{Text\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted assignment operator to avoid unnecessary assignments. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_text_manager_a5c78eb9c4522077c8d964883a1c7d69f}{\texorpdfstring{$\sim$}{\string~}\+Text\+Manager}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_text_manager_a0d8780f34fcb5184ae31bf2f8c5b16d7}{display\+Text}} (const std\+::list$<$ std\+::string $>$ \&texts, \mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}ortho\+Camera) const
+\begin{DoxyCompactList}\small\item\em Renders a list of text strings on the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_text_manager_aee4b7d46e2a088c697ced6339dfc865b}{display\+FPS}} (const float \&\mbox{\hyperlink{engine_8cpp_a4f50e96f11c68d45dc109185efe011ad}{fps}}, \mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}ortho\+Camera) const
+\begin{DoxyCompactList}\small\item\em Displays the frames per second (FPS) on the window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_text_manager}{Text\+Manager}} \& \mbox{\hyperlink{class_text_manager_a2cc70a4d5fce6afdd2fdc7c38a7fa1e4}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Returns the singleton instance of the {\ttfamily \doxylink{class_text_manager}{Text\+Manager}} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_text_manager_a1714c4be87a3ba4d1c3d8df4e79b8ea9}{Text\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_text_manager_ae872262d0132b3b0e84d3017bb5aa780}{set\+Dynamic\+Width}} (const std\+::list$<$ std\+::string $>$ \&texts) const
+\begin{DoxyCompactList}\small\item\em Calculates the dynamic width for text rendering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for managing text rendering. 
+
+The {\ttfamily \doxylink{class_text_manager}{Text\+Manager}} class handles rendering text on the graphical window using an orthographic {\ttfamily \doxylink{class_camera}{Camera}} for projection. It supports rendering a list of strings and displaying frames per second (FPS). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_text_manager_a0284b848f6a8984debf2e35ae8905480}\index{TextManager@{TextManager}!TextManager@{TextManager}}
+\index{TextManager@{TextManager}!TextManager@{TextManager}}
+\doxysubsubsection{\texorpdfstring{TextManager()}{TextManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_text_manager_a0284b848f6a8984debf2e35ae8905480} 
+Text\+Manager\+::\+Text\+Manager (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_text_manager}{Text\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy constructor to avoid unnecessary copies. 
+
+\Hypertarget{class_text_manager_a5c78eb9c4522077c8d964883a1c7d69f}\index{TextManager@{TextManager}!````~TextManager@{\texorpdfstring{$\sim$}{\string~}TextManager}}
+\index{````~TextManager@{\texorpdfstring{$\sim$}{\string~}TextManager}!TextManager@{TextManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}TextManager()}{\string~TextManager()}}
+{\footnotesize\ttfamily \label{class_text_manager_a5c78eb9c4522077c8d964883a1c7d69f} 
+Text\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Text\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default destructor. 
+
+\Hypertarget{class_text_manager_a1714c4be87a3ba4d1c3d8df4e79b8ea9}\index{TextManager@{TextManager}!TextManager@{TextManager}}
+\index{TextManager@{TextManager}!TextManager@{TextManager}}
+\doxysubsubsection{\texorpdfstring{TextManager()}{TextManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_text_manager_a1714c4be87a3ba4d1c3d8df4e79b8ea9} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Text\+Manager\+::\+Text\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Default constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_text_manager_aee4b7d46e2a088c697ced6339dfc865b}\index{TextManager@{TextManager}!displayFPS@{displayFPS}}
+\index{displayFPS@{displayFPS}!TextManager@{TextManager}}
+\doxysubsubsection{\texorpdfstring{displayFPS()}{displayFPS()}}
+{\footnotesize\ttfamily \label{class_text_manager_aee4b7d46e2a088c697ced6339dfc865b} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Text\+Manager\+::display\+FPS (\begin{DoxyParamCaption}\item[{const float \&}]{fps}{, }\item[{\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}}]{ortho\+Camera}{}\end{DoxyParamCaption}) const}
+
+
+
+Displays the frames per second (FPS) on the window. 
+
+This method renders the FPS value on the window, positioning it at the bottom of the window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fps} & The FPS value to display. \\
+\hline
+{\em ortho\+Camera} & The orthographic camera to use for projection. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_text_manager_a0d8780f34fcb5184ae31bf2f8c5b16d7}\index{TextManager@{TextManager}!displayText@{displayText}}
+\index{displayText@{displayText}!TextManager@{TextManager}}
+\doxysubsubsection{\texorpdfstring{displayText()}{displayText()}}
+{\footnotesize\ttfamily \label{class_text_manager_a0d8780f34fcb5184ae31bf2f8c5b16d7} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Text\+Manager\+::display\+Text (\begin{DoxyParamCaption}\item[{const std\+::list$<$ std\+::string $>$ \&}]{texts}{, }\item[{\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}}]{ortho\+Camera}{}\end{DoxyParamCaption}) const}
+
+
+
+Renders a list of text strings on the window. 
+
+This method uses orthographic projection to render text on the graphical window. Each string is displayed starting at the defined vertical position, incrementing the vertical position for each line of text.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texts} & The list of strings to render. \\
+\hline
+{\em ortho\+Camera} & The orthographic camera to use for projection. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_text_manager_a2cc70a4d5fce6afdd2fdc7c38a7fa1e4}\index{TextManager@{TextManager}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!TextManager@{TextManager}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_text_manager_a2cc70a4d5fce6afdd2fdc7c38a7fa1e4} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_text_manager}{Text\+Manager}} \& Text\+Manager\+::get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the singleton instance of the {\ttfamily \doxylink{class_text_manager}{Text\+Manager}} class. 
+
+This function provides access to the single instance of the class using the Singleton pattern.
+
+\begin{DoxyReturn}{Returns}
+The singleton instance of the {\ttfamily \doxylink{class_text_manager}{Text\+Manager}} class. 
+\end{DoxyReturn}
+\Hypertarget{class_text_manager_ac7a8e563e647084a3fad73ce1af2e02d}\index{TextManager@{TextManager}!operator=@{operator=}}
+\index{operator=@{operator=}!TextManager@{TextManager}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_text_manager_ac7a8e563e647084a3fad73ce1af2e02d} 
+\mbox{\hyperlink{class_text_manager}{Text\+Manager}} \& Text\+Manager\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_text_manager}{Text\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted assignment operator to avoid unnecessary assignments. 
+
+\Hypertarget{class_text_manager_ae872262d0132b3b0e84d3017bb5aa780}\index{TextManager@{TextManager}!setDynamicWidth@{setDynamicWidth}}
+\index{setDynamicWidth@{setDynamicWidth}!TextManager@{TextManager}}
+\doxysubsubsection{\texorpdfstring{setDynamicWidth()}{setDynamicWidth()}}
+{\footnotesize\ttfamily \label{class_text_manager_ae872262d0132b3b0e84d3017bb5aa780} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} float Text\+Manager\+::set\+Dynamic\+Width (\begin{DoxyParamCaption}\item[{const std\+::list$<$ std\+::string $>$ \&}]{texts}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculates the dynamic width for text rendering. 
+
+Computes the maximum width of the list of strings based on the length of the longest string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texts} & The list of strings to calculate the width from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The calculated maximum width. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{text_manager_8h}{text\+Manager.\+h}}\item 
+engine/\mbox{\hyperlink{text_manager_8cpp}{text\+Manager.\+cpp}}\end{DoxyCompactItemize}

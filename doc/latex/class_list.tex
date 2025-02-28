@@ -1,0 +1,279 @@
+\doxysection{List Class Reference}
+\hypertarget{class_list}{}\label{class_list}\index{List@{List}}
+
+
+Base \doxylink{class_list}{List} class.  
+
+
+
+
+{\ttfamily \#include $<$list.\+h$>$}
+
+Inheritance diagram for List\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_list}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{List}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor of the \doxylink{class_list}{List} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_list_a16f695e1cdf5be28f7107f2226c9f87f}{\texorpdfstring{$\sim$}{\string~}\+List}} ()
+\begin{DoxyCompactList}\small\item\em Destructor of the \doxylink{class_list}{List} class. Frees memory by resetting the list and unsubscribing from the notification service. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_list_a2ebef7c72b962d8c9a3d45ebea0b727c}{List}} (const \mbox{\hyperlink{class_list}{List}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Copy constructor is deleted to prevent copying the \doxylink{class_list}{List} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_a30c550a25292468955bcc1a7fdbf9cba}{operator=}} (const \mbox{\hyperlink{class_list}{List}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Assignment operator is deleted to prevent assignment of \doxylink{class_list}{List} objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_a1affb58167f2b0337e81a340fdfb10e8}{pass}} (const \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}root\+Node)
+\begin{DoxyCompactList}\small\item\em Passes a root node to be added to the list for rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_a3de5b85b2ecbc2dfe8a54a93ebe08e88}{clear\+List}} ()
+\begin{DoxyCompactList}\small\item\em Clears the list and frees all reserved memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_a622ba78734aaa8ec7ca035931e4db04a}{render\+Elements}} (const glm\+::mat4 \&camera\+Inverse\+Final\+Matrix) const
+\begin{DoxyCompactList}\small\item\em Renders all elements in the list. \end{DoxyCompactList}\item 
+const unsigned int \mbox{\hyperlink{class_list_a5ad0e2eecaf0872f9d6b6302b93a495d}{get\+Number\+Of\+Elements\+In\+List}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of elements in the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_change_matrix_listener_ad60053b99dda20a9ce16555c10ac0695}{\texorpdfstring{$\sim$}{\string~}\+Change\+Matrix\+Listener}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_change_matrix_listener}{Change\+Matrix\+Listener} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_list_a4c73e940802e3cd4ccc70d4a6186d8d6}{add\+Row\+To\+List\+Of\+Node\+To\+Render}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\begin{DoxyCompactList}\small\item\em Adds a node to the list of nodes to render. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_aeb960f1d515013f16f1c7a2b54421728}{reset\+List\+And\+Free\+Memory}} ()
+\begin{DoxyCompactList}\small\item\em Resets the list and frees all memory used for reserved nodes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_a0b474c6e4ae708dfe93fb8a5799b623d}{on\+Matrix\+Change}} (const unsigned int \&node\+Changed\+ID) override
+\begin{DoxyCompactList}\small\item\em Callback for matrix changes. Updates the final transformation matrix of the changed node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_a9df2add910cbb1b1dcbb6a01e37b0286}{get\+Reserved\+By\+Id}} (const unsigned int \&id)
+\begin{DoxyCompactList}\small\item\em Gets the reserved entry for a node by its ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}} $>$ \mbox{\hyperlink{class_list_ac99c668626a5c8af901786e27b4f1d88}{m\+\_\+reserved}}
+\begin{DoxyCompactList}\small\item\em Unique pointer to the reserved structure for managing node transformation data. \end{DoxyCompactList}\item 
+std\+::list$<$ \mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_list_a8f1c8d2d3a0938997abba18d39364e80}{m\+\_\+list\+Of\+Reserved\+To\+Render}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_list}{List} of reserved nodes to be rendered. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_notification_service}{Notification\+Service}} \& \mbox{\hyperlink{class_list_a637c14207e86ae0a331acfd02b09956a}{m\+\_\+notification\+Service}}
+\begin{DoxyCompactList}\small\item\em Notification service for subscribing and listening to matrix changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base \doxylink{class_list}{List} class. 
+
+The \doxylink{class_list}{List} class is responsible for managing a collection of {\ttfamily \doxylink{class_node}{Node}} objects for rendering purposes. It stores the nodes and their transformation matrices, renders them, and listens for any changes in the transformation matrices of the nodes. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_list_a206eadb5753473eb913668b85b819b18}\index{List@{List}!List@{List}}
+\index{List@{List}!List@{List}}
+\doxysubsubsection{\texorpdfstring{List()}{List()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_list_a206eadb5753473eb913668b85b819b18} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor of the \doxylink{class_list}{List} class. 
+
+\Hypertarget{class_list_a16f695e1cdf5be28f7107f2226c9f87f}\index{List@{List}!````~List@{\texorpdfstring{$\sim$}{\string~}List}}
+\index{````~List@{\texorpdfstring{$\sim$}{\string~}List}!List@{List}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}List()}{\string~List()}}
+{\footnotesize\ttfamily \label{class_list_a16f695e1cdf5be28f7107f2226c9f87f} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::\texorpdfstring{$\sim$}{\string~}\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor of the \doxylink{class_list}{List} class. Frees memory by resetting the list and unsubscribing from the notification service. 
+
+\Hypertarget{class_list_a2ebef7c72b962d8c9a3d45ebea0b727c}\index{List@{List}!List@{List}}
+\index{List@{List}!List@{List}}
+\doxysubsubsection{\texorpdfstring{List()}{List()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_list_a2ebef7c72b962d8c9a3d45ebea0b727c} 
+List\+::\+List (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_list}{List}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Copy constructor is deleted to prevent copying the \doxylink{class_list}{List} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_list_a4c73e940802e3cd4ccc70d4a6186d8d6}\index{List@{List}!addRowToListOfNodeToRender@{addRowToListOfNodeToRender}}
+\index{addRowToListOfNodeToRender@{addRowToListOfNodeToRender}!List@{List}}
+\doxysubsubsection{\texorpdfstring{addRowToListOfNodeToRender()}{addRowToListOfNodeToRender()}}
+{\footnotesize\ttfamily \label{class_list_a4c73e940802e3cd4ccc70d4a6186d8d6} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::add\+Row\+To\+List\+Of\+Node\+To\+Render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Adds a node to the list of nodes to render. 
+
+This method adds the node to the list, and handles special cases for lights and cameras.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node to add to the render list. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_list_a3de5b85b2ecbc2dfe8a54a93ebe08e88}\index{List@{List}!clearList@{clearList}}
+\index{clearList@{clearList}!List@{List}}
+\doxysubsubsection{\texorpdfstring{clearList()}{clearList()}}
+{\footnotesize\ttfamily \label{class_list_a3de5b85b2ecbc2dfe8a54a93ebe08e88} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::clear\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clears the list and frees all reserved memory. 
+
+\Hypertarget{class_list_a5ad0e2eecaf0872f9d6b6302b93a495d}\index{List@{List}!getNumberOfElementsInList@{getNumberOfElementsInList}}
+\index{getNumberOfElementsInList@{getNumberOfElementsInList}!List@{List}}
+\doxysubsubsection{\texorpdfstring{getNumberOfElementsInList()}{getNumberOfElementsInList()}}
+{\footnotesize\ttfamily \label{class_list_a5ad0e2eecaf0872f9d6b6302b93a495d} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int List\+::get\+Number\+Of\+Elements\+In\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of elements in the list. 
+
+\begin{DoxyReturn}{Returns}
+The number of elements currently in the list. 
+\end{DoxyReturn}
+\Hypertarget{class_list_a9df2add910cbb1b1dcbb6a01e37b0286}\index{List@{List}!getReservedById@{getReservedById}}
+\index{getReservedById@{getReservedById}!List@{List}}
+\doxysubsubsection{\texorpdfstring{getReservedById()}{getReservedById()}}
+{\footnotesize\ttfamily \label{class_list_a9df2add910cbb1b1dcbb6a01e37b0286} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{struct_list_1_1_reserved}{List\+::\+Reserved}} \texorpdfstring{$\ast$}{*} List\+::get\+Reserved\+By\+Id (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets the reserved entry for a node by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the node to find. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the reserved entry for the node, or {\ttfamily nullptr} if not found. 
+\end{DoxyReturn}
+\Hypertarget{class_list_a0b474c6e4ae708dfe93fb8a5799b623d}\index{List@{List}!onMatrixChange@{onMatrixChange}}
+\index{onMatrixChange@{onMatrixChange}!List@{List}}
+\doxysubsubsection{\texorpdfstring{onMatrixChange()}{onMatrixChange()}}
+{\footnotesize\ttfamily \label{class_list_a0b474c6e4ae708dfe93fb8a5799b623d} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::on\+Matrix\+Change (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{node\+Changed\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Callback for matrix changes. Updates the final transformation matrix of the changed node. 
+
+This method is called when a node\textquotesingle{}s matrix has changed. It updates the matrix for the corresponding reserved entry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+Changed\+ID} & The ID of the node whose matrix has changed. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_change_matrix_listener_af309992d69f2ea31a8d4dd249bc3731b}{Change\+Matrix\+Listener}}.
+
+\Hypertarget{class_list_a30c550a25292468955bcc1a7fdbf9cba}\index{List@{List}!operator=@{operator=}}
+\index{operator=@{operator=}!List@{List}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_list_a30c550a25292468955bcc1a7fdbf9cba} 
+void List\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_list}{List}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Assignment operator is deleted to prevent assignment of \doxylink{class_list}{List} objects. 
+
+\Hypertarget{class_list_a1affb58167f2b0337e81a340fdfb10e8}\index{List@{List}!pass@{pass}}
+\index{pass@{pass}!List@{List}}
+\doxysubsubsection{\texorpdfstring{pass()}{pass()}}
+{\footnotesize\ttfamily \label{class_list_a1affb58167f2b0337e81a340fdfb10e8} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::pass (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root\+Node}{}\end{DoxyParamCaption})}
+
+
+
+Passes a root node to be added to the list for rendering. 
+
+This method recursively traverses the scene graph and adds nodes to the rendering list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em root\+Node} & The root node of the scene graph to traverse. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_list_a622ba78734aaa8ec7ca035931e4db04a}\index{List@{List}!renderElements@{renderElements}}
+\index{renderElements@{renderElements}!List@{List}}
+\doxysubsubsection{\texorpdfstring{renderElements()}{renderElements()}}
+{\footnotesize\ttfamily \label{class_list_a622ba78734aaa8ec7ca035931e4db04a} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::render\+Elements (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{camera\+Inverse\+Final\+Matrix}{}\end{DoxyParamCaption}) const}
+
+
+
+Renders all elements in the list. 
+
+This method iterates through all nodes in the list and renders them using Open\+GL.
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera\+Inverse\+Final\+Matrix} & The inverse transformation matrix of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_list_aeb960f1d515013f16f1c7a2b54421728}\index{List@{List}!resetListAndFreeMemory@{resetListAndFreeMemory}}
+\index{resetListAndFreeMemory@{resetListAndFreeMemory}!List@{List}}
+\doxysubsubsection{\texorpdfstring{resetListAndFreeMemory()}{resetListAndFreeMemory()}}
+{\footnotesize\ttfamily \label{class_list_aeb960f1d515013f16f1c7a2b54421728} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::reset\+List\+And\+Free\+Memory (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Resets the list and frees all memory used for reserved nodes. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_list_a8f1c8d2d3a0938997abba18d39364e80}\index{List@{List}!m\_listOfReservedToRender@{m\_listOfReservedToRender}}
+\index{m\_listOfReservedToRender@{m\_listOfReservedToRender}!List@{List}}
+\doxysubsubsection{\texorpdfstring{m\_listOfReservedToRender}{m\_listOfReservedToRender}}
+{\footnotesize\ttfamily \label{class_list_a8f1c8d2d3a0938997abba18d39364e80} 
+std\+::list$<$\mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}}\texorpdfstring{$\ast$}{*}$>$ List\+::m\+\_\+list\+Of\+Reserved\+To\+Render\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{class_list}{List} of reserved nodes to be rendered. 
+
+\Hypertarget{class_list_a637c14207e86ae0a331acfd02b09956a}\index{List@{List}!m\_notificationService@{m\_notificationService}}
+\index{m\_notificationService@{m\_notificationService}!List@{List}}
+\doxysubsubsection{\texorpdfstring{m\_notificationService}{m\_notificationService}}
+{\footnotesize\ttfamily \label{class_list_a637c14207e86ae0a331acfd02b09956a} 
+\mbox{\hyperlink{class_notification_service}{Notification\+Service}}\& List\+::m\+\_\+notification\+Service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Notification service for subscribing and listening to matrix changes. 
+
+\Hypertarget{class_list_ac99c668626a5c8af901786e27b4f1d88}\index{List@{List}!m\_reserved@{m\_reserved}}
+\index{m\_reserved@{m\_reserved}!List@{List}}
+\doxysubsubsection{\texorpdfstring{m\_reserved}{m\_reserved}}
+{\footnotesize\ttfamily \label{class_list_ac99c668626a5c8af901786e27b4f1d88} 
+std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}}$>$ List\+::m\+\_\+reserved\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Unique pointer to the reserved structure for managing node transformation data. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{list_8h}{list.\+h}}\item 
+engine/\mbox{\hyperlink{list_8cpp}{list.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,51 @@
+\doxysection{notification\+Service.\+h}
+\hypertarget{notification_service_8h_source}{}\label{notification_service_8h_source}\index{engine/notificationService.h@{engine/notificationService.h}}
+\mbox{\hyperlink{notification_service_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{reshape_listener_8h}{reshapeListener.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{change_matrix_listener_8h}{changeMatrixListener.h}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ NOTIFICATION\ SERVICE\ CLASS\ //}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_notification_service_a75c5af349d902bca6993714e842696a6}{NotificationService}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_notification_service_a75c5af349d902bca6993714e842696a6}{NotificationService}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_notification_service_a75c5af349d902bca6993714e842696a6}{NotificationService}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_notification_service_a75c5af349d902bca6993714e842696a6}{NotificationService}}\&\ \mbox{\hyperlink{class_notification_service_ac89795026dce05e40a647f96c98ae101}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_notification_service_a75c5af349d902bca6993714e842696a6}{NotificationService}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_notification_service_a75c5af349d902bca6993714e842696a6}{\string~NotificationService}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_notification_service_a75c5af349d902bca6993714e842696a6}{NotificationService}}\&\ \mbox{\hyperlink{class_notification_service_aa97b4f28bbe826560803072d37ad3d67}{getInstance}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_notification_service_a8bace961c1be8f9531c0dd901f72ff9c}{subscribeListener}}(\mbox{\hyperlink{class_reshape_listener}{ReshapeListener}}*\ listener);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_notification_service_a8bace961c1be8f9531c0dd901f72ff9c}{subscribeListener}}(\mbox{\hyperlink{class_change_matrix_listener}{ChangeMatrixListener}}*\ listener);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_notification_service_a9984988a72c6627af65a91529f84f000}{unsubscribeListener}}(\mbox{\hyperlink{class_reshape_listener}{ReshapeListener}}*\ listener);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_notification_service_a9984988a72c6627af65a91529f84f000}{unsubscribeListener}}(\mbox{\hyperlink{class_change_matrix_listener}{ChangeMatrixListener}}*\ listener);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_notification_service_a400e20c0a800fc133e2634897cc14b1d}{notifyOnReshapeWindow}}(\textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_notification_service_ab5f5507308e90d7f81b45394c2d43e8a}{notifyOnChangeMatrix}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ matrixId)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{class_notification_service_a75c5af349d902bca6993714e842696a6}{NotificationService}}();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00118\ \ \ \ \ std::vector<ReshapeListener*>\ \mbox{\hyperlink{class_notification_service_a20a234b2d77a82a7e3a84f14e41ab1e3}{m\_reshapeListeners}};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00121\ \ \ \ \ std::vector<ChangeMatrixListener*>\ \mbox{\hyperlink{class_notification_service_ae5e0e14893e836b2acc66591b20106ce}{m\_changeMatrixListeners}};}
+\DoxyCodeLine{00122\ \};}
+
+\end{DoxyCode}

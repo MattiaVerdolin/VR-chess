@@ -1,0 +1,36 @@
+\doxysection{ortho\+Camera.\+h}
+\hypertarget{ortho_camera_8h_source}{}\label{ortho_camera_8h_source}\index{engine/orthoCamera.h@{engine/orthoCamera.h}}
+\mbox{\hyperlink{ortho_camera_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Project-\/specific\ headers}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{camera_8h}{camera.h}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ MAIN\ ORTHOCAMERA\ CLASS\ //}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_ortho_camera_ad4af100a21fe6cedf21c20d07e6d3e64}{OrthoCamera}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_camera_a4b2cb1fe351e872ae6aff9504be3e775}{Camera}}\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_ortho_camera_ad4af100a21fe6cedf21c20d07e6d3e64}{OrthoCamera}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ height,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ near\_val,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ far\_val);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_ortho_camera_ae2824e19e68d30eadba56edb2720eb56}{\string~OrthoCamera}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{class_ortho_camera_ad4af100a21fe6cedf21c20d07e6d3e64}{OrthoCamera}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_ortho_camera_ad4af100a21fe6cedf21c20d07e6d3e64}{OrthoCamera}}\&\ other);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_ortho_camera_ad4af100a21fe6cedf21c20d07e6d3e64}{OrthoCamera}}\&\ \mbox{\hyperlink{class_ortho_camera_a2e90c4e01a9077637d7f42d9eeb2f0c9}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_ortho_camera_ad4af100a21fe6cedf21c20d07e6d3e64}{OrthoCamera}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}}*\ \mbox{\hyperlink{class_camera_a94aed57bd4b7289ac48278f12034bf75}{clone}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_a45d9b25f23a8862c296ab090701afa6d}{loadProjectionMatrix}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_ortho_camera_a7a8c30f2ee837327ed88672251fea7d6}{m\_left}};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_ortho_camera_a36f74f45f56505e0b0ef24e3c6aa03c0}{m\_bottom}};}
+\DoxyCodeLine{00099\ \};}
+
+\end{DoxyCode}

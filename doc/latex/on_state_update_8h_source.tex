@@ -1,0 +1,36 @@
+\doxysection{on\+State\+Update.\+h}
+\hypertarget{on_state_update_8h_source}{}\label{on_state_update_8h_source}\index{client/onStateUpdate.h@{client/onStateUpdate.h}}
+\mbox{\hyperlink{on_state_update_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game_status_8h}{gameStatus.h}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_on_state_update_listener_a4c51d36e1eea93d42e57f3fa63feafaf}{OnStateUpdateListener}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_on_state_update_listener_a4c51d36e1eea93d42e57f3fa63feafaf}{OnStateUpdateListener}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_on_state_update_listener_a272ab00cee68b45cdeaca184b7458c45}{onStateChangeUpdate}}(\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{GameStatus}}\ gameState);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_on_state_update_listener_a6a67d89aa4202d1f178e20adcc546220}{preGameHandler}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_on_state_update_listener_a350dd3599b14c0fe0e8f0969d98948f1}{choiceHandler}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_on_state_update_listener_a7a0b5a95a38f1583d8d56d8f048d2769}{gameHandler}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_on_state_update_listener_ac23acfdde2e7de9e0be282a6a4cd289c}{endGameHandler}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00094\ \ \ \ \ std::map<\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{GameStatus}},\ std::function<void()>>\ \mbox{\hyperlink{class_on_state_update_listener_a8f5d2b549a2255d7faa5d02871cb7940}{m\_mapFunctionOnState}};}
+\DoxyCodeLine{00095\ \};}
+
+\end{DoxyCode}

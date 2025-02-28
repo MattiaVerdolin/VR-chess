@@ -1,0 +1,73 @@
+\doxysection{Reshape\+Listener Class Reference}
+\hypertarget{class_reshape_listener}{}\label{class_reshape_listener}\index{ReshapeListener@{ReshapeListener}}
+
+
+Interface for receiving notifications when a window is resized.  
+
+
+
+
+{\ttfamily \#include $<$reshape\+Listener.\+h$>$}
+
+Inheritance diagram for Reshape\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_reshape_listener}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_reshape_listener_a59f7da873e620444bfb9de79d4452151}{\texorpdfstring{$\sim$}{\string~}\+Reshape\+Listener}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_reshape_listener}{Reshape\+Listener} class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_reshape_listener_af163f635cd4adf08c010b9e3ebe0e8b3}{on\+Window\+Reshape}} (int width, int height)=0
+\begin{DoxyCompactList}\small\item\em Callback method to be called when the window is reshaped. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for receiving notifications when a window is resized. 
+
+The \doxylink{class_reshape_listener}{Reshape\+Listener} interface defines a method that is called whenever the window size changes. Classes that want to be notified of window reshape events must implement the on\+Window\+Reshape method. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_reshape_listener_a59f7da873e620444bfb9de79d4452151}\index{ReshapeListener@{ReshapeListener}!````~ReshapeListener@{\texorpdfstring{$\sim$}{\string~}ReshapeListener}}
+\index{````~ReshapeListener@{\texorpdfstring{$\sim$}{\string~}ReshapeListener}!ReshapeListener@{ReshapeListener}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ReshapeListener()}{\string~ReshapeListener()}}
+{\footnotesize\ttfamily \label{class_reshape_listener_a59f7da873e620444bfb9de79d4452151} 
+virtual Reshape\+Listener\+::\texorpdfstring{$\sim$}{\string~}\+Reshape\+Listener (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Virtual destructor for the \doxylink{class_reshape_listener}{Reshape\+Listener} class. 
+
+Ensures proper cleanup of derived class resources when a \doxylink{class_reshape_listener}{Reshape\+Listener} is destroyed. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_reshape_listener_af163f635cd4adf08c010b9e3ebe0e8b3}\index{ReshapeListener@{ReshapeListener}!onWindowReshape@{onWindowReshape}}
+\index{onWindowReshape@{onWindowReshape}!ReshapeListener@{ReshapeListener}}
+\doxysubsubsection{\texorpdfstring{onWindowReshape()}{onWindowReshape()}}
+{\footnotesize\ttfamily \label{class_reshape_listener_af163f635cd4adf08c010b9e3ebe0e8b3} 
+virtual void Reshape\+Listener\+::on\+Window\+Reshape (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Callback method to be called when the window is reshaped. 
+
+This method must be implemented by any class that wishes to listen for window resize events.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The new width of the window. \\
+\hline
+{\em height} & The new height of the window. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_camera_a9a11abb2096d56ff475dadb5d04a311d}{Camera}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{reshape_listener_8h}{reshape\+Listener.\+h}}\end{DoxyCompactItemize}

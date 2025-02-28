@@ -1,0 +1,38 @@
+var annotated_dup =
+[
+    [ "Eng", "namespace_eng.html", [
+      [ "Base", "class_eng_1_1_base.html", "class_eng_1_1_base" ]
+    ] ],
+    [ "Camera", "class_camera.html", "class_camera" ],
+    [ "CameraManager", "class_camera_manager.html", "class_camera_manager" ],
+    [ "ChangeMatrixListener", "class_change_matrix_listener.html", "class_change_matrix_listener" ],
+    [ "DirectLight", "class_direct_light.html", "class_direct_light" ],
+    [ "FileOVOReader", "class_file_o_v_o_reader.html", "class_file_o_v_o_reader" ],
+    [ "GameManager", "class_game_manager.html", "class_game_manager" ],
+    [ "HistoryManager", "class_history_manager.html", "class_history_manager" ],
+    [ "Light", "class_light.html", "class_light" ],
+    [ "LightManager", "class_light_manager.html", "class_light_manager" ],
+    [ "List", "class_list.html", "class_list" ],
+    [ "ListOfPieces", "class_list_of_pieces.html", "class_list_of_pieces" ],
+    [ "ListOfPiecesManager", "class_list_of_pieces_manager.html", "class_list_of_pieces_manager" ],
+    [ "Material", "class_material.html", "class_material" ],
+    [ "Mesh", "class_mesh.html", "class_mesh" ],
+    [ "MovementManager", "class_movement_manager.html", "class_movement_manager" ],
+    [ "Node", "class_node.html", "class_node" ],
+    [ "NotificationService", "class_notification_service.html", "class_notification_service" ],
+    [ "Object", "class_object.html", "class_object" ],
+    [ "OmniLight", "class_omni_light.html", "class_omni_light" ],
+    [ "OnStateUpdateListener", "class_on_state_update_listener.html", "class_on_state_update_listener" ],
+    [ "OrthoCamera", "class_ortho_camera.html", "class_ortho_camera" ],
+    [ "OvLight", "class_ov_light.html", "class_ov_light" ],
+    [ "OvObject", "class_ov_object.html", "class_ov_object" ],
+    [ "OVOObjectFactory", "class_o_v_o_object_factory.html", "class_o_v_o_object_factory" ],
+    [ "PerspCamera", "class_persp_camera.html", "class_persp_camera" ],
+    [ "PhysProps", "struct_phys_props.html", "struct_phys_props" ],
+    [ "Piece", "class_piece.html", "class_piece" ],
+    [ "ReshapeListener", "class_reshape_listener.html", "class_reshape_listener" ],
+    [ "SpotLight", "class_spot_light.html", "class_spot_light" ],
+    [ "StatusManager", "class_status_manager.html", "class_status_manager" ],
+    [ "TextManager", "class_text_manager.html", "class_text_manager" ],
+    [ "Texture", "class_texture.html", "class_texture" ]
+];

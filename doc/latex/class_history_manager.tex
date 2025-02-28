@@ -1,0 +1,332 @@
+\doxysection{History\+Manager Class Reference}
+\hypertarget{class_history_manager}{}\label{class_history_manager}\index{HistoryManager@{HistoryManager}}
+
+
+Manages the history of game state changes, supporting undo and redo operations.  
+
+
+
+
+{\ttfamily \#include $<$history\+Manager.\+h$>$}
+
+Inheritance diagram for History\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_history_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_history_manager_1_1_reserved}{Reserved}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_history_manager_acddff2557a0796b6dde82a28fe07975a}{History\+Manager}} (const \mbox{\hyperlink{class_history_manager}{History\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Delete the copy constructor for \doxylink{class_history_manager}{History\+Manager}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_history_manager}{History\+Manager}} \& \mbox{\hyperlink{class_history_manager_a5fc5df82934fe1d843c6b3816c88f861}{operator=}} (const \mbox{\hyperlink{class_history_manager}{History\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Delete the copy assignment operator for \doxylink{class_history_manager}{History\+Manager}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_history_manager_a5c1eefe0ed600df43a35cbfa33ec872c}{\texorpdfstring{$\sim$}{\string~}\+History\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_history_manager}{History\+Manager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_history_manager_a3c57480105b255b11a421b6316991c7d}{take\+Snapshot}} ()
+\begin{DoxyCompactList}\small\item\em Take a snapshot of the current game state. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_history_manager_ae8c9e3650126909cef61685f44afe9bc}{undo}} ()
+\begin{DoxyCompactList}\small\item\em Undo the last action in the game. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_history_manager_a2bb6e5b49ee8ac27fba3084a99c2f88c}{redo}} ()
+\begin{DoxyCompactList}\small\item\em Redo the last undone action. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_history_manager_ada15512ed9af827233850187658cd343}{set\+Undo\+Redo\+Called}} (const bool \&val)
+\begin{DoxyCompactList}\small\item\em Set whether the undo/redo operation was called. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_on_state_update_listener}{On\+State\+Update\+Listener}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_on_state_update_listener_a4c51d36e1eea93d42e57f3fa63feafaf}{On\+State\+Update\+Listener}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_on_state_update_listener}{On\+State\+Update\+Listener} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_on_state_update_listener_a272ab00cee68b45cdeaca184b7458c45}{on\+State\+Change\+Update}} (\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}} game\+State)
+\begin{DoxyCompactList}\small\item\em Trigger the appropriate handler for a given game state. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_on_state_update_listener_a7a0b5a95a38f1583d8d56d8f048d2769}{game\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Handler for the GAME state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_history_manager}{History\+Manager}} \& \mbox{\hyperlink{class_history_manager_a9bcd4cfa308bf0e4e258f1a15c0283a4}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the singleton instance of \doxylink{class_history_manager}{History\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_history_manager_a110824c8f28cac57ce634f54581bd8a0}{History\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor for \doxylink{class_history_manager}{History\+Manager}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_history_manager_a056c026213bfe52e98aeb6ed07eee31b}{is\+Undo\+Redo\+Called}} ()
+\begin{DoxyCompactList}\small\item\em Check if undo or redo has been called. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_history_manager_aee7e0ec24817e36d3bf17df540e02f70}{pre\+Game\+Handler}} () override
+\begin{DoxyCompactList}\small\item\em Handler for the pre-\/game state update. Clears the history and resets the pointer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_history_manager_a556bd0af799d86b7f7aef7db40653bdc}{choice\+Handler}} () override
+\begin{DoxyCompactList}\small\item\em Handler for the choice state update. Takes a snapshot if undo/redo hasn\textquotesingle{}t been called. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_history_manager_ae20acc8fb2c59e3e20444d3690497afd}{end\+Game\+Handler}} () override
+\begin{DoxyCompactList}\small\item\em Handler for the end game state update. Resets the pointer and attempts to undo the last action. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_history_manager_1_1_reserved}{Reserved}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_history_manager_aacf863f37b9f9b9fa22c4a2148860fb5}{m\+\_\+history}}
+\begin{DoxyCompactList}\small\item\em Stores the history of game state snapshots. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}} \& \mbox{\hyperlink{class_history_manager_a226532fccddd69376046de55b3e3877a}{m\+\_\+list\+Of\+Pieces\+Manager}}
+\begin{DoxyCompactList}\small\item\em The manager responsible for handling the list of pieces in the game. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_movement_manager}{Movement\+Manager}} \& \mbox{\hyperlink{class_history_manager_a006b270909e05c0c493567620ba36e06}{m\+\_\+movement\+Manager}}
+\begin{DoxyCompactList}\small\item\em The manager responsible for handling the movement logic in the game. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}} \& \mbox{\hyperlink{class_history_manager_a46c649d0a74317c92aeecd6212efe3cb}{m\+\_\+status\+Manager}}
+\begin{DoxyCompactList}\small\item\em The manager responsible for handling the status of the game. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_history_manager_af5921edd58d821005a531d9ae95fc994}{m\+\_\+pointer}}
+\begin{DoxyCompactList}\small\item\em The current position in the history vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_history_manager_af606995eadd6fc24a2a9ff9cbbfc9db4}{m\+\_\+undo\+Redo\+Called}}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether undo/redo has been called. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_on_state_update_listener}{On\+State\+Update\+Listener}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}}, std\+::function$<$ void()$>$ $>$ \mbox{\hyperlink{class_on_state_update_listener_a8f5d2b549a2255d7faa5d02871cb7940}{m\+\_\+map\+Function\+On\+State}}
+\begin{DoxyCompactList}\small\item\em Map of game states to their corresponding handler functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the history of game state changes, supporting undo and redo operations. 
+
+The \doxylink{class_history_manager}{History\+Manager} class tracks snapshots of the game state, enabling the functionality to undo and redo movements during the game. It is responsible for storing the game state in a history vector and providing mechanisms to roll back or move forward through the history. It listens to game state changes and updates its internal state accordingly. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_history_manager_acddff2557a0796b6dde82a28fe07975a}\index{HistoryManager@{HistoryManager}!HistoryManager@{HistoryManager}}
+\index{HistoryManager@{HistoryManager}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{HistoryManager()}{HistoryManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_history_manager_acddff2557a0796b6dde82a28fe07975a} 
+History\+Manager\+::\+History\+Manager (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_history_manager}{History\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Delete the copy constructor for \doxylink{class_history_manager}{History\+Manager}. 
+
+\Hypertarget{class_history_manager_a5c1eefe0ed600df43a35cbfa33ec872c}\index{HistoryManager@{HistoryManager}!````~HistoryManager@{\texorpdfstring{$\sim$}{\string~}HistoryManager}}
+\index{````~HistoryManager@{\texorpdfstring{$\sim$}{\string~}HistoryManager}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}HistoryManager()}{\string~HistoryManager()}}
+{\footnotesize\ttfamily \label{class_history_manager_a5c1eefe0ed600df43a35cbfa33ec872c} 
+History\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+History\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for \doxylink{class_history_manager}{History\+Manager}. 
+
+The destructor is responsible for cleaning up resources when the \doxylink{class_history_manager}{History\+Manager} instance is destroyed. It performs the following actions\+:
+\begin{DoxyItemize}
+\item Unsubscribes the \doxylink{class_history_manager}{History\+Manager} as a listener from the \doxylink{class_status_manager}{Status\+Manager}, ensuring that it no longer receives updates or notifications from the game state changes.
+\item Iterates over the {\ttfamily m\+\_\+history} vector, which contains pointers to stored snapshots of the game state, and deletes each snapshot to free up memory.
+\end{DoxyItemize}
+
+These steps ensure that the \doxylink{class_history_manager}{History\+Manager} cleans up both its own internal state and any dynamic memory associated with the game state snapshots, preventing memory leaks. \Hypertarget{class_history_manager_a110824c8f28cac57ce634f54581bd8a0}\index{HistoryManager@{HistoryManager}!HistoryManager@{HistoryManager}}
+\index{HistoryManager@{HistoryManager}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{HistoryManager()}{HistoryManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_history_manager_a110824c8f28cac57ce634f54581bd8a0} 
+History\+Manager\+::\+History\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private constructor for \doxylink{class_history_manager}{History\+Manager}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_history_manager_a556bd0af799d86b7f7aef7db40653bdc}\index{HistoryManager@{HistoryManager}!choiceHandler@{choiceHandler}}
+\index{choiceHandler@{choiceHandler}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{choiceHandler()}{choiceHandler()}}
+{\footnotesize\ttfamily \label{class_history_manager_a556bd0af799d86b7f7aef7db40653bdc} 
+void History\+Manager\+::choice\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Handler for the choice state update. Takes a snapshot if undo/redo hasn\textquotesingle{}t been called. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_a350dd3599b14c0fe0e8f0969d98948f1}{On\+State\+Update\+Listener}}.
+
+\Hypertarget{class_history_manager_ae20acc8fb2c59e3e20444d3690497afd}\index{HistoryManager@{HistoryManager}!endGameHandler@{endGameHandler}}
+\index{endGameHandler@{endGameHandler}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{endGameHandler()}{endGameHandler()}}
+{\footnotesize\ttfamily \label{class_history_manager_ae20acc8fb2c59e3e20444d3690497afd} 
+void History\+Manager\+::end\+Game\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Handler for the end game state update. Resets the pointer and attempts to undo the last action. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_ac23acfdde2e7de9e0be282a6a4cd289c}{On\+State\+Update\+Listener}}.
+
+\Hypertarget{class_history_manager_a9bcd4cfa308bf0e4e258f1a15c0283a4}\index{HistoryManager@{HistoryManager}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_history_manager_a9bcd4cfa308bf0e4e258f1a15c0283a4} 
+\mbox{\hyperlink{class_history_manager}{History\+Manager}} \& History\+Manager\+::get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the singleton instance of \doxylink{class_history_manager}{History\+Manager}. 
+
+\begin{DoxyReturn}{Returns}
+The singleton \doxylink{class_history_manager}{History\+Manager} instance. 
+\end{DoxyReturn}
+\Hypertarget{class_history_manager_a056c026213bfe52e98aeb6ed07eee31b}\index{HistoryManager@{HistoryManager}!isUndoRedoCalled@{isUndoRedoCalled}}
+\index{isUndoRedoCalled@{isUndoRedoCalled}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{isUndoRedoCalled()}{isUndoRedoCalled()}}
+{\footnotesize\ttfamily \label{class_history_manager_a056c026213bfe52e98aeb6ed07eee31b} 
+bool History\+Manager\+::is\+Undo\+Redo\+Called (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Check if undo or redo has been called. 
+
+\begin{DoxyReturn}{Returns}
+True if undo/redo was called, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_history_manager_a5fc5df82934fe1d843c6b3816c88f861}\index{HistoryManager@{HistoryManager}!operator=@{operator=}}
+\index{operator=@{operator=}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_history_manager_a5fc5df82934fe1d843c6b3816c88f861} 
+\mbox{\hyperlink{class_history_manager}{History\+Manager}} \& History\+Manager\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_history_manager}{History\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Delete the copy assignment operator for \doxylink{class_history_manager}{History\+Manager}. 
+
+\Hypertarget{class_history_manager_aee7e0ec24817e36d3bf17df540e02f70}\index{HistoryManager@{HistoryManager}!preGameHandler@{preGameHandler}}
+\index{preGameHandler@{preGameHandler}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{preGameHandler()}{preGameHandler()}}
+{\footnotesize\ttfamily \label{class_history_manager_aee7e0ec24817e36d3bf17df540e02f70} 
+void History\+Manager\+::pre\+Game\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Handler for the pre-\/game state update. Clears the history and resets the pointer. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_a6a67d89aa4202d1f178e20adcc546220}{On\+State\+Update\+Listener}}.
+
+\Hypertarget{class_history_manager_a2bb6e5b49ee8ac27fba3084a99c2f88c}\index{HistoryManager@{HistoryManager}!redo@{redo}}
+\index{redo@{redo}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{redo()}{redo()}}
+{\footnotesize\ttfamily \label{class_history_manager_a2bb6e5b49ee8ac27fba3084a99c2f88c} 
+bool History\+Manager\+::redo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Redo the last undone action. 
+
+\begin{DoxyReturn}{Returns}
+True if the redo operation was successful, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_history_manager_ada15512ed9af827233850187658cd343}\index{HistoryManager@{HistoryManager}!setUndoRedoCalled@{setUndoRedoCalled}}
+\index{setUndoRedoCalled@{setUndoRedoCalled}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{setUndoRedoCalled()}{setUndoRedoCalled()}}
+{\footnotesize\ttfamily \label{class_history_manager_ada15512ed9af827233850187658cd343} 
+void History\+Manager\+::set\+Undo\+Redo\+Called (\begin{DoxyParamCaption}\item[{const bool \&}]{val}{}\end{DoxyParamCaption})}
+
+
+
+Set whether the undo/redo operation was called. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The new value to set for the undo/redo flag. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_history_manager_a3c57480105b255b11a421b6316991c7d}\index{HistoryManager@{HistoryManager}!takeSnapshot@{takeSnapshot}}
+\index{takeSnapshot@{takeSnapshot}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{takeSnapshot()}{takeSnapshot()}}
+{\footnotesize\ttfamily \label{class_history_manager_a3c57480105b255b11a421b6316991c7d} 
+void History\+Manager\+::take\+Snapshot (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Take a snapshot of the current game state. 
+
+\Hypertarget{class_history_manager_ae8c9e3650126909cef61685f44afe9bc}\index{HistoryManager@{HistoryManager}!undo@{undo}}
+\index{undo@{undo}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{undo()}{undo()}}
+{\footnotesize\ttfamily \label{class_history_manager_ae8c9e3650126909cef61685f44afe9bc} 
+bool History\+Manager\+::undo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Undo the last action in the game. 
+
+\begin{DoxyReturn}{Returns}
+True if the undo operation was successful, false otherwise. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_history_manager_aacf863f37b9f9b9fa22c4a2148860fb5}\index{HistoryManager@{HistoryManager}!m\_history@{m\_history}}
+\index{m\_history@{m\_history}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{m\_history}{m\_history}}
+{\footnotesize\ttfamily \label{class_history_manager_aacf863f37b9f9b9fa22c4a2148860fb5} 
+std\+::vector$<$\mbox{\hyperlink{struct_history_manager_1_1_reserved}{Reserved}}\texorpdfstring{$\ast$}{*}$>$ History\+Manager\+::m\+\_\+history\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Stores the history of game state snapshots. 
+
+\Hypertarget{class_history_manager_a226532fccddd69376046de55b3e3877a}\index{HistoryManager@{HistoryManager}!m\_listOfPiecesManager@{m\_listOfPiecesManager}}
+\index{m\_listOfPiecesManager@{m\_listOfPiecesManager}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{m\_listOfPiecesManager}{m\_listOfPiecesManager}}
+{\footnotesize\ttfamily \label{class_history_manager_a226532fccddd69376046de55b3e3877a} 
+\mbox{\hyperlink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}}\& History\+Manager\+::m\+\_\+list\+Of\+Pieces\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The manager responsible for handling the list of pieces in the game. 
+
+\Hypertarget{class_history_manager_a006b270909e05c0c493567620ba36e06}\index{HistoryManager@{HistoryManager}!m\_movementManager@{m\_movementManager}}
+\index{m\_movementManager@{m\_movementManager}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{m\_movementManager}{m\_movementManager}}
+{\footnotesize\ttfamily \label{class_history_manager_a006b270909e05c0c493567620ba36e06} 
+\mbox{\hyperlink{class_movement_manager}{Movement\+Manager}}\& History\+Manager\+::m\+\_\+movement\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The manager responsible for handling the movement logic in the game. 
+
+\Hypertarget{class_history_manager_af5921edd58d821005a531d9ae95fc994}\index{HistoryManager@{HistoryManager}!m\_pointer@{m\_pointer}}
+\index{m\_pointer@{m\_pointer}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{m\_pointer}{m\_pointer}}
+{\footnotesize\ttfamily \label{class_history_manager_af5921edd58d821005a531d9ae95fc994} 
+int History\+Manager\+::m\+\_\+pointer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current position in the history vector. 
+
+\Hypertarget{class_history_manager_a46c649d0a74317c92aeecd6212efe3cb}\index{HistoryManager@{HistoryManager}!m\_statusManager@{m\_statusManager}}
+\index{m\_statusManager@{m\_statusManager}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{m\_statusManager}{m\_statusManager}}
+{\footnotesize\ttfamily \label{class_history_manager_a46c649d0a74317c92aeecd6212efe3cb} 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}}\& History\+Manager\+::m\+\_\+status\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The manager responsible for handling the status of the game. 
+
+\Hypertarget{class_history_manager_af606995eadd6fc24a2a9ff9cbbfc9db4}\index{HistoryManager@{HistoryManager}!m\_undoRedoCalled@{m\_undoRedoCalled}}
+\index{m\_undoRedoCalled@{m\_undoRedoCalled}!HistoryManager@{HistoryManager}}
+\doxysubsubsection{\texorpdfstring{m\_undoRedoCalled}{m\_undoRedoCalled}}
+{\footnotesize\ttfamily \label{class_history_manager_af606995eadd6fc24a2a9ff9cbbfc9db4} 
+bool History\+Manager\+::m\+\_\+undo\+Redo\+Called\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating whether undo/redo has been called. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+client/\mbox{\hyperlink{history_manager_8h}{history\+Manager.\+h}}\item 
+client/\mbox{\hyperlink{history_manager_8cpp}{history\+Manager.\+cpp}}\end{DoxyCompactItemize}

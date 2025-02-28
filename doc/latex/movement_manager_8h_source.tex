@@ -1,0 +1,59 @@
+\doxysection{movement\+Manager.\+h}
+\hypertarget{movement_manager_8h_source}{}\label{movement_manager_8h_source}\index{client/movementManager.h@{client/movementManager.h}}
+\mbox{\hyperlink{movement_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Project-\/specific\ headers}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{on_state_update_8h}{onStateUpdate.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{status_manager_8h}{statusManager.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{piece_8h}{piece.h}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{node_8h}{node.h}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}glm/glm.hpp"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}glm/gtc/matrix\_transform.hpp"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_movement_manager_a83b2979031ca296d4963ee6716a2a1c4}{MovementManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_on_state_update_listener_a4c51d36e1eea93d42e57f3fa63feafaf}{OnStateUpdateListener}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_movement_manager_a83b2979031ca296d4963ee6716a2a1c4}{MovementManager}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_movement_manager_a83b2979031ca296d4963ee6716a2a1c4}{MovementManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_movement_manager_a83b2979031ca296d4963ee6716a2a1c4}{MovementManager}}\&\ \mbox{\hyperlink{class_movement_manager_a54fd218a2d2a3c9331dbea2234394095}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_movement_manager_a83b2979031ca296d4963ee6716a2a1c4}{MovementManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_movement_manager_afdeb52f2e2ddf1e5af35c8b9cb9b88bc}{\string~MovementManager}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_movement_manager_a83b2979031ca296d4963ee6716a2a1c4}{MovementManager}}\&\ \mbox{\hyperlink{class_movement_manager_a1f4938de91f5d6a70451790471ebe378}{getInstance}}();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_movement_manager_ae96c049c5458f96a5b7da68e0ad9cb5e}{getTurn}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_movement_manager_ad916c0b809bb3b58c76e6719212c35ff}{getFactoryByTurn}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_movement_manager_a74fe724788ea20b6a39ea1593bae6f2a}{changeTurn}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_movement_manager_ac8b5806043f01a4b9a713813635366e1}{moveRight}}(\mbox{\hyperlink{class_piece}{Piece}}*\ piece);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_movement_manager_a98beff6c181775acc785a4a6197a8756}{moveLeft}}(\mbox{\hyperlink{class_piece}{Piece}}*\ piece);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_movement_manager_ade240336d3b192388556fc3d73ed2ec9}{moveUp}}(\mbox{\hyperlink{class_piece}{Piece}}*\ piece);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_movement_manager_a1beb218f097b15726360b7ab2ac103b3}{moveDown}}(\mbox{\hyperlink{class_piece}{Piece}}*\ piece);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{class_movement_manager_a85f97c490d48cbae3b7f4cf6199f7c95}{MovementManager}}();}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_movement_manager_a68237304f84b1004512f42c530f16554}{preGameHandler}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_movement_manager_a6dc167a9c923534a05782799d6e4af4e}{m\_turn}};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{class_status_manager}{StatusManager}}\&\ \mbox{\hyperlink{class_movement_manager_a1ce61ddfd6832762f662071de4cf2177}{m\_statusManager}};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_movement_manager_a3d0a803deb9c56de40b5f7bbb521810f}{MOVEMENT\_SPACE}}\ =\ 0.545f;}
+\DoxyCodeLine{00150\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,57 @@
+\doxysection{client/list\+Of\+Pieces\+Manager.cpp File Reference}
+\hypertarget{list_of_pieces_manager_8cpp}{}\label{list_of_pieces_manager_8cpp}\index{client/listOfPiecesManager.cpp@{client/listOfPiecesManager.cpp}}
+{\ttfamily \#include "{}list\+Of\+Pieces\+Manager.\+h"{}}\newline
+{\ttfamily \#include "{}game\+Manager.\+h"{}}\newline
+{\ttfamily \#include "{}mesh.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{list_of_pieces_manager_8cpp_aa9c56fd582566970bd3294acb25cab6c}{CHESSBOARD}}~"{}Chessboard"{}
+\item 
+\#define \mbox{\hyperlink{list_of_pieces_manager_8cpp_a16c93b76122c5c96ad47e1ad8caf9835}{SELECT\+\_\+\+POINTER}}~"{}Select\+Pointer"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{list_of_pieces_manager_8cpp_ae961cb82e7d163af3251ac7e61e707e8}{temp\+Row}} = 0
+\item 
+unsigned int \mbox{\hyperlink{list_of_pieces_manager_8cpp_a7c21dbb2ffbb153c90849a6f51d96c50}{temp\+Col}} = 0
+\item 
+glm\+::mat4 \mbox{\hyperlink{list_of_pieces_manager_8cpp_a9a4b636ebc84b7030664d23a85ff4bbc}{temp\+Matrix}} = glm\+::mat4(1.\+0f)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{list_of_pieces_manager_8cpp_aa9c56fd582566970bd3294acb25cab6c}\index{listOfPiecesManager.cpp@{listOfPiecesManager.cpp}!CHESSBOARD@{CHESSBOARD}}
+\index{CHESSBOARD@{CHESSBOARD}!listOfPiecesManager.cpp@{listOfPiecesManager.cpp}}
+\doxysubsubsection{\texorpdfstring{CHESSBOARD}{CHESSBOARD}}
+{\footnotesize\ttfamily \label{list_of_pieces_manager_8cpp_aa9c56fd582566970bd3294acb25cab6c} 
+\#define CHESSBOARD~"{}Chessboard"{}}
+
+\Hypertarget{list_of_pieces_manager_8cpp_a16c93b76122c5c96ad47e1ad8caf9835}\index{listOfPiecesManager.cpp@{listOfPiecesManager.cpp}!SELECT\_POINTER@{SELECT\_POINTER}}
+\index{SELECT\_POINTER@{SELECT\_POINTER}!listOfPiecesManager.cpp@{listOfPiecesManager.cpp}}
+\doxysubsubsection{\texorpdfstring{SELECT\_POINTER}{SELECT\_POINTER}}
+{\footnotesize\ttfamily \label{list_of_pieces_manager_8cpp_a16c93b76122c5c96ad47e1ad8caf9835} 
+\#define SELECT\+\_\+\+POINTER~"{}Select\+Pointer"{}}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{list_of_pieces_manager_8cpp_a7c21dbb2ffbb153c90849a6f51d96c50}\index{listOfPiecesManager.cpp@{listOfPiecesManager.cpp}!tempCol@{tempCol}}
+\index{tempCol@{tempCol}!listOfPiecesManager.cpp@{listOfPiecesManager.cpp}}
+\doxysubsubsection{\texorpdfstring{tempCol}{tempCol}}
+{\footnotesize\ttfamily \label{list_of_pieces_manager_8cpp_a7c21dbb2ffbb153c90849a6f51d96c50} 
+unsigned int temp\+Col = 0}
+
+\Hypertarget{list_of_pieces_manager_8cpp_a9a4b636ebc84b7030664d23a85ff4bbc}\index{listOfPiecesManager.cpp@{listOfPiecesManager.cpp}!tempMatrix@{tempMatrix}}
+\index{tempMatrix@{tempMatrix}!listOfPiecesManager.cpp@{listOfPiecesManager.cpp}}
+\doxysubsubsection{\texorpdfstring{tempMatrix}{tempMatrix}}
+{\footnotesize\ttfamily \label{list_of_pieces_manager_8cpp_a9a4b636ebc84b7030664d23a85ff4bbc} 
+glm\+::mat4 temp\+Matrix = glm\+::mat4(1.\+0f)}
+
+\Hypertarget{list_of_pieces_manager_8cpp_ae961cb82e7d163af3251ac7e61e707e8}\index{listOfPiecesManager.cpp@{listOfPiecesManager.cpp}!tempRow@{tempRow}}
+\index{tempRow@{tempRow}!listOfPiecesManager.cpp@{listOfPiecesManager.cpp}}
+\doxysubsubsection{\texorpdfstring{tempRow}{tempRow}}
+{\footnotesize\ttfamily \label{list_of_pieces_manager_8cpp_ae961cb82e7d163af3251ac7e61e707e8} 
+unsigned int temp\+Row = 0}
+

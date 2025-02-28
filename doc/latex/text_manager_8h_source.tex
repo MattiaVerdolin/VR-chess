@@ -1,0 +1,41 @@
+\doxysection{text\+Manager.\+h}
+\hypertarget{text_manager_8h_source}{}\label{text_manager_8h_source}\index{engine/textManager.h@{engine/textManager.h}}
+\mbox{\hyperlink{text_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ortho_camera_8h}{orthoCamera.h}}"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_text_manager_a0284b848f6a8984debf2e35ae8905480}{TextManager}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_text_manager_a0284b848f6a8984debf2e35ae8905480}{TextManager}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_text_manager_a0284b848f6a8984debf2e35ae8905480}{TextManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_text_manager_a0284b848f6a8984debf2e35ae8905480}{TextManager}}\&\ \mbox{\hyperlink{class_text_manager_ac7a8e563e647084a3fad73ce1af2e02d}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_text_manager_a0284b848f6a8984debf2e35ae8905480}{TextManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_text_manager_a5c78eb9c4522077c8d964883a1c7d69f}{\string~TextManager}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_text_manager_a0284b848f6a8984debf2e35ae8905480}{TextManager}}\&\ \mbox{\hyperlink{class_text_manager_a2cc70a4d5fce6afdd2fdc7c38a7fa1e4}{getInstance}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_text_manager_a0d8780f34fcb5184ae31bf2f8c5b16d7}{displayText}}(\textcolor{keyword}{const}\ std::list<std::string>\&\ texts,\ \mbox{\hyperlink{class_camera}{Camera}}*\ orthoCamera)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_text_manager_aee4b7d46e2a088c697ced6339dfc865b}{displayFPS}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ \mbox{\hyperlink{engine_8cpp_a4f50e96f11c68d45dc109185efe011ad}{fps}},\ \mbox{\hyperlink{class_camera}{Camera}}*\ orthoCamera)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{class_text_manager_a0284b848f6a8984debf2e35ae8905480}{TextManager}}();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_text_manager_ae872262d0132b3b0e84d3017bb5aa780}{setDynamicWidth}}(\textcolor{keyword}{const}\ std::list<std::string>\&\ texts)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,309 @@
+\doxysection{File\+OVOReader Class Reference}
+\hypertarget{class_file_o_v_o_reader}{}\label{class_file_o_v_o_reader}\index{FileOVOReader@{FileOVOReader}}
+
+
+Concrete \doxylink{class_file_o_v_o_reader}{File\+OVOReader} class.  
+
+
+
+
+{\ttfamily \#include $<$file\+OVOReader.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_file_o_v_o_reader_ad4c141fe15e9c99c38fa15a514b2eea6}{File\+OVOReader}} (const \mbox{\hyperlink{class_file_o_v_o_reader}{File\+OVOReader}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Copy constructor is deleted to ensure singleton usage. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_file_o_v_o_reader_aca38e2b1a8697762c306ecfbc24b8923}{\texorpdfstring{$\sim$}{\string~}\+File\+OVOReader}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_file_o_v_o_reader}{File\+OVOReader} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_file_o_v_o_reader}{File\+OVOReader}} \& \mbox{\hyperlink{class_file_o_v_o_reader_addb7b683c4f94a77f6f51ff3e20f21a0}{operator=}} (const \mbox{\hyperlink{class_file_o_v_o_reader}{File\+OVOReader}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Assignment operator is deleted to ensure singleton usage. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_file_o_v_o_reader_a743b20d061ac1003294dd6c4e4556313}{has\+OVOExtension}} (const std\+::string \&file\+Name)
+\begin{DoxyCompactList}\small\item\em Checks if the provided file name has the {\ttfamily .ovo} extension. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_file_o_v_o_reader_a060880442cc787ac0dc4b7be66befb32}{parse\+File}} (const std\+::string \&file\+Name)
+\begin{DoxyCompactList}\small\item\em Parses the {\ttfamily .ovo} file and constructs the scene graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_file_o_v_o_reader}{File\+OVOReader}} \& \mbox{\hyperlink{class_file_o_v_o_reader_a2429e74d465e06e769c4b1db53de632d}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Returns the singleton instance of the \doxylink{class_file_o_v_o_reader}{File\+OVOReader}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_file_o_v_o_reader_a037d68b914e4c77294e84548ce146024}{File\+OVOReader}} ()
+\begin{DoxyCompactList}\small\item\em Constructor that initializes the \doxylink{class_file_o_v_o_reader}{File\+OVOReader}. \end{DoxyCompactList}\item 
+const bool \mbox{\hyperlink{class_file_o_v_o_reader_a9f96b05fec1275614cde280598311916}{open\+File}} (const std\+::string \&file\+Name)
+\begin{DoxyCompactList}\small\item\em Opens the specified file. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_file_o_v_o_reader_a6870d99cf3585d7929f5a5ae4a660045}{get\+Data\+Of\+Chunk\+From\+File}} (unsigned int \&chunk\+Id, unsigned int \&chunk\+Size)
+\begin{DoxyCompactList}\small\item\em Reads a chunk of data from the opened file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_file_o_v_o_reader_abe963d02f4ff8e0e5c3110f8a878c529}{undo\+Read\+Data\+From\+File}} (const unsigned int \&chunk\+Size)
+\begin{DoxyCompactList}\small\item\em Rolls back the file pointer after reading a chunk. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_file_o_v_o_reader_af8c728a7e5a43713fa38982f95cbf066}{retrieve\+Materials}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves materials from the file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_file_o_v_o_reader_a307cf4e3ebcd452980a6b8985bd69161}{recursive\+Load}} ()
+\begin{DoxyCompactList}\small\item\em Recursively loads the scene graph from the file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_file_o_v_o_reader_ae6dbe57291e8744c831b37f9d47701fc}{delete\+Textures}} ()
+\begin{DoxyCompactList}\small\item\em Deletes all textures associated with the materials in the {\ttfamily .ovo} file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_file_o_v_o_reader_a6e939c8b7db9b2b9ec21288f172aa9b1}{delete\+Materials}} ()
+\begin{DoxyCompactList}\small\item\em Deletes all materials stored in the materials map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_file_o_v_o_reader_a32147b59d49d5b73c3737eb6663a281c}{m\+\_\+dat}}
+\begin{DoxyCompactList}\small\item\em File pointer for reading the {\ttfamily .ovo} file. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{class_material}{Material}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_file_o_v_o_reader_af5f5248d8051504a5a67879039783f65}{m\+\_\+materials\+Map}}
+\begin{DoxyCompactList}\small\item\em Map of materials indexed by their names. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{class_file_o_v_o_reader_aaba06cc97eb816b7e7cd85100e7048ff}{ovo\+Extension}} \{ "{}.ovo"{} \}
+\begin{DoxyCompactList}\small\item\em The {\ttfamily .ovo} file extension. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete \doxylink{class_file_o_v_o_reader}{File\+OVOReader} class. 
+
+The \doxylink{class_file_o_v_o_reader}{File\+OVOReader} class is responsible for parsing {\ttfamily .ovo} files. It reads the file, processes the chunks of data, retrieves materials, and constructs a hierarchical scene graph of nodes from the parsed data. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_file_o_v_o_reader_ad4c141fe15e9c99c38fa15a514b2eea6}\index{FileOVOReader@{FileOVOReader}!FileOVOReader@{FileOVOReader}}
+\index{FileOVOReader@{FileOVOReader}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{FileOVOReader()}{FileOVOReader()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_ad4c141fe15e9c99c38fa15a514b2eea6} 
+File\+OVOReader\+::\+File\+OVOReader (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_file_o_v_o_reader}{File\+OVOReader}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Copy constructor is deleted to ensure singleton usage. 
+
+\Hypertarget{class_file_o_v_o_reader_aca38e2b1a8697762c306ecfbc24b8923}\index{FileOVOReader@{FileOVOReader}!````~FileOVOReader@{\texorpdfstring{$\sim$}{\string~}FileOVOReader}}
+\index{````~FileOVOReader@{\texorpdfstring{$\sim$}{\string~}FileOVOReader}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FileOVOReader()}{\string~FileOVOReader()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_aca38e2b1a8697762c306ecfbc24b8923} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} File\+OVOReader\+::\texorpdfstring{$\sim$}{\string~}\+File\+OVOReader (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{class_file_o_v_o_reader}{File\+OVOReader} class. 
+
+This destructor ensures proper cleanup of resources used by the \doxylink{class_file_o_v_o_reader}{File\+OVOReader} instance. It deletes all textures and materials stored in the instance to prevent memory leaks. \Hypertarget{class_file_o_v_o_reader_a037d68b914e4c77294e84548ce146024}\index{FileOVOReader@{FileOVOReader}!FileOVOReader@{FileOVOReader}}
+\index{FileOVOReader@{FileOVOReader}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{FileOVOReader()}{FileOVOReader()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_a037d68b914e4c77294e84548ce146024} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} File\+OVOReader\+::\+File\+OVOReader (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Constructor that initializes the \doxylink{class_file_o_v_o_reader}{File\+OVOReader}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_file_o_v_o_reader_a6e939c8b7db9b2b9ec21288f172aa9b1}\index{FileOVOReader@{FileOVOReader}!deleteMaterials@{deleteMaterials}}
+\index{deleteMaterials@{deleteMaterials}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{deleteMaterials()}{deleteMaterials()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_a6e939c8b7db9b2b9ec21288f172aa9b1} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void File\+OVOReader\+::delete\+Materials (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Deletes all materials stored in the materials map. 
+
+This method iterates through the materials map and deletes each material object, ensuring proper cleanup of dynamically allocated resources. \Hypertarget{class_file_o_v_o_reader_ae6dbe57291e8744c831b37f9d47701fc}\index{FileOVOReader@{FileOVOReader}!deleteTextures@{deleteTextures}}
+\index{deleteTextures@{deleteTextures}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{deleteTextures()}{deleteTextures()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_ae6dbe57291e8744c831b37f9d47701fc} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void File\+OVOReader\+::delete\+Textures (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Deletes all textures associated with the materials in the {\ttfamily .ovo} file. 
+
+This method iterates through the materials map and collects unique texture pointers associated with the materials. It then deletes the textures to free up memory. \Hypertarget{class_file_o_v_o_reader_a6870d99cf3585d7929f5a5ae4a660045}\index{FileOVOReader@{FileOVOReader}!getDataOfChunkFromFile@{getDataOfChunkFromFile}}
+\index{getDataOfChunkFromFile@{getDataOfChunkFromFile}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{getDataOfChunkFromFile()}{getDataOfChunkFromFile()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_a6870d99cf3585d7929f5a5ae4a660045} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} char \texorpdfstring{$\ast$}{*} File\+OVOReader\+::get\+Data\+Of\+Chunk\+From\+File (\begin{DoxyParamCaption}\item[{unsigned int \&}]{chunk\+Id}{, }\item[{unsigned int \&}]{chunk\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reads a chunk of data from the opened file. 
+
+This method reads the chunk ID and size from the file, followed by the chunk data itself.
+
+
+\begin{DoxyParams}{Parameters}
+{\em chunk\+Id} & A reference to store the chunk ID. \\
+\hline
+{\em chunk\+Size} & A reference to store the chunk size. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the chunk data, or {\ttfamily nullptr} if an error occurs. 
+\end{DoxyReturn}
+\Hypertarget{class_file_o_v_o_reader_a2429e74d465e06e769c4b1db53de632d}\index{FileOVOReader@{FileOVOReader}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_a2429e74d465e06e769c4b1db53de632d} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_file_o_v_o_reader}{File\+OVOReader}} \& File\+OVOReader\+::get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the singleton instance of the \doxylink{class_file_o_v_o_reader}{File\+OVOReader}. 
+
+This method returns the unique instance of the \doxylink{class_file_o_v_o_reader}{File\+OVOReader}.
+
+\begin{DoxyReturn}{Returns}
+The singleton instance of \doxylink{class_file_o_v_o_reader}{File\+OVOReader}. 
+\end{DoxyReturn}
+\Hypertarget{class_file_o_v_o_reader_a743b20d061ac1003294dd6c4e4556313}\index{FileOVOReader@{FileOVOReader}!hasOVOExtension@{hasOVOExtension}}
+\index{hasOVOExtension@{hasOVOExtension}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{hasOVOExtension()}{hasOVOExtension()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_a743b20d061ac1003294dd6c4e4556313} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool File\+OVOReader\+::has\+OVOExtension (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the provided file name has the {\ttfamily .ovo} extension. 
+
+This method checks if the given file name has the {\ttfamily .ovo} extension.
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The file name to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the file has {\ttfamily .ovo} extension, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_file_o_v_o_reader_a9f96b05fec1275614cde280598311916}\index{FileOVOReader@{FileOVOReader}!openFile@{openFile}}
+\index{openFile@{openFile}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{openFile()}{openFile()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_a9f96b05fec1275614cde280598311916} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool File\+OVOReader\+::open\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Opens the specified file. 
+
+This method attempts to open the file in binary read mode.
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The name of the file to open. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the file was successfully opened, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_file_o_v_o_reader_addb7b683c4f94a77f6f51ff3e20f21a0}\index{FileOVOReader@{FileOVOReader}!operator=@{operator=}}
+\index{operator=@{operator=}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_addb7b683c4f94a77f6f51ff3e20f21a0} 
+\mbox{\hyperlink{class_file_o_v_o_reader}{File\+OVOReader}} \& File\+OVOReader\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_file_o_v_o_reader}{File\+OVOReader}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Assignment operator is deleted to ensure singleton usage. 
+
+\Hypertarget{class_file_o_v_o_reader_a060880442cc787ac0dc4b7be66befb32}\index{FileOVOReader@{FileOVOReader}!parseFile@{parseFile}}
+\index{parseFile@{parseFile}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{parseFile()}{parseFile()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_a060880442cc787ac0dc4b7be66befb32} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} File\+OVOReader\+::parse\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Parses the {\ttfamily .ovo} file and constructs the scene graph. 
+
+This method opens the specified {\ttfamily .ovo} file, reads its chunks, and recursively constructs the scene graph from the parsed data, returning the root node of the scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The file name of the {\ttfamily .ovo} file to parse. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the root node of the parsed scene graph. 
+\end{DoxyReturn}
+\Hypertarget{class_file_o_v_o_reader_a307cf4e3ebcd452980a6b8985bd69161}\index{FileOVOReader@{FileOVOReader}!recursiveLoad@{recursiveLoad}}
+\index{recursiveLoad@{recursiveLoad}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{recursiveLoad()}{recursiveLoad()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_a307cf4e3ebcd452980a6b8985bd69161} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} File\+OVOReader\+::recursive\+Load (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Recursively loads the scene graph from the file. 
+
+This method recursively reads the nodes from the file, constructing the scene graph of {\ttfamily \doxylink{class_node}{Node}} objects, and assigns materials to meshes.
+
+\begin{DoxyReturn}{Returns}
+A pointer to the root node of the scene graph. 
+\end{DoxyReturn}
+\Hypertarget{class_file_o_v_o_reader_af8c728a7e5a43713fa38982f95cbf066}\index{FileOVOReader@{FileOVOReader}!retrieveMaterials@{retrieveMaterials}}
+\index{retrieveMaterials@{retrieveMaterials}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{retrieveMaterials()}{retrieveMaterials()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_af8c728a7e5a43713fa38982f95cbf066} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void File\+OVOReader\+::retrieve\+Materials (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Retrieves materials from the file. 
+
+This method reads the material chunks from the file and stores them in the {\ttfamily m\+\_\+materials\+Map} map. \Hypertarget{class_file_o_v_o_reader_abe963d02f4ff8e0e5c3110f8a878c529}\index{FileOVOReader@{FileOVOReader}!undoReadDataFromFile@{undoReadDataFromFile}}
+\index{undoReadDataFromFile@{undoReadDataFromFile}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{undoReadDataFromFile()}{undoReadDataFromFile()}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_abe963d02f4ff8e0e5c3110f8a878c529} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void File\+OVOReader\+::undo\+Read\+Data\+From\+File (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{chunk\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rolls back the file pointer after reading a chunk. 
+
+This method undoes the reading of a chunk by moving the file pointer back to the previous position.
+
+
+\begin{DoxyParams}{Parameters}
+{\em chunk\+Size} & The size of the chunk to roll back. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_file_o_v_o_reader_a32147b59d49d5b73c3737eb6663a281c}\index{FileOVOReader@{FileOVOReader}!m\_dat@{m\_dat}}
+\index{m\_dat@{m\_dat}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{m\_dat}{m\_dat}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_a32147b59d49d5b73c3737eb6663a281c} 
+FILE\texorpdfstring{$\ast$}{*} File\+OVOReader\+::m\+\_\+dat\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+File pointer for reading the {\ttfamily .ovo} file. 
+
+\Hypertarget{class_file_o_v_o_reader_af5f5248d8051504a5a67879039783f65}\index{FileOVOReader@{FileOVOReader}!m\_materialsMap@{m\_materialsMap}}
+\index{m\_materialsMap@{m\_materialsMap}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{m\_materialsMap}{m\_materialsMap}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_af5f5248d8051504a5a67879039783f65} 
+std\+::map$<$std\+::string, \mbox{\hyperlink{class_material}{Material}}\texorpdfstring{$\ast$}{*}$>$ File\+OVOReader\+::m\+\_\+materials\+Map\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Map of materials indexed by their names. 
+
+\Hypertarget{class_file_o_v_o_reader_aaba06cc97eb816b7e7cd85100e7048ff}\index{FileOVOReader@{FileOVOReader}!ovoExtension@{ovoExtension}}
+\index{ovoExtension@{ovoExtension}!FileOVOReader@{FileOVOReader}}
+\doxysubsubsection{\texorpdfstring{ovoExtension}{ovoExtension}}
+{\footnotesize\ttfamily \label{class_file_o_v_o_reader_aaba06cc97eb816b7e7cd85100e7048ff} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} std\+::string File\+OVOReader\+::ovo\+Extension \{ "{}.ovo"{} \}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The {\ttfamily .ovo} file extension. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{file_o_v_o_reader_8h}{file\+OVOReader.\+h}}\item 
+engine/\mbox{\hyperlink{file_o_v_o_reader_8cpp}{file\+OVOReader.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,240 @@
+\doxysection{List\+Of\+Pieces Class Reference}
+\hypertarget{class_list_of_pieces}{}\label{class_list_of_pieces}\index{ListOfPieces@{ListOfPieces}}
+
+
+Class representing a collection of \doxylink{class_piece}{Piece} objects.  
+
+
+
+
+{\ttfamily \#include $<$list\+Of\+Pieces.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_list_of_pieces_a62d3ceb40c3be83a699e4fde468d5c10}{List\+Of\+Pieces}} (const std\+::vector$<$ \mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} $>$ \&pieces)
+\begin{DoxyCompactList}\small\item\em Constructor initializing the list with a vector of \doxylink{class_piece}{Piece} pointers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_list_of_pieces_abcbc646357275f6ca5a5ceb821ece2fa}{\texorpdfstring{$\sim$}{\string~}\+List\+Of\+Pieces}} ()
+\begin{DoxyCompactList}\small\item\em Destructor that cleans up resources. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_of_pieces_a79f4b2185706c2850347f4bfb20a965d}{clone}} ()
+\begin{DoxyCompactList}\small\item\em Clone the current \doxylink{class_list_of_pieces}{List\+Of\+Pieces} object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_list_of_pieces_a7a9783853d009af10c63a531f2689d96}{remove\+Piece}} (\mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*}piece)
+\begin{DoxyCompactList}\small\item\em Remove a specific piece from the list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_of_pieces_ae54e73d91ea380ac28c1bd81db42b4af}{clear\+List}} ()
+\begin{DoxyCompactList}\small\item\em Clear all pieces from the list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_list_of_pieces_a2ef91b5330a02f049d0e61115fff33a3}{get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of pieces in the list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_of_pieces_a61f58012090968a83c666e187938f276}{get\+Piece\+By\+Index}} (const unsigned int \&index) const
+\begin{DoxyCompactList}\small\item\em Retrieve a piece by its index in the list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_of_pieces_a12523b78a512a96239faa4e7cc4b8e2b}{get\+Piece\+By\+Coordinates}} (const unsigned int \&row, const unsigned int \&col) const
+\begin{DoxyCompactList}\small\item\em Retrieve a piece by its row and column coordinates. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_list_of_pieces_a666792da7f96b5617b5e58299ac11fba}{get\+Number\+Of\+Pieces\+By\+Coordinates}} (const unsigned int \&row, const unsigned int \&col) const
+\begin{DoxyCompactList}\small\item\em Get the number of pieces located at specific coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_list_of_pieces_a0c1da5f21c5cb4d8cf94795d31d82429}{List\+Of\+Pieces}} (const \mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \doxylink{class_list_of_pieces}{List\+Of\+Pieces} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_list_of_pieces_a548e4d5205db0315229b958f03a9421a}{m\+\_\+list\+Of\+Pieces}}
+\begin{DoxyCompactList}\small\item\em Vector holding the list of pointers to \doxylink{class_piece}{Piece} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a collection of \doxylink{class_piece}{Piece} objects. 
+
+The \doxylink{class_list_of_pieces}{List\+Of\+Pieces} class encapsulates a collection of pieces on the chessboard. It provides various methods for interacting with the list, including removing pieces, cloning the list, and retrieving pieces by their index or coordinates. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_list_of_pieces_a62d3ceb40c3be83a699e4fde468d5c10}\index{ListOfPieces@{ListOfPieces}!ListOfPieces@{ListOfPieces}}
+\index{ListOfPieces@{ListOfPieces}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{ListOfPieces()}{ListOfPieces()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_a62d3ceb40c3be83a699e4fde468d5c10} 
+List\+Of\+Pieces\+::\+List\+Of\+Pieces (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} $>$ \&}]{pieces}{}\end{DoxyParamCaption})}
+
+
+
+Constructor initializing the list with a vector of \doxylink{class_piece}{Piece} pointers. 
+
+Initializes the \doxylink{class_list_of_pieces}{List\+Of\+Pieces} object with an existing vector of \doxylink{class_piece}{Piece} pointers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieces} & A vector of pointers to \doxylink{class_piece}{Piece} objects. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_list_of_pieces_abcbc646357275f6ca5a5ceb821ece2fa}\index{ListOfPieces@{ListOfPieces}!````~ListOfPieces@{\texorpdfstring{$\sim$}{\string~}ListOfPieces}}
+\index{````~ListOfPieces@{\texorpdfstring{$\sim$}{\string~}ListOfPieces}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ListOfPieces()}{\string~ListOfPieces()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_abcbc646357275f6ca5a5ceb821ece2fa} 
+List\+Of\+Pieces\+::\texorpdfstring{$\sim$}{\string~}\+List\+Of\+Pieces (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor that cleans up resources. 
+
+This destructor is responsible for releasing any allocated memory or resources associated with the \doxylink{class_list_of_pieces}{List\+Of\+Pieces} object. \Hypertarget{class_list_of_pieces_a0c1da5f21c5cb4d8cf94795d31d82429}\index{ListOfPieces@{ListOfPieces}!ListOfPieces@{ListOfPieces}}
+\index{ListOfPieces@{ListOfPieces}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{ListOfPieces()}{ListOfPieces()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_a0c1da5f21c5cb4d8cf94795d31d82429} 
+List\+Of\+Pieces\+::\+List\+Of\+Pieces (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Copy constructor for the \doxylink{class_list_of_pieces}{List\+Of\+Pieces} class. 
+
+This constructor creates a new \doxylink{class_list_of_pieces}{List\+Of\+Pieces} object by copying an existing one. It ensures that the pieces are deep-\/copied so that the new list has its own copies of the pieces.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{class_list_of_pieces}{List\+Of\+Pieces} object to copy. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_list_of_pieces_ae54e73d91ea380ac28c1bd81db42b4af}\index{ListOfPieces@{ListOfPieces}!clearList@{clearList}}
+\index{clearList@{clearList}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{clearList()}{clearList()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_ae54e73d91ea380ac28c1bd81db42b4af} 
+void List\+Of\+Pieces\+::clear\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear all pieces from the list. 
+
+This method clears the list, removing all pieces from it. \Hypertarget{class_list_of_pieces_a79f4b2185706c2850347f4bfb20a965d}\index{ListOfPieces@{ListOfPieces}!clone@{clone}}
+\index{clone@{clone}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_a79f4b2185706c2850347f4bfb20a965d} 
+\mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*} List\+Of\+Pieces\+::clone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clone the current \doxylink{class_list_of_pieces}{List\+Of\+Pieces} object. 
+
+Creates a deep copy of the current \doxylink{class_list_of_pieces}{List\+Of\+Pieces} object, including the pieces it contains.
+
+\begin{DoxyReturn}{Returns}
+A new instance of \doxylink{class_list_of_pieces}{List\+Of\+Pieces} that is a copy of the current object. 
+\end{DoxyReturn}
+\Hypertarget{class_list_of_pieces_a666792da7f96b5617b5e58299ac11fba}\index{ListOfPieces@{ListOfPieces}!getNumberOfPiecesByCoordinates@{getNumberOfPiecesByCoordinates}}
+\index{getNumberOfPiecesByCoordinates@{getNumberOfPiecesByCoordinates}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{getNumberOfPiecesByCoordinates()}{getNumberOfPiecesByCoordinates()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_a666792da7f96b5617b5e58299ac11fba} 
+unsigned int List\+Of\+Pieces\+::get\+Number\+Of\+Pieces\+By\+Coordinates (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{row}{, }\item[{const unsigned int \&}]{col}{}\end{DoxyParamCaption}) const}
+
+
+
+Get the number of pieces located at specific coordinates. 
+
+This method counts how many pieces are located at the specified row and column coordinates.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & The row coordinate to search for. \\
+\hline
+{\em col} & The column coordinate to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of pieces found at the specified coordinates. 
+\end{DoxyReturn}
+\Hypertarget{class_list_of_pieces_a12523b78a512a96239faa4e7cc4b8e2b}\index{ListOfPieces@{ListOfPieces}!getPieceByCoordinates@{getPieceByCoordinates}}
+\index{getPieceByCoordinates@{getPieceByCoordinates}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{getPieceByCoordinates()}{getPieceByCoordinates()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_a12523b78a512a96239faa4e7cc4b8e2b} 
+\mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} List\+Of\+Pieces\+::get\+Piece\+By\+Coordinates (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{row}{, }\item[{const unsigned int \&}]{col}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieve a piece by its row and column coordinates. 
+
+This method retrieves a piece based on its row and column coordinates. If no piece is found at the given coordinates, it returns a nullptr.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & The row coordinate of the piece to retrieve. \\
+\hline
+{\em col} & The column coordinate of the piece to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the \doxylink{class_piece}{Piece} located at the specified coordinates, or nullptr if no such piece exists. 
+\end{DoxyReturn}
+\Hypertarget{class_list_of_pieces_a61f58012090968a83c666e187938f276}\index{ListOfPieces@{ListOfPieces}!getPieceByIndex@{getPieceByIndex}}
+\index{getPieceByIndex@{getPieceByIndex}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{getPieceByIndex()}{getPieceByIndex()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_a61f58012090968a83c666e187938f276} 
+\mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} List\+Of\+Pieces\+::get\+Piece\+By\+Index (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{index}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieve a piece by its index in the list. 
+
+This method retrieves a piece based on its index in the list. If the index is invalid, it returns a nullptr.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the piece to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the \doxylink{class_piece}{Piece} at the specified index, or nullptr if the index is out of range. 
+\end{DoxyReturn}
+\Hypertarget{class_list_of_pieces_a2ef91b5330a02f049d0e61115fff33a3}\index{ListOfPieces@{ListOfPieces}!getSize@{getSize}}
+\index{getSize@{getSize}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_a2ef91b5330a02f049d0e61115fff33a3} 
+int List\+Of\+Pieces\+::get\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get the number of pieces in the list. 
+
+This method returns the number of pieces currently in the list.
+
+\begin{DoxyReturn}{Returns}
+The number of pieces in the list. 
+\end{DoxyReturn}
+\Hypertarget{class_list_of_pieces_a7a9783853d009af10c63a531f2689d96}\index{ListOfPieces@{ListOfPieces}!removePiece@{removePiece}}
+\index{removePiece@{removePiece}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{removePiece()}{removePiece()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_a7a9783853d009af10c63a531f2689d96} 
+bool List\+Of\+Pieces\+::remove\+Piece (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*}}]{piece}{}\end{DoxyParamCaption})}
+
+
+
+Remove a specific piece from the list. 
+
+This method removes the specified piece from the list of pieces.
+
+
+\begin{DoxyParams}{Parameters}
+{\em piece} & A pointer to the \doxylink{class_piece}{Piece} to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the piece was successfully removed, otherwise false. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_list_of_pieces_a548e4d5205db0315229b958f03a9421a}\index{ListOfPieces@{ListOfPieces}!m\_listOfPieces@{m\_listOfPieces}}
+\index{m\_listOfPieces@{m\_listOfPieces}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{m\_listOfPieces}{m\_listOfPieces}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_a548e4d5205db0315229b958f03a9421a} 
+std\+::vector$<$\mbox{\hyperlink{class_piece}{Piece}}\texorpdfstring{$\ast$}{*}$>$ List\+Of\+Pieces\+::m\+\_\+list\+Of\+Pieces\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector holding the list of pointers to \doxylink{class_piece}{Piece} objects. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+client/\mbox{\hyperlink{list_of_pieces_8h}{list\+Of\+Pieces.\+h}}\item 
+client/\mbox{\hyperlink{list_of_pieces_8cpp}{list\+Of\+Pieces.\+cpp}}\end{DoxyCompactItemize}

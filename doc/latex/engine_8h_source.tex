@@ -1,0 +1,106 @@
+\doxysection{engine.\+h}
+\hypertarget{engine_8h_source}{}\label{engine_8h_source}\index{engine/engine.h@{engine/engine.h}}
+\mbox{\hyperlink{engine_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ \ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <memory>}\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{node_8h}{node.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{camera_8h}{camera.h}}"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ VERSION\ //}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ Library\ versioning\ and\ debugging\ information}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \#define\ LIB\_NAME\ \ \ \ \ \ "{}My\ Graphics\ Engine\ v0.1a\ (debug)"{}\ \ \ }}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \#define\ LIB\_NAME\ \ \ \ \ \ "{}My\ Graphics\ Engine\ v0.1a"{}\ \ \ }}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \ \#define\ LIB\_VERSION\ \ \ 10\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \textcolor{comment}{//\ Export\ API\ linkage\ based\ on\ platform}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#ifdef\ \_WINDOWS}}
+\DoxyCodeLine{00042\ \ \ \ \textcolor{comment}{//\ Specifies\ I/O\ linkage\ for\ Windows\ (VC++\ spec)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \ \#ifdef\ ENGINE\_EXPORTS}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ ENG\_API\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \ \#else}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ ENG\_API\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \ \#endif\ \ \ \ \ \ }}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \textcolor{comment}{//\ Disable\ specific\ warnings\ for\ DLL\ export/import}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\ \ \ \#pragma\ warning(disable\ :\ 4251)\ }}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ Linux}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \ \#define\ ENG\_API}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ NAMESPACE\ //}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eng}{Eng}}\ \{}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \textcolor{comment}{//\ You\ can\ add\ more\ headers\ specific\ to\ the\ engine\ here}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ MAIN\ ENGINE\ CLASS\ //}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}{Base}}\ final}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00083\ \textcolor{keyword}{public}:\ \textcolor{comment}{//}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \mbox{\hyperlink{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}{Base}}(\mbox{\hyperlink{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}{Base}}\ \textcolor{keyword}{const}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00096\ \ \ \ \mbox{\hyperlink{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}{\string~Base}}();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00102\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eng_1_1_base_ac4eb1f66179273abba59260a6b4c5cbd}{operator=}}(\mbox{\hyperlink{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}{Base}}\ \textcolor{keyword}{const}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00108\ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}{Base}}\ \&\mbox{\hyperlink{class_eng_1_1_base_a3c21bcd7bace09d5913ced6de5b15518}{getInstance}}();}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00114\ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eng_1_1_base_afc0dd380b8955e2313d41893e630be12}{init}}(\textcolor{keywordtype}{void}\ (*closeCallBack)()\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00120\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eng_1_1_base_af6ed5042d5fb8d46b3bd339ecc916d33}{setKeyboardCallback}}(\textcolor{keywordtype}{void}\ (*callback)(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char},\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int}));}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00126\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eng_1_1_base_a75805b6798f1681d3aea8bd134656b07}{setSpecialCallback}}(\textcolor{keywordtype}{void}\ (*callback)(\textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int}));}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00132\ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eng_1_1_base_afd7e1923deb411907695c0b27114f62a}{free}}();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00137\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eng_1_1_base_a5d9ba3e2afa46a0717a0566c2f44f724}{clear}}();}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00143\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ \mbox{\hyperlink{class_eng_1_1_base_a40b6f6e35aabe4de18d27f56fb8537ab}{getFPS}}();}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00150\ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_eng_1_1_base_a91aaec73e036ebafe769980277777d90}{load}}(\textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00156\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eng_1_1_base_a0c7d5052a4d2214589d83cbad4e0b9a9}{passScene}}(\mbox{\hyperlink{class_node}{Node}}*\ rootNode);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00161\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eng_1_1_base_a6c17fc3be4ea9d5d4af115ccc2cfdadd}{clearScene}}();}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00169\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eng_1_1_base_a3178a2cc100b772ea521d3b441c7d718}{begin3D}}(\mbox{\hyperlink{class_camera}{Camera}}*\ camera1,\ \mbox{\hyperlink{class_camera}{Camera}}*\ camera2,\ \textcolor{keyword}{const}\ std::list<std::string>\&\ layers);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00174\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eng_1_1_base_a974e6386722fb13945002c4f5c150b57}{end3D}}();}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00179\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eng_1_1_base_ae3678d41d28398d92b37258ac9fa5695}{swap}}();}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00188\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eng_1_1_base_aa4056f5a3edbc6f4d1764d6cec20e16d}{handleReshape}}(\textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \textcolor{comment}{//\ Reserved:}}
+\DoxyCodeLine{00191\ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_eng_1_1_base}{Eng::Base}}\ \mbox{\hyperlink{class_eng_1_1_base_ad981031db3f340f6674922fcc72dacbb}{instance}};\ }
+\DoxyCodeLine{00192\ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Reserved}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00193\ \ \ \ std::unique\_ptr<Reserved>\ \mbox{\hyperlink{class_eng_1_1_base_a17dea5630935db11dec6d91c9fc88693}{reserved}};\ }
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00199\ \ \ \ \mbox{\hyperlink{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}{Base}}();}
+\DoxyCodeLine{00200\ \};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \};\ \textcolor{comment}{//\ end\ of\ namespace\ Eng::}}
+
+\end{DoxyCode}

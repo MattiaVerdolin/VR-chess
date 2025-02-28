@@ -1,0 +1,69 @@
+\doxysection{object.\+h}
+\hypertarget{object_8h_source}{}\label{object_8h_source}\index{engine/object.h@{engine/object.h}}
+\mbox{\hyperlink{object_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <limits.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ Project-\/specific\ headers}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}glm/glm.hpp"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}glm/gtc/type\_ptr.hpp"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ VERSIONING\ //}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#ifdef\ \_WINDOWS}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Specifies\ I/O\ linkage\ for\ Windows\ (VC++\ spec)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#ifdef\ ENGINE\_EXPORTS}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ ENG\_API\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ ENG\_API\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)\ }\textcolor{comment}{//\ Disable\ specific\ warnings}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Linux\ compatibility}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ ENG\_API}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ ABSTRACT\ OBJECT\ CLASS\ //}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{class\ }\mbox{\hyperlink{object_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}}\ \{}
+\DoxyCodeLine{00060\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_object_a226f2ae2af766b77d83c09a4d766b725}{\string~Object}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ \mbox{\hyperlink{class_object_a0ecb533178d82ce77fb1a5f855cfade2}{getId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_object_a623e33bd86ef50533cc07371731dd7c3}{getName}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{setName}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_object_afff98e03fa9337beab8c42cb4dc4ffb7}{render}}(\textcolor{keyword}{const}\ glm::mat4\&\ transform\ =\ glm::mat4(1.0f))\ =\ 0;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_object_a1d8a4587502276b6d157e3c2ab0a2dca}{parse}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ buffer,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ offset)\ =\ 0;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}}(\textcolor{keyword}{const}\ std::string\&\ name\ =\ \textcolor{stringliteral}{"{}defaultObject"{}});}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}}\&\ other);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}}\&\ \mbox{\hyperlink{class_object_aadbc7fb1c935f6776fbbbec7cc5275f4}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}}\&\ other);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_object_ae3d9ac140621b21e594f0aca898f9042}{createNewId}}();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_object_a50ff4bf85922f0c8ef5b9fb07e2f5846}{m\_id}};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00134\ \ \ \ \ std::string\ \mbox{\hyperlink{class_object_a8b83c95c705d2c3ba0d081fe1710f48d}{m\_name}};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_object_aaefcf7f86a144fd323e2c124df65bd52}{m\_cnt\_object}};}
+\DoxyCodeLine{00138\ \};}
+
+\end{DoxyCode}

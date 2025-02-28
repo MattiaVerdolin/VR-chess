@@ -1,0 +1,456 @@
+\doxysection{Material Class Reference}
+\hypertarget{class_material}{}\label{class_material}\index{Material@{Material}}
+
+
+Concrete \doxylink{class_material}{Material} class for rendering.  
+
+
+
+
+{\ttfamily \#include $<$material.\+h$>$}
+
+Inheritance diagram for Material\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_material}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_material_a013564c944720310144f297fa0c3e2d4}{Material}} (const std\+::string \&name="{}default\+Material"{})
+\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_material}{Material} with an optional name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_material_a53dfe7bfdb3c34d83c5b93281aad0b97}{Material}} (const \mbox{\hyperlink{class_material}{Material}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_material_ac61ec3cbd9a4ca9e59ef8fd8e74406ab}{\texorpdfstring{$\sim$}{\string~}\+Material}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_material}{Material} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_material}{Material}} \& \mbox{\hyperlink{class_material_aa114078f437ae09781af21ed23dfce45}{operator=}} (const \mbox{\hyperlink{class_material}{Material}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted assignment operator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_material_adba6a1994c7bf7ca45aee17a80082965}{render}} (const glm\+::mat4 \&matrix=glm\+::mat4(1.\+0f)) override
+\begin{DoxyCompactList}\small\item\em Render the material. \end{DoxyCompactList}\item 
+const unsigned int \mbox{\hyperlink{class_material_adf701a1c684a4661d4b98859a8fa6abf}{parse}} (const char \texorpdfstring{$\ast$}{*}data, unsigned int \&position) override
+\begin{DoxyCompactList}\small\item\em Parse material data from a binary format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_material_a4729eb07e436a455a9cd87c52d4c6141}{set\+Alpha}} (const float \&alpha)
+\item 
+const float \& \mbox{\hyperlink{class_material_a488a35f63d8d166e3c76ffa32f9f658b}{get\+Alpha}} () const
+\item 
+void \mbox{\hyperlink{class_material_a8afc802783b3c8f70e6cf9410d779eb7}{set\+Emission}} (const glm\+::vec3 \&emission)
+\item 
+const glm\+::vec3 \& \mbox{\hyperlink{class_material_a08f30a15f2cfe4430b0dc18bc89ef1a3}{get\+Emission}} () const
+\item 
+void \mbox{\hyperlink{class_material_a749ff888223a1c0d0e2f49aa451a5ebb}{set\+Ambient}} (const glm\+::vec3 \&ambient)
+\item 
+const glm\+::vec3 \& \mbox{\hyperlink{class_material_a69c2110c5768c088cf3e2ec1739e12e4}{get\+Ambient}} () const
+\item 
+void \mbox{\hyperlink{class_material_a91fb0c8d4020d62bdf4b37f8c79bc1a9}{set\+Specular}} (const glm\+::vec3 \&specular)
+\item 
+const glm\+::vec3 \& \mbox{\hyperlink{class_material_a422497e8dafbbb04ea5add4590d66013}{get\+Specular}} () const
+\item 
+void \mbox{\hyperlink{class_material_a74f9d5996da8a2f24db8daff8a4b4bd4}{set\+Diffuse}} (const glm\+::vec3 \&diffuse)
+\item 
+const glm\+::vec3 \& \mbox{\hyperlink{class_material_a9ba405df6faa50f830a54682450c397f}{get\+Diffuse}} () const
+\item 
+void \mbox{\hyperlink{class_material_a24b1f8bc201bc8aad012391927fb4c95}{set\+Shininess}} (const float \&shininess)
+\item 
+const float \& \mbox{\hyperlink{class_material_a465eed2656271d4ab414c048c2b09515}{get\+Shininess}} () const
+\item 
+void \mbox{\hyperlink{class_material_abf79ffb83ac049ebaa48fc5b47635ea2}{set\+Texture}} (\mbox{\hyperlink{class_texture}{Texture}} \texorpdfstring{$\ast$}{*}texture)
+\item 
+const \mbox{\hyperlink{class_texture}{Texture}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_material_a07946c5acec3285e92ea7b69c29607cd}{get\+Texture}} () const
+\item 
+void \mbox{\hyperlink{class_material_afd846bce44c1e226f3d43587acd4b569}{set\+Enable\+Texture}} ()
+\begin{DoxyCompactList}\small\item\em Enable the texture for rendering if available. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_material_aa8a5144da2aa562990f611d8457fb358}{set\+Disable\+Texture}} ()
+\begin{DoxyCompactList}\small\item\em Disable the texture for rendering if available. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_material_ad7cd8c42e37b4c1156e5496f2329f338}{is\+Texture\+Exists}} ()
+\begin{DoxyCompactList}\small\item\em Check if a texture is assigned to the material. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_object_a226f2ae2af766b77d83c09a4d766b725}{\texorpdfstring{$\sim$}{\string~}\+Object}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_object}{Object} class. \end{DoxyCompactList}\item 
+const unsigned int \& \mbox{\hyperlink{class_object_a0ecb533178d82ce77fb1a5f855cfade2}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the ID of the object. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{class_object_a623e33bd86ef50533cc07371731dd7c3}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{set\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::map$<$ std\+::string, \mbox{\hyperlink{class_texture}{Texture}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_material_a03ca5f5fc86b8c6b0cbd6e7cff19461c}{m\+\_\+textures\+Map}} \{ std\+::map$<$std\+::string, \mbox{\hyperlink{class_texture}{Texture}}\texorpdfstring{$\ast$}{*}$>$() \}
+\begin{DoxyCompactList}\small\item\em Static map of textures associated with their names. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_texture}{Texture}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_material_a68fdc3613a067125420ea28fa897ec69}{get\+Texture}} (const std\+::string \&texture\+Name) const
+\begin{DoxyCompactList}\small\item\em Retrieve a texture by name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_material_af96d120064003789cab46539fb93c472}{m\+\_\+alpha}}
+\begin{DoxyCompactList}\small\item\em Alpha transparency of the material. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_material_a91a6b0769e828fc9c4f21f1d9f8b35a8}{m\+\_\+emission}}
+\begin{DoxyCompactList}\small\item\em Emission color of the material. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_material_ab3b04455ca3a29eea275fe5dd6f70b9b}{m\+\_\+ambient}}
+\begin{DoxyCompactList}\small\item\em Ambient color of the material. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_material_a472d9632e7e9db1e9d6db0e5a40a4cc3}{m\+\_\+specular}}
+\begin{DoxyCompactList}\small\item\em Specular color of the material. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_material_a4655998d1721cb070f1e4f92d0dbc239}{m\+\_\+diffuse}}
+\begin{DoxyCompactList}\small\item\em Diffuse color of the material. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_material_ac6870095f155d023adb9fa1d02f9be4c}{m\+\_\+shininess}}
+\begin{DoxyCompactList}\small\item\em Shininess factor of the material. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_texture}{Texture}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_material_a5c03a7d19041a2d34dd0a27583695081}{m\+\_\+texture}}
+\begin{DoxyCompactList}\small\item\em Pointer to the texture assigned to the material. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}} (const std\+::string \&name="{}default\+Object"{})
+\begin{DoxyCompactList}\small\item\em Constructor with a specified name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_object_a8ec02d9e52b3cf8b5ba6cf3fa00efa00}{Object}} (const \mbox{\hyperlink{class_object}{Object}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_object}{Object}} \& \mbox{\hyperlink{class_object_aadbc7fb1c935f6776fbbbec7cc5275f4}{operator=}} (const \mbox{\hyperlink{class_object}{Object}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_ae3d9ac140621b21e594f0aca898f9042}{create\+New\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Generate a new unique ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a50ff4bf85922f0c8ef5b9fb07e2f5846}{m\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em The unique ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_a8b83c95c705d2c3ba0d081fe1710f48d}{m\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em The name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \mbox{\hyperlink{class_object_aaefcf7f86a144fd323e2c124df65bd52}{m\+\_\+cnt\+\_\+object}} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Counter to keep track of the number of objects and generate unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete \doxylink{class_material}{Material} class for rendering. 
+
+The \doxylink{class_material}{Material} class represents a material that can be applied to 3D objects during rendering. It manages material properties like colors, shininess, alpha transparency, and textures. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_material_a013564c944720310144f297fa0c3e2d4}\index{Material@{Material}!Material@{Material}}
+\index{Material@{Material}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{Material()}{Material()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_material_a013564c944720310144f297fa0c3e2d4} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Material\+::\+Material (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{ = {\ttfamily "{}defaultMaterial"{}}}\end{DoxyParamCaption})}
+
+
+
+Construct a \doxylink{class_material}{Material} with an optional name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the material. Defaults to "{}default\+Material"{}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_material_a53dfe7bfdb3c34d83c5b93281aad0b97}\index{Material@{Material}!Material@{Material}}
+\index{Material@{Material}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{Material()}{Material()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_material_a53dfe7bfdb3c34d83c5b93281aad0b97} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Material\+::\+Material (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_material}{Material}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{class_material}{Material} instance to copy. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_material_ac61ec3cbd9a4ca9e59ef8fd8e74406ab}\index{Material@{Material}!````~Material@{\texorpdfstring{$\sim$}{\string~}Material}}
+\index{````~Material@{\texorpdfstring{$\sim$}{\string~}Material}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Material()}{\string~Material()}}
+{\footnotesize\ttfamily \label{class_material_ac61ec3cbd9a4ca9e59ef8fd8e74406ab} 
+Material\+::\texorpdfstring{$\sim$}{\string~}\+Material (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{class_material}{Material} class. 
+
+The destructor is responsible for cleaning up resources associated with the \doxylink{class_material}{Material} object. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_material_a488a35f63d8d166e3c76ffa32f9f658b}\index{Material@{Material}!getAlpha@{getAlpha}}
+\index{getAlpha@{getAlpha}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{getAlpha()}{getAlpha()}}
+{\footnotesize\ttfamily \label{class_material_a488a35f63d8d166e3c76ffa32f9f658b} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} float \& Material\+::get\+Alpha (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_material_a69c2110c5768c088cf3e2ec1739e12e4}\index{Material@{Material}!getAmbient@{getAmbient}}
+\index{getAmbient@{getAmbient}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{getAmbient()}{getAmbient()}}
+{\footnotesize\ttfamily \label{class_material_a69c2110c5768c088cf3e2ec1739e12e4} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::vec3 \& Material\+::get\+Ambient (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_material_a9ba405df6faa50f830a54682450c397f}\index{Material@{Material}!getDiffuse@{getDiffuse}}
+\index{getDiffuse@{getDiffuse}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{getDiffuse()}{getDiffuse()}}
+{\footnotesize\ttfamily \label{class_material_a9ba405df6faa50f830a54682450c397f} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::vec3 \& Material\+::get\+Diffuse (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_material_a08f30a15f2cfe4430b0dc18bc89ef1a3}\index{Material@{Material}!getEmission@{getEmission}}
+\index{getEmission@{getEmission}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{getEmission()}{getEmission()}}
+{\footnotesize\ttfamily \label{class_material_a08f30a15f2cfe4430b0dc18bc89ef1a3} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::vec3 \& Material\+::get\+Emission (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_material_a465eed2656271d4ab414c048c2b09515}\index{Material@{Material}!getShininess@{getShininess}}
+\index{getShininess@{getShininess}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{getShininess()}{getShininess()}}
+{\footnotesize\ttfamily \label{class_material_a465eed2656271d4ab414c048c2b09515} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} float \& Material\+::get\+Shininess (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_material_a422497e8dafbbb04ea5add4590d66013}\index{Material@{Material}!getSpecular@{getSpecular}}
+\index{getSpecular@{getSpecular}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{getSpecular()}{getSpecular()}}
+{\footnotesize\ttfamily \label{class_material_a422497e8dafbbb04ea5add4590d66013} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::vec3 \& Material\+::get\+Specular (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_material_a07946c5acec3285e92ea7b69c29607cd}\index{Material@{Material}!getTexture@{getTexture}}
+\index{getTexture@{getTexture}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{getTexture()}{getTexture()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_material_a07946c5acec3285e92ea7b69c29607cd} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_texture}{Texture}} \texorpdfstring{$\ast$}{*} Material\+::get\+Texture (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_material_a68fdc3613a067125420ea28fa897ec69}\index{Material@{Material}!getTexture@{getTexture}}
+\index{getTexture@{getTexture}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{getTexture()}{getTexture()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_material_a68fdc3613a067125420ea28fa897ec69} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_texture}{Texture}} \texorpdfstring{$\ast$}{*} Material\+::get\+Texture (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{texture\+Name}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Retrieve a texture by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+Name} & The name of the texture. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the texture if found, nullptr otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_material_ad7cd8c42e37b4c1156e5496f2329f338}\index{Material@{Material}!isTextureExists@{isTextureExists}}
+\index{isTextureExists@{isTextureExists}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{isTextureExists()}{isTextureExists()}}
+{\footnotesize\ttfamily \label{class_material_ad7cd8c42e37b4c1156e5496f2329f338} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Material\+::is\+Texture\+Exists (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Check if a texture is assigned to the material. 
+
+\begin{DoxyReturn}{Returns}
+True if a texture exists, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_material_aa114078f437ae09781af21ed23dfce45}\index{Material@{Material}!operator=@{operator=}}
+\index{operator=@{operator=}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_material_aa114078f437ae09781af21ed23dfce45} 
+\mbox{\hyperlink{class_material}{Material}} \& Material\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_material}{Material}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted assignment operator. 
+
+\Hypertarget{class_material_adf701a1c684a4661d4b98859a8fa6abf}\index{Material@{Material}!parse@{parse}}
+\index{parse@{parse}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{class_material_adf701a1c684a4661d4b98859a8fa6abf} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int Material\+::parse (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{unsigned int \&}]{position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Parse material data from a binary format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to the binary data. \\
+\hline
+{\em position} & Current position in the data stream. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The parsed size of the material data. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_object_a1d8a4587502276b6d157e3c2ab0a2dca}{Object}}.
+
+\Hypertarget{class_material_adba6a1994c7bf7ca45aee17a80082965}\index{Material@{Material}!render@{render}}
+\index{render@{render}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_material_adba6a1994c7bf7ca45aee17a80082965} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Material\+::render (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{matrix}{ = {\ttfamily glm\+:\+:mat4(1.0f)}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Render the material. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & Transformation matrix for rendering. Defaults to identity. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_object_afff98e03fa9337beab8c42cb4dc4ffb7}{Object}}.
+
+\Hypertarget{class_material_a4729eb07e436a455a9cd87c52d4c6141}\index{Material@{Material}!setAlpha@{setAlpha}}
+\index{setAlpha@{setAlpha}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{setAlpha()}{setAlpha()}}
+{\footnotesize\ttfamily \label{class_material_a4729eb07e436a455a9cd87c52d4c6141} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Material\+::set\+Alpha (\begin{DoxyParamCaption}\item[{const float \&}]{alpha}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_material_a749ff888223a1c0d0e2f49aa451a5ebb}\index{Material@{Material}!setAmbient@{setAmbient}}
+\index{setAmbient@{setAmbient}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{setAmbient()}{setAmbient()}}
+{\footnotesize\ttfamily \label{class_material_a749ff888223a1c0d0e2f49aa451a5ebb} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Material\+::set\+Ambient (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{ambient}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_material_a74f9d5996da8a2f24db8daff8a4b4bd4}\index{Material@{Material}!setDiffuse@{setDiffuse}}
+\index{setDiffuse@{setDiffuse}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{setDiffuse()}{setDiffuse()}}
+{\footnotesize\ttfamily \label{class_material_a74f9d5996da8a2f24db8daff8a4b4bd4} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Material\+::set\+Diffuse (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{diffuse}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_material_aa8a5144da2aa562990f611d8457fb358}\index{Material@{Material}!setDisableTexture@{setDisableTexture}}
+\index{setDisableTexture@{setDisableTexture}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{setDisableTexture()}{setDisableTexture()}}
+{\footnotesize\ttfamily \label{class_material_aa8a5144da2aa562990f611d8457fb358} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Material\+::set\+Disable\+Texture (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Disable the texture for rendering if available. 
+
+\Hypertarget{class_material_a8afc802783b3c8f70e6cf9410d779eb7}\index{Material@{Material}!setEmission@{setEmission}}
+\index{setEmission@{setEmission}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{setEmission()}{setEmission()}}
+{\footnotesize\ttfamily \label{class_material_a8afc802783b3c8f70e6cf9410d779eb7} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Material\+::set\+Emission (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{emission}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_material_afd846bce44c1e226f3d43587acd4b569}\index{Material@{Material}!setEnableTexture@{setEnableTexture}}
+\index{setEnableTexture@{setEnableTexture}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{setEnableTexture()}{setEnableTexture()}}
+{\footnotesize\ttfamily \label{class_material_afd846bce44c1e226f3d43587acd4b569} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Material\+::set\+Enable\+Texture (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Enable the texture for rendering if available. 
+
+\Hypertarget{class_material_a24b1f8bc201bc8aad012391927fb4c95}\index{Material@{Material}!setShininess@{setShininess}}
+\index{setShininess@{setShininess}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{setShininess()}{setShininess()}}
+{\footnotesize\ttfamily \label{class_material_a24b1f8bc201bc8aad012391927fb4c95} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Material\+::set\+Shininess (\begin{DoxyParamCaption}\item[{const float \&}]{shininess}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_material_a91fb0c8d4020d62bdf4b37f8c79bc1a9}\index{Material@{Material}!setSpecular@{setSpecular}}
+\index{setSpecular@{setSpecular}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{setSpecular()}{setSpecular()}}
+{\footnotesize\ttfamily \label{class_material_a91fb0c8d4020d62bdf4b37f8c79bc1a9} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Material\+::set\+Specular (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{specular}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_material_abf79ffb83ac049ebaa48fc5b47635ea2}\index{Material@{Material}!setTexture@{setTexture}}
+\index{setTexture@{setTexture}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{setTexture()}{setTexture()}}
+{\footnotesize\ttfamily \label{class_material_abf79ffb83ac049ebaa48fc5b47635ea2} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Material\+::set\+Texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_texture}{Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_material_af96d120064003789cab46539fb93c472}\index{Material@{Material}!m\_alpha@{m\_alpha}}
+\index{m\_alpha@{m\_alpha}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{m\_alpha}{m\_alpha}}
+{\footnotesize\ttfamily \label{class_material_af96d120064003789cab46539fb93c472} 
+float Material\+::m\+\_\+alpha\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Alpha transparency of the material. 
+
+\Hypertarget{class_material_ab3b04455ca3a29eea275fe5dd6f70b9b}\index{Material@{Material}!m\_ambient@{m\_ambient}}
+\index{m\_ambient@{m\_ambient}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{m\_ambient}{m\_ambient}}
+{\footnotesize\ttfamily \label{class_material_ab3b04455ca3a29eea275fe5dd6f70b9b} 
+glm\+::vec3 Material\+::m\+\_\+ambient\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Ambient color of the material. 
+
+\Hypertarget{class_material_a4655998d1721cb070f1e4f92d0dbc239}\index{Material@{Material}!m\_diffuse@{m\_diffuse}}
+\index{m\_diffuse@{m\_diffuse}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{m\_diffuse}{m\_diffuse}}
+{\footnotesize\ttfamily \label{class_material_a4655998d1721cb070f1e4f92d0dbc239} 
+glm\+::vec3 Material\+::m\+\_\+diffuse\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Diffuse color of the material. 
+
+\Hypertarget{class_material_a91a6b0769e828fc9c4f21f1d9f8b35a8}\index{Material@{Material}!m\_emission@{m\_emission}}
+\index{m\_emission@{m\_emission}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{m\_emission}{m\_emission}}
+{\footnotesize\ttfamily \label{class_material_a91a6b0769e828fc9c4f21f1d9f8b35a8} 
+glm\+::vec3 Material\+::m\+\_\+emission\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Emission color of the material. 
+
+\Hypertarget{class_material_ac6870095f155d023adb9fa1d02f9be4c}\index{Material@{Material}!m\_shininess@{m\_shininess}}
+\index{m\_shininess@{m\_shininess}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{m\_shininess}{m\_shininess}}
+{\footnotesize\ttfamily \label{class_material_ac6870095f155d023adb9fa1d02f9be4c} 
+float Material\+::m\+\_\+shininess\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Shininess factor of the material. 
+
+\Hypertarget{class_material_a472d9632e7e9db1e9d6db0e5a40a4cc3}\index{Material@{Material}!m\_specular@{m\_specular}}
+\index{m\_specular@{m\_specular}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{m\_specular}{m\_specular}}
+{\footnotesize\ttfamily \label{class_material_a472d9632e7e9db1e9d6db0e5a40a4cc3} 
+glm\+::vec3 Material\+::m\+\_\+specular\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Specular color of the material. 
+
+\Hypertarget{class_material_a5c03a7d19041a2d34dd0a27583695081}\index{Material@{Material}!m\_texture@{m\_texture}}
+\index{m\_texture@{m\_texture}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{m\_texture}{m\_texture}}
+{\footnotesize\ttfamily \label{class_material_a5c03a7d19041a2d34dd0a27583695081} 
+\mbox{\hyperlink{class_texture}{Texture}}\texorpdfstring{$\ast$}{*} Material\+::m\+\_\+texture\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the texture assigned to the material. 
+
+\Hypertarget{class_material_a03ca5f5fc86b8c6b0cbd6e7cff19461c}\index{Material@{Material}!m\_texturesMap@{m\_texturesMap}}
+\index{m\_texturesMap@{m\_texturesMap}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{m\_texturesMap}{m\_texturesMap}}
+{\footnotesize\ttfamily \label{class_material_a03ca5f5fc86b8c6b0cbd6e7cff19461c} 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{class_texture}{Texture}} \texorpdfstring{$\ast$}{*} $>$ Material\+::m\+\_\+textures\+Map \{ std\+::map$<$std\+::string, \mbox{\hyperlink{class_texture}{Texture}}\texorpdfstring{$\ast$}{*}$>$() \}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Static map of textures associated with their names. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{material_8h}{material.\+h}}\item 
+engine/\mbox{\hyperlink{material_8cpp}{material.\+cpp}}\end{DoxyCompactItemize}

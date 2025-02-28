@@ -1,0 +1,153 @@
+\doxysection{Light\+Manager Class Reference}
+\hypertarget{class_light_manager}{}\label{class_light_manager}\index{LightManager@{LightManager}}
+
+
+Singleton class responsible for managing light objects in the scene.  
+
+
+
+
+{\ttfamily \#include $<$light\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_light_manager_ab7f041947e8a1d0635528c0993853494}{Light\+Manager}} (const \mbox{\hyperlink{class_light_manager}{Light\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_light_manager}{Light\+Manager}} \& \mbox{\hyperlink{class_light_manager_a72b1f4bb90088a748e08550f6087cb57}{operator=}} (const \mbox{\hyperlink{class_light_manager}{Light\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_manager_a866b23aaf82c4dcde3e55c7d73974b23}{press\+Button}} (const std\+::string \&light\+Name, \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Toggle the state of a light (on/off). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_manager_a4ab543ba9e295ec5742414b0703ac7d4}{increase\+Light}} (const std\+::string \&light\+Name, \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Increase the intensity of a light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_manager_a0155e093c0307e230e0f534d241a56d0}{decrease\+Light}} (const std\+::string \&light\+Name, \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Decrease the intensity of a light. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_light_manager}{Light\+Manager}} \& \mbox{\hyperlink{class_light_manager_ad39f5310bb8c84e396233c6c3722d84c}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the singleton instance of the \doxylink{class_light_manager}{Light\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_light_manager_a1eee8eb276ec7f041d961a567389754a}{Light\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor for \doxylink{class_light_manager}{Light\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Singleton class responsible for managing light objects in the scene. 
+
+The \doxylink{class_light_manager}{Light\+Manager} class provides functionality to manage and control the lights in the 3D scene, including turning lights on and off, as well as adjusting their intensity. It follows the Singleton pattern to ensure that only one instance of the manager exists throughout the application. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_light_manager_ab7f041947e8a1d0635528c0993853494}\index{LightManager@{LightManager}!LightManager@{LightManager}}
+\index{LightManager@{LightManager}!LightManager@{LightManager}}
+\doxysubsubsection{\texorpdfstring{LightManager()}{LightManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_light_manager_ab7f041947e8a1d0635528c0993853494} 
+Light\+Manager\+::\+Light\+Manager (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_light_manager}{Light\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy constructor. 
+
+Prevents copying of the \doxylink{class_light_manager}{Light\+Manager} instance, enforcing the Singleton pattern. \Hypertarget{class_light_manager_a1eee8eb276ec7f041d961a567389754a}\index{LightManager@{LightManager}!LightManager@{LightManager}}
+\index{LightManager@{LightManager}!LightManager@{LightManager}}
+\doxysubsubsection{\texorpdfstring{LightManager()}{LightManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_light_manager_a1eee8eb276ec7f041d961a567389754a} 
+Light\+Manager\+::\+Light\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private constructor for \doxylink{class_light_manager}{Light\+Manager}. 
+
+The constructor is private to prevent instantiating the class directly. Use \doxylink{class_light_manager_ad39f5310bb8c84e396233c6c3722d84c}{get\+Instance()} to obtain the singleton instance. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_light_manager_a0155e093c0307e230e0f534d241a56d0}\index{LightManager@{LightManager}!decreaseLight@{decreaseLight}}
+\index{decreaseLight@{decreaseLight}!LightManager@{LightManager}}
+\doxysubsubsection{\texorpdfstring{decreaseLight()}{decreaseLight()}}
+{\footnotesize\ttfamily \label{class_light_manager_a0155e093c0307e230e0f534d241a56d0} 
+void Light\+Manager\+::decrease\+Light (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{light\+Name}{, }\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Decrease the intensity of a light. 
+
+This function finds the light by its name and decreases its intensity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em light\+Name} & The name of the light whose intensity will be decreased. \\
+\hline
+{\em parent} & The parent node to search for the light within (default is the root node). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_light_manager_ad39f5310bb8c84e396233c6c3722d84c}\index{LightManager@{LightManager}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!LightManager@{LightManager}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_light_manager_ad39f5310bb8c84e396233c6c3722d84c} 
+\mbox{\hyperlink{class_light_manager}{Light\+Manager}} \& Light\+Manager\+::get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the singleton instance of the \doxylink{class_light_manager}{Light\+Manager}. 
+
+Returns the unique instance of the \doxylink{class_light_manager}{Light\+Manager}, creating it if necessary.
+
+\begin{DoxyReturn}{Returns}
+A reference to the singleton instance of \doxylink{class_light_manager}{Light\+Manager}. 
+\end{DoxyReturn}
+\Hypertarget{class_light_manager_a4ab543ba9e295ec5742414b0703ac7d4}\index{LightManager@{LightManager}!increaseLight@{increaseLight}}
+\index{increaseLight@{increaseLight}!LightManager@{LightManager}}
+\doxysubsubsection{\texorpdfstring{increaseLight()}{increaseLight()}}
+{\footnotesize\ttfamily \label{class_light_manager_a4ab543ba9e295ec5742414b0703ac7d4} 
+void Light\+Manager\+::increase\+Light (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{light\+Name}{, }\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Increase the intensity of a light. 
+
+This function finds the light by its name and increases its intensity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em light\+Name} & The name of the light whose intensity will be increased. \\
+\hline
+{\em parent} & The parent node to search for the light within (default is the root node). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_light_manager_a72b1f4bb90088a748e08550f6087cb57}\index{LightManager@{LightManager}!operator=@{operator=}}
+\index{operator=@{operator=}!LightManager@{LightManager}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_light_manager_a72b1f4bb90088a748e08550f6087cb57} 
+\mbox{\hyperlink{class_light_manager}{Light\+Manager}} \& Light\+Manager\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_light_manager}{Light\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy assignment operator. 
+
+Prevents assignment of the \doxylink{class_light_manager}{Light\+Manager} instance, enforcing the Singleton pattern. \Hypertarget{class_light_manager_a866b23aaf82c4dcde3e55c7d73974b23}\index{LightManager@{LightManager}!pressButton@{pressButton}}
+\index{pressButton@{pressButton}!LightManager@{LightManager}}
+\doxysubsubsection{\texorpdfstring{pressButton()}{pressButton()}}
+{\footnotesize\ttfamily \label{class_light_manager_a866b23aaf82c4dcde3e55c7d73974b23} 
+void Light\+Manager\+::press\+Button (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{light\+Name}{, }\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Toggle the state of a light (on/off). 
+
+This function finds the light by its name and toggles its state (on or off). If the light is off, it will be turned on, and vice versa.
+
+
+\begin{DoxyParams}{Parameters}
+{\em light\+Name} & The name of the light to toggle. \\
+\hline
+{\em parent} & The parent node to search for the light within (default is the root node). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+client/\mbox{\hyperlink{light_manager_8h}{light\+Manager.\+h}}\item 
+client/\mbox{\hyperlink{light_manager_8cpp}{light\+Manager.\+cpp}}\end{DoxyCompactItemize}

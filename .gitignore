@@ -1,32 +1,80 @@
-# Prerequisites
-*.d
+!dependencies/
+!dependencies/**/lib/
+!demo/*
+demo/Linux/textures/*.Identifier
+client/x*
+engine/x*
+.vs/
+*.suo
+*.user
+*.userosscache
+*.userprefs
+*.rsuser
+*.vcxproj.user
+*.depend
+*.layout
+ipch/
+*.pdb
+.vscode
 
-# Compiled Object files
-*.slo
-*.lo
+[Bb]in/
+[Oo]bj/
+client/[Bb]in/
+client/[Oo]bj/
+client/target/
+engine/[Bb]in/
+engine/[Oo]bj/
+client/textures/*.Identifier
+engine/test/*
+
+!client/*.ovo
+
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
+*.lo
 *.la
-*.a
-*.lib
+*.dylib
 
-# Executables
-*.exe
-*.out
-*.app
+*.glsl
+*.vert
+*.frag
+*.spv
+
+shaders_cache/
+
+[Bb]uild/
+client/[Bb]uild/
+engine/[Bb]uild/
+
+Thumbs.db
+ehthumbs.db
+
+*.log
+*.dmp
+
+*.ilk
+*.idb
+*.tlog
+
+node_modules/
+
+*.nupkg
+*.snupkg
+.nuget/
+project.lock.json
+artifacts/
+
+TestResults/
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*.sln.docstates
+x64/
+x86/
+
+$RECYCLE.Bin/
+
+*.cache
+*.clangd

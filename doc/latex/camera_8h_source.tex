@@ -1,0 +1,60 @@
+\doxysection{camera.\+h}
+\hypertarget{camera_8h_source}{}\label{camera_8h_source}\index{engine/camera.h@{engine/camera.h}}
+\mbox{\hyperlink{camera_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{node_8h}{node.h}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}glm/gtc/matrix\_transform.hpp"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{notification_service_8h}{notificationService.h}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ MAIN\ CAMERA\ CLASS\ //}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_camera_a4b2cb1fe351e872ae6aff9504be3e775}{Camera}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_reshape_listener}{ReshapeListener}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_camera_a4b2cb1fe351e872ae6aff9504be3e775}{\string~Camera}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_a45d9b25f23a8862c296ab090701afa6d}{loadProjectionMatrix}}()\ =\ 0;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a93d7587db1e3b5c4d92b29fc83e702ec}{render}}(\textcolor{keyword}{const}\ glm::mat4\&\ matrix\ =\ glm::mat4(1.0f))\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_camera_a87fec34cb8956f2b8b22e997a53d7030}{parse}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ data,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ position)\textcolor{keyword}{\ override\ }\{\ \textcolor{keywordflow}{return}\ 0;\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}}*\ \mbox{\hyperlink{class_camera_a94aed57bd4b7289ac48278f12034bf75}{clone}}()\ \textcolor{keyword}{const\ override}\ =\ 0;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_reshape_listener_af163f635cd4adf08c010b9e3ebe0e8b3}{onWindowReshape}}(\textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{const}\ glm::mat4\ \mbox{\hyperlink{class_camera_a571575e6fb308585be0daa915721e1af}{getInverseCameraFinalMatrix}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_camera_a5611bb8579aaaaeceff5ceb9a18f0fc2}{setMainCamera}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ val);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ \mbox{\hyperlink{class_camera_a0070016701e33741275a9189861ba96c}{isMainCamera}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{class_camera_a4b2cb1fe351e872ae6aff9504be3e775}{Camera}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ height,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ near\_val,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ far\_val);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{class_camera_a4b2cb1fe351e872ae6aff9504be3e775}{Camera}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_camera_a4b2cb1fe351e872ae6aff9504be3e775}{Camera}}\&\ other);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{class_camera_a4b2cb1fe351e872ae6aff9504be3e775}{Camera}}\&\ \mbox{\hyperlink{class_camera_a815562aa01b5ccfe876fcecbbcfb946d}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_camera_a4b2cb1fe351e872ae6aff9504be3e775}{Camera}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00156\ \ \ \ \ glm::mat4\ \mbox{\hyperlink{class_camera_a26d7567bf34d14260f887a0382aeae29}{m\_projectionMatrix}};}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_camera_af8fb2e739bd3aba6fd4a2ff6f3949c51}{m\_isCurrentCamera}};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_camera_a6d655887e5e87b12e19094ec89b74449}{m\_width}};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_camera_ab78d1297dea3f67d7e59c1c1a2cf52ab}{m\_height}};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_camera_a88a4135705f989e598056d765b7a3494}{m\_near}};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_camera_a244474dcfdd0115417b8218cbad547d1}{m\_far}};}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00186\ \ \ \ \ \mbox{\hyperlink{class_notification_service}{NotificationService}}\&\ \mbox{\hyperlink{class_camera_a16b8cd407c0a26ddf8ef99970db755f0}{m\_notificationService}};}
+\DoxyCodeLine{00187\ \};}
+
+\end{DoxyCode}

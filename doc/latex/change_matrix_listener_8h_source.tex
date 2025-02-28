@@ -1,0 +1,33 @@
+\doxysection{change\+Matrix\+Listener.\+h}
+\hypertarget{change_matrix_listener_8h_source}{}\label{change_matrix_listener_8h_source}\index{engine/changeMatrixListener.h@{engine/changeMatrixListener.h}}
+\mbox{\hyperlink{change_matrix_listener_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Specifies\ I/O\ linkage\ for\ Windows\ (VC++\ spec)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#ifdef\ \_WINDOWS}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ Defines\ API\ linkage\ depending\ on\ whether\ ENGINE\_EXPORTS\ is\ defined}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifdef\ ENGINE\_EXPORTS}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ ENG\_API\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ ENG\_API\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Disables\ specific\ warnings\ related\ to\ DLL\ export/import}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ Linux}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ ENG\_API}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ CHANGE\ MATRIX\ LISTENER\ INTERFACE\ //}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_change_matrix_listener}{ChangeMatrixListener}}\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_change_matrix_listener_ad60053b99dda20a9ce16555c10ac0695}{\string~ChangeMatrixListener}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_change_matrix_listener_af309992d69f2ea31a8d4dd249bc3731b}{onMatrixChange}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ matrixId)\ =\ 0;}
+\DoxyCodeLine{00059\ \};}
+
+\end{DoxyCode}

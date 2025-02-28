@@ -1,0 +1,41 @@
+\doxysection{light\+Manager.\+h}
+\hypertarget{light_manager_8h_source}{}\label{light_manager_8h_source}\index{client/lightManager.h@{client/lightManager.h}}
+\mbox{\hyperlink{light_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Project-\/specific\ headers}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{omni_light_8h}{omniLight.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{spot_light_8h}{spotLight.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{direct_light_8h}{directLight.h}}"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ LAMP\_OMNI\ "{}Omni001"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ CHESSBOARD\_SPOT\ "{}Fspot001"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_light_manager_ab7f041947e8a1d0635528c0993853494}{LightManager}}}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_light_manager_ab7f041947e8a1d0635528c0993853494}{LightManager}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_light_manager_ab7f041947e8a1d0635528c0993853494}{LightManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_light_manager_ab7f041947e8a1d0635528c0993853494}{LightManager}}\&\ \mbox{\hyperlink{class_light_manager_a72b1f4bb90088a748e08550f6087cb57}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_light_manager_ab7f041947e8a1d0635528c0993853494}{LightManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_light_manager_ab7f041947e8a1d0635528c0993853494}{LightManager}}\&\ \mbox{\hyperlink{class_light_manager_ad39f5310bb8c84e396233c6c3722d84c}{getInstance}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_manager_a866b23aaf82c4dcde3e55c7d73974b23}{pressButton}}(\textcolor{keyword}{const}\ std::string\&\ lightName,\ \mbox{\hyperlink{class_node}{Node}}*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_manager_a4ab543ba9e295ec5742414b0703ac7d4}{increaseLight}}(\textcolor{keyword}{const}\ std::string\&\ lightName,\ \mbox{\hyperlink{class_node}{Node}}*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_manager_a0155e093c0307e230e0f534d241a56d0}{decreaseLight}}(\textcolor{keyword}{const}\ std::string\&\ lightName,\ \mbox{\hyperlink{class_node}{Node}}*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{class_light_manager_a1eee8eb276ec7f041d961a567389754a}{LightManager}}();}
+\DoxyCodeLine{00110\ \};}
+
+\end{DoxyCode}

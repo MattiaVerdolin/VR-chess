@@ -1,0 +1,33 @@
+\doxysection{reshape\+Listener.\+h}
+\hypertarget{reshape_listener_8h_source}{}\label{reshape_listener_8h_source}\index{engine/reshapeListener.h@{engine/reshapeListener.h}}
+\mbox{\hyperlink{reshape_listener_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Specifies\ I/O\ linkage\ for\ Windows\ (VC++\ spec)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifdef\ \_WINDOWS}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Defines\ API\ linkage\ depending\ on\ whether\ ENGINE\_EXPORTS\ is\ defined}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#ifdef\ ENGINE\_EXPORTS}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ ENG\_API\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ ENG\_API\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Disables\ specific\ warnings\ related\ to\ DLL\ export/import}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ Linux}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ ENG\_API}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ RESHAPE\ LISTENER\ INTERFACE\ //}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{reshape_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_reshape_listener}{ReshapeListener}}\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_reshape_listener_a59f7da873e620444bfb9de79d4452151}{\string~ReshapeListener}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_reshape_listener_af163f635cd4adf08c010b9e3ebe0e8b3}{onWindowReshape}}(\textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height)\ =\ 0;}
+\DoxyCodeLine{00058\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,53 @@
+\doxysection{client/light\+Manager.h File Reference}
+\hypertarget{light_manager_8h}{}\label{light_manager_8h}\index{client/lightManager.h@{client/lightManager.h}}
+
+
+Declaration of the \doxylink{class_light_manager}{Light\+Manager} class, responsible for managing light states in the 3D scene.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include "{}omni\+Light.\+h"{}}\newline
+{\ttfamily \#include "{}spot\+Light.\+h"{}}\newline
+{\ttfamily \#include "{}direct\+Light.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_light_manager}{Light\+Manager}}
+\begin{DoxyCompactList}\small\item\em Singleton class responsible for managing light objects in the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{light_manager_8h_a79b221e422dca73cd75e70e41cdd4d1a}{LAMP\+\_\+\+OMNI}}~"{}Omni001"{}
+\begin{DoxyCompactList}\small\item\em Macro definitions for default light names. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{light_manager_8h_a5300a58d6b95492dfc82bfcced9c2c22}{CHESSBOARD\+\_\+\+SPOT}}~"{}Fspot001"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaration of the \doxylink{class_light_manager}{Light\+Manager} class, responsible for managing light states in the 3D scene. 
+
+This file defines the \doxylink{class_light_manager}{Light\+Manager} class, which handles the activation, deactivation, and intensity adjustments of lights in the scene. It ensures the proper interaction with the light objects and follows the Singleton design pattern to ensure a single instance.
+
+\begin{DoxyAuthor}{Authors}
+Luca Fantò (C) SUPSI \mbox{[}\href{mailto:luca.fanto@student.supsi.ch}{\texttt{ luca.\+fanto@student.\+supsi.\+ch}}\mbox{]} Mattia Cainarca (C) SUPSI \mbox{[}\href{mailto:mattia.cainarca@student.supsi.ch}{\texttt{ mattia.\+cainarca@student.\+supsi.\+ch}}\mbox{]} Antonio Marroffino (C) SUPSI \mbox{[}\href{mailto:antonio.marroffino@student.supsi.ch}{\texttt{ antonio.\+marroffino@student.\+supsi.\+ch}}\mbox{]} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{light_manager_8h_a5300a58d6b95492dfc82bfcced9c2c22}\index{lightManager.h@{lightManager.h}!CHESSBOARD\_SPOT@{CHESSBOARD\_SPOT}}
+\index{CHESSBOARD\_SPOT@{CHESSBOARD\_SPOT}!lightManager.h@{lightManager.h}}
+\doxysubsubsection{\texorpdfstring{CHESSBOARD\_SPOT}{CHESSBOARD\_SPOT}}
+{\footnotesize\ttfamily \label{light_manager_8h_a5300a58d6b95492dfc82bfcced9c2c22} 
+\#define CHESSBOARD\+\_\+\+SPOT~"{}Fspot001"{}}
+
+\Hypertarget{light_manager_8h_a79b221e422dca73cd75e70e41cdd4d1a}\index{lightManager.h@{lightManager.h}!LAMP\_OMNI@{LAMP\_OMNI}}
+\index{LAMP\_OMNI@{LAMP\_OMNI}!lightManager.h@{lightManager.h}}
+\doxysubsubsection{\texorpdfstring{LAMP\_OMNI}{LAMP\_OMNI}}
+{\footnotesize\ttfamily \label{light_manager_8h_a79b221e422dca73cd75e70e41cdd4d1a} 
+\#define LAMP\+\_\+\+OMNI~"{}Omni001"{}}
+
+
+
+Macro definitions for default light names. 
+
+Defines the default names for the Omni and Spot lights used in the scene. 

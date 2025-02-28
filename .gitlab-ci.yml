@@ -1,0 +1,94 @@
+# build computer graphics project
+
+variables:
+  # `showDateTime` will show the passed time in milliseconds. You need to specify `--batch-mode` to make this work.
+
+stages:
+  - structure
+  - engine
+  - client
+  - install_package
+
+image: gitlab-edu.supsi.ch:5050/dti-isin/labingsw/common:ubuntu2404-cg
+
+
+structure:
+  stage: structure
+
+  script:
+    - '[ -d dependencies ] || exit 1'
+    - '[ -d engine ] || exit 1'
+    - '[ -d engineTest ] || exit 1'
+    - '[ -d client ] || exit 1'
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+
+engine:
+  stage: engine
+
+  before_script:
+    - 'apt update'
+    - 'apt install -y libgtest-dev'
+    - 'apt install -y libgmock-dev'
+    - 'cd engine'
+
+  script:
+    - 'make clean'
+    - 'make'
+
+  after_script:
+    - 'cd ..'
+
+  artifacts:
+    paths:
+      - engine/bin/Release/libengine.so
+      - engine/bin/Debug/libengine.so
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+client:
+  stage: client
+
+  before_script:
+    - 'cd client'
+
+  script:
+    - 'make clean'
+    - 'make'
+
+  after_script:
+    - 'cd ..'
+
+  artifacts:
+    paths:
+      - client/bin/Release/*
+      - client/bin/Debug/*
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+install-package:
+  stage: install_package
+
+  before_script:
+    - 'apt update'
+    - 'apt install -y libgtest-dev'
+    - 'apt install -y libgmock-dev'
+    
+  script:
+    - 'make package'
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+  artifacts:
+    paths:
+      - client/target/*.tar.gz
+

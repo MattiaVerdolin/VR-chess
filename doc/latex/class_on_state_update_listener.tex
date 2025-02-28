@@ -1,0 +1,146 @@
+\doxysection{On\+State\+Update\+Listener Class Reference}
+\hypertarget{class_on_state_update_listener}{}\label{class_on_state_update_listener}\index{OnStateUpdateListener@{OnStateUpdateListener}}
+
+
+Class for handling updates when the game state changes.  
+
+
+
+
+{\ttfamily \#include $<$on\+State\+Update.\+h$>$}
+
+Inheritance diagram for On\+State\+Update\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.879195cm]{class_on_state_update_listener}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_on_state_update_listener_a4c51d36e1eea93d42e57f3fa63feafaf}{On\+State\+Update\+Listener}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_on_state_update_listener}{On\+State\+Update\+Listener} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_on_state_update_listener_a272ab00cee68b45cdeaca184b7458c45}{on\+State\+Change\+Update}} (\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}} game\+State)
+\begin{DoxyCompactList}\small\item\em Trigger the appropriate handler for a given game state. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_on_state_update_listener_a6a67d89aa4202d1f178e20adcc546220}{pre\+Game\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Handler for the PRE\+\_\+\+GAME state. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_on_state_update_listener_a350dd3599b14c0fe0e8f0969d98948f1}{choice\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Handler for the CHOICE state. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_on_state_update_listener_a7a0b5a95a38f1583d8d56d8f048d2769}{game\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Handler for the GAME state. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_on_state_update_listener_ac23acfdde2e7de9e0be282a6a4cd289c}{end\+Game\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Handler for the END\+\_\+\+GAME state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}}, std\+::function$<$ void()$>$ $>$ \mbox{\hyperlink{class_on_state_update_listener_a8f5d2b549a2255d7faa5d02871cb7940}{m\+\_\+map\+Function\+On\+State}}
+\begin{DoxyCompactList}\small\item\em Map of game states to their corresponding handler functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for handling updates when the game state changes. 
+
+The \doxylink{class_on_state_update_listener}{On\+State\+Update\+Listener} class maps game states to their corresponding handler functions. Derived classes can override the virtual handler methods to provide specific behavior for each game state. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_on_state_update_listener_a4c51d36e1eea93d42e57f3fa63feafaf}\index{OnStateUpdateListener@{OnStateUpdateListener}!OnStateUpdateListener@{OnStateUpdateListener}}
+\index{OnStateUpdateListener@{OnStateUpdateListener}!OnStateUpdateListener@{OnStateUpdateListener}}
+\doxysubsubsection{\texorpdfstring{OnStateUpdateListener()}{OnStateUpdateListener()}}
+{\footnotesize\ttfamily \label{class_on_state_update_listener_a4c51d36e1eea93d42e57f3fa63feafaf} 
+On\+State\+Update\+Listener\+::\+On\+State\+Update\+Listener (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_on_state_update_listener}{On\+State\+Update\+Listener} class. 
+
+Initializes the mapping of game states to their respective handler functions. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_on_state_update_listener_a350dd3599b14c0fe0e8f0969d98948f1}\index{OnStateUpdateListener@{OnStateUpdateListener}!choiceHandler@{choiceHandler}}
+\index{choiceHandler@{choiceHandler}!OnStateUpdateListener@{OnStateUpdateListener}}
+\doxysubsubsection{\texorpdfstring{choiceHandler()}{choiceHandler()}}
+{\footnotesize\ttfamily \label{class_on_state_update_listener_a350dd3599b14c0fe0e8f0969d98948f1} 
+void On\+State\+Update\+Listener\+::choice\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handler for the CHOICE state. 
+
+This method is intended to be overridden by derived classes to define specific behavior for the CHOICE state. 
+
+Reimplemented in \mbox{\hyperlink{class_camera_manager_ae6445a8b0e55b9c65ea5ec9a3677c0a9}{Camera\+Manager}}, \mbox{\hyperlink{class_history_manager_a556bd0af799d86b7f7aef7db40653bdc}{History\+Manager}}, and \mbox{\hyperlink{class_list_of_pieces_manager_afb5404d7c1183c1b10917da870c85f72}{List\+Of\+Pieces\+Manager}}.
+
+\Hypertarget{class_on_state_update_listener_ac23acfdde2e7de9e0be282a6a4cd289c}\index{OnStateUpdateListener@{OnStateUpdateListener}!endGameHandler@{endGameHandler}}
+\index{endGameHandler@{endGameHandler}!OnStateUpdateListener@{OnStateUpdateListener}}
+\doxysubsubsection{\texorpdfstring{endGameHandler()}{endGameHandler()}}
+{\footnotesize\ttfamily \label{class_on_state_update_listener_ac23acfdde2e7de9e0be282a6a4cd289c} 
+void On\+State\+Update\+Listener\+::end\+Game\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handler for the END\+\_\+\+GAME state. 
+
+This method is intended to be overridden by derived classes to define specific behavior for the END\+\_\+\+GAME state. 
+
+Reimplemented in \mbox{\hyperlink{class_camera_manager_a015b28d0d726b76b654e86b42ff4ab26}{Camera\+Manager}}, \mbox{\hyperlink{class_history_manager_ae20acc8fb2c59e3e20444d3690497afd}{History\+Manager}}, and \mbox{\hyperlink{class_list_of_pieces_manager_aa2ce3e455e59d49ff829a92ec62995a3}{List\+Of\+Pieces\+Manager}}.
+
+\Hypertarget{class_on_state_update_listener_a7a0b5a95a38f1583d8d56d8f048d2769}\index{OnStateUpdateListener@{OnStateUpdateListener}!gameHandler@{gameHandler}}
+\index{gameHandler@{gameHandler}!OnStateUpdateListener@{OnStateUpdateListener}}
+\doxysubsubsection{\texorpdfstring{gameHandler()}{gameHandler()}}
+{\footnotesize\ttfamily \label{class_on_state_update_listener_a7a0b5a95a38f1583d8d56d8f048d2769} 
+void On\+State\+Update\+Listener\+::game\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handler for the GAME state. 
+
+This method is intended to be overridden by derived classes to define specific behavior for the GAME state. \Hypertarget{class_on_state_update_listener_a272ab00cee68b45cdeaca184b7458c45}\index{OnStateUpdateListener@{OnStateUpdateListener}!onStateChangeUpdate@{onStateChangeUpdate}}
+\index{onStateChangeUpdate@{onStateChangeUpdate}!OnStateUpdateListener@{OnStateUpdateListener}}
+\doxysubsubsection{\texorpdfstring{onStateChangeUpdate()}{onStateChangeUpdate()}}
+{\footnotesize\ttfamily \label{class_on_state_update_listener_a272ab00cee68b45cdeaca184b7458c45} 
+void On\+State\+Update\+Listener\+::on\+State\+Change\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}}}]{game\+State}{}\end{DoxyParamCaption})}
+
+
+
+Trigger the appropriate handler for a given game state. 
+
+Searches for the corresponding handler function in the map and invokes it if it exists.
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+State} & The current state of the game. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_on_state_update_listener_a6a67d89aa4202d1f178e20adcc546220}\index{OnStateUpdateListener@{OnStateUpdateListener}!preGameHandler@{preGameHandler}}
+\index{preGameHandler@{preGameHandler}!OnStateUpdateListener@{OnStateUpdateListener}}
+\doxysubsubsection{\texorpdfstring{preGameHandler()}{preGameHandler()}}
+{\footnotesize\ttfamily \label{class_on_state_update_listener_a6a67d89aa4202d1f178e20adcc546220} 
+void On\+State\+Update\+Listener\+::pre\+Game\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handler for the PRE\+\_\+\+GAME state. 
+
+This method is intended to be overridden by derived classes to define specific behavior for the PRE\+\_\+\+GAME state. 
+
+Reimplemented in \mbox{\hyperlink{class_camera_manager_a983fe356f39b4e59aaeb43e66f1a9649}{Camera\+Manager}}, \mbox{\hyperlink{class_history_manager_aee7e0ec24817e36d3bf17df540e02f70}{History\+Manager}}, \mbox{\hyperlink{class_list_of_pieces_manager_a6be8d127ec8c47dca21c1bad548bafd9}{List\+Of\+Pieces\+Manager}}, and \mbox{\hyperlink{class_movement_manager_a68237304f84b1004512f42c530f16554}{Movement\+Manager}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_on_state_update_listener_a8f5d2b549a2255d7faa5d02871cb7940}\index{OnStateUpdateListener@{OnStateUpdateListener}!m\_mapFunctionOnState@{m\_mapFunctionOnState}}
+\index{m\_mapFunctionOnState@{m\_mapFunctionOnState}!OnStateUpdateListener@{OnStateUpdateListener}}
+\doxysubsubsection{\texorpdfstring{m\_mapFunctionOnState}{m\_mapFunctionOnState}}
+{\footnotesize\ttfamily \label{class_on_state_update_listener_a8f5d2b549a2255d7faa5d02871cb7940} 
+std\+::map$<$\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}}, std\+::function$<$void()$>$ $>$ On\+State\+Update\+Listener\+::m\+\_\+map\+Function\+On\+State\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Map of game states to their corresponding handler functions. 
+
+This map associates each \doxylink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status} with a std\+::function, allowing dynamic invocation of the appropriate handler function. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+client/\mbox{\hyperlink{on_state_update_8h}{on\+State\+Update.\+h}}\item 
+client/\mbox{\hyperlink{on_state_update_8cpp}{on\+State\+Update.\+cpp}}\end{DoxyCompactItemize}

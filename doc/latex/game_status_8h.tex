@@ -1,0 +1,63 @@
+\doxysection{client/game\+Status.h File Reference}
+\hypertarget{game_status_8h}{}\label{game_status_8h}\index{client/gameStatus.h@{client/gameStatus.h}}
+
+
+Declaration of the \doxylink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status} enum class for representing game states.  
+
+
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}} \{ \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1a628df634490bb8251bc8b99d8b6ff9d4}{PRE\+\_\+\+GAME}}
+, \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1ad8016e00648935707599e94ff896038f}{CHOICE}}
+, \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1a4504e1ed59cd9732b8a844e5424e6f13}{GAME}}
+, \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1ac7ed025810ce783156158c9fc62bf75e}{END\+\_\+\+GAME}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration representing the various states of the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaration of the \doxylink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status} enum class for representing game states. 
+
+This file defines the \doxylink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status} enumeration, which represents the various states of the game lifecycle in the 3D chessboard rendering application.
+
+\begin{DoxyAuthor}{Authors}
+Luca Fantò (C) SUPSI \mbox{[}\href{mailto:luca.fanto@student.supsi.ch}{\texttt{ luca.\+fanto@student.\+supsi.\+ch}}\mbox{]} Mattia Cainarca (C) SUPSI \mbox{[}\href{mailto:mattia.cainarca@student.supsi.ch}{\texttt{ mattia.\+cainarca@student.\+supsi.\+ch}}\mbox{]} Antonio Marroffino (C) SUPSI \mbox{[}\href{mailto:antonio.marroffino@student.supsi.ch}{\texttt{ antonio.\+marroffino@student.\+supsi.\+ch}}\mbox{]} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{game_status_8h_a881b49e3802366255ad852f1c8624fd1}\index{gameStatus.h@{gameStatus.h}!GameStatus@{GameStatus}}
+\index{GameStatus@{GameStatus}!gameStatus.h@{gameStatus.h}}
+\doxysubsubsection{\texorpdfstring{GameStatus}{GameStatus}}
+{\footnotesize\ttfamily \label{game_status_8h_a881b49e3802366255ad852f1c8624fd1} 
+enum class \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Enumeration representing the various states of the game. 
+
+The \doxylink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status} enum class defines four states for managing the game lifecycle\+:
+\begin{DoxyItemize}
+\item PRE\+\_\+\+GAME\+: The game has not yet started.
+\item CHOICE\+: The phase where players make choices, selecting pieces.
+\item GAME\+: The phase where players move the selected piece.
+\item END\+\_\+\+GAME\+: The game has concluded. 
+\end{DoxyItemize}\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRE\_GAME@{PRE\_GAME}!gameStatus.h@{gameStatus.h}}\index{gameStatus.h@{gameStatus.h}!PRE\_GAME@{PRE\_GAME}}}\Hypertarget{game_status_8h_a881b49e3802366255ad852f1c8624fd1a628df634490bb8251bc8b99d8b6ff9d4}\label{game_status_8h_a881b49e3802366255ad852f1c8624fd1a628df634490bb8251bc8b99d8b6ff9d4} 
+PRE\+\_\+\+GAME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHOICE@{CHOICE}!gameStatus.h@{gameStatus.h}}\index{gameStatus.h@{gameStatus.h}!CHOICE@{CHOICE}}}\Hypertarget{game_status_8h_a881b49e3802366255ad852f1c8624fd1ad8016e00648935707599e94ff896038f}\label{game_status_8h_a881b49e3802366255ad852f1c8624fd1ad8016e00648935707599e94ff896038f} 
+CHOICE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME@{GAME}!gameStatus.h@{gameStatus.h}}\index{gameStatus.h@{gameStatus.h}!GAME@{GAME}}}\Hypertarget{game_status_8h_a881b49e3802366255ad852f1c8624fd1a4504e1ed59cd9732b8a844e5424e6f13}\label{game_status_8h_a881b49e3802366255ad852f1c8624fd1a4504e1ed59cd9732b8a844e5424e6f13} 
+GAME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{END\_GAME@{END\_GAME}!gameStatus.h@{gameStatus.h}}\index{gameStatus.h@{gameStatus.h}!END\_GAME@{END\_GAME}}}\Hypertarget{game_status_8h_a881b49e3802366255ad852f1c8624fd1ac7ed025810ce783156158c9fc62bf75e}\label{game_status_8h_a881b49e3802366255ad852f1c8624fd1ac7ed025810ce783156158c9fc62bf75e} 
+END\+\_\+\+GAME&\\
+\hline
+
+\end{DoxyEnumFields}

@@ -1,0 +1,476 @@
+\doxysection{Spot\+Light Class Reference}
+\hypertarget{class_spot_light}{}\label{class_spot_light}\index{SpotLight@{SpotLight}}
+
+
+Concrete \doxylink{class_spot_light}{Spot\+Light} class.  
+
+
+
+
+{\ttfamily \#include $<$spot\+Light.\+h$>$}
+
+Inheritance diagram for Spot\+Light\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_spot_light}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_spot_light_a1f0f46c04f49ac526f47c6b584b8459b}{Spot\+Light}} (const std\+::string \&name="{}default\+Spot\+Light"{}, const glm\+::vec3 \&position=glm\+::vec3(0.\+0f), const glm\+::vec3 \&direction=glm\+::vec3(1.\+0f), const float \&cutoff=45.\+0f, const float \&spot\+Exponent=1.\+0f)
+\begin{DoxyCompactList}\small\item\em Constructor for initializing the spotlight with specific parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_spot_light_a3b4bbc1a84476d47546b9554f700362b}{\texorpdfstring{$\sim$}{\string~}\+Spot\+Light}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor for the \doxylink{class_spot_light}{Spot\+Light} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_spot_light_a4d244391f83e4265b5ef7ea965a0baea}{Spot\+Light}} (const \mbox{\hyperlink{class_spot_light}{Spot\+Light}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for creating a \doxylink{class_spot_light}{Spot\+Light} object from another \doxylink{class_spot_light}{Spot\+Light}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_spot_light}{Spot\+Light}} \& \mbox{\hyperlink{class_spot_light_ae668ff6144ab46e9050401bcc6fb80eb}{operator=}} (const \mbox{\hyperlink{class_spot_light}{Spot\+Light}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Assignment operator is deleted to prevent assignment of \doxylink{class_spot_light}{Spot\+Light} objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_spot_light_a61d103f5a649b1282ed06009f1e0c42d}{render}} (const glm\+::mat4 \&matrix=glm\+::mat4(1.\+0f)) override
+\begin{DoxyCompactList}\small\item\em Renders the spotlight in the scene. \end{DoxyCompactList}\item 
+const unsigned int \mbox{\hyperlink{class_spot_light_a3876c652aeb74872e91d1262b18fcfb3}{parse}} (const char \texorpdfstring{$\ast$}{*}data, unsigned int \&position) override
+\begin{DoxyCompactList}\small\item\em Parses the data for the spotlight from a file or buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_spot_light_a7a65576ea6b2db828872d06fd93cfee7}{clone}} () const override
+\begin{DoxyCompactList}\small\item\em Clones the \doxylink{class_spot_light}{Spot\+Light} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_spot_light_a4b8c1f3a0b24f15288b670cd9624cdbf}{set\+Direction}} (const glm\+::vec3 \&direction)
+\begin{DoxyCompactList}\small\item\em Sets the direction of the spotlight. \end{DoxyCompactList}\item 
+const glm\+::vec3 \& \mbox{\hyperlink{class_spot_light_af5c83b194a9b7e10089a0764f28f3afb}{get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Gets the direction of the spotlight. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_spot_light_ae2022e6f2e74f062bd50dcaf2f5b0c5f}{set\+Cutoff}} (const float \&cutoff)
+\begin{DoxyCompactList}\small\item\em Sets the cutoff angle of the spotlight. \end{DoxyCompactList}\item 
+const float \& \mbox{\hyperlink{class_spot_light_a67f0e644fa7a6feab44061b9cc26f874}{get\+Cutoff}} () const
+\begin{DoxyCompactList}\small\item\em Gets the cutoff angle of the spotlight. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_spot_light_a241bb42a21d75ef065858ffecb3efd3f}{set\+Spot\+Exponent}} (const float \&spot\+Exponent)
+\begin{DoxyCompactList}\small\item\em Sets the spot exponent of the spotlight. \end{DoxyCompactList}\item 
+const float \& \mbox{\hyperlink{class_spot_light_a91659b95a6ab043ce9941c6c603961d1}{get\+Spot\+Exponent}} () const
+\begin{DoxyCompactList}\small\item\em Gets the spot exponent of the spotlight. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_light}{Light}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_light_ae3e3209d4b97d0bbbd614ded5e1213d9}{\texorpdfstring{$\sim$}{\string~}\+Light}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_light_a5bc31ec3268cea795ce926bf8e885655}{set\+Position}} (const glm\+::vec3 \&position)
+\begin{DoxyCompactList}\small\item\em Set the position of the light in 3D space. \end{DoxyCompactList}\item 
+const glm\+::vec4 \& \mbox{\hyperlink{class_light_a6048e9eed2858d9ffd7a40c103627461}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get the current position of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_ab7a8bd130aef5a30973558d13ca2bdfe}{turn\+On}} ()
+\begin{DoxyCompactList}\small\item\em Turn the light on, restoring its material properties. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_aa595a808a3684b6733f575488fed53de}{turn\+Off}} ()
+\begin{DoxyCompactList}\small\item\em Turn the light off, disabling its material properties. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_a50ead5a5e1a1da3a34bd3a2ed4788b91}{increase\+Intensity}} ()
+\begin{DoxyCompactList}\small\item\em Increase the light\textquotesingle{}s intensity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_a01c0c6a32eb36b0bf41281c76688d2d1}{decrease\+Intensity}} ()
+\begin{DoxyCompactList}\small\item\em Decrease the light\textquotesingle{}s intensity. \end{DoxyCompactList}\item 
+const bool \& \mbox{\hyperlink{class_light_a509e973d3eab9984e5716e306b49f10c}{is\+Light\+On}} () const
+\begin{DoxyCompactList}\small\item\em Check if the light is currently on. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}} (const std\+::string \&name="{}default\+Node"{})
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_node_aed77b31cad399c65cfda3c360dd7276e}{\texorpdfstring{$\sim$}{\string~}\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \& \mbox{\hyperlink{class_node_a0f00e6eed35b20c18fd1e478e0bb3ce4}{operator=}} (const \mbox{\hyperlink{class_node}{Node}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a604d4c4bd5493e160ea46a10116aa6aa}{set\+Matrix}} (const glm\+::mat4 \&matrix)
+\begin{DoxyCompactList}\small\item\em Set the local transformation matrix for this node. \end{DoxyCompactList}\item 
+const glm\+::mat4 \& \mbox{\hyperlink{class_node_a785ab594e5c24a20e5500374d81f94c5}{get\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the local transformation matrix of this node. \end{DoxyCompactList}\item 
+virtual const glm\+::mat4 \mbox{\hyperlink{class_node_a732c684be378bc9c4865cab7be0d0478}{get\+Final\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Compute the final transformation matrix by combining with parent matrices. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a191c5eea56a77ff055098b9b77fd6f61}{find\+Node\+By\+Name}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Find a child node by its name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a2bd620d82b72a8f591e0895877c7c6b6}{get\+Main\+Camera}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the main camera node from the hierarchy. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a7b3c39f3ccdd7e142b5dd1f8f42b7d0c}{get\+Parent}} () const
+\begin{DoxyCompactList}\small\item\em Get the parent node of this node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a6758b19a0bd3dddc7d285a1efaa78a45}{add\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Add a child node to this node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_ae79ed0f497dab71a2b34607a3dc3ea2f}{remove\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Remove a child node from this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_aac680da08eb68b7e21be3b25a95ebad9}{remove\+Child\+By\+Position}} (const unsigned int \&position)
+\begin{DoxyCompactList}\small\item\em Remove a child node by its position in the child list. \end{DoxyCompactList}\item 
+const unsigned int \mbox{\hyperlink{class_node_a9a9d0580affc8d307bfc24fd46b86976}{get\+Number\+Of\+Children}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of children of this node. \end{DoxyCompactList}\item 
+virtual const std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_node_a93763767d6ca8e0d98f2bb04dfc58d72}{get\+Children}} () const
+\begin{DoxyCompactList}\small\item\em Get the child nodes of this node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a5cc54a3f7b5d0d2b6a15f2f871092488}{set\+Material}} (\mbox{\hyperlink{class_material}{Material}} \texorpdfstring{$\ast$}{*}material)
+\begin{DoxyCompactList}\small\item\em Assign a material to this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_material}{Material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a28317e6151f55c0bd77199853899ec14}{get\+Material}} () const
+\begin{DoxyCompactList}\small\item\em Get the material assigned to this node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ac5e09c5c3a1e6f32c1f424d963b58752}{set\+Enable\+Lighting}} (const bool \&val)
+\begin{DoxyCompactList}\small\item\em Enable or disable lighting for this node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_object_a226f2ae2af766b77d83c09a4d766b725}{\texorpdfstring{$\sim$}{\string~}\+Object}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_object}{Object} class. \end{DoxyCompactList}\item 
+const unsigned int \& \mbox{\hyperlink{class_object_a0ecb533178d82ce77fb1a5f855cfade2}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the ID of the object. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{class_object_a623e33bd86ef50533cc07371731dd7c3}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{set\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \mbox{\hyperlink{class_spot_light_aeb4862a60780731c3582533b38862105}{m\+\_\+direction}}
+\begin{DoxyCompactList}\small\item\em The direction of the spotlight\textquotesingle{}s beam. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_spot_light_a8b0ff306977e3bd9da0301894a934320}{m\+\_\+cutoff}}
+\begin{DoxyCompactList}\small\item\em The cutoff angle for the spotlight\textquotesingle{}s beam (in degrees). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_spot_light_a5ff5e6038a7c044837224ea6852bb84c}{m\+\_\+spot\+Exponent}}
+\begin{DoxyCompactList}\small\item\em The spot exponent that controls the intensity falloff of the spotlight. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_light}{Light}}}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_light_a028bbafdde82e708d84d50d615ec6be3}{reset\+Light\+Counter}} ()
+\begin{DoxyCompactList}\small\item\em Reset the light counter and disable previously active lights. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_light}{Light}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}} (const std\+::string \&name, const glm\+::vec4 \&position)
+\begin{DoxyCompactList}\small\item\em Constructor for initializing a light with a name and position. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_light_ae0d5d04239fdf3e7a3e80e9cff8e9717}{Light}} (const \mbox{\hyperlink{class_light}{Light}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for creating a new light object based on an existing one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_light}{Light}} \& \mbox{\hyperlink{class_light_a8e3994dc24b3b0f1365ed74a371aa60d}{operator=}} (const \mbox{\hyperlink{class_light}{Light}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Assignment operator is deleted to prevent assignment of light objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_a387414723a55780eb3a4c9bd444e111e}{Node}} (const \mbox{\hyperlink{class_node}{Node}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_node_a086b5d264706c595ffe3c2da9b74e94c}{recursive\+Clone}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}new\+Node) const
+\begin{DoxyCompactList}\small\item\em Recursively clone this node\textquotesingle{}s children. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a261a9decc6026c848f224768e75536c2}{recursive\+Notify\+Change\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Notify the hierarchy of a matrix change. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a98fa2ead4269e42d7d27cce95f9235a5}{is\+Enable\+Lighting}} () const
+\begin{DoxyCompactList}\small\item\em Check if lighting is enabled for this node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_object_a40cdf32d8f757356eba76b905a456368}{Object}} (const std\+::string \&name="{}default\+Object"{})
+\begin{DoxyCompactList}\small\item\em Constructor with a specified name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_object_a8ec02d9e52b3cf8b5ba6cf3fa00efa00}{Object}} (const \mbox{\hyperlink{class_object}{Object}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_object}{Object}} \& \mbox{\hyperlink{class_object_aadbc7fb1c935f6776fbbbec7cc5275f4}{operator=}} (const \mbox{\hyperlink{class_object}{Object}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_ae3d9ac140621b21e594f0aca898f9042}{create\+New\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Generate a new unique ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_light}{Light}}}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec4 \mbox{\hyperlink{class_light_a8d21cb8168c0e29b2b3eb977f452c360}{m\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em The position of the light in 3D space. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_material}{Material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_light_a83eb2a302d0423b41c7c378818b97d3c}{m\+\_\+light\+Material}}
+\begin{DoxyCompactList}\small\item\em The material properties of the light (ambient, diffuse, specular). \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_light_a56d65d50934d8ba311d09b6455a227da}{m\+\_\+temp\+Albedo}}
+\begin{DoxyCompactList}\small\item\em Temporary albedo values used when turning the light on/off. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_light_a5704396d051eb39f3c046cce042f3f79}{m\+\_\+light\+Is\+On}}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether the light is currently on. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_a4b08c324f54ebed78bb448a6a64a0e51}{m\+\_\+matrix}}
+\begin{DoxyCompactList}\small\item\em Local transformation matrix of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_afb679f84ec475d10a2c6fafb7130dac5}{m\+\_\+parent}}
+\begin{DoxyCompactList}\small\item\em Parent node of this node. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_node_aa53106aecc1036cd2d9f47a2bb289a0b}{m\+\_\+children}}
+\begin{DoxyCompactList}\small\item\em Child nodes of this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_material}{Material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a55e3fe37166de40f4259b4611f399b6a}{m\+\_\+material}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_material}{Material} assigned to this node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a8c670b312a88907a2511907ee514a75b}{m\+\_\+enable\+Lighting}}
+\begin{DoxyCompactList}\small\item\em Lighting enable flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a50ff4bf85922f0c8ef5b9fb07e2f5846}{m\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em The unique ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_a8b83c95c705d2c3ba0d081fe1710f48d}{m\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em The name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{class_light}{Light}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \mbox{\hyperlink{class_light_adf91e2721bd8619d930f411f324fbe9a}{max\+Number\+Of\+Active\+Lights}} \{ GL\+\_\+\+LIGHT0 + 7 \}
+\begin{DoxyCompactList}\small\item\em The maximum number of active lights. \end{DoxyCompactList}\item 
+static unsigned int \mbox{\hyperlink{class_light_a337a585df3f7a98b16b068e55d245f83}{light\+Active\+Counter}} \{ GL\+\_\+\+LIGHT0 \}
+\begin{DoxyCompactList}\small\item\em The current active light counter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \mbox{\hyperlink{class_object_aaefcf7f86a144fd323e2c124df65bd52}{m\+\_\+cnt\+\_\+object}} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Counter to keep track of the number of objects and generate unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete \doxylink{class_spot_light}{Spot\+Light} class. 
+
+The \doxylink{class_spot_light}{Spot\+Light} class represents a spotlight light source in a 3D scene. A spotlight is a light source that emits light in a specific direction, typically with a defined angle of influence (cutoff) and an intensity falloff based on the angle (spot exponent). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_spot_light_a1f0f46c04f49ac526f47c6b584b8459b}\index{SpotLight@{SpotLight}!SpotLight@{SpotLight}}
+\index{SpotLight@{SpotLight}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{SpotLight()}{SpotLight()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_spot_light_a1f0f46c04f49ac526f47c6b584b8459b} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Spot\+Light\+::\+Spot\+Light (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{ = {\ttfamily "{}defaultSpotLight"{}}, }\item[{const glm\+::vec3 \&}]{position}{ = {\ttfamily glm\+:\+:vec3(0.0f)}, }\item[{const glm\+::vec3 \&}]{direction}{ = {\ttfamily glm\+:\+:vec3(1.0f)}, }\item[{const float \&}]{cutoff}{ = {\ttfamily 45.0f}, }\item[{const float \&}]{spot\+Exponent}{ = {\ttfamily 1.0f}}\end{DoxyParamCaption})}
+
+
+
+Constructor for initializing the spotlight with specific parameters. 
+
+This constructor creates a \doxylink{class_spot_light}{Spot\+Light} object with the given name, position, direction, cutoff angle, and spot exponent. Default values are provided for each parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the spotlight (default\+: "{}default\+Spot\+Light"{}). \\
+\hline
+{\em position} & The position of the spotlight in 3D space (default\+: glm\+::vec3(0.\+0f)). \\
+\hline
+{\em direction} & The direction of the spotlight beam (default\+: glm\+::vec3(1.\+0f)). \\
+\hline
+{\em cutoff} & The angle of the spotlight\textquotesingle{}s cutoff (default\+: 45.\+0f). \\
+\hline
+{\em spot\+Exponent} & The spot exponent that controls the intensity falloff (default\+: 1.\+0f). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_spot_light_a3b4bbc1a84476d47546b9554f700362b}\index{SpotLight@{SpotLight}!````~SpotLight@{\texorpdfstring{$\sim$}{\string~}SpotLight}}
+\index{````~SpotLight@{\texorpdfstring{$\sim$}{\string~}SpotLight}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SpotLight()}{\string~SpotLight()}}
+{\footnotesize\ttfamily \label{class_spot_light_a3b4bbc1a84476d47546b9554f700362b} 
+Spot\+Light\+::\texorpdfstring{$\sim$}{\string~}\+Spot\+Light (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default destructor for the \doxylink{class_spot_light}{Spot\+Light} class. 
+
+The destructor cleans up any resources associated with the \doxylink{class_spot_light}{Spot\+Light} object. \Hypertarget{class_spot_light_a4d244391f83e4265b5ef7ea965a0baea}\index{SpotLight@{SpotLight}!SpotLight@{SpotLight}}
+\index{SpotLight@{SpotLight}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{SpotLight()}{SpotLight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_spot_light_a4d244391f83e4265b5ef7ea965a0baea} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Spot\+Light\+::\+Spot\+Light (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_spot_light}{Spot\+Light}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Copy constructor for creating a \doxylink{class_spot_light}{Spot\+Light} object from another \doxylink{class_spot_light}{Spot\+Light}. 
+
+This constructor creates a new \doxylink{class_spot_light}{Spot\+Light} object by copying the properties of an existing \doxylink{class_spot_light}{Spot\+Light}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{class_spot_light}{Spot\+Light} object to copy. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_spot_light_a7a65576ea6b2db828872d06fd93cfee7}\index{SpotLight@{SpotLight}!clone@{clone}}
+\index{clone@{clone}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \label{class_spot_light_a7a65576ea6b2db828872d06fd93cfee7} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Spot\+Light\+::clone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Clones the \doxylink{class_spot_light}{Spot\+Light} object. 
+
+This method creates and returns a new clone of the \doxylink{class_spot_light}{Spot\+Light} object, including its properties.
+
+\begin{DoxyReturn}{Returns}
+A new cloned \doxylink{class_spot_light}{Spot\+Light} object. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_light_ab4e365754a296e56fe3e6fed125f6fbe}{Light}}.
+
+\Hypertarget{class_spot_light_a67f0e644fa7a6feab44061b9cc26f874}\index{SpotLight@{SpotLight}!getCutoff@{getCutoff}}
+\index{getCutoff@{getCutoff}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{getCutoff()}{getCutoff()}}
+{\footnotesize\ttfamily \label{class_spot_light_a67f0e644fa7a6feab44061b9cc26f874} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} float \& Spot\+Light\+::get\+Cutoff (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the cutoff angle of the spotlight. 
+
+This method returns the current cutoff angle of the spotlight\textquotesingle{}s beam.
+
+\begin{DoxyReturn}{Returns}
+The cutoff angle in degrees. 
+\end{DoxyReturn}
+\Hypertarget{class_spot_light_af5c83b194a9b7e10089a0764f28f3afb}\index{SpotLight@{SpotLight}!getDirection@{getDirection}}
+\index{getDirection@{getDirection}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{getDirection()}{getDirection()}}
+{\footnotesize\ttfamily \label{class_spot_light_af5c83b194a9b7e10089a0764f28f3afb} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::vec3 \& Spot\+Light\+::get\+Direction (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the direction of the spotlight. 
+
+This method returns the current direction of the spotlight\textquotesingle{}s beam.
+
+\begin{DoxyReturn}{Returns}
+The direction vector of the spotlight\textquotesingle{}s beam. 
+\end{DoxyReturn}
+\Hypertarget{class_spot_light_a91659b95a6ab043ce9941c6c603961d1}\index{SpotLight@{SpotLight}!getSpotExponent@{getSpotExponent}}
+\index{getSpotExponent@{getSpotExponent}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{getSpotExponent()}{getSpotExponent()}}
+{\footnotesize\ttfamily \label{class_spot_light_a91659b95a6ab043ce9941c6c603961d1} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} float \& Spot\+Light\+::get\+Spot\+Exponent (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the spot exponent of the spotlight. 
+
+This method returns the current spot exponent of the spotlight, which controls the falloff of intensity.
+
+\begin{DoxyReturn}{Returns}
+The spot exponent. 
+\end{DoxyReturn}
+\Hypertarget{class_spot_light_ae668ff6144ab46e9050401bcc6fb80eb}\index{SpotLight@{SpotLight}!operator=@{operator=}}
+\index{operator=@{operator=}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_spot_light_ae668ff6144ab46e9050401bcc6fb80eb} 
+\mbox{\hyperlink{class_spot_light}{Spot\+Light}} \& Spot\+Light\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_spot_light}{Spot\+Light}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Assignment operator is deleted to prevent assignment of \doxylink{class_spot_light}{Spot\+Light} objects. 
+
+\Hypertarget{class_spot_light_a3876c652aeb74872e91d1262b18fcfb3}\index{SpotLight@{SpotLight}!parse@{parse}}
+\index{parse@{parse}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{class_spot_light_a3876c652aeb74872e91d1262b18fcfb3} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int Spot\+Light\+::parse (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{unsigned int \&}]{position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Parses the data for the spotlight from a file or buffer. 
+
+This method reads the spotlight data from the provided byte stream and updates the spotlight\textquotesingle{}s properties.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The byte stream containing the spotlight data. \\
+\hline
+{\em position} & The position in the byte stream to start reading from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of child nodes (if any) parsed from the data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_light_a9c2b3894860997c534ad58cf233231aa}{Light}}.
+
+\Hypertarget{class_spot_light_a61d103f5a649b1282ed06009f1e0c42d}\index{SpotLight@{SpotLight}!render@{render}}
+\index{render@{render}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_spot_light_a61d103f5a649b1282ed06009f1e0c42d} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Spot\+Light\+::render (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{matrix}{ = {\ttfamily glm\+:\+:mat4(1.0f)}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Renders the spotlight in the scene. 
+
+This method updates the Open\+GL settings for rendering the spotlight with its current properties. It configures the spotlight\textquotesingle{}s cutoff angle, direction, and spot exponent.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The transformation matrix to apply (default\+: glm\+::mat4(1.\+0f)). \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_light_aa7c94186ffb48c88058dea96547c8f3c}{Light}}.
+
+\Hypertarget{class_spot_light_ae2022e6f2e74f062bd50dcaf2f5b0c5f}\index{SpotLight@{SpotLight}!setCutoff@{setCutoff}}
+\index{setCutoff@{setCutoff}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{setCutoff()}{setCutoff()}}
+{\footnotesize\ttfamily \label{class_spot_light_ae2022e6f2e74f062bd50dcaf2f5b0c5f} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Spot\+Light\+::set\+Cutoff (\begin{DoxyParamCaption}\item[{const float \&}]{cutoff}{}\end{DoxyParamCaption})}
+
+
+
+Sets the cutoff angle of the spotlight. 
+
+This method sets the cutoff angle for the spotlight\textquotesingle{}s beam. The cutoff angle defines the area where the spotlight\textquotesingle{}s light begins to fade out.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cutoff} & The cutoff angle in degrees (range\+: 0.\+0f to 90.\+0f). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_spot_light_a4b8c1f3a0b24f15288b670cd9624cdbf}\index{SpotLight@{SpotLight}!setDirection@{setDirection}}
+\index{setDirection@{setDirection}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{setDirection()}{setDirection()}}
+{\footnotesize\ttfamily \label{class_spot_light_a4b8c1f3a0b24f15288b670cd9624cdbf} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Spot\+Light\+::set\+Direction (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{direction}{}\end{DoxyParamCaption})}
+
+
+
+Sets the direction of the spotlight. 
+
+This method sets the direction in which the spotlight\textquotesingle{}s beam is emitted.
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & The direction vector for the spotlight\textquotesingle{}s beam. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_spot_light_a241bb42a21d75ef065858ffecb3efd3f}\index{SpotLight@{SpotLight}!setSpotExponent@{setSpotExponent}}
+\index{setSpotExponent@{setSpotExponent}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{setSpotExponent()}{setSpotExponent()}}
+{\footnotesize\ttfamily \label{class_spot_light_a241bb42a21d75ef065858ffecb3efd3f} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Spot\+Light\+::set\+Spot\+Exponent (\begin{DoxyParamCaption}\item[{const float \&}]{spot\+Exponent}{}\end{DoxyParamCaption})}
+
+
+
+Sets the spot exponent of the spotlight. 
+
+This method sets the spot exponent that controls the falloff of the spotlight\textquotesingle{}s intensity. A higher exponent makes the spotlight\textquotesingle{}s intensity fall off more sharply.
+
+
+\begin{DoxyParams}{Parameters}
+{\em spot\+Exponent} & The spot exponent value. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_spot_light_a8b0ff306977e3bd9da0301894a934320}\index{SpotLight@{SpotLight}!m\_cutoff@{m\_cutoff}}
+\index{m\_cutoff@{m\_cutoff}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{m\_cutoff}{m\_cutoff}}
+{\footnotesize\ttfamily \label{class_spot_light_a8b0ff306977e3bd9da0301894a934320} 
+float Spot\+Light\+::m\+\_\+cutoff\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The cutoff angle for the spotlight\textquotesingle{}s beam (in degrees). 
+
+\Hypertarget{class_spot_light_aeb4862a60780731c3582533b38862105}\index{SpotLight@{SpotLight}!m\_direction@{m\_direction}}
+\index{m\_direction@{m\_direction}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{m\_direction}{m\_direction}}
+{\footnotesize\ttfamily \label{class_spot_light_aeb4862a60780731c3582533b38862105} 
+glm\+::vec3 Spot\+Light\+::m\+\_\+direction\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The direction of the spotlight\textquotesingle{}s beam. 
+
+\Hypertarget{class_spot_light_a5ff5e6038a7c044837224ea6852bb84c}\index{SpotLight@{SpotLight}!m\_spotExponent@{m\_spotExponent}}
+\index{m\_spotExponent@{m\_spotExponent}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{m\_spotExponent}{m\_spotExponent}}
+{\footnotesize\ttfamily \label{class_spot_light_a5ff5e6038a7c044837224ea6852bb84c} 
+float Spot\+Light\+::m\+\_\+spot\+Exponent\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The spot exponent that controls the intensity falloff of the spotlight. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{spot_light_8h}{spot\+Light.\+h}}\item 
+engine/\mbox{\hyperlink{spot_light_8cpp}{spot\+Light.\+cpp}}\end{DoxyCompactItemize}
