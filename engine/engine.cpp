@@ -172,7 +172,7 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
 
    if (!glewIsSupported("GL_VERSION_2_1"))
    {
-       //DAJE ROMA
+       //Error
    }
 
    // Done:

@@ -7,9 +7,24 @@
 
 struct Mesh::Reserved {
     struct Vertex;
+    struct Vao;
+    struct Vbo;
     std::vector<std::vector<Reserved::Vertex>> m_faces;
+    Mesh::Reserved::Vao vao;
 
     Reserved() : m_faces{ std::vector<std::vector<Mesh::Reserved::Vertex>>() } {}
+};
+
+
+struct Mesh::Reserved::Vbo {
+    unsigned int vbo;
+    std::vector<Vertex> vbos;
+};
+
+struct Mesh::Reserved::Vao {
+    unsigned int vao;
+    std::vector<Vbo> vbos;
+
 };
 
 struct Mesh::Reserved::Vertex {
@@ -99,6 +114,7 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
         }
     }
 
+    ////
     glBegin(GL_TRIANGLES);
     for (const auto& face : m_reserved->m_faces) 
         for (const auto& vertex : face) {
@@ -107,8 +123,8 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
                 glTexCoord2fv(glm::value_ptr(vertex.v_textureUV));
             glVertex3fv(glm::value_ptr(vertex.v_coords));
         }
-
     glEnd();
+    ////
 
     if (this->m_material != nullptr) {
         this->m_material->setDisableTexture();
@@ -208,6 +224,9 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
         for (unsigned int i = 0; i < (sizeof(face) / sizeof(unsigned int)); i++)
             this->m_reserved->m_faces[c].push_back(m_vertices[face[i]]);
     }
+
+    glGenBuffers(1, this->m_reserved);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, faceVbo);
 
 	return children;
 }
