@@ -1,7 +1,6 @@
 #include "mesh.h"
 #include <map>
 
-#define GLEW_STATIC
 #include "GL/glew.h"
 #include "GL/freeglut.h"
 
@@ -57,6 +56,7 @@ ENG_API Mesh::Mesh(const std::string& name)
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
 
+    std::cout << "Buffers created!" << std::endl;
 }
 
 ENG_API Mesh::~Mesh()
@@ -118,6 +118,8 @@ void Mesh::setupMesh() {
     glEnableVertexAttribArray(0);
 
     glBindVertexArray(0); // Scollega il VAO
+
+    std::cout << "Setup mesh " << getName() << std::endl;
 }
 
 
@@ -158,6 +160,8 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(m_reserved->m_faces.size() * 3), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+
+    std::cout << "Ho disegnato la mesh " << getName() << std::endl;
     ///
 
     if (this->m_material != nullptr) {
@@ -169,6 +173,8 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
         
     if (!this->isEnableLighting())
         glEnable(GL_LIGHTING);
+
+    std::cout << "fine render" << std::endl;
 }
 
 const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position) {

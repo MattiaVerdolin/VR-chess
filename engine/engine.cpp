@@ -140,8 +140,8 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    glutInitWindowPosition(100, 100);
 
    //PER ORA
-   int argc = 0;
-   char* argv[1];
+   int argc = 1;
+   char* argv[1] = { const_cast<char*>("Engine") };
 
    glutInit(&argc, argv);
 
