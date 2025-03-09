@@ -167,12 +167,12 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    GLenum err = glewInit();
    if (err != GLEW_OK)
    {
-       //Error
+	   std::cout << "Generic Glew Error" << std::endl;
    }
 
    if (!glewIsSupported("GL_VERSION_2_1"))
    {
-       //Error
+       std::cout << "Version error" << std::endl;
    }
 
    // Done:

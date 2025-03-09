@@ -95,4 +95,8 @@ private:
      * @brief Pointer to the reserved internal data structure.
      */
     std::unique_ptr<Reserved> m_reserved;
+
+    unsigned int VAO, VBO, EBO;
+
+    void setupMesh();
 };

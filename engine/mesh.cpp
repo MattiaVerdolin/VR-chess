@@ -1,30 +1,16 @@
 #include "mesh.h"
 #include <map>
 
-#include <GL/glew.h>
+#define GLEW_STATIC
+#include "GL/glew.h"
 #include "GL/freeglut.h"
 
 
 struct Mesh::Reserved {
     struct Vertex;
-    struct Vao;
-    struct Vbo;
     std::vector<std::vector<Reserved::Vertex>> m_faces;
-    Mesh::Reserved::Vao vao;
 
     Reserved() : m_faces{ std::vector<std::vector<Mesh::Reserved::Vertex>>() } {}
-};
-
-
-struct Mesh::Reserved::Vbo {
-    unsigned int vbo;
-    std::vector<Vertex> vbos;
-};
-
-struct Mesh::Reserved::Vao {
-    unsigned int vao;
-    std::vector<Vbo> vbos;
-
 };
 
 struct Mesh::Reserved::Vertex {
@@ -65,9 +51,20 @@ struct PhysProps
 };
 
 ENG_API Mesh::Mesh(const std::string& name)
-    : Node(name), m_reserved{ std::make_unique<Mesh::Reserved>() } {}
+    : Node(name), m_reserved{ std::make_unique<Mesh::Reserved>() }
+{
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
 
-ENG_API Mesh::~Mesh() = default;
+}
+
+ENG_API Mesh::~Mesh()
+{
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
+};
 
 ENG_API Mesh::Mesh(const Mesh& other) : Node(other), m_reserved{ std::make_unique<Mesh::Reserved>() } {
     this->m_reserved->m_faces = other.m_reserved->m_faces;
@@ -93,6 +90,37 @@ ENG_API std::vector<glm::vec3> Mesh::getVertices() {
     return vertices;
 }
 
+void Mesh::setupMesh() {
+    std::vector<glm::vec3> vertices;
+    std::vector<unsigned int> indices;
+
+    // Estrai i dati dai tuoi oggetti
+    for (unsigned int i = 0; i < m_reserved->m_faces.size(); i++) {
+        for (unsigned int j = 0; j < 3; j++) {
+            vertices.push_back(m_reserved->m_faces[i][j].v_coords);
+            indices.push_back(i * 3 + j); // Indici sequenziali per triangoli
+        }
+    }
+
+    // Creazione del VAO
+    glBindVertexArray(VAO);
+
+    // Caricamento dei vertici nel VBO
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
+
+    // Caricamento degli indici nell'EBO
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
+
+    // Configurazione degli attributi del vertice
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindVertexArray(0); // Scollega il VAO
+}
+
+
 void ENG_API Mesh::render(const glm::mat4& matrix) {
 	//GLLOAD MATRIX
     glMatrixMode(GL_MODELVIEW);
@@ -114,7 +142,7 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
         }
     }
 
-    ////
+    /*
     glBegin(GL_TRIANGLES);
     for (const auto& face : m_reserved->m_faces) 
         for (const auto& vertex : face) {
@@ -124,7 +152,13 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
             glVertex3fv(glm::value_ptr(vertex.v_coords));
         }
     glEnd();
-    ////
+    */
+
+	// Render con VAO e glDrawElements()
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(m_reserved->m_faces.size() * 3), GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    ///
 
     if (this->m_material != nullptr) {
         this->m_material->setDisableTexture();
@@ -225,8 +259,7 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
             this->m_reserved->m_faces[c].push_back(m_vertices[face[i]]);
     }
 
-    glGenBuffers(1, this->m_reserved);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, faceVbo);
+    this->setupMesh();
 
 	return children;
 }
