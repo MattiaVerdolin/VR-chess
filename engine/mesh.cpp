@@ -54,8 +54,6 @@ ENG_API Mesh::Mesh(const std::string& name)
 {
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-
     std::cout << "Buffers created!" << std::endl;
 }
 
@@ -63,7 +61,6 @@ ENG_API Mesh::~Mesh()
 {
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &EBO);
 };
 
 ENG_API Mesh::Mesh(const Mesh& other) : Node(other), m_reserved{ std::make_unique<Mesh::Reserved>() } {
@@ -91,27 +88,14 @@ ENG_API std::vector<glm::vec3> Mesh::getVertices() {
 }
 
 void Mesh::setupMesh() {
-    std::vector<glm::vec3> vertices;
-    std::vector<unsigned int> indices;
-
-    // Estrai i dati dai tuoi oggetti
-    for (unsigned int i = 0; i < m_reserved->m_faces.size(); i++) {
-        for (unsigned int j = 0; j < 3; j++) {
-            vertices.push_back(m_reserved->m_faces[i][j].v_coords);
-            indices.push_back(i * 3 + j); // Indici sequenziali per triangoli
-        }
-    }
+    std::vector<glm::vec3> vertices = this->getVertices();
 
     // Creazione del VAO
     glBindVertexArray(VAO);
 
     // Caricamento dei vertici nel VBO
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
-
-    // Caricamento degli indici nell'EBO
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * 3 * sizeof(unsigned int), vertices.data(), GL_STATIC_DRAW);
 
     // Configurazione degli attributi del vertice
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
@@ -143,9 +127,9 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
             this->m_material->render();
         }
     }
-
-    /*
-    glBegin(GL_TRIANGLES);
+    
+    
+    /*glBegin(GL_TRIANGLES);
     for (const auto& face : m_reserved->m_faces) 
         for (const auto& vertex : face) {
             glNormal3fv(glm::value_ptr(vertex.v_normal));
@@ -158,7 +142,7 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
 
 	// Render con VAO e glDrawElements()
     glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(m_reserved->m_faces.size() * 3), GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, m_reserved->m_faces.size() * 3);
     glBindVertexArray(0);
 
     std::cout << "Ho disegnato la mesh " << getName() << std::endl;

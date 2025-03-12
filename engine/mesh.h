@@ -96,7 +96,7 @@ private:
      */
     std::unique_ptr<Reserved> m_reserved;
 
-    unsigned int VAO, VBO, EBO;
+    unsigned int VAO, VBO;
 
     void setupMesh();
 };
