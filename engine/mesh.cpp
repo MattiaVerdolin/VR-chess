@@ -53,14 +53,20 @@ ENG_API Mesh::Mesh(const std::string& name)
     : Node(name), m_reserved{ std::make_unique<Mesh::Reserved>() }
 {
     glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &normalVerticesVbo);
+    glGenBuffers(1, &uvVerticesVbo);
+    glGenBuffers(1, &verticesVbo);
+    glGenBuffers(1, &faceVbo);
     std::cout << "Buffers created!" << std::endl;
 }
 
 ENG_API Mesh::~Mesh()
 {
     glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &normalVerticesVbo);
+    glDeleteBuffers(1, &uvVerticesVbo);
+    glDeleteBuffers(1, &verticesVbo);
+    glDeleteBuffers(1, &faceVbo);
 };
 
 ENG_API Mesh::Mesh(const Mesh& other) : Node(other), m_reserved{ std::make_unique<Mesh::Reserved>() } {
@@ -87,24 +93,43 @@ ENG_API std::vector<glm::vec3> Mesh::getVertices() {
     return vertices;
 }
 
-void Mesh::setupMesh() {
-    std::vector<glm::vec3> vertices = this->getVertices();
 
-    // Creazione del VAO
+void Mesh::setupMesh() {
     glBindVertexArray(VAO);
 
-    // Caricamento dei vertici nel VBO
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * 3 * sizeof(unsigned int), vertices.data(), GL_STATIC_DRAW);
-
-    // Configurazione degli attributi del vertice
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
+    // Posizioni (VBO)
+    glBindBuffer(GL_ARRAY_BUFFER, verticesVbo);
+    glBufferData(GL_ARRAY_BUFFER, coorVertices.size() * sizeof(glm::vec3), coorVertices.data(), GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    glBindVertexArray(0); // Scollega il VAO
+
+    // Normali (VBO)
+    glBindBuffer(GL_ARRAY_BUFFER, normalVerticesVbo);
+    glBufferData(GL_ARRAY_BUFFER, normalVertices.size() * sizeof(glm::vec3), normalVertices.data(), GL_STATIC_DRAW);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+    glEnableClientState(GL_NORMAL_ARRAY);
+    glNormalPointer(GL_FLOAT, 0, nullptr);
+
+
+    // UV (VBO)
+    glBindBuffer(GL_ARRAY_BUFFER, uvVerticesVbo);
+    glBufferData(GL_ARRAY_BUFFER, uvVertices.size() * sizeof(glm::vec2), uvVertices.data(), GL_STATIC_DRAW);
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glTexCoordPointer(2, GL_FLOAT, 0, nullptr);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, faceVbo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, faceIndices.size() * sizeof(unsigned int), faceIndices.data(), GL_STATIC_DRAW);
+
+    glBindVertexArray(0); // Unbind VAO
 
     std::cout << "Setup mesh " << getName() << std::endl;
 }
+
+
 
 
 void ENG_API Mesh::render(const glm::mat4& matrix) {
@@ -142,7 +167,7 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
 
 	// Render con VAO e glDrawElements()
     glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, m_reserved->m_faces.size() * 3);
+    glDrawElements(GL_TRIANGLES, faceIndices.size(), GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
 
     std::cout << "Ho disegnato la mesh " << getName() << std::endl;
@@ -212,18 +237,21 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
         glm::vec3 vertex;
         memcpy(&vertex, data + position, sizeof(glm::vec3));
         position += sizeof(glm::vec3);
+        coorVertices.push_back(vertex);
 
         // Vertex normal:
         unsigned int normalData;
         memcpy(&normalData, data + position, sizeof(unsigned int));
         glm::vec3 normal = glm::unpackSnorm3x10_1x2(normalData);
         position += sizeof(unsigned int);
+        normalVertices.push_back(normal);
 
         // Texture coordinates:
         unsigned int textureData;
         memcpy(&textureData, data + position, sizeof(unsigned int));
         glm::vec2 uv = glm::unpackHalf2x16(textureData);
         position += sizeof(unsigned int);
+        uvVertices.push_back(uv);
 
         // Tangent vector:
         /*unsigned int tangentData;
@@ -242,11 +270,18 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
         memcpy(face, data + position, sizeof(unsigned int) * 3);
         position += sizeof(unsigned int) * 3;
 
+        //faceIndices.push_back(face[0]);
+        //faceIndices.push_back(face[1]);
+        //faceIndices.push_back(face[2]);
+
         this->m_reserved->m_faces.push_back(std::vector<Reserved::Vertex>());
         this->m_reserved->m_faces[c].reserve(3);
 
-        for (unsigned int i = 0; i < (sizeof(face) / sizeof(unsigned int)); i++)
+        for (unsigned int i = 0; i < 3; i++)
+        {
             this->m_reserved->m_faces[c].push_back(m_vertices[face[i]]);
+            faceIndices.push_back(face[i]);
+        }
     }
 
     this->setupMesh();

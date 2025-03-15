@@ -77,6 +77,12 @@ public:
      */
     std::vector<glm::vec3> getVertices();
 
+    std::vector<glm::vec3> getNormalVertices();
+
+    std::vector<glm::vec2> getUVVertices();
+
+
+
     /**
      * @brief Destructor for the Mesh class.
      */
@@ -96,7 +102,13 @@ private:
      */
     std::unique_ptr<Reserved> m_reserved;
 
-    unsigned int VAO, VBO;
+    unsigned int VAO, verticesVbo, normalVerticesVbo, uvVerticesVbo, faceVbo;
+    std::vector<unsigned int> faceIndices;
+    std::vector<glm::vec3> coorVertices;
+    std::vector<glm::vec3> normalVertices;
+    std::vector<glm::vec2> uvVertices;
+
+
 
     void setupMesh();
 };
