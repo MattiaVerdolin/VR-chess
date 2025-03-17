@@ -57,7 +57,6 @@ ENG_API Mesh::Mesh(const std::string& name)
     glGenBuffers(1, &uvVerticesVbo);
     glGenBuffers(1, &verticesVbo);
     glGenBuffers(1, &faceVbo);
-    std::cout << "Buffers created!" << std::endl;
 }
 
 ENG_API Mesh::~Mesh()
@@ -125,8 +124,6 @@ void Mesh::setupMesh() {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, faceIndices.size() * sizeof(unsigned int), faceIndices.data(), GL_STATIC_DRAW);
 
     glBindVertexArray(0); // Unbind VAO
-
-    std::cout << "Setup mesh " << getName() << std::endl;
 }
 
 
@@ -154,24 +151,24 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
     }
     
     
-    /*glBegin(GL_TRIANGLES);
-    for (const auto& face : m_reserved->m_faces) 
-        for (const auto& vertex : face) {
-            glNormal3fv(glm::value_ptr(vertex.v_normal));
-            if(this->m_material->isTextureExists())
-                glTexCoord2fv(glm::value_ptr(vertex.v_textureUV));
-            glVertex3fv(glm::value_ptr(vertex.v_coords));
-        }
-    glEnd();
+    /*
+     *OLD VERSION with OpenGL 1.0
+     *
+	    glBegin(GL_TRIANGLES);
+	    for (const auto& face : m_reserved->m_faces) 
+	        for (const auto& vertex : face) {
+	            glNormal3fv(glm::value_ptr(vertex.v_normal));
+	            if(this->m_material->isTextureExists())
+	                glTexCoord2fv(glm::value_ptr(vertex.v_textureUV));
+	            glVertex3fv(glm::value_ptr(vertex.v_coords));
+	        }
+	    glEnd();
     */
 
 	// Render con VAO e glDrawElements()
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, faceIndices.size(), GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
-
-    std::cout << "Ho disegnato la mesh " << getName() << std::endl;
-    ///
 
     if (this->m_material != nullptr) {
         this->m_material->setDisableTexture();
@@ -182,8 +179,6 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
         
     if (!this->isEnableLighting())
         glEnable(GL_LIGHTING);
-
-    std::cout << "fine render" << std::endl;
 }
 
 const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position) {
