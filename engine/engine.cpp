@@ -135,18 +135,35 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
       std::cout << "ERROR: engine already initialized" << std::endl;
       return false;
    }
-   
-   glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-   glutInitWindowPosition(100, 100);
 
    //PER ORA
    int argc = 1;
    char* argv[1] = { const_cast<char*>("Engine") };
-
    glutInit(&argc, argv);
 
+
+   glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+   glutInitContextVersion(4, 4);
+   glutInitContextProfile(GLUT_CORE_PROFILE);
+   
+   glutInitWindowPosition(100, 100);
    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
    reserved->windowId = glutCreateWindow("3D Chessboard Game");
+
+   //GLEW INIT
+   GLenum err = glewInit();
+   if (err != GLEW_OK)
+   {
+       std::cout << "Generic Glew Error" << std::endl;
+   }
+
+   if (!glewIsSupported("GL_VERSION_2_1"))
+   {
+       std::cout << "Version error" << std::endl;
+   }
+
+
+
 
    glutDisplayFunc([](){});
    glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height);});
@@ -162,18 +179,6 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, glm::value_ptr(gAmbient));
 
    FreeImage_Initialise();
-
-   //GLEW INIT
-   GLenum err = glewInit();
-   if (err != GLEW_OK)
-   {
-	   std::cout << "Generic Glew Error" << std::endl;
-   }
-
-   if (!glewIsSupported("GL_VERSION_2_1"))
-   {
-       std::cout << "Version error" << std::endl;
-   }
 
    // Done:
    std::cout << "[>] " << LIB_NAME << " initialized" << std::endl;

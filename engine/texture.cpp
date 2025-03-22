@@ -19,7 +19,7 @@ struct Texture::Reserved {
 };
 
 ENG_API Texture::Texture(const std::string& name) : Object(name), m_reserved{ std::make_unique<Texture::Reserved>() } {
-	Texture::setAnisotropicFilter();
+	//Texture::setAnisotropicFilter();
 }
 
 ENG_API void Texture::setAnisotropicFilter() {
