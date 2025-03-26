@@ -79,7 +79,7 @@ public:
     std::vector<glm::vec3> getVertices();
 
 
-
+    void setupParameters(Shader* shader, int matEmissionLoc, int matAmbientLoc, int matDiffuseLoc, int matSpecularLoc, int matShininessLoc);
 
     /**
      * @brief Destructor for the Mesh class.

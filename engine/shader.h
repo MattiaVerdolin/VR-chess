@@ -6,6 +6,8 @@
 
 // C/C++:
 #include <iostream>
+#include <GL/glew.h>
+
 #include "object.h"
 
 class ENG_API Shader
@@ -27,6 +29,7 @@ public:
 
     int getParamLocation(const char* name);
     void setMatrix(int param, const glm::mat4& mat);
+    void setMatrix3(int param, const glm::mat3& mat);
     void setFloat(int param, float value);
     void setInt(int param, int value);
     void setVec3(int param, const glm::vec3& vect);

@@ -203,6 +203,18 @@ private:
    Shader* shader = nullptr;
    int projLoc = -1; // -1 means 'not assigned', as 0 is a valid location
    int mvLoc = -1;
+   int normalMatLoc = -1;
+
+   int matEmissionLoc = -1;
+   int matAmbientLoc = -1;
+   int matDiffuseLoc = -1;
+   int matSpecularLoc = -1;
+   int matShininessLoc = -1;
+    
+   int lightPositionLoc = -1;
+   int lightAmbientLoc = -1;
+   int lightDiffuseLoc = -1;
+   int lightSpecularLoc = -1;
 };
 
 }; // end of namespace Eng::

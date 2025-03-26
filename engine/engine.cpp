@@ -126,12 +126,14 @@ void ENG_API Eng::Base::setSpecialCallback(void (*specialCallback)(int, int, int
         glutSpecialFunc(specialCallback);
 }
 
+////////////////////////////
 const char* vertShader = R"(
    #version 440 core
 
    // Uniforms:
    uniform mat4 projection;
    uniform mat4 modelview;
+   uniform mat3 normalMatrix;
 
    // Attributes:
    layout(location = 0) in vec3 in_Position;
@@ -145,6 +147,7 @@ const char* vertShader = R"(
    {
       fragPosition = modelview * vec4(in_Position, 1.0f);
       gl_Position = projection * fragPosition;      
+      normal = normalMatrix * in_Normal;
    }
 )";
 
@@ -152,12 +155,46 @@ const char* vertShader = R"(
 const char* fragShader = R"(
    #version 440 core
 
-    out vec4 FragColor;
+   in vec4 fragPosition;
+   in vec3 normal;   
+   
+   out vec4 fragOutput;
 
-    void main() {
-        FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    }
+   // Material properties:
+   uniform vec3 matEmission;
+   uniform vec3 matAmbient;
+   uniform vec3 matDiffuse;
+   uniform vec3 matSpecular;
+   uniform float matShininess;
 
+   // Light properties:
+   uniform vec3 lightPosition; 
+   uniform vec3 lightAmbient; 
+   uniform vec3 lightDiffuse; 
+   uniform vec3 lightSpecular;
+
+   void main(void)
+   {      
+      // Ambient term:
+      vec3 fragColor = matEmission + matAmbient * lightAmbient;
+
+      // Diffuse term:
+      vec3 _normal = normalize(normal);
+      vec3 lightDirection = normalize(lightPosition - fragPosition.xyz);      
+      float nDotL = dot(lightDirection, _normal);   
+      if (nDotL > 0.0f)
+      {
+         fragColor += matDiffuse * nDotL * lightDiffuse;
+      
+         // Specular term:
+         vec3 halfVector = normalize(lightDirection + normalize(-fragPosition.xyz));                     
+         float nDotHV = dot(_normal, halfVector);         
+         fragColor += matSpecular * pow(nDotHV, matShininess) * lightSpecular;
+      } 
+      
+      // Final color:
+      fragOutput = vec4(fragColor, 1.0f);
+   }
 )";
 
 /**
@@ -217,6 +254,18 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    // Get shader variable locations:
    projLoc = shader->getParamLocation("projection");
    mvLoc = shader->getParamLocation("modelview");
+   normalMatLoc = shader->getParamLocation("normalMatrix");
+
+   matEmissionLoc = shader->getParamLocation("matEmission");
+   matAmbientLoc = shader->getParamLocation("matAmbient");
+   matDiffuseLoc = shader->getParamLocation("matDiffuse");
+   matSpecularLoc = shader->getParamLocation("matSpecular");
+   matShininessLoc = shader->getParamLocation("matShininess");
+
+   lightPositionLoc = shader->getParamLocation("lightPosition");
+   lightAmbientLoc = shader->getParamLocation("lightAmbient");
+   lightDiffuseLoc = shader->getParamLocation("lightDiffuse");
+   lightSpecularLoc = shader->getParamLocation("lightSpecular");
 
    glutDisplayFunc([]() {});
    glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height); });
@@ -288,7 +337,15 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
     if (mainCamera == nullptr) 
         return;
     mainCamera->render();
-    this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix(), shader, mvLoc);
+    this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix(), shader, 
+        mvLoc,
+		normalMatLoc,
+        matEmissionLoc,
+        matAmbientLoc,
+        matDiffuseLoc,
+        matSpecularLoc,
+        matShininessLoc
+        );
 
     if (menuCamera == nullptr || menu.empty())
         return;

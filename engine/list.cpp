@@ -46,16 +46,23 @@ void ENG_API List::clearList() {
 	this->resetListAndFreeMemory();
 }
 
-void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix, Shader* shader, int mvLoc) const {
+void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix, Shader* shader, int mvLoc, int normalMatLoc, int matEmissionLoc, int matAmbientLoc, int matDiffuseLoc, int matSpecularLoc, int matShininessLoc) const {
 
 	glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
 	for (const auto* reservedRow : this->m_listOfReservedToRender) {
 
+		glm::mat4 f = cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix;
+
 		if (dynamic_cast<Mesh*>(reservedRow->r_node) != nullptr){
-			shader->setMatrix(mvLoc, cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
+			shader->setMatrix(mvLoc, f);
+			shader->setMatrix3(normalMatLoc, glm::transpose(glm::inverse(f)));
+			dynamic_cast<Mesh*>(reservedRow->r_node)->setupParameters(shader, matEmissionLoc, matAmbientLoc, matDiffuseLoc, matSpecularLoc, matShininessLoc);
+		} else if (dynamic_cast<Light*>(reservedRow->r_node) != nullptr)
+		{
+			// stessa cosa sopra
 		}
 
-		reservedRow->r_node->render(cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
+		reservedRow->r_node->render(f);
 	}
 		
 	Light::resetLightCounter();

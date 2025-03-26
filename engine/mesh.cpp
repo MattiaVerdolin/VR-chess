@@ -129,6 +129,14 @@ void Mesh::setupMesh() {
 }
 
 
+void Mesh::setupParameters(Shader* shader, int matEmissionLoc, int matAmbientLoc, int matDiffuseLoc, int matSpecularLoc, int matShininessLoc)
+{
+    shader->setVec3(matEmissionLoc, this->getMaterial()->getEmission());
+    shader->setVec3(matAmbientLoc, this->getMaterial()->getAmbient());
+    shader->setVec3(matDiffuseLoc, getMaterial()->getDiffuse());
+    shader->setVec3(matSpecularLoc, getMaterial()->getSpecular());
+    shader->setFloat(matShininessLoc, getMaterial()->getShininess());
+}
 
 
 
