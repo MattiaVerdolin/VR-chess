@@ -23,6 +23,8 @@
 #include <vector>
 #include <algorithm>
 
+#include "shader.h"
+
 ////////////////////////////////
 // NOTIFICATION SERVICE CLASS //
 ////////////////////////////////
@@ -93,7 +95,7 @@ public:
      * @param width The new width of the window.
      * @param height The new height of the window.
      */
-    void notifyOnReshapeWindow(int width, int height) const;
+    void notifyOnReshapeWindow(int width, int height, Shader* shader, int projLoc) const;
 
     /**
      * @brief Notify all subscribed ChangeMatrixListeners of a matrix change event.

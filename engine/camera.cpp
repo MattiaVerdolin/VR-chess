@@ -30,9 +30,10 @@ void ENG_API Camera::render(const glm::mat4& matrix) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
-void ENG_API Camera::onWindowReshape(int width, int height) {
+void ENG_API Camera::onWindowReshape(int width, int height, Shader* shader, int projLoc) {
 	glViewport(0, 0, width, height);
 	this->m_width = (float) width;
 	this->m_height = (float) height;
 	this->loadProjectionMatrix();
+	shader->setMatrix(projLoc, m_projectionMatrix); //sicuramente sbagliato
 }

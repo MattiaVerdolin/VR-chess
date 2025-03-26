@@ -81,7 +81,7 @@ public:
      *
      * @param cameraInverseFinalMatrix The inverse transformation matrix of the camera.
      */
-    void renderElements(const glm::mat4& cameraInverseFinalMatrix) const;
+    void renderElements(const glm::mat4& cameraInverseFinalMatrix, Shader* shader, int mvLoc) const;
 
     /**
      * @brief Gets the number of elements in the list.

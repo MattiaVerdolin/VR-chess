@@ -197,6 +197,12 @@ private:
     * Initializes internal resources for the engine.
     */
    Base();
+
+   Shader* vs = nullptr;
+   Shader* fs = nullptr;
+   Shader* shader = nullptr;
+   int projLoc = -1; // -1 means 'not assigned', as 0 is a valid location
+   int mvLoc = -1;
 };
 
 }; // end of namespace Eng::

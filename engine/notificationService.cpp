@@ -28,9 +28,9 @@ ENG_API void NotificationService::unsubscribeListener(ChangeMatrixListener* list
 	if (listener != nullptr) this->m_changeMatrixListeners.erase(std::remove(this->m_changeMatrixListeners.begin(), this->m_changeMatrixListeners.end(), listener), this->m_changeMatrixListeners.end());
 }
 
-ENG_API void NotificationService::notifyOnReshapeWindow(int width, int height) const{
+ENG_API void NotificationService::notifyOnReshapeWindow(int width, int height, Shader* shader, int projLoc) const{
 	for (auto* listener : this->m_reshapeListeners)
-		listener->onWindowReshape(width, height);
+		listener->onWindowReshape(width, height, shader, projLoc);
 }
 
 ENG_API void NotificationService::notifyOnChangeMatrix(const unsigned int& nodeID) const {

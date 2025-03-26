@@ -25,6 +25,7 @@
 #else // For Linux
 #define ENG_API
 #endif
+#include "shader.h"
 
 ////////////////////////////////
 // RESHAPE LISTENER INTERFACE //
@@ -54,5 +55,5 @@ public:
      * @param width The new width of the window.
      * @param height The new height of the window.
      */
-    virtual void onWindowReshape(int width, int height) = 0;
+    virtual void onWindowReshape(int width, int height, Shader* shader, int projLoc) = 0;
 };

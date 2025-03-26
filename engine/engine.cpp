@@ -31,6 +31,8 @@
     #include <source_location>
     #include <chrono>
 
+#include "shader.h"
+
 
 /////////////////////////
 // RESERVED STRUCTURES //
@@ -68,7 +70,8 @@ int previousTime = 0;
 Eng::Base Eng::Base::instance;
 
 void Eng::Base::handleReshape(int width, int height) {
-    this->reserved->notificationService.notifyOnReshapeWindow(width, height);
+
+    this->reserved->notificationService.notifyOnReshapeWindow(width, height, shader, projLoc);
 }
 
 ////////////////////////
@@ -123,6 +126,40 @@ void ENG_API Eng::Base::setSpecialCallback(void (*specialCallback)(int, int, int
         glutSpecialFunc(specialCallback);
 }
 
+const char* vertShader = R"(
+   #version 440 core
+
+   // Uniforms:
+   uniform mat4 projection;
+   uniform mat4 modelview;
+
+   // Attributes:
+   layout(location = 0) in vec3 in_Position;
+   layout(location = 1) in vec3 in_Normal;
+
+   // Varying:
+   out vec4 fragPosition;
+   out vec3 normal;   
+
+   void main(void)
+   {
+      fragPosition = modelview * vec4(in_Position, 1.0f);
+      gl_Position = projection * fragPosition;      
+   }
+)";
+
+////////////////////////////
+const char* fragShader = R"(
+   #version 440 core
+
+    out vec4 FragColor;
+
+    void main() {
+        FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+    }
+
+)";
+
 /**
  * Init internal components.
  * @return TF
@@ -157,16 +194,32 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
        std::cout << "Generic Glew Error" << std::endl;
    }
 
-   if (!glewIsSupported("GL_VERSION_2_1"))
+   if (!glewIsSupported("GL_VERSION_4_4"))
    {
        std::cout << "Version error" << std::endl;
    }
 
+   // Compile vertex shader:
+   vs = new Shader();
+   vs->loadFromMemory(Shader::TYPE_VERTEX, vertShader);
 
+   // Compile fragment shader:
+   fs = new Shader();
+   fs->loadFromMemory(Shader::TYPE_FRAGMENT, fragShader);
 
+   // Setup shader program:
+   shader = new Shader();
+   shader->build(vs, fs);
+   shader->render();
+   shader->bind(0, "in_Position");
+   shader->bind(1, "in_Normal");
 
-   glutDisplayFunc([](){});
-   glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height);});
+   // Get shader variable locations:
+   projLoc = shader->getParamLocation("projection");
+   mvLoc = shader->getParamLocation("modelview");
+
+   glutDisplayFunc([]() {});
+   glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height); });
    if (closeCallBack != nullptr) glutCloseFunc(closeCallBack);
 
    glm::vec4 gAmbient(0.2f, 0.2f, 0.2f, 1.0f);
@@ -235,7 +288,7 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
     if (mainCamera == nullptr) 
         return;
     mainCamera->render();
-    this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
+    this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix(), shader, mvLoc);
 
     if (menuCamera == nullptr || menu.empty())
         return;
@@ -282,5 +335,8 @@ bool ENG_API Eng::Base::free()
    // Done:
    std::cout << "[<] " << LIB_NAME << " deinitialized" << std::endl;
    reserved->initFlag = false;
+   delete shader;
+   delete fs;
+   delete vs;
    return true;
 }

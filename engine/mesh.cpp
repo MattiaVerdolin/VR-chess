@@ -69,10 +69,6 @@ ENG_API Mesh::~Mesh()
     glDeleteBuffers(1, &uvVerticesVbo);
     glDeleteBuffers(1, &verticesVbo);
     glDeleteBuffers(1, &faceVbo);
-    delete shader;
-    delete fs;
-    delete vs;
-    
 };
 
 ENG_API Mesh::Mesh(const Mesh& other) : Node(other), m_reserved{ std::make_unique<Mesh::Reserved>() } {
@@ -99,62 +95,8 @@ ENG_API std::vector<glm::vec3> Mesh::getVertices() {
     return vertices;
 }
 
-const char* vertShader = R"(
-   #version 440 core
-
-   // Uniforms:
-   uniform mat4 projection;
-   uniform mat4 modelview;
-
-   // Attributes:
-   layout(location = 0) in vec3 in_Position;
-   layout(location = 1) in vec3 in_Normal;
-
-   // Varying:
-   out vec4 fragPosition;
-   out vec3 normal;   
-
-   void main(void)
-   {
-      fragPosition = modelview * vec4(in_Position, 1.0f);
-      gl_Position = projection * fragPosition;      
-   }
-)";
-
-////////////////////////////
-const char* fragShader = R"(
-   #version 440 core
-
-    out vec4 FragColor;
-
-    void main() {
-        FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    }
-
-)";
-
-
 void Mesh::setupMesh() {
     glBindVertexArray(VAO);
-
-    // Compile vertex shader:
-    vs = new Shader();
-    vs->loadFromMemory(Shader::TYPE_VERTEX, vertShader);
-
-    // Compile fragment shader:
-    fs = new Shader();
-    fs->loadFromMemory(Shader::TYPE_FRAGMENT, fragShader);
-
-    // Setup shader program:
-    shader = new Shader();
-    shader->build(vs, fs);
-    shader->render();
-    shader->bind(0, "in_Position");
-    shader->bind(1, "in_Normal");
-
-    // Get shader variable locations:
-    projLoc = shader->getParamLocation("projection");
-    mvLoc = shader->getParamLocation("modelview");
 
     // Posizioni (VBO)
     glBindBuffer(GL_ARRAY_BUFFER, verticesVbo);
@@ -226,10 +168,6 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
 	        }
 	    glEnd();
     */
-
-    shader->setMatrix(mvLoc, matrix);
-    shader->setMatrix(projLoc, matrix); //sicuramente sbagliato
-   
 
 	// Render con VAO e glDrawElements()
     glBindVertexArray(VAO);

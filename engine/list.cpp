@@ -3,6 +3,8 @@
 #include "camera.h"
 #include <GL/freeglut.h>
 
+#include "mesh.h"
+
 struct ENG_API List::Reserved {
 	Object* r_node;
 	glm::mat4 r_nodeFinalMatrix;
@@ -44,10 +46,17 @@ void ENG_API List::clearList() {
 	this->resetListAndFreeMemory();
 }
 
-void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix) const {
+void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix, Shader* shader, int mvLoc) const {
+
 	glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
-	for (const auto* reservedRow : this->m_listOfReservedToRender)
+	for (const auto* reservedRow : this->m_listOfReservedToRender) {
+
+		if (dynamic_cast<Mesh*>(reservedRow->r_node) != nullptr){
+			shader->setMatrix(mvLoc, cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
+		}
+
 		reservedRow->r_node->render(cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
+	}
 		
 	Light::resetLightCounter();
 }

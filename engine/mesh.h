@@ -105,13 +105,6 @@ private:
     std::vector<glm::vec3> coorVertices;
     std::vector<glm::vec3> normalVertices;
     std::vector<glm::vec2> uvVertices;
-  
-    Shader* vs = nullptr;
-    Shader* fs = nullptr;
-    Shader* shader = nullptr;
-    int projLoc = -1; // -1 means 'not assigned', as 0 is a valid location
-    int mvLoc = -1;
-
 
     void setupMesh();
 };
