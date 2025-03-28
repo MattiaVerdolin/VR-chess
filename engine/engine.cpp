@@ -126,12 +126,18 @@ void ENG_API Eng::Base::setSpecialCallback(void (*specialCallback)(int, int, int
         glutSpecialFunc(specialCallback);
 }
 
+/////////////
+// SHADERS //
+/////////////
+
+////////////////////////////
 const char* vertShader = R"(
    #version 440 core
 
    // Uniforms:
    uniform mat4 projection;
    uniform mat4 modelview;
+   uniform mat3 normalMatrix;
 
    // Attributes:
    layout(location = 0) in vec3 in_Position;
@@ -145,6 +151,7 @@ const char* vertShader = R"(
    {
       fragPosition = modelview * vec4(in_Position, 1.0f);
       gl_Position = projection * fragPosition;      
+      normal = normalMatrix * in_Normal;
    }
 )";
 
@@ -152,14 +159,47 @@ const char* vertShader = R"(
 const char* fragShader = R"(
    #version 440 core
 
-    out vec4 FragColor;
+   in vec4 fragPosition;
+   in vec3 normal;   
+   
+   out vec4 fragOutput;
 
-    void main() {
-        FragColor = vec4(1.0, 0.0, 0.0, 0.0);
-    }
+   // Material properties:
+   uniform vec3 matEmission;
+   uniform vec3 matAmbient;
+   uniform vec3 matDiffuse;
+   uniform vec3 matSpecular;
+   uniform float matShininess;
 
+   // Light properties:
+   uniform vec3 lightPosition; 
+   uniform vec3 lightAmbient; 
+   uniform vec3 lightDiffuse; 
+   uniform vec3 lightSpecular;
+
+   void main(void)
+   {      
+      // Ambient term:
+      vec3 fragColor = matEmission + matAmbient * lightAmbient;
+
+      // Diffuse term:
+      vec3 _normal = normalize(normal);
+      vec3 lightDirection = normalize(lightPosition - fragPosition.xyz);      
+      float nDotL = dot(lightDirection, _normal);   
+      if (nDotL > 0.0f)
+      {
+         fragColor += matDiffuse * nDotL * lightDiffuse;
+      
+         // Specular term:
+         vec3 halfVector = normalize(lightDirection + normalize(-fragPosition.xyz));                     
+         float nDotHV = dot(_normal, halfVector);         
+         fragColor += matSpecular * pow(nDotHV, matShininess) * lightSpecular;
+      } 
+      
+      // Final color:
+      fragOutput = vec4(fragColor, 1.0f);
+   }
 )";
-
 /**
  * Init internal components.
  * @return TF
@@ -226,7 +266,7 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    glEnable(GL_LIGHTING);
    glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 1.0f);
    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, glm::value_ptr(gAmbient));
-   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+   //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); WIREFRAME
 
    FreeImage_Initialise();
 

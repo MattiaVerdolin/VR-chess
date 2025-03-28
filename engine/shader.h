@@ -38,6 +38,7 @@ public:
     void bind(int location, const char* attribName);
 
     bool render(void* data = nullptr);
+    void setMatrix3(int param, const glm::mat3& mat);
     static Shader* getCurrent();
 
 private:

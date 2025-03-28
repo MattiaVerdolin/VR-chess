@@ -167,6 +167,14 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
 
     
     Shader::getCurrent()->setMatrix(Shader::getCurrent()->getParamLocation("modelview"), matrix);
+    glm::mat3 normalMatrix = glm::transpose(glm::inverse(matrix));
+    Shader::getCurrent()->setMatrix3(Shader::getCurrent()->getParamLocation("normalMatrix"), normalMatrix);
+
+    Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matEmission"), this->getMaterial()->getEmission());
+    Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matAmbient"), this->getMaterial()->getAmbient());
+    Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matDiffuse"), this->getMaterial()->getDiffuse());
+    Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matSpecular"), this->getMaterial()->getSpecular());
+    Shader::getCurrent()->setFloat(Shader::getCurrent()->getParamLocation("matShininess"), this->getMaterial()->getShininess());
 
 
 	// Render con VAO e glDrawElements()
