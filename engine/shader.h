@@ -38,8 +38,11 @@ public:
     void bind(int location, const char* attribName);
 
     bool render(void* data = nullptr);
+    static Shader* getCurrent();
 
 private:
     int type;
     unsigned int glId;
+    static Shader* current;
+
 };

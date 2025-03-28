@@ -46,17 +46,12 @@ void ENG_API List::clearList() {
 	this->resetListAndFreeMemory();
 }
 
-void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix, Shader* shader, int mvLoc) const {
+void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix) const {
 
 	glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
-	for (const auto* reservedRow : this->m_listOfReservedToRender) {
-
-		if (dynamic_cast<Mesh*>(reservedRow->r_node) != nullptr){
-			shader->setMatrix(mvLoc, cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
-		}
-
+	for (const auto* reservedRow : this->m_listOfReservedToRender) 
 		reservedRow->r_node->render(cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
-	}
+	
 		
 	Light::resetLightCounter();
 }

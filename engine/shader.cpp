@@ -31,6 +31,8 @@ ENG_API Shader::Shader() : type(TYPE_UNDEFINED),
 glId(0)
 {}
 
+Shader* Shader::current = nullptr;
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -306,8 +308,15 @@ ENG_API bool Shader::render(void* data)
 	}
 
 	// Done:
+	current = this;
 	return true;
 }
+
+ENG_API Shader* Shader::getCurrent()
+{
+	return current;
+}
+
 ENG_API void Shader::setMatrix(int param, const glm::mat4& mat)
 {
 	glUniformMatrix4fv(param, 1, GL_FALSE, glm::value_ptr(mat));

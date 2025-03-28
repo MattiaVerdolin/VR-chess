@@ -71,7 +71,7 @@ Eng::Base Eng::Base::instance;
 
 void Eng::Base::handleReshape(int width, int height) {
 
-    this->reserved->notificationService.notifyOnReshapeWindow(width, height, shader, projLoc);
+    this->reserved->notificationService.notifyOnReshapeWindow(width, height, shader);
 }
 
 ////////////////////////
@@ -155,7 +155,7 @@ const char* fragShader = R"(
     out vec4 FragColor;
 
     void main() {
-        FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+        FragColor = vec4(1.0, 0.0, 0.0, 0.0);
     }
 
 )";
@@ -214,10 +214,6 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    shader->bind(0, "in_Position");
    shader->bind(1, "in_Normal");
 
-   // Get shader variable locations:
-   projLoc = shader->getParamLocation("projection");
-   mvLoc = shader->getParamLocation("modelview");
-
    glutDisplayFunc([]() {});
    glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height); });
    if (closeCallBack != nullptr) glutCloseFunc(closeCallBack);
@@ -230,6 +226,7 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    glEnable(GL_LIGHTING);
    glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 1.0f);
    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, glm::value_ptr(gAmbient));
+   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
    FreeImage_Initialise();
 
@@ -288,7 +285,7 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
     if (mainCamera == nullptr) 
         return;
     mainCamera->render();
-    this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix(), shader, mvLoc);
+    this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
 
     if (menuCamera == nullptr || menu.empty())
         return;
@@ -340,3 +337,4 @@ bool ENG_API Eng::Base::free()
    delete vs;
    return true;
 }
+

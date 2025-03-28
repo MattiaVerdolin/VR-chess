@@ -95,7 +95,7 @@ public:
      * @param width The new width of the window.
      * @param height The new height of the window.
      */
-    void notifyOnReshapeWindow(int width, int height, Shader* shader, int projLoc) const;
+    void notifyOnReshapeWindow(int width, int height, Shader* shader) const;
 
     /**
      * @brief Notify all subscribed ChangeMatrixListeners of a matrix change event.

@@ -175,7 +175,7 @@ bool ListOfPiecesManager::confirmMove() {
 void  ListOfPiecesManager::preGameHandler() {
 	this->m_iteratorOnList = 0;
 	GameManager::getRootNode()->removeChild(this->m_selectPointer);
-	this->createShadow();
+	//this->createShadow();
 }
 
 void ListOfPiecesManager::choiceHandler() {

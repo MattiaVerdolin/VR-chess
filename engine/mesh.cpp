@@ -129,10 +129,6 @@ void Mesh::setupMesh() {
 }
 
 
-
-
-
-
 void ENG_API Mesh::render(const glm::mat4& matrix) {
 	//GLLOAD MATRIX
     glMatrixMode(GL_MODELVIEW);
@@ -168,6 +164,10 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
 	        }
 	    glEnd();
     */
+
+    
+    Shader::getCurrent()->setMatrix(Shader::getCurrent()->getParamLocation("modelview"), matrix);
+
 
 	// Render con VAO e glDrawElements()
     glBindVertexArray(VAO);

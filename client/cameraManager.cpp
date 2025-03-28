@@ -22,11 +22,7 @@ void CameraManager::initialize() {
 }
 
 void CameraManager::createCameras() {
-	Camera* startCamera = new PerspCamera(MAIN_CAMERA, 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
-	startCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 12.0f, 15.0f))
-	);
-	this->addNewCamera(startCamera);
+	
 
 	Camera* chessboardCamera = new PerspCamera(CHESSBOARD_CAMERA, 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
 	chessboardCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
@@ -52,6 +48,12 @@ void CameraManager::createCameras() {
 
 	Camera* menuCamera = new OrthoCamera(MENU_CAMERA, 100.0f, 100.0f, -1.0f, 1.0f);
 	this->addNewCamera(menuCamera);
+
+	Camera* startCamera = new PerspCamera(MAIN_CAMERA, 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
+	startCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
+		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 12.0f, 15.0f))
+	);
+	this->addNewCamera(startCamera);
 }
 
 bool CameraManager::addNewCamera(Camera* newCamera, Node* parentNode) {

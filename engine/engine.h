@@ -178,6 +178,7 @@ public: //
     */
    void swap();
 
+
 private:
 
    /**

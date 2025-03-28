@@ -89,7 +89,7 @@ public:
      * @param width The new width of the window.
      * @param height The new height of the window.
      */
-    void onWindowReshape(int width, int height, Shader* shader, int projLoc) override;
+    void onWindowReshape(int width, int height, Shader* shader) override;
 
     /**
      * @brief Get the inverse of the camera's final transformation matrix.
