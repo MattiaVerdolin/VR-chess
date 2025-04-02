@@ -1,5 +1,7 @@
 #include "list.h"
 #include "light.h"
+#include "directLight.h"
+#include "spotLight.h"
 #include "camera.h"
 #include <GL/freeglut.h>
 
@@ -26,7 +28,10 @@ ENG_API List::~List() {
 void ENG_API List::pass(const Node* rootNode) {
 	if (rootNode == nullptr) return;
 	for (auto* node : rootNode->getChildren()) {
-		this->addRowToListOfNodeToRender(node);
+
+		if(!dynamic_cast<DirectLight*>(node) && !dynamic_cast<SpotLight*>(node))
+			this->addRowToListOfNodeToRender(node);
+
 		this->pass(node);
 	}
 }

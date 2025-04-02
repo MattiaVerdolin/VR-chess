@@ -159,46 +159,60 @@ const char* vertShader = R"(
 const char* fragShader = R"(
    #version 440 core
 
-   in vec4 fragPosition;
-   in vec3 normal;   
-   
-   out vec4 fragOutput;
+in vec4 fragPosition;
+in vec3 normal;   
 
-   // Material properties:
-   uniform vec3 matEmission;
-   uniform vec3 matAmbient;
-   uniform vec3 matDiffuse;
-   uniform vec3 matSpecular;
-   uniform float matShininess;
+out vec4 fragOutput;
 
-   // Light properties:
-   uniform vec3 lightPosition; 
-   uniform vec3 lightAmbient; 
-   uniform vec3 lightDiffuse; 
-   uniform vec3 lightSpecular;
+// Material properties:
+uniform vec3 matEmission;
+uniform vec3 matAmbient;
+uniform vec3 matDiffuse;
+uniform vec3 matSpecular;
+uniform float matShininess;
 
-   void main(void)
-   {      
-      // Ambient term:
-      vec3 fragColor = matEmission + matAmbient * lightAmbient;
+// Light properties:
+uniform vec3 lightPosition[8]; 
+uniform vec3 lightAmbient[8]; 
+uniform vec3 lightDiffuse[8]; 
+uniform vec3 lightSpecular[8];
 
-      // Diffuse term:
-      vec3 _normal = normalize(normal);
-      vec3 lightDirection = normalize(lightPosition - fragPosition.xyz);      
-      float nDotL = dot(lightDirection, _normal);   
-      if (nDotL > 0.0f)
-      {
-         fragColor += matDiffuse * nDotL * lightDiffuse;
-      
-         // Specular term:
-         vec3 halfVector = normalize(lightDirection + normalize(-fragPosition.xyz));                     
-         float nDotHV = dot(_normal, halfVector);         
-         fragColor += matSpecular * pow(nDotHV, matShininess) * lightSpecular;
-      } 
-      
-      // Final color:
-      fragOutput = vec4(fragColor, 1.0f);
-   }
+void main(void)
+{      
+    // Normalized normal
+    vec3 _normal = normalize(normal);
+
+    // View direction (assumendo che la camera sia all'origine del mondo)
+    vec3 viewDirection = normalize(-fragPosition.xyz);
+
+    // Inizializzazione del colore con emissione e ambientale
+    vec3 fragColor = matEmission;
+
+    // Iterazione su tutte le luci
+    for (int i = 0; i < 8; i++)
+    {
+        // Calcolo componente ambientale
+        fragColor += matAmbient * lightAmbient[i];
+
+        // Direzione della luce
+        vec3 lightDirection = normalize(lightPosition[i] - fragPosition.xyz);
+        
+        // Componente Diffuse
+        float nDotL = max(dot(_normal, lightDirection), 0.0f);
+        if (nDotL > 0.0f)
+        {
+            fragColor += matDiffuse * nDotL * lightDiffuse[i];
+
+            // Componente Speculare (Phong)
+            vec3 halfVector = normalize(lightDirection + viewDirection);
+            float nDotHV = max(dot(_normal, halfVector), 0.0f);
+            fragColor += matSpecular * pow(nDotHV, matShininess) * lightSpecular[i];
+        }
+    }
+
+    // Output finale
+    fragOutput = vec4(fragColor, 1.0f);
+}
 )";
 /**
  * Init internal components.
