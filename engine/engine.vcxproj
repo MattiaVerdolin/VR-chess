@@ -88,6 +88,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="directLight.cpp" />
     <ClCompile Include="engine.cpp" />
+    <ClCompile Include="fbo.cpp" />
     <ClCompile Include="fileOVOReader.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="list.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="changeMatrixListener.h" />
     <ClInclude Include="directLight.h" />
     <ClInclude Include="engine.h" />
+    <ClInclude Include="fbo.h" />
     <ClInclude Include="fileOVOReader.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="list.h" />

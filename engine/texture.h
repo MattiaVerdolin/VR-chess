@@ -73,6 +73,9 @@ public:
      */
     const unsigned int parse(const char* data, unsigned int& position) override;
 
+    void createWhiteTexture();
+
+
 private:
     /**
      * @brief Internal structure for managing reserved resources.

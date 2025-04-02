@@ -126,6 +126,16 @@ const ENG_API unsigned int Material::parse(const char* data, unsigned int& posit
 		}
 		this->setTexture(textureInMap);
 	}
+	else {
+		const std::string defaultKey = "default_white";
+		Texture* defaultTexture = this->getTexture(defaultKey);
+		if (defaultTexture == nullptr) {
+			defaultTexture = new Texture(defaultKey);
+			defaultTexture->createWhiteTexture();
+			Material::m_texturesMap[defaultKey] = defaultTexture;
+		}
+		this->setTexture(defaultTexture);
+	}
 
 
 

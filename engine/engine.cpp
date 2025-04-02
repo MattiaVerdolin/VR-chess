@@ -142,16 +142,21 @@ const char* vertShader = R"(
    // Attributes:
    layout(location = 0) in vec3 in_Position;
    layout(location = 1) in vec3 in_Normal;
+   layout(location = 2) in vec2 in_TexCoord;
+
 
    // Varying:
    out vec4 fragPosition;
    out vec3 normal;   
+   out vec2 texCoord;
+
 
    void main(void)
    {
       fragPosition = modelview * vec4(in_Position, 1.0f);
       gl_Position = projection * fragPosition;      
       normal = normalMatrix * in_Normal;
+      texCoord = in_TexCoord;
    }
 )";
 
@@ -161,6 +166,7 @@ const char* fragShader = R"(
 
 in vec4 fragPosition;
 in vec3 normal;   
+in vec2 texCoord;
 
 out vec4 fragOutput;
 
@@ -177,41 +183,33 @@ uniform vec3 lightAmbient[8];
 uniform vec3 lightDiffuse[8]; 
 uniform vec3 lightSpecular[8];
 
+layout(binding = 0) uniform sampler2D texSampler;
+
+
 void main(void)
 {      
-    // Normalized normal
+    vec4 texel = texture(texSampler, texCoord);
+
     vec3 _normal = normalize(normal);
-
-    // View direction (assumendo che la camera sia all'origine del mondo)
     vec3 viewDirection = normalize(-fragPosition.xyz);
-
-    // Inizializzazione del colore con emissione e ambientale
     vec3 fragColor = matEmission;
 
-    // Iterazione su tutte le luci
     for (int i = 0; i < 8; i++)
     {
-        // Calcolo componente ambientale
         fragColor += matAmbient * lightAmbient[i];
-
-        // Direzione della luce
         vec3 lightDirection = normalize(lightPosition[i] - fragPosition.xyz);
-        
-        // Componente Diffuse
         float nDotL = max(dot(_normal, lightDirection), 0.0f);
         if (nDotL > 0.0f)
         {
             fragColor += matDiffuse * nDotL * lightDiffuse[i];
 
-            // Componente Speculare (Phong)
             vec3 halfVector = normalize(lightDirection + viewDirection);
             float nDotHV = max(dot(_normal, halfVector), 0.0f);
             fragColor += matSpecular * pow(nDotHV, matShininess) * lightSpecular[i];
         }
     }
 
-    // Output finale
-    fragOutput = vec4(fragColor, 1.0f);
+    fragOutput = texel * vec4(fragColor, 1.0f);
 }
 )";
 /**
