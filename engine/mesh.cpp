@@ -5,6 +5,15 @@
 #include "GL/freeglut.h"
 
 
+enum Eye
+{
+    EYE_LEFT = 0,
+    EYE_RIGHT = 1,
+
+    // Terminator:
+    EYE_LAST,
+};
+
 struct Mesh::Reserved {
     struct Vertex;
     std::vector<std::vector<Reserved::Vertex>> m_faces;
@@ -131,12 +140,12 @@ void Mesh::setupMesh() {
 
 void ENG_API Mesh::render(const glm::mat4& matrix) {
 	//GLLOAD MATRIX
-    glMatrixMode(GL_MODELVIEW);
-    glLoadMatrixf(glm::value_ptr(matrix));
+    //glMatrixMode(GL_MODELVIEW);
+    //glLoadMatrixf(glm::value_ptr(matrix));
     
 
     if (this->m_material != nullptr) {
-        this->m_material->setEnableTexture();
+        //this->m_material->setEnableTexture();
 
         if (this->getMaterial()->getAlpha() < 1.0f) {
             glEnable(GL_BLEND);
@@ -165,26 +174,34 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
 	    glEnd();
     */
 
+
+        ////////////////
+        // 3D rendering:
+
+        Shader::getCurrent()->setMatrix(Shader::getCurrent()->getParamLocation("modelview"), matrix);
+        glm::mat3 normalMatrix = glm::transpose(glm::inverse(matrix));
+        Shader::getCurrent()->setMatrix3(Shader::getCurrent()->getParamLocation("normalMatrix"), normalMatrix);
+
+        Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matEmission"), this->getMaterial()->getEmission());
+        Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matAmbient"), this->getMaterial()->getAmbient());
+        Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matDiffuse"), this->getMaterial()->getDiffuse());
+        Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matSpecular"), this->getMaterial()->getSpecular());
+        Shader::getCurrent()->setFloat(Shader::getCurrent()->getParamLocation("matShininess"), this->getMaterial()->getShininess());
+
+        // Render plane:       
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, faceIndices.size(), GL_UNSIGNED_INT, nullptr);
+        glBindVertexArray(0);
+
+   
+
+
+
     
-    Shader::getCurrent()->setMatrix(Shader::getCurrent()->getParamLocation("modelview"), matrix);
-    glm::mat3 normalMatrix = glm::transpose(glm::inverse(matrix));
-    Shader::getCurrent()->setMatrix3(Shader::getCurrent()->getParamLocation("normalMatrix"), normalMatrix);
 
-    Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matEmission"), this->getMaterial()->getEmission());
-    Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matAmbient"), this->getMaterial()->getAmbient());
-    Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matDiffuse"), this->getMaterial()->getDiffuse());
-    Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matSpecular"), this->getMaterial()->getSpecular());
-    Shader::getCurrent()->setFloat(Shader::getCurrent()->getParamLocation("matShininess"), this->getMaterial()->getShininess());
-
-
-	// Render con VAO e glDrawElements()
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, faceIndices.size(), GL_UNSIGNED_INT, nullptr);
-    glBindVertexArray(0);
-
-    if (this->m_material != nullptr) {
+   /* if (this->m_material != nullptr) {
         this->m_material->setDisableTexture();
-    }
+    }*/
 
     if (this->getMaterial()->getAlpha() < 1.0f)
         glDisable(GL_BLEND);

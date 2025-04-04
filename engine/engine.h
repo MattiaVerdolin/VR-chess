@@ -24,6 +24,8 @@
 // Project-specific includes
 #include "node.h"
 #include "camera.h"
+#include "fbo.h"
+
 
 /////////////
 // VERSION //
@@ -188,6 +190,8 @@ private:
     */
    void handleReshape(int width, int height);
 
+   Fbo* getCurrent(int numEye);
+
    // Reserved:
    static Eng::Base instance; ///< The singleton instance of the engine
    struct Reserved;           ///< Reserved structure for internal use
@@ -202,8 +206,21 @@ private:
    Shader* vs = nullptr;
    Shader* fs = nullptr;
    Shader* shader = nullptr;
-   int projLoc = -1; // -1 means 'not assigned', as 0 is a valid location
-   int mvLoc = -1;
+
+   // Enums:
+   enum Eye
+   {
+       EYE_LEFT = 0,
+       EYE_RIGHT = 1,
+
+       // Terminator:
+       EYE_LAST,
+   };
+
+   unsigned int texId = 0;
+   unsigned int fboTexId[EYE_LAST] = { 0, 0 };
+
+   Fbo* fbo[EYE_LAST] = { nullptr, nullptr };
 };
 
 }; // end of namespace Eng::

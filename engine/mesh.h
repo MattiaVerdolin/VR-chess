@@ -25,6 +25,7 @@
 // Project-specific headers
 #include "node.h"
 #include "shader.h"
+#include "fbo.h"
 
  /**
   * @brief Class representing a 3D Mesh object.

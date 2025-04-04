@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include <GL/freeglut.h>
 #include "FreeImage.h"
 #include "texture.h"

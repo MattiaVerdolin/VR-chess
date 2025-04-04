@@ -1,4 +1,7 @@
+// Glew (include it before GL.h):
+#include <GL/glew.h>
 #include "fbo.h"
+
 
 Fbo::Fbo()
 {
@@ -115,6 +118,7 @@ ENG_API bool Fbo::bindRenderBuffer(unsigned int renderBuffer, unsigned int opera
     }
     this->sizeX = sizeX;
     this->sizeY = sizeY;
+
     return updateMrtCache();
 }
 
@@ -155,3 +159,5 @@ ENG_API bool Fbo::render(void* data)
     }
     return true;
 }
+
+

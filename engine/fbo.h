@@ -17,8 +17,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-// Glew (include it before GL.h):
-#include <GL/glew.h>
 
 // C/C++:
 #include <iostream>
@@ -38,6 +36,16 @@ class ENG_API Fbo
 	//////////
 public: //
 	//////////
+
+	// Enums:
+	enum Eye
+	{
+		EYE_LEFT = 0,
+		EYE_RIGHT = 1,
+
+		// Terminator:
+		EYE_LAST,
+	};
 
 	   // Constants:
 	static const unsigned int MAX_ATTACHMENTS = 8; ///< Maximum number of available render buffers or textures per FBO	
@@ -70,6 +78,7 @@ public: //
 	// Rendering:     
 	bool render(void* data = nullptr);
 	static void disable();
+
 
 
 	///////////

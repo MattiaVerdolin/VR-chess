@@ -34,6 +34,7 @@
 #include "shader.h"
 
 
+
 /////////////////////////
 // RESERVED STRUCTURES //
 /////////////////////////
@@ -41,6 +42,15 @@
 /**
  * @brief Base class reserved structure (using PIMPL/Bridge design pattern https://en.wikipedia.org/wiki/Opaque_pointer).
  */
+
+ // Window size:
+#define APP_WINDOWSIZEX   1024
+#define APP_WINDOWSIZEY   512
+#define APP_FBOSIZEX      APP_WINDOWSIZEX / 2
+#define APP_FBOSIZEY      APP_WINDOWSIZEY / 1
+
+
+
 struct Eng::Base::Reserved
 {
     int windowId;
@@ -236,6 +246,7 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    glutInitContextProfile(GLUT_CORE_PROFILE);
    
    glutInitWindowPosition(100, 100);
+   glutInitWindowSize(APP_WINDOWSIZEX, APP_WINDOWSIZEY);
    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
    reserved->windowId = glutCreateWindow("3D Chessboard Game");
 
@@ -250,6 +261,11 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    {
        std::cout << "Version error" << std::endl;
    }
+
+
+  
+
+
 
    // Compile vertex shader:
    vs = new Shader();
@@ -266,6 +282,32 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    shader->bind(0, "in_Position");
    shader->bind(1, "in_Normal");
 
+   ///////////////////////////////////////////////////////Fbo init()
+   GLint prevViewport[4];
+   glGetIntegerv(GL_VIEWPORT, prevViewport);
+
+   for (int c = 0; c < EYE_LAST; c++)
+   {
+       glGenTextures(1, &fboTexId[c]);
+       glBindTexture(GL_TEXTURE_2D, fboTexId[c]);
+       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, APP_FBOSIZEX, APP_FBOSIZEY, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+       glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+       glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+       fbo[c] = new Fbo();
+       fbo[c]->bindTexture(0, Fbo::BIND_COLORTEXTURE, fboTexId[c]);
+       fbo[c]->bindRenderBuffer(1, Fbo::BIND_DEPTHBUFFER, APP_FBOSIZEX, APP_FBOSIZEY);
+       if (!fbo[c]->isOk())
+           std::cout << "[ERROR] Invalid FBO" << std::endl;
+   }
+   Fbo::disable();
+   glViewport(0, 0, prevViewport[2], prevViewport[3]);
+   ////////////////////////////////////////////////////////
+
+
+
    glutDisplayFunc([]() {});
    glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height); });
    if (closeCallBack != nullptr) glutCloseFunc(closeCallBack);
@@ -278,7 +320,7 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    glEnable(GL_LIGHTING);
    glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 1.0f);
    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, glm::value_ptr(gAmbient));
-   //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); WIREFRAME
+   //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //WIREFRAME
 
    FreeImage_Initialise();
 
@@ -334,13 +376,35 @@ void ENG_API Eng::Base::clearScene() {
  * passing all node of the scene and save them into a list
  */
 void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const std::list<std::string>& menu) {
-    if (mainCamera == nullptr) 
+    GLint prevViewport[4];
+    glGetIntegerv(GL_VIEWPORT, prevViewport);
+
+    if (mainCamera == nullptr)
         return;
-    mainCamera->render();
-    this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
+    for (int c = 0; c < EYE_LAST; c++)
+    {
+        fbo[c]->render();
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        mainCamera->render();
+        this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
+    }
+    
+
+
+    Fbo::disable();
+    glViewport(0, 0, prevViewport[2], prevViewport[3]);
+
 
     if (menuCamera == nullptr || menu.empty())
         return;
+
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
+    glBlitFramebuffer(0, 0, APP_FBOSIZEX, APP_FBOSIZEY, 0, 0, APP_FBOSIZEX, APP_FBOSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[1]->getHandle());
+    glBlitFramebuffer(100, 0, APP_FBOSIZEX, APP_FBOSIZEY, APP_FBOSIZEX, 0, APP_WINDOWSIZEX, APP_FBOSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+
     this->reserved->textManager.displayText(menu, menuCamera);
     this->reserved->textManager.displayFPS(this->getFPS(), menuCamera);
 }
@@ -390,3 +454,6 @@ bool ENG_API Eng::Base::free()
    return true;
 }
 
+ENG_API Fbo* Eng::Base::getCurrent(int numEye) {
+    return fbo[numEye];
+}
