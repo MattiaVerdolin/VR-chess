@@ -393,14 +393,52 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
 
     for (int c = 0; c < EYE_LAST; c++)
     {
+        // Get OpenVR matrices:
+        OvVR::OvEye curEye = (OvVR::OvEye)c;
+        glm::mat4 projMat = ovr->getProjMatrix(curEye, 1.0f, 1024.0f);
+        glm::mat4 eye2Head = ovr->getEye2HeadMatrix(curEye);
+
+        // Update camera projection matrix:
+        glm::mat4 ovrProjMat = projMat * glm::inverse(eye2Head);
+#ifdef APP_VERBOSE   
+        std::cout << "Eye " << c << " proj matrix: " << glm::to_string(ovrProjMat) << std::endl;
+#endif
+
+        // Update camera modelview matrix:
+        glm::mat4 ovrModelViewMat = glm::inverse(headPos); // Inverted because this is the camera matrix
+#ifdef APP_VERBOSE   
+        std::cout << "Eye " << c << " modelview matrix: " << glm::to_string(ovrModelViewMat) << std::endl;
+#endif
+
         fbo[c]->render();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         mainCamera->render();
         this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
+
+        ////////////////
+      // 3D rendering:                    
+
+      // Setup params for the PPL shader:
+        shader->render();
+        shader->setMatrix(projLoc, ovrProjMat);
+        shader->setMatrix(mvLoc, ovrModelViewMat);
+        glm::mat3 normalMatrix = glm::inverseTranspose(glm::mat3(ovrModelViewMat));
+        shader->setMatrix3(normalMatLoc, normalMatrix);
+
+        // Set light pos:
+        shader->setVec3(lightPositionLoc, glm::vec3(ovrModelViewMat * glm::vec4(lightPos, 1.0f))); // Light position in eye coordinates!
+
+        // Render plane:
+        glBindTexture(GL_TEXTURE_2D, texId);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+        // Send rendered image to the proper OpenVR eye:      
+        ovr->pass(curEye, fboTexId[c]);
     }
     
-
+    // Update internal OpenVR settings:
+    ovr->render();
 
     Fbo::disable();
     glViewport(0, 0, prevViewport[2], prevViewport[3]);

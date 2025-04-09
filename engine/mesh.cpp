@@ -191,13 +191,7 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
         // Render plane:       
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, faceIndices.size(), GL_UNSIGNED_INT, nullptr);
-        glBindVertexArray(0);
-
-   
-
-
-
-    
+        glBindVertexArray(0);   
 
    /* if (this->m_material != nullptr) {
         this->m_material->setDisableTexture();
