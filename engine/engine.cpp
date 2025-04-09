@@ -31,8 +31,7 @@
     #include <source_location>
     #include <chrono>
 
-#include "shader.h"
-
+	#include "shader.h"
 
 
 /////////////////////////
@@ -262,10 +261,12 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
        std::cout << "Version error" << std::endl;
    }
 
-
-  
-
-
+   // INIT OPENVR
+   ovr = new OvVR();
+   if (!ovr->init()) {
+       std::cerr << "[ERROR] OpenVR initialization failed." << std::endl;
+       return false;
+   }
 
    // Compile vertex shader:
    vs = new Shader();
@@ -286,11 +287,14 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    GLint prevViewport[4];
    glGetIntegerv(GL_VIEWPORT, prevViewport);
 
+   unsigned int fboWidth = ovr->getHmdIdealHorizRes();
+   unsigned int fboHeight = ovr->getHmdIdealVertRes();
+
    for (int c = 0; c < EYE_LAST; c++)
    {
        glGenTextures(1, &fboTexId[c]);
        glBindTexture(GL_TEXTURE_2D, fboTexId[c]);
-       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, APP_FBOSIZEX, APP_FBOSIZEY, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fboWidth, fboHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -376,11 +380,17 @@ void ENG_API Eng::Base::clearScene() {
  * passing all node of the scene and save them into a list
  */
 void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const std::list<std::string>& menu) {
+
     GLint prevViewport[4];
     glGetIntegerv(GL_VIEWPORT, prevViewport);
 
     if (mainCamera == nullptr)
         return;
+
+    // Update user position:
+    ovr->update();
+    glm::mat4 headPos = ovr->getModelviewMatrix();
+
     for (int c = 0; c < EYE_LAST; c++)
     {
         fbo[c]->render();
@@ -451,6 +461,13 @@ bool ENG_API Eng::Base::free()
    delete shader;
    delete fs;
    delete vs;
+
+   if (ovr) {
+       ovr->free();
+       delete ovr;
+       ovr = nullptr;
+   }
+
    return true;
 }
 

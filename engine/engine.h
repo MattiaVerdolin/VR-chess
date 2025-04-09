@@ -25,6 +25,7 @@
 #include "node.h"
 #include "camera.h"
 #include "fbo.h"
+#include "ovr.h"
 
 
 /////////////
@@ -206,6 +207,8 @@ private:
    Shader* vs = nullptr;
    Shader* fs = nullptr;
    Shader* shader = nullptr;
+
+   OvVR* ovr = nullptr;
 
    // Enums:
    enum Eye
