@@ -224,6 +224,7 @@ private:
    unsigned int fboTexId[EYE_LAST] = { 0, 0 };
 
    Fbo* fbo[EYE_LAST] = { nullptr, nullptr };
+
 };
 
 }; // end of namespace Eng::

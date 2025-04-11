@@ -1,4 +1,5 @@
 #include "mesh.h"
+#include "ovr.h"
 #include <map>
 
 #include "GL/glew.h"
@@ -177,6 +178,11 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
 
         ////////////////
         // 3D rendering:
+    /*
+        Shader::getCurrent()->setMatrix(Shader::getCurrent()->getParamLocation("modelview"), matrix);
+        glm::mat3 normalMatrix = glm::transpose(glm::inverse(matrix));
+        Shader::getCurrent()->setMatrix3(Shader::getCurrent()->getParamLocation("normalMatrix"), normalMatrix);
+        */
 
         Shader::getCurrent()->setMatrix(Shader::getCurrent()->getParamLocation("modelview"), matrix);
         glm::mat3 normalMatrix = glm::transpose(glm::inverse(matrix));
@@ -187,6 +193,10 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
         Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matDiffuse"), this->getMaterial()->getDiffuse());
         Shader::getCurrent()->setVec3(Shader::getCurrent()->getParamLocation("matSpecular"), this->getMaterial()->getSpecular());
         Shader::getCurrent()->setFloat(Shader::getCurrent()->getParamLocation("matShininess"), this->getMaterial()->getShininess());
+
+
+        
+
 
         // Render plane:       
         glBindVertexArray(VAO);

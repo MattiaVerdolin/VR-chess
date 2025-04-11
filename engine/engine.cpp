@@ -249,6 +249,9 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
    reserved->windowId = glutCreateWindow("3D Chessboard Game");
 
+   std::cout << glGetString(GL_VENDOR) << std::endl;
+   std::cout << glGetString(GL_RENDERER) << std::endl;
+
    //GLEW INIT
    GLenum err = glewInit();
    if (err != GLEW_OK)
@@ -320,10 +323,6 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
 
    glEnable(GL_DEPTH_TEST);
    glEnable(GL_CULL_FACE);
-   glEnable(GL_NORMALIZE);
-   glEnable(GL_LIGHTING);
-   glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 1.0f);
-   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, glm::value_ptr(gAmbient));
    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //WIREFRAME
 
    FreeImage_Initialise();
@@ -381,11 +380,14 @@ void ENG_API Eng::Base::clearScene() {
  */
 void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const std::list<std::string>& menu) {
 
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     GLint prevViewport[4];
     glGetIntegerv(GL_VIEWPORT, prevViewport);
 
     if (mainCamera == nullptr)
         return;
+
 
     // Update user position:
     ovr->update();
@@ -414,24 +416,7 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         mainCamera->render();
-        this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
-
-        ////////////////
-      // 3D rendering:                    
-
-      // Setup params for the PPL shader:
-        shader->render();
-        shader->setMatrix(projLoc, ovrProjMat);
-        shader->setMatrix(mvLoc, ovrModelViewMat);
-        glm::mat3 normalMatrix = glm::inverseTranspose(glm::mat3(ovrModelViewMat));
-        shader->setMatrix3(normalMatLoc, normalMatrix);
-
-        // Set light pos:
-        shader->setVec3(lightPositionLoc, glm::vec3(ovrModelViewMat * glm::vec4(lightPos, 1.0f))); // Light position in eye coordinates!
-
-        // Render plane:
-        glBindTexture(GL_TEXTURE_2D, texId);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        this->reserved->listOfScene.renderElements(ovrModelViewMat);
 
         // Send rendered image to the proper OpenVR eye:      
         ovr->pass(curEye, fboTexId[c]);
@@ -455,6 +440,7 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
 
     this->reserved->textManager.displayText(menu, menuCamera);
     this->reserved->textManager.displayFPS(this->getFPS(), menuCamera);
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
