@@ -222,6 +222,8 @@ private:
 
    unsigned int texId = 0;
    unsigned int fboTexId[EYE_LAST] = { 0, 0 };
+   unsigned int fboWidth = 0;
+   unsigned int fboHeight = 0;
 
    Fbo* fbo[EYE_LAST] = { nullptr, nullptr };
 

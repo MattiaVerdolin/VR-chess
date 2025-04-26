@@ -45,8 +45,8 @@
  // Window size:
 #define APP_WINDOWSIZEX   1024
 #define APP_WINDOWSIZEY   512
-#define APP_FBOSIZEX      APP_WINDOWSIZEX / 2
-#define APP_FBOSIZEY      APP_WINDOWSIZEY / 1
+//#define APP_FBOSIZEX      APP_WINDOWSIZEX / 2
+//#define APP_FBOSIZEY      APP_WINDOWSIZEY / 1
 
 
 
@@ -290,8 +290,8 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    GLint prevViewport[4];
    glGetIntegerv(GL_VIEWPORT, prevViewport);
 
-   unsigned int fboWidth = ovr->getHmdIdealHorizRes();
-   unsigned int fboHeight = ovr->getHmdIdealVertRes();
+   fboWidth = ovr->getHmdIdealHorizRes();
+   fboHeight = ovr->getHmdIdealVertRes();
 
    for (int c = 0; c < EYE_LAST; c++)
    {
@@ -305,7 +305,7 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
 
        fbo[c] = new Fbo();
        fbo[c]->bindTexture(0, Fbo::BIND_COLORTEXTURE, fboTexId[c]);
-       fbo[c]->bindRenderBuffer(1, Fbo::BIND_DEPTHBUFFER, APP_FBOSIZEX, APP_FBOSIZEY);
+       fbo[c]->bindRenderBuffer(1, Fbo::BIND_DEPTHBUFFER, fboWidth, fboHeight);
        if (!fbo[c]->isOk())
            std::cout << "[ERROR] Invalid FBO" << std::endl;
    }
@@ -388,37 +388,54 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
     if (mainCamera == nullptr)
         return;
 
-
     // Update user position:
     ovr->update();
     glm::mat4 headPos = ovr->getModelviewMatrix();
 
+    // Offset
+    float eyeHeight = -12.5f;
+    glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, -eyeHeight, 0));
+
+    // 2) Offset orizzontale
+    float offsetX = 5.0f;  // sposta camera di +5 unità a sinistra
+    float offsetZ = -5.0f;  // sposta camera di -5 unità all’indietro
+    glm::mat4 horizontalOffset = glm::translate(
+        glm::mat4(1.0f),
+        glm::vec3(-offsetX, 0.0f, -offsetZ)
+    );
+
+    float yawDegrees = 290.0f;
+    glm::mat4 rotationOffset =  glm::rotate(glm::mat4(1.0f), glm::radians(yawDegrees), glm::vec3(0, 1, 0));
+
     for (int c = 0; c < EYE_LAST; c++)
     {
-        // Get OpenVR matrices:
+        // OpenVR matrices
         OvVR::OvEye curEye = (OvVR::OvEye)c;
-        glm::mat4 projMat = ovr->getProjMatrix(curEye, 1.0f, 1024.0f);
+        glm::mat4 projMat = ovr->getProjMatrix(curEye, 0.01f, 100.0f);
         glm::mat4 eye2Head = ovr->getEye2HeadMatrix(curEye);
 
-        // Update camera projection matrix:
+        // Projection
         glm::mat4 ovrProjMat = projMat * glm::inverse(eye2Head);
-#ifdef APP_VERBOSE   
-        std::cout << "Eye " << c << " proj matrix: " << glm::to_string(ovrProjMat) << std::endl;
+        
+        glm::mat4 ovrModelViewMat = glm::inverse(horizontalOffset * floorOffset * rotationOffset * headPos);
+
+        // Se vuoi debug:
+#ifdef APP_VERBOSE
+        std::cout << "Eye " << c
+            << " modelview matrix: "
+            << glm::to_string(ovrModelViewMat)
+            << std::endl;
 #endif
 
-        // Update camera modelview matrix:
-        glm::mat4 ovrModelViewMat = glm::inverse(headPos); // Inverted because this is the camera matrix
-#ifdef APP_VERBOSE   
-        std::cout << "Eye " << c << " modelview matrix: " << glm::to_string(ovrModelViewMat) << std::endl;
-#endif
-
+        // render nel FBO
         fbo[c]->render();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        // disegna la scena con la view modificata
         mainCamera->render();
         this->reserved->listOfScene.renderElements(ovrModelViewMat);
 
-        // Send rendered image to the proper OpenVR eye:      
+        // invia la texture all'occhio OpenVR
         ovr->pass(curEye, fboTexId[c]);
     }
     
@@ -433,14 +450,13 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
         return;
 
     glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
-    glBlitFramebuffer(0, 0, APP_FBOSIZEX, APP_FBOSIZEY, 0, 0, APP_FBOSIZEX, APP_FBOSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+    glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0, APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
     glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[1]->getHandle());
-    glBlitFramebuffer(100, 0, APP_FBOSIZEX, APP_FBOSIZEY, APP_FBOSIZEX, 0, APP_WINDOWSIZEX, APP_FBOSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+    glBlitFramebuffer(0, 0, fboWidth, fboHeight, APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
     this->reserved->textManager.displayText(menu, menuCamera);
     this->reserved->textManager.displayFPS(this->getFPS(), menuCamera);
-
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
