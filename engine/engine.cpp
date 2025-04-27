@@ -30,6 +30,10 @@
     #include <iostream>
     #include <source_location>
     #include <chrono>
+    #include <fstream>
+    #include <string>
+
+
 
 	#include "shader.h"
 
@@ -64,10 +68,12 @@ struct Eng::Base::Reserved
 
    TextManager& textManager;
 
+   bool vrEnabled;
+
    /**
     * Constructor.
     */
-   Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{ FileOVOReader::getInstance() }, listOfScene{List()}, notificationService{NotificationService::getInstance()},
+   Reserved() : windowId{ -1 }, initFlag{ false }, vrEnabled{ false }, fileOVOReader{ FileOVOReader::getInstance() }, listOfScene{List()}, notificationService{NotificationService::getInstance()},
        textManager{TextManager::getInstance()}
    {}
 };
@@ -108,6 +114,26 @@ ENG_API Eng::Base::~Base()
 #ifdef _DEBUG
    std::cout << "[-] " << std::source_location::current().function_name() << " invoked" << std::endl;
 #endif
+}
+
+
+bool ENG_API Eng::Base::loadVRModeFromConfig() {
+    std::ifstream configFile("../config.txt");
+    if (!configFile.is_open()) {
+        std::cerr << "[WARN] Impossibile aprire config.txt. Modalità VR disattivata." << std::endl;
+        return false;
+    }
+
+    std::string line;
+    while (std::getline(configFile, line)) {
+        if (line.find("mode=vr") != std::string::npos)
+            return true;
+        else if (line.find("mode=standard") != std::string::npos)
+            return false;
+    }
+
+    std::cerr << "[WARN] Modalità non specificata correttamente. Default: standard." << std::endl;
+    return false;
 }
 
 
@@ -234,6 +260,8 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
       return false;
    }
 
+   reserved->vrEnabled = loadVRModeFromConfig();
+
    //PER ORA
    int argc = 1;
    char* argv[1] = { const_cast<char*>("Engine") };
@@ -265,10 +293,12 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    }
 
    // INIT OPENVR
-   ovr = new OvVR();
-   if (!ovr->init()) {
-       std::cerr << "[ERROR] OpenVR initialization failed." << std::endl;
-       return false;
+   if (reserved->vrEnabled) {
+       ovr = new OvVR();
+       if (!ovr->init()) {
+           std::cerr << "[ERROR] OpenVR initialization failed." << std::endl;
+           return false;
+       }
    }
 
    // Compile vertex shader:
@@ -287,30 +317,32 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    shader->bind(1, "in_Normal");
 
    ///////////////////////////////////////////////////////Fbo init()
-   GLint prevViewport[4];
-   glGetIntegerv(GL_VIEWPORT, prevViewport);
+   if (reserved->vrEnabled) {
+       GLint prevViewport[4];
+       glGetIntegerv(GL_VIEWPORT, prevViewport);
 
-   fboWidth = ovr->getHmdIdealHorizRes();
-   fboHeight = ovr->getHmdIdealVertRes();
+       fboWidth = ovr->getHmdIdealHorizRes();
+       fboHeight = ovr->getHmdIdealVertRes();
 
-   for (int c = 0; c < EYE_LAST; c++)
-   {
-       glGenTextures(1, &fboTexId[c]);
-       glBindTexture(GL_TEXTURE_2D, fboTexId[c]);
-       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fboWidth, fboHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-       glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-       glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+       for (int c = 0; c < EYE_LAST; c++)
+       {
+           glGenTextures(1, &fboTexId[c]);
+           glBindTexture(GL_TEXTURE_2D, fboTexId[c]);
+           glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fboWidth, fboHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+           glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+           glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+           glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+           glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-       fbo[c] = new Fbo();
-       fbo[c]->bindTexture(0, Fbo::BIND_COLORTEXTURE, fboTexId[c]);
-       fbo[c]->bindRenderBuffer(1, Fbo::BIND_DEPTHBUFFER, fboWidth, fboHeight);
-       if (!fbo[c]->isOk())
-           std::cout << "[ERROR] Invalid FBO" << std::endl;
+           fbo[c] = new Fbo();
+           fbo[c]->bindTexture(0, Fbo::BIND_COLORTEXTURE, fboTexId[c]);
+           fbo[c]->bindRenderBuffer(1, Fbo::BIND_DEPTHBUFFER, fboWidth, fboHeight);
+           if (!fbo[c]->isOk())
+               std::cout << "[ERROR] Invalid FBO" << std::endl;
+       }
+       Fbo::disable();
+       glViewport(0, 0, prevViewport[2], prevViewport[3]);
    }
-   Fbo::disable();
-   glViewport(0, 0, prevViewport[2], prevViewport[3]);
    ////////////////////////////////////////////////////////
 
 
@@ -389,71 +421,78 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
         return;
 
     // Update user position:
-    ovr->update();
-    glm::mat4 headPos = ovr->getModelviewMatrix();
+    if (reserved->vrEnabled) {
 
-    // Offset
-    float eyeHeight = -12.5f;
-    glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, -eyeHeight, 0));
+        ovr->update();
+        glm::mat4 headPos = ovr->getModelviewMatrix();
 
-    // 2) Offset orizzontale
-    float offsetX = 5.0f;  // sposta camera di +5 unità a sinistra
-    float offsetZ = -5.0f;  // sposta camera di -5 unità all’indietro
-    glm::mat4 horizontalOffset = glm::translate(
-        glm::mat4(1.0f),
-        glm::vec3(-offsetX, 0.0f, -offsetZ)
-    );
+        // Offset
+        float eyeHeight = -12.5f;
+        glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, -eyeHeight, 0));
 
-    float yawDegrees = 290.0f;
-    glm::mat4 rotationOffset =  glm::rotate(glm::mat4(1.0f), glm::radians(yawDegrees), glm::vec3(0, 1, 0));
+        // 2) Offset orizzontale
+        float offsetX = 5.0f;  // sposta camera di +5 unità a sinistra
+        float offsetZ = -5.0f;  // sposta camera di -5 unità all’indietro
+        glm::mat4 horizontalOffset = glm::translate(
+            glm::mat4(1.0f),
+            glm::vec3(-offsetX, 0.0f, -offsetZ)
+        );
 
-    for (int c = 0; c < EYE_LAST; c++)
-    {
-        // OpenVR matrices
-        OvVR::OvEye curEye = (OvVR::OvEye)c;
-        glm::mat4 projMat = ovr->getProjMatrix(curEye, 0.01f, 100.0f);
-        glm::mat4 eye2Head = ovr->getEye2HeadMatrix(curEye);
+        float yawDegrees = 290.0f;
+        glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f), glm::radians(yawDegrees), glm::vec3(0, 1, 0));
 
-        // Projection
-        glm::mat4 ovrProjMat = projMat * glm::inverse(eye2Head);
-        
-        glm::mat4 ovrModelViewMat = glm::inverse(horizontalOffset * floorOffset * rotationOffset * headPos);
+        for (int c = 0; c < EYE_LAST; c++)
+        {
+            // OpenVR matrices
+            OvVR::OvEye curEye = (OvVR::OvEye)c;
+            glm::mat4 projMat = ovr->getProjMatrix(curEye, 0.01f, 100.0f);
+            glm::mat4 eye2Head = ovr->getEye2HeadMatrix(curEye);
 
-        // Se vuoi debug:
+            // Projection
+            glm::mat4 ovrProjMat = projMat * glm::inverse(eye2Head);
+
+            glm::mat4 ovrModelViewMat = glm::inverse(horizontalOffset * floorOffset * rotationOffset * headPos);
+
+            // Se vuoi debug:
 #ifdef APP_VERBOSE
-        std::cout << "Eye " << c
-            << " modelview matrix: "
-            << glm::to_string(ovrModelViewMat)
-            << std::endl;
+            std::cout << "Eye " << c
+                << " modelview matrix: "
+                << glm::to_string(ovrModelViewMat)
+                << std::endl;
 #endif
 
-        // render nel FBO
-        fbo[c]->render();
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            // render nel FBO
+            fbo[c]->render();
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // disegna la scena con la view modificata
-        mainCamera->render();
-        this->reserved->listOfScene.renderElements(ovrModelViewMat);
+            // disegna la scena con la view modificata
+            mainCamera->render();
+            this->reserved->listOfScene.renderElements(ovrModelViewMat);
 
-        // invia la texture all'occhio OpenVR
-        ovr->pass(curEye, fboTexId[c]);
+            // invia la texture all'occhio OpenVR
+            ovr->pass(curEye, fboTexId[c]);
+        }
+
+        // Update internal OpenVR settings:
+        ovr->render();
+
+        Fbo::disable();
+        glViewport(0, 0, prevViewport[2], prevViewport[3]);
+
+
+        if (menuCamera == nullptr || menu.empty())
+            return;
+
+        glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
+        glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0, APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+
+        glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[1]->getHandle());
+        glBlitFramebuffer(0, 0, fboWidth, fboHeight, APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
     }
-    
-    // Update internal OpenVR settings:
-    ovr->render();
-
-    Fbo::disable();
-    glViewport(0, 0, prevViewport[2], prevViewport[3]);
-
-
-    if (menuCamera == nullptr || menu.empty())
-        return;
-
-    glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
-    glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0, APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
-
-    glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[1]->getHandle());
-    glBlitFramebuffer(0, 0, fboWidth, fboHeight, APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+    else {
+        mainCamera->render();
+        this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
+    }
 
     this->reserved->textManager.displayText(menu, menuCamera);
     this->reserved->textManager.displayFPS(this->getFPS(), menuCamera);

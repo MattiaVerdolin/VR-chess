@@ -176,6 +176,8 @@ public: //
     */
    void end3D();
 
+   bool loadVRModeFromConfig();
+
    /**
     * @brief Swap the buffers for rendering.
     */
