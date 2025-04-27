@@ -26,6 +26,14 @@
 #include "notificationService.h"
 #include "changeMatrixListener.h"
 
+/**
+ * @brief Elemento di rendering: nodo + world-matrix.
+ */
+struct RenderItem {
+    Node* node;       // puntatore al nodo
+    glm::mat4    matrix;     // trasformazione finale
+};
+
 /////////////////////
 // MAIN LIST CLASS //
 /////////////////////
@@ -83,12 +91,20 @@ public:
      */
     void renderElements(const glm::mat4& cameraInverseFinalMatrixr) const;
 
+    void renderElements(const glm::mat4& cameraInverseFinalMatrixr, const glm::vec4 planes[6]) const;
+
     /**
      * @brief Gets the number of elements in the list.
      *
      * @return The number of elements currently in the list.
      */
     const unsigned int getNumberOfElementsInList() const;
+
+    /**
+         * @brief Ritorna una lista di RenderItem pronti per il rendering.
+         * @note Viene restituita una copia perché incapsuliamo la struttura interna.
+         */
+    std::vector<RenderItem> getRenderItems() const;
 
 private:
     /**

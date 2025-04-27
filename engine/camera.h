@@ -101,6 +101,8 @@ public:
      */
     const glm::mat4 getInverseCameraFinalMatrix() const;
 
+    const glm::mat4 getProjectionMatrix() const;
+
     /**
      * @brief Set the camera as the main camera.
      *

@@ -52,12 +52,40 @@ void ENG_API List::clearList() {
 }
 
 void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix) const {
-
 	glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
-	for (const auto* reservedRow : this->m_listOfReservedToRender) 
-		reservedRow->r_node->render(cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
-	
-		
+	for (const auto* r : m_listOfReservedToRender)
+		r->r_node->render(cameraInverseFinalMatrix * r->r_nodeFinalMatrix);
+	Light::resetLightCounter();
+}
+
+
+void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix, const glm::vec4 planes[6]) const
+{
+	glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
+
+	for (const auto* r : m_listOfReservedToRender)
+	{
+		Node* node = dynamic_cast<Node*>(r->r_node);
+		glm::mat4 modelMat = r->r_nodeFinalMatrix;
+		glm::mat4 mvp = cameraInverseFinalMatrix * modelMat;
+
+		// Se è una Mesh, facciamo il test sphere-frustum
+		if (auto mesh = dynamic_cast<Mesh*>(node)) {
+			// trasforma centro modello -> view space
+			glm::vec3 centerVS = glm::vec3(mvp * glm::vec4(mesh->getBoundingCenter(), 1.0f));
+			float radius = mesh->getBoundingRadius();
+			bool inside = true;
+			for (int i = 0; i < 6; ++i) {
+				float d = glm::dot(glm::vec3(planes[i]), centerVS) + planes[i].w;
+				if (d < -radius) { inside = false; break; }
+			}
+			if (!inside)
+				continue;   // skip rendering
+		}
+
+		node->render(mvp);
+	}
+
 	Light::resetLightCounter();
 }
 
@@ -69,6 +97,18 @@ void ENG_API List::resetListAndFreeMemory() {
 	for (auto* element : this->m_listOfReservedToRender)
 		delete element;
 	this->m_listOfReservedToRender.clear();
+}
+
+std::vector<RenderItem> ENG_API List::getRenderItems() const {
+	std::vector<RenderItem> items;
+	items.reserve(m_listOfReservedToRender.size());
+	for (auto* r : m_listOfReservedToRender) {
+		RenderItem elem;
+		elem.node = dynamic_cast<Node*>(r->r_node);
+		elem.matrix = r->r_nodeFinalMatrix;
+		items.push_back(elem);
+	}
+	return items;
 }
 
 void ENG_API List::onMatrixChange(const unsigned int& nodeChangedID) {

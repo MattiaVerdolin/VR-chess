@@ -23,7 +23,7 @@
     #include "GL/freeglut.h"
     #include "fileOVOReader.h"
     #include "list.h"
-
+    #include "mesh.h"
     #include "FreeImage.h"
 
    // C/C++:
@@ -406,94 +406,133 @@ void ENG_API Eng::Base::clearScene() {
     this->reserved->listOfScene.clearList();
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * passing all node of the scene and save them into a list
- */
-void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const std::list<std::string>& menu) {
+// Estrae i 6 piani dal clip-matrix (proj * view)
+static void extractFrustumPlanes(const glm::mat4& clip, glm::vec4 planes[6]) {
+    planes[0] = clip[3] + clip[0]; // LEFT
+    planes[1] = clip[3] - clip[0]; // RIGHT
+    planes[2] = clip[3] + clip[1]; // BOTTOM
+    planes[3] = clip[3] - clip[1]; // TOP
+    planes[4] = clip[3] + clip[2]; // NEAR
+    planes[5] = clip[3] - clip[2]; // FAR
+    for (int i = 0; i < 6; ++i) {
+        float length = glm::length(glm::vec3(planes[i]));
+        planes[i] /= length;
+    }
+}
 
+// Test sphere-frustum
+static bool sphereInFrustum(const glm::vec4 planes[6],
+    const glm::vec3& center, float radius) {
+    for (int i = 0; i < 6; ++i) {
+        float dist = glm::dot(glm::vec3(planes[i]), center) + planes[i].w;
+        if (dist < -radius) return false;
+    }
+    return true;
+}
+
+////////////////////////////
+// Eng::Base::begin3D()   //
+////////////////////////////
+void ENG_API Eng::Base::begin3D(Camera* mainCamera,
+    Camera* menuCamera,
+    const std::list<std::string>& menu)
+{
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // Salva viewport corrente
     GLint prevViewport[4];
     glGetIntegerv(GL_VIEWPORT, prevViewport);
 
     if (mainCamera == nullptr)
         return;
 
-    // Update user position:
+    /////////////////////////////
+    // 1) Rendering in VR-mode //
+    /////////////////////////////
     if (reserved->vrEnabled) {
-
         ovr->update();
         glm::mat4 headPos = ovr->getModelviewMatrix();
 
-        // Offset
-        float eyeHeight = -12.5f;
-        glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, -eyeHeight, 0));
+        // Offsets e trasformazioni base
+        glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, -12.5f, 0));
+        glm::mat4 horizontalOffset = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, 0.0f, -5.0f));
+        glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f),
+            glm::radians(290.0f),
+            glm::vec3(0, 1, 0));
 
-        // 2) Offset orizzontale
-        float offsetX = 5.0f;  // sposta camera di +5 unità a sinistra
-        float offsetZ = -5.0f;  // sposta camera di -5 unità all’indietro
-        glm::mat4 horizontalOffset = glm::translate(
-            glm::mat4(1.0f),
-            glm::vec3(-offsetX, 0.0f, -offsetZ)
-        );
+        for (int c = 0; c < EYE_LAST; ++c) {
+            auto eye = static_cast<OvVR::OvEye>(c);
+            glm::mat4 projMat = ovr->getProjMatrix(eye, 0.01f, 100.0f);
+            glm::mat4 viewMat = glm::inverse(horizontalOffset * floorOffset * rotationOffset * headPos);
+            glm::mat4 clip = projMat * viewMat;
 
-        float yawDegrees = 290.0f;
-        glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f), glm::radians(yawDegrees), glm::vec3(0, 1, 0));
+            // Estrazione piani frustum per l'occhio c
+            glm::vec4 planes[6];
+            extractFrustumPlanes(clip, planes);
 
-        for (int c = 0; c < EYE_LAST; c++)
-        {
-            // OpenVR matrices
-            OvVR::OvEye curEye = (OvVR::OvEye)c;
-            glm::mat4 projMat = ovr->getProjMatrix(curEye, 0.01f, 100.0f);
-            glm::mat4 eye2Head = ovr->getEye2HeadMatrix(curEye);
-
-            // Projection
-            glm::mat4 ovrProjMat = projMat * glm::inverse(eye2Head);
-
-            glm::mat4 ovrModelViewMat = glm::inverse(horizontalOffset * floorOffset * rotationOffset * headPos);
-
-            // Se vuoi debug:
-#ifdef APP_VERBOSE
-            std::cout << "Eye " << c
-                << " modelview matrix: "
-                << glm::to_string(ovrModelViewMat)
-                << std::endl;
-#endif
-
-            // render nel FBO
+            // Rendering in FBO
             fbo[c]->render();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            // disegna la scena con la view modificata
-            mainCamera->render();
-            this->reserved->listOfScene.renderElements(ovrModelViewMat);
+            // Sphere-culling + render scena
+            auto renderItems = reserved->listOfScene.getRenderItems();
+            for (const auto& it : renderItems) {
+                Node* node = it.node;
+                glm::mat4 modelMat = it.matrix;
+                glm::mat4 mvp = viewMat * modelMat;
 
-            // invia la texture all'occhio OpenVR
-            ovr->pass(curEye, fboTexId[c]);
+                if (auto mesh = dynamic_cast<Mesh*>(node)) {
+                    glm::vec3 centerVS = glm::vec3(mvp * glm::vec4(mesh->getBoundingCenter(), 1.0f));
+                    if (!sphereInFrustum(planes, centerVS, mesh->getBoundingRadius()))
+                        continue;
+                }
+                node->render(mvp);
+            }
+
+            // Pass texture rendere a HMD
+            ovr->pass(eye, fboTexId[c]);
         }
 
-        // Update internal OpenVR settings:
+        // Composizione e restore
         ovr->render();
-
         Fbo::disable();
         glViewport(0, 0, prevViewport[2], prevViewport[3]);
 
-
-        if (menuCamera == nullptr || menu.empty())
-            return;
-
-        glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
-        glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0, APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
-
-        glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[1]->getHandle());
-        glBlitFramebuffer(0, 0, fboWidth, fboHeight, APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+        // Se menu presente, blit su schermo
+        if (menuCamera && !menu.empty()) {
+            glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
+            glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0,
+                APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY,
+                GL_COLOR_BUFFER_BIT, GL_NEAREST);
+            glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[1]->getHandle());
+            glBlitFramebuffer(0, 0, fboWidth, fboHeight,
+                APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY,
+                GL_COLOR_BUFFER_BIT, GL_NEAREST);
+        }
     }
+    /////////////////////////////////
+    // 2) Rendering in standard-mode
+    /////////////////////////////////
     else {
+        // Calcolo view e projection
+        glm::mat4 viewMat = mainCamera->getInverseCameraFinalMatrix();
+        glm::mat4 projMat = mainCamera->getProjectionMatrix();
+        glm::mat4 clip = projMat * viewMat;
+
+        // Estraggo piani del frustum
+        glm::vec4 planes[6];
+        extractFrustumPlanes(clip, planes);
+
+        // Draw camera
         mainCamera->render();
-        this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
+
+        // Sphere-culling + draw scene
+        reserved->listOfScene.renderElements(viewMat, planes);
     }
 
+    /////////////////////////////
+    // 3) Overlay testo e FPS  //
+    /////////////////////////////
     this->reserved->textManager.displayText(menu, menuCamera);
     this->reserved->textManager.displayFPS(this->getFPS(), menuCamera);
 }

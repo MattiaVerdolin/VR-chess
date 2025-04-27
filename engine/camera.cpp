@@ -16,6 +16,10 @@ const ENG_API glm::mat4 Camera::getInverseCameraFinalMatrix() const {
 	return glm::inverse(this->getFinalMatrix());
 }
 
+const ENG_API glm::mat4 Camera::getProjectionMatrix() const {
+	return this->m_projectionMatrix;
+}
+
 void ENG_API Camera::setMainCamera(const bool& val){
 	this->m_isCurrentCamera = val;
 }

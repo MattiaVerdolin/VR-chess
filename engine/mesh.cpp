@@ -105,6 +105,14 @@ ENG_API std::vector<glm::vec3> Mesh::getVertices() {
     return vertices;
 }
 
+ENG_API glm::vec3 Mesh::getBoundingCenter() {
+    return this->boundingCenter;
+}
+
+ENG_API float Mesh::getBoundingRadius() {
+    return this->boundingRadius;
+}
+
 void Mesh::setupMesh() {
     glBindVertexArray(VAO);
 
@@ -214,6 +222,22 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
         glEnable(GL_LIGHTING);
 }
 
+ENG_API void Mesh::computeBoundingSphere() {
+    auto verts = getVertices();
+
+    glm::vec3 c(0.0f);
+    for (auto& v : verts) 
+        c += v;
+    c /= float(verts.size());
+
+    float r = 0.0f;
+    for (auto& v : verts)
+        r = std::max(r, glm::length(v - c));
+
+    boundingCenter = c;
+    boundingRadius = r;
+}
+
 const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position) {
 	const unsigned int& children = Node::parse(data, position);
 
@@ -313,6 +337,8 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
     }
 
     this->setupMesh();
+
+    this->computeBoundingSphere();
 
 	return children;
 }

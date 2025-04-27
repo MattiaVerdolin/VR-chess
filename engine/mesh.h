@@ -79,13 +79,16 @@ public:
      */
     std::vector<glm::vec3> getVertices();
 
-
-
-
     /**
      * @brief Destructor for the Mesh class.
      */
     ~Mesh();
+
+    void computeBoundingSphere();
+
+    glm::vec3 getBoundingCenter();
+
+    float getBoundingRadius();
 
 private:
     /**
@@ -106,6 +109,8 @@ private:
     std::vector<glm::vec3> coorVertices;
     std::vector<glm::vec3> normalVertices;
     std::vector<glm::vec2> uvVertices;
+    glm::vec3 boundingCenter;
+    float boundingRadius;
 
     void setupMesh();
 };
