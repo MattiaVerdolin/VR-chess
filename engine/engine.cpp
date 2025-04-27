@@ -30,6 +30,7 @@
     #include <iostream>
     #include <source_location>
     #include <chrono>
+#include <LeapC.h>
 
 #include "shader.h"
 
@@ -343,6 +344,78 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
         return;
     this->reserved->textManager.displayText(menu, menuCamera);
     this->reserved->textManager.displayFPS(this->getFPS(), menuCamera);
+
+    leapCallback();
+}
+
+void ENG_API Eng::Base::leapCallback()
+{
+
+    // Update Leap Motion status:
+    leap->update();
+    const LEAP_TRACKING_EVENT* l = leap->getCurFrame();
+
+    // Vettore per salvare stato della presa per ogni mano
+    std::vector<PinchData> handsPinchData;
+    handsPinchData.resize(l->nHands);
+
+    // Render hands using spheres:
+    for (unsigned int h = 0; h < l->nHands; h++)
+    {
+        LEAP_HAND hand = l->pHands[h];
+        glm::mat4 f = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -300.0f, -500.0f));
+
+        shader->setVec3(shCol, glm::vec3((float)h, (float)(1 - h), 0.5f));
+
+        // Elbow:
+        glm::mat4 c = glm::translate(glm::mat4(1.0f), glm::vec3(hand.arm.prev_joint.x, hand.arm.prev_joint.y, hand.arm.prev_joint.z));
+        shader->setMatrix(mvLoc, f * c);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)vertices.size());
+
+        // Wrist:
+        c = glm::translate(glm::mat4(1.0f), glm::vec3(hand.arm.next_joint.x, hand.arm.next_joint.y, hand.arm.next_joint.z));
+        shader->setMatrix(mvLoc, f * c);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)vertices.size());
+
+        // Palm:
+        c = glm::translate(glm::mat4(1.0f), glm::vec3(hand.palm.position.x, hand.palm.position.y, hand.palm.position.z));
+        shader->setMatrix(mvLoc, f * c);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)vertices.size());
+
+        // Distal ends of bones for each digit:
+        glm::vec3 thumbTip, indexTip;
+
+        for (unsigned int d = 0; d < 5; d++)
+        {
+            LEAP_DIGIT finger = hand.digits[d];
+            for (unsigned int b = 0; b < 4; b++)
+            {
+                LEAP_BONE bone = finger.bones[b];
+                c = glm::translate(glm::mat4(1.0f), glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z));
+                shader->setMatrix(mvLoc, f * c);
+                glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)vertices.size());
+
+                // Se siamo sull'ultima falange (distale), salviamo la punta
+                if (b == 3) {
+                    if (d == 0) thumbTip = glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
+                    if (d == 1) indexTip = glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
+                }
+            }
+        }
+
+        // Calcolo e stampa distanza tra punta pollice e indice
+        float distance = glm::length(thumbTip - indexTip);
+        glm::vec3 graspCenter = 0.5f * (thumbTip + indexTip);
+        bool isGrasping = distance < 30.0f;
+
+        // Salva lo stato nella mano corrente
+        handsPinchData[h] = { isGrasping, graspCenter };
+
+        //std::cout << "Centro presa (x, y, z): (" << graspCenter.x << ", " << graspCenter.y << ", " << graspCenter.z << ")" << std::endl;
+
+        std::cout << "Distanza mano #" << h << " (pollice <-> indice): " << distance << " mm" << std::endl;
+        std::cout << "Mano #" << h << " sta pinzando: " << isGrasping;
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

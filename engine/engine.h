@@ -24,6 +24,7 @@
 // Project-specific includes
 #include "node.h"
 #include "camera.h"
+#include "leap.h"
 
 /////////////
 // VERSION //
@@ -178,8 +179,14 @@ public: //
     */
    void swap();
 
+   void leapCallback();
 
 private:
+
+    struct PinchData {
+        bool isPinching;
+        glm::vec3 pinchCenter;
+    };
 
    /**
     * @brief Private method to handle window reshaping.
@@ -204,6 +211,11 @@ private:
    Shader* shader = nullptr;
    int projLoc = -1; // -1 means 'not assigned', as 0 is a valid location
    int mvLoc = -1;
+   int shCol = -1;
+
+   // Leap Motion:   
+   Leap* leap = nullptr;
+   std::vector<glm::vec3> vertices;
 };
 
 }; // end of namespace Eng::
