@@ -103,6 +103,10 @@ public:
 
     const glm::mat4 getProjectionMatrix() const;
 
+    const float& getNearPlane() const;
+
+    const float& getFarPlane() const;
+
     /**
      * @brief Set the camera as the main camera.
      *

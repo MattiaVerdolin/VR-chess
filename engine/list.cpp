@@ -51,39 +51,30 @@ void ENG_API List::clearList() {
 	this->resetListAndFreeMemory();
 }
 
-void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix) const {
-	glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
-	for (const auto* r : m_listOfReservedToRender)
-		r->r_node->render(cameraInverseFinalMatrix * r->r_nodeFinalMatrix);
-	Light::resetLightCounter();
-}
-
-
-void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix, const glm::vec4 planes[6]) const
-{
+void ENG_API List::renderElements(Camera* camera) const {
 	glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
 
-	for (const auto* r : m_listOfReservedToRender)
-	{
-		Node* node = dynamic_cast<Node*>(r->r_node);
-		glm::mat4 modelMat = r->r_nodeFinalMatrix;
-		glm::mat4 mvp = cameraInverseFinalMatrix * modelMat;
+	float zNear = camera->getNearPlane();
+	float zFar = camera->getFarPlane();
+	float midDist = (zNear + zFar) * 0.5f;
+	float supRadius = (zFar - zNear) * 0.5f;
+	glm::vec3 supCenterEC(0.0f, 0.0f, -midDist);
 
-		// Se è una Mesh, facciamo il test sphere-frustum
-		if (auto mesh = dynamic_cast<Mesh*>(node)) {
-			// trasforma centro modello -> view space
-			glm::vec3 centerVS = glm::vec3(mvp * glm::vec4(mesh->getBoundingCenter(), 1.0f));
-			float radius = mesh->getBoundingRadius();
-			bool inside = true;
-			for (int i = 0; i < 6; ++i) {
-				float d = glm::dot(glm::vec3(planes[i]), centerVS) + planes[i].w;
-				if (d < -radius) { inside = false; break; }
+	for (const auto* r : m_listOfReservedToRender) {
+		glm::mat4 eyeMat = camera->getInverseCameraFinalMatrix() * r->r_nodeFinalMatrix;
+		glm::vec3 centerEC = glm::vec3(eyeMat[3]);
+
+		if (auto mesh = dynamic_cast<Mesh*>(r->r_node)) {
+
+			float meshRadius = mesh->getBoundingRadius();
+			float dist = glm::length(centerEC - supCenterEC);
+			if (dist - meshRadius > supRadius) {
+				std::cout << mesh->getName() << std::endl;
+				continue;
 			}
-			if (!inside)
-				continue;   // skip rendering
 		}
 
-		node->render(mvp);
+		r->r_node->render(eyeMat);
 	}
 
 	Light::resetLightCounter();

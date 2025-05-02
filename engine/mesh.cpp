@@ -222,22 +222,6 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
         glEnable(GL_LIGHTING);
 }
 
-ENG_API void Mesh::computeBoundingSphere() {
-    auto verts = getVertices();
-
-    glm::vec3 c(0.0f);
-    for (auto& v : verts) 
-        c += v;
-    c /= float(verts.size());
-
-    float r = 0.0f;
-    for (auto& v : verts)
-        r = std::max(r, glm::length(v - c));
-
-    boundingCenter = c;
-    boundingRadius = r;
-}
-
 const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position) {
 	const unsigned int& children = Node::parse(data, position);
 
@@ -253,7 +237,8 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
     this->setMaterial(materialOfMesh);
 
 	//Radius
-	position += sizeof(float);
+    memcpy(&boundingRadius, data + position, sizeof(float));
+    position += sizeof(float);
 
 	// Mesh bounding box minimum corner:
 	position += sizeof(glm::vec3);
@@ -337,8 +322,6 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
     }
 
     this->setupMesh();
-
-    this->computeBoundingSphere();
 
 	return children;
 }

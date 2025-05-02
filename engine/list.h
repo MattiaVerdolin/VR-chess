@@ -25,6 +25,7 @@
 #include "node.h"
 #include "notificationService.h"
 #include "changeMatrixListener.h"
+#include "camera.h"
 
 /**
  * @brief Elemento di rendering: nodo + world-matrix.
@@ -89,9 +90,7 @@ public:
      *
      * @param cameraInverseFinalMatrix The inverse transformation matrix of the camera.
      */
-    void renderElements(const glm::mat4& cameraInverseFinalMatrixr) const;
-
-    void renderElements(const glm::mat4& cameraInverseFinalMatrixr, const glm::vec4 planes[6]) const;
+    void renderElements(Camera* camera) const;
 
     /**
      * @brief Gets the number of elements in the list.

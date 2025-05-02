@@ -20,6 +20,14 @@ const ENG_API glm::mat4 Camera::getProjectionMatrix() const {
 	return this->m_projectionMatrix;
 }
 
+const ENG_API float& Camera::getNearPlane() const {
+	return m_near;
+}
+
+const ENG_API float& Camera::getFarPlane() const {
+	return m_far;
+}
+
 void ENG_API Camera::setMainCamera(const bool& val){
 	this->m_isCurrentCamera = val;
 }
