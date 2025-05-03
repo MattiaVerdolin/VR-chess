@@ -51,17 +51,15 @@ void ENG_API List::clearList() {
 	this->resetListAndFreeMemory();
 }
 
-void ENG_API List::renderElements(Camera* camera) const {
+void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix, float zNear, float zFar) const {
 	glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
 
-	float zNear = camera->getNearPlane();
-	float zFar = camera->getFarPlane();
 	float midDist = (zNear + zFar) * 0.5f;
 	float supRadius = (zFar - zNear) * 0.5f;
 	glm::vec3 supCenterEC(0.0f, 0.0f, -midDist);
 
 	for (const auto* r : m_listOfReservedToRender) {
-		glm::mat4 eyeMat = camera->getInverseCameraFinalMatrix() * r->r_nodeFinalMatrix;
+		glm::mat4 eyeMat = cameraInverseFinalMatrix * r->r_nodeFinalMatrix;
 		glm::vec3 centerEC = glm::vec3(eyeMat[3]);
 
 		if (auto mesh = dynamic_cast<Mesh*>(r->r_node)) {

@@ -1,1 +1,1 @@
-mode=standard
+mode=vr

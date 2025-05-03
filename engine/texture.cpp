@@ -43,7 +43,7 @@ ENG_API Texture::~Texture() {
 
 ENG_API void Texture::render(const glm::mat4& matrix) {
 	if (this->m_reserved->m_bitmap == nullptr) {
-		std::cerr << "Texture not loaded or bitmap is nullptr!" << std::endl;
+		//std::cerr << "Texture not loaded or bitmap is nullptr!" << std::endl;
 		return;
 	}
 

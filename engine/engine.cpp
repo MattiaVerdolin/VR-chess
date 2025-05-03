@@ -1,8 +1,8 @@
-/**
+ï»¿/**
  * @file		engine.cpp
  * @brief	Graphics engine main file
  *
- * @author	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ * @author	Luca FantÃ² (C) SUPSI [luca.fanto@student.supsi.ch]
  * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
  * @author	Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
  */
@@ -120,7 +120,7 @@ ENG_API Eng::Base::~Base()
 bool ENG_API Eng::Base::loadVRModeFromConfig() {
     std::ifstream configFile("../config.txt");
     if (!configFile.is_open()) {
-        std::cerr << "[WARN] Impossibile aprire config.txt. Modalità VR disattivata." << std::endl;
+        std::cerr << "[WARN] Impossibile aprire config.txt. ModalitÃ  VR disattivata." << std::endl;
         return false;
     }
 
@@ -132,7 +132,7 @@ bool ENG_API Eng::Base::loadVRModeFromConfig() {
             return false;
     }
 
-    std::cerr << "[WARN] Modalità non specificata correttamente. Default: standard." << std::endl;
+    std::cerr << "[WARN] ModalitÃ  non specificata correttamente. Default: standard." << std::endl;
     return false;
 }
 
@@ -372,7 +372,7 @@ const ENG_API float& Eng::Base::getFPS() {
     int currentTime = glutGet(GLUT_ELAPSED_TIME);
     int elapsedTime = currentTime - previousTime;
 
-    if (elapsedTime > 1000) { // Un secondo è passato
+    if (elapsedTime > 1000) { // Un secondo Ã¨ passato
         fps = frameCount / (elapsedTime / 1000.0f); // Calcola FPS
         previousTime = currentTime; // Resetta il tempo
         frameCount = 0; // Resetta il contatore
@@ -419,74 +419,71 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
     if (mainCamera == nullptr)
         return;
 
-    // Centro e raggio della supersfera in eye coords
-    float midDist = (nearPlane + farPlane) * 0.5f;
-    float supRadius = (farPlane - nearPlane) * 0.5f;
-    glm::vec3 supCenterEC(0.0f, 0.0f, -midDist);
-
     if (reserved->vrEnabled) {
         ovr->update();
         glm::mat4 headPos = ovr->getModelviewMatrix();
 
-        const float eyeHeight = 12.5f;
-        glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, eyeHeight, 0.0f));
+        // Offset
+        float eyeHeight = 0.5f;
+        glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, eyeHeight, 0));
 
-        const float yawDegrees = 290.0f;
-        glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f),
-            glm::radians(yawDegrees),
-            glm::vec3(0, 1, 0));
+        // 2) Offset orizzontale
+        float offsetX = -0.2f;
+        float offsetZ = 1.3f;
+        glm::mat4 horizontalOffset = glm::translate(
+            glm::mat4(1.0f),
+            glm::vec3(offsetX, 0.0f, offsetZ)
+        );
 
-        glm::mat4 horizontalOffset = glm::translate(glm::mat4(1.0f),
-            glm::vec3(5.0f, 0.0f, -5.0f));
+        float yawDegrees = 290.0f;
+        glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f), glm::radians(yawDegrees), glm::vec3(0, 1, 0));
 
-        for (int c = 0; c < EYE_LAST; ++c) {
-            auto eye = static_cast<OvVR::OvEye>(c);
-            glm::mat4 projMat = ovr->getProjMatrix(eye, nearPlane, farPlane);
-            glm::mat4 viewMat = glm::inverse(floorOffset * rotationOffset * horizontalOffset * headPos);
+        for (int c = 0; c < EYE_LAST; c++)
+        {
+            // OpenVR matrices
+            OvVR::OvEye curEye = (OvVR::OvEye)c;
+            glm::mat4 projMat = ovr->getProjMatrix(curEye, nearPlane, farPlane);
+            glm::mat4 eye2Head = ovr->getEye2HeadMatrix(curEye);
 
-            // Render target
+            // Projection
+            glm::mat4 ovrProjMat = projMat * glm::inverse(eye2Head);
+
+            glm::mat4 ovrModelViewMat = glm::inverse(floorOffset * rotationOffset * horizontalOffset * headPos);
+
+            // render nel FBO
             fbo[c]->render();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            // Sphere-culling "supersfera"
-            auto renderItems = reserved->listOfScene.getRenderItems();
-            for (const auto& it : renderItems) {
-                Node* node = it.node;
-                glm::mat4 modelMat = it.matrix;
-                glm::mat4 eyeMat = viewMat * modelMat;
-                glm::vec3 centerEC = glm::vec3(eyeMat[3]);
+            shader->render();
+            shader->setMatrix(Shader::getCurrent()->getParamLocation("projection"), ovrProjMat);
 
-                if (auto mesh = dynamic_cast<Mesh*>(node)) {
-                    float meshRadius = mesh->getBoundingRadius();
-                    float dist = glm::length(centerEC - supCenterEC);
-                    if (dist - meshRadius > supRadius)
-                        continue;
-                }
-                glm::mat4 mvp = projMat * eyeMat;
-                node->render(mvp);
-            }
+            // disegna la scena con la view modificata
+            mainCamera->render();
+            this->reserved->listOfScene.renderElements(ovrModelViewMat, nearPlane, farPlane);
 
-            ovr->pass(eye, fboTexId[c]);
+            // invia la texture all'occhio OpenVR
+            ovr->pass(curEye, fboTexId[c]);
         }
 
+        // Update internal OpenVR settings:
         ovr->render();
+
         Fbo::disable();
         glViewport(0, 0, prevViewport[2], prevViewport[3]);
 
-        if (menuCamera && !menu.empty()) {
-            glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
-            glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0,
-                APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY,
-                GL_COLOR_BUFFER_BIT, GL_NEAREST);
-            glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[1]->getHandle());
-            glBlitFramebuffer(0, 0, fboWidth, fboHeight,
-                APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY,
-                GL_COLOR_BUFFER_BIT, GL_NEAREST);
-        }
+
+        if (menuCamera == nullptr || menu.empty())
+            return;
+
+        glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
+        glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0, APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+
+        glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[1]->getHandle());
+        glBlitFramebuffer(0, 0, fboWidth, fboHeight, APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
     }
     else {
         mainCamera->render();
-        this->reserved->listOfScene.renderElements(mainCamera);
+        this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix(), mainCamera->getNearPlane(), mainCamera->getFarPlane());
     }
 
     this->reserved->textManager.displayText(menu, menuCamera);

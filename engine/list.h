@@ -90,7 +90,7 @@ public:
      *
      * @param cameraInverseFinalMatrix The inverse transformation matrix of the camera.
      */
-    void renderElements(Camera* camera) const;
+    void renderElements(const glm::mat4& cameraInverseFinalMatrix, float zNear, float zFar) const;
 
     /**
      * @brief Gets the number of elements in the list.

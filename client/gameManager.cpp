@@ -319,7 +319,7 @@ void GameManager::createGraphicsList() {
 }
 
 void GameManager::startGame() {
-	this->m_reserved->rootNode = this->m_reserved->engine.load("scenaDef.ovo");
+	this->m_reserved->rootNode = this->m_reserved->engine.load("def3.ovo");
 	if (this->m_reserved->rootNode == nullptr) {
 		std::cerr << "ERROR: Error during parse of the scene" << std::endl;
 		return;
