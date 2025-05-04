@@ -12,6 +12,8 @@
 //////////////
 // #INCLUDE //
 //////////////
+#include <filesystem>
+#include <iostream>
 
    // Main include:
     #include "engine.h"
@@ -81,6 +83,49 @@ float fps = 0.0f;
 int previousTime = 0;
 const float nearPlane = 0.01f;
 const float farPlane = 100.0f;
+
+// Textures:
+unsigned int cubemapId;
+std::string cubemapNames[] =
+{
+   "textures/cubemap/negx.jpg",
+   "textures/cubemap/posx.jpg",
+   "textures/cubemap/posy.jpg",
+   "textures/cubemap/negy.jpg",
+   "textures/cubemap/posz.jpg",
+   "textures/cubemap/negz.jpg",
+};
+
+// Cube VBO:
+unsigned int globalVao = 0;
+unsigned int cubeVboVertices = 0;
+float cubeVertices[] = // Vertex and tex. coords are the same
+{
+   -1.0f,  1.0f,  1.0f,
+   -1.0f, -1.0f,  1.0f,
+    1.0f, -1.0f,  1.0f,
+    1.0f,  1.0f,  1.0f,
+   -1.0f,  1.0f, -1.0f,
+   -1.0f, -1.0f, -1.0f,
+    1.0f, -1.0f, -1.0f,
+    1.0f,  1.0f, -1.0f,
+};
+unsigned int cubeVboFaces = 0;
+unsigned short cubeFaces[] =
+{
+   0, 1, 2,
+   0, 2, 3,
+   3, 2, 6,
+   3, 6, 7,
+   4, 0, 3,
+   4, 3, 7,
+   6, 5, 4,
+   7, 6, 4,
+   4, 5, 1,
+   4, 1, 0,
+   1, 5, 6,
+   1, 6, 2,
+};
 
 Eng::Base Eng::Base::instance;
 
@@ -247,6 +292,43 @@ void main(void)
     fragOutput = texel * vec4(fragColor, 1.0f);
 }
 )";
+
+//////////////////////////////////////////
+const char* vertShaderCube = R"(
+   #version 440 core
+
+   uniform mat4 projection;
+   uniform mat4 modelview;
+
+   layout(location = 0) in vec3 in_Position;
+
+   out vec3 texCoord;
+
+   void main(void)
+   {
+      texCoord = in_Position;
+      gl_Position = projection * modelview * vec4(in_Position, 1.0f);
+   }
+)";
+
+//////////////////////////////////////////
+const char* fragShaderCube = R"(
+   #version 440 core
+
+   in vec3 texCoord;
+
+   // Texture mapping (cubemap):
+   layout(binding = 0) uniform samplerCube cubemapSampler;
+
+   out vec4 fragOutput;
+
+   void main(void)
+   {
+      fragOutput = texture(cubemapSampler, texCoord);
+   }
+)";
+
+
 /**
  * Init internal components.
  * @return TF
@@ -316,6 +398,39 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    shader->bind(0, "in_Position");
    shader->bind(1, "in_Normal");
 
+   vsCube = new Shader();
+   vsCube->loadFromMemory(Shader::TYPE_VERTEX, vertShaderCube);
+
+   fsCube = new Shader();
+   fsCube->loadFromMemory(Shader::TYPE_FRAGMENT, fragShaderCube);
+
+   shaderCube = new Shader();
+   shaderCube->build(vsCube, fsCube);
+   shaderCube->render();
+   shaderCube->bind(0, "in_Position");
+
+   // 1) Costruisco il VAO + VBO/EBO del cubo
+   glGenVertexArrays(1, &globalVao);
+   glBindVertexArray(globalVao);
+
+   glGenBuffers(1, &cubeVboVertices);
+   glBindBuffer(GL_ARRAY_BUFFER, cubeVboVertices);
+   glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+   glEnableVertexAttribArray(0);
+   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+   glGenBuffers(1, &cubeVboFaces);
+   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cubeVboFaces);
+   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cubeFaces), cubeFaces, GL_STATIC_DRAW);
+
+   glBindVertexArray(0);
+
+   // 2) Associazione del samplerCube a texture unit 0
+   glActiveTexture(GL_TEXTURE0);
+   glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapId);
+   GLint locSampler = shaderCube->getParamLocation("cubemapSampler");
+   shaderCube->setInt(locSampler, 0);
+
    ///////////////////////////////////////////////////////Fbo init()
    if (reserved->vrEnabled) {
        GLint prevViewport[4];
@@ -354,13 +469,16 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    glm::vec4 gAmbient(0.2f, 0.2f, 0.2f, 1.0f);
 
    glEnable(GL_DEPTH_TEST);
-   glEnable(GL_CULL_FACE);
+   //glEnable(GL_CULL_FACE);
    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //WIREFRAME
 
    FreeImage_Initialise();
 
    // Done:
    std::cout << "[>] " << LIB_NAME << " initialized" << std::endl;
+   
+   buildCubemap();
+   
    reserved->initFlag = true;
    return true;
 }
@@ -419,75 +537,168 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
     if (mainCamera == nullptr)
         return;
 
+    // ---------------------------------
+    // 1) Modalità VR
+    // ---------------------------------
     if (reserved->vrEnabled) {
         ovr->update();
         glm::mat4 headPos = ovr->getModelviewMatrix();
 
-        // Offset
+        // Pre‐calcolo floor/head offsets
         float eyeHeight = 0.5f;
         glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, eyeHeight, 0));
+        glm::mat4 horizontalOffset = glm::translate(glm::mat4(1.0f), glm::vec3(-0.2f, 0, 1.3f));
+        glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f), glm::radians(290.0f), glm::vec3(0, 1, 0));
 
-        // 2) Offset orizzontale
-        float offsetX = -0.2f;
-        float offsetZ = 1.3f;
-        glm::mat4 horizontalOffset = glm::translate(
-            glm::mat4(1.0f),
-            glm::vec3(offsetX, 0.0f, offsetZ)
-        );
-
-        float yawDegrees = 290.0f;
-        glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f), glm::radians(yawDegrees), glm::vec3(0, 1, 0));
-
-        for (int c = 0; c < EYE_LAST; c++)
-        {
-            // OpenVR matrices
-            OvVR::OvEye curEye = (OvVR::OvEye)c;
-            glm::mat4 projMat = ovr->getProjMatrix(curEye, nearPlane, farPlane);
-            glm::mat4 eye2Head = ovr->getEye2HeadMatrix(curEye);
-
-            // Projection
-            glm::mat4 ovrProjMat = projMat * glm::inverse(eye2Head);
-
-            glm::mat4 ovrModelViewMat = glm::inverse(floorOffset * rotationOffset * horizontalOffset * headPos);
-
-            // render nel FBO
-            fbo[c]->render();
+        for (int eye = 0; eye < EYE_LAST; ++eye) {
+            // 1.1) prepara FBO per questo eye
+            fbo[eye]->render();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+            // 1.2) calcolo matrici OpenVR
+            OvVR::OvEye curEye = (OvVR::OvEye)eye;
+            glm::mat4 projMat = ovr->getProjMatrix(curEye, nearPlane, farPlane);
+            glm::mat4 eye2head = ovr->getEye2HeadMatrix(curEye);
+            glm::mat4 ovrProjMat = projMat * glm::inverse(eye2head);
+            glm::mat4 ovrModelView = glm::inverse(floorOffset * rotationOffset * horizontalOffset * headPos);
+
+            // ---- SKYBOX nel FBO ----
+            glDepthFunc(GL_LEQUAL);
+            glDepthMask(GL_FALSE);
+            shaderCube->render();
+            glEnable(GL_CULL_FACE);
+            glCullFace(GL_FRONT);
+
+            GLint locP = shaderCube->getParamLocation("projection");
+            GLint locMV = shaderCube->getParamLocation("modelview");
+            shaderCube->setMatrix(locP, ovrProjMat);
+
+            glm::mat4 rotOnly = glm::mat4(glm::mat3(ovrModelView));
+            glm::mat4 skyModel = glm::scale(rotOnly, glm::vec3(50.0f));
+            shaderCube->setMatrix(locMV, skyModel);
+
+            glBindVertexArray(globalVao);
+            glDrawElements(GL_TRIANGLES,
+                sizeof(cubeFaces) / sizeof(unsigned short),
+                GL_UNSIGNED_SHORT,
+                nullptr);
+            glBindVertexArray(0);
+
+            glDepthMask(GL_TRUE);
+            glDepthFunc(GL_LESS);
+            glCullFace(GL_BACK);
+
+            // ---- SCENA 3D nel FBO ----
             shader->render();
-            shader->setMatrix(Shader::getCurrent()->getParamLocation("projection"), ovrProjMat);
-
-            // disegna la scena con la view modificata
+            shader->setMatrix(shader->getParamLocation("projection"), ovrProjMat);
             mainCamera->render();
-            this->reserved->listOfScene.renderElements(ovrModelViewMat, nearPlane, farPlane);
+            reserved->listOfScene.renderElements(ovrModelView, nearPlane, farPlane);
 
-            // invia la texture all'occhio OpenVR
-            ovr->pass(curEye, fboTexId[c]);
+            // 1.3) invia al telefono/HMD
+            ovr->pass(curEye, fboTexId[eye]);
         }
 
-        // Update internal OpenVR settings:
+        // Finish VR frame
         ovr->render();
-
         Fbo::disable();
         glViewport(0, 0, prevViewport[2], prevViewport[3]);
 
-
-        if (menuCamera == nullptr || menu.empty())
-            return;
-
-        glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
-        glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0, APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
-
-        glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[1]->getHandle());
-        glBlitFramebuffer(0, 0, fboWidth, fboHeight, APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+        // Blit su schermo desktop (split-screen)
+        if (menuCamera && !menu.empty()) {
+            glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
+            glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0, APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+            glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[1]->getHandle());
+            glBlitFramebuffer(0, 0, fboWidth, fboHeight, APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+        }
     }
+    // ---------------------------------
+    // 2) Modalità Standard (non‐VR)
+    // ---------------------------------
     else {
+        // 2.1) Scena 3D
+        shader->render();
+        shader->setMatrix(shader->getParamLocation("projection"), mainCamera->getProjectionMatrix());
         mainCamera->render();
-        this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix(), mainCamera->getNearPlane(), mainCamera->getFarPlane());
+        reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix(),
+            mainCamera->getNearPlane(),
+            mainCamera->getFarPlane());
+
+        // 2.2) Skybox
+        glDepthFunc(GL_LEQUAL);
+        glDepthMask(GL_FALSE);
+        shaderCube->render();
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_FRONT);
+
+        GLint locP = shaderCube->getParamLocation("projection");
+        GLint locMV = shaderCube->getParamLocation("modelview");
+        shaderCube->setMatrix(locP, mainCamera->getProjectionMatrix());
+
+        glm::mat4 view = mainCamera->getInverseCameraFinalMatrix();
+        glm::mat4 rotOnly = glm::mat4(glm::mat3(view));
+        glm::mat4 skyModel = glm::scale(rotOnly, glm::vec3(50.0f));
+        shaderCube->setMatrix(locMV, skyModel);
+
+        glBindVertexArray(globalVao);
+        glDrawElements(GL_TRIANGLES,
+            sizeof(cubeFaces) / sizeof(unsigned short),
+            GL_UNSIGNED_SHORT,
+            nullptr);
+        glBindVertexArray(0);
+
+        glDepthMask(GL_TRUE);
+        glDepthFunc(GL_LESS);
+        glCullFace(GL_BACK);
     }
 
-    this->reserved->textManager.displayText(menu, menuCamera);
-    this->reserved->textManager.displayFPS(this->getFPS(), menuCamera);
+    // 3) HUD / menu / FPS
+    reserved->textManager.displayText(menu, menuCamera);
+    reserved->textManager.displayFPS(this->getFPS(), menuCamera);
+}
+
+/**
+ * Load cubemap into a texture.
+ */
+void ENG_API Eng::Base::buildCubemap()
+{
+    // Create and bind cubemap:
+    glGenTextures(1, &cubemapId);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapId);
+
+    // Set params:
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+    // Set filters:
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+    // Load sides:
+    for (int curSide = 0; curSide < 6; curSide++)
+    {
+        // Load texture:
+        FIBITMAP* fBitmap = FreeImage_Load(FreeImage_GetFileType(cubemapNames[curSide].c_str(), 0), cubemapNames[curSide].c_str());
+        if (fBitmap == nullptr)
+            std::cout << "[ERROR] loading file '" << cubemapNames[curSide] << "'" << std::endl;
+        int intFormat = GL_RGB;
+        GLenum extFormat = GL_BGR;
+        if (FreeImage_GetBPP(fBitmap) == 32)
+        {
+            intFormat = GL_RGBA;
+            extFormat = GL_BGRA;
+        }
+
+        // Fix mirroring:
+        FreeImage_FlipHorizontal(fBitmap);  // Correct mirroring from cube's inside
+        FreeImage_FlipVertical(fBitmap);    // Correct JPG's upside-down
+
+        // Send texture to OpenGL:
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + curSide, 0, intFormat, FreeImage_GetWidth(fBitmap), FreeImage_GetHeight(fBitmap), 0, extFormat, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(fBitmap));
+
+        // Free resources:
+        FreeImage_Unload(fBitmap);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -532,6 +743,15 @@ bool ENG_API Eng::Base::free()
    delete shader;
    delete fs;
    delete vs;
+
+   delete shaderCube;
+   delete fsCube;
+   delete vsCube;
+
+   glDeleteBuffers(1, &cubeVboVertices);
+   glDeleteBuffers(1, &cubeVboFaces);
+   glDeleteVertexArrays(1, &globalVao);
+   glDeleteTextures(1, &cubemapId);
 
    if (ovr) {
        ovr->free();

@@ -27,21 +27,19 @@ void CameraManager::createCameras() {
 
 	Camera* startCamera = new PerspCamera(MAIN_CAMERA, 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
 	startCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 1.50f, 4.0f))
+		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 1.50f, 2.0f))
 	);
 	this->addNewCamera(startCamera);
 
 	Camera* chessboardCamera = new PerspCamera(CHESSBOARD_CAMERA, 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
 	chessboardCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, 0.0f, 20.0f))
+		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 1.50f, 2.0f))
 	);
 	this->addNewCamera(chessboardCamera);
 
 	Camera* playerWhiteCamera = new PerspCamera(PLAYER_WHITE_CAMERA, 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
 	playerWhiteCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::rotate(glm::mat4(1.0f), glm::radians(-30.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, 10.0f, 15.0f))
+		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 1.5f, 1.5f))
 	);
 	this->addNewCamera(playerWhiteCamera);
 
@@ -99,26 +97,39 @@ Camera* CameraManager::findCameraByName(const std::string& cameraName, const Nod
 void CameraManager::moveCameraRight() {
 	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
 
-	if (mainCamera->getMatrix()[3][2] < 23) mainCamera->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 1.0f)) * mainCamera->getMatrix());
+	// Ruota verso destra attorno all'asse Y
+	float angle = glm::radians(5.0f);
+	glm::mat4 rot = glm::rotate(glm::mat4(1.0f), -angle, glm::vec3(0.0f, 1.0f, 0.0f));
+	mainCamera->setMatrix(rot * mainCamera->getMatrix());
 }
 
 void CameraManager::moveCameraLeft() {
 	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
 
-	if (mainCamera->getMatrix()[3][2] > -21) mainCamera->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1.0f)) * mainCamera->getMatrix());
+	// Ruota verso sinistra attorno all'asse Y
+	float angle = glm::radians(5.0f);
+	glm::mat4 rot = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
+	mainCamera->setMatrix(rot * mainCamera->getMatrix());
 }
 
 void CameraManager::moveCameraUp() {
 	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
 
-	if (mainCamera->getMatrix()[3][1] < 24) mainCamera->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * mainCamera->getMatrix());
+	// Inclinazione verso l'alto attorno all'asse X
+	float angle = glm::radians(5.0f);
+	glm::mat4 rot = glm::rotate(glm::mat4(1.0f), -angle, glm::vec3(1.0f, 0.0f, 0.0f));
+	mainCamera->setMatrix(rot * mainCamera->getMatrix());
 }
 
 void CameraManager::moveCameraDown() {
 	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
 
-	if (mainCamera->getMatrix()[3][1] > 6) mainCamera->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f)) * mainCamera->getMatrix());
+	// Inclinazione verso il basso attorno all'asse X
+	float angle = glm::radians(5.0f);
+	glm::mat4 rot = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(1.0f, 0.0f, 0.0f));
+	mainCamera->setMatrix(rot * mainCamera->getMatrix());
 }
+
 
 void CameraManager::preGameHandler() {
 	this->setNewMainCamera(MAIN_CAMERA);

@@ -171,6 +171,8 @@ public: //
     */
    void begin3D(Camera* camera1, Camera* camera2, const std::list<std::string>& layers);
 
+   void buildCubemap();
+
    /**
     * @brief End 3D rendering.
     */
@@ -209,6 +211,9 @@ private:
    Shader* vs = nullptr;
    Shader* fs = nullptr;
    Shader* shader = nullptr;
+   Shader* vsCube = nullptr;
+   Shader* fsCube = nullptr;
+   Shader* shaderCube = nullptr;
 
    OvVR* ovr = nullptr;
 
