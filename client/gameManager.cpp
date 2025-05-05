@@ -319,7 +319,7 @@ void GameManager::createGraphicsList() {
 }
 
 void GameManager::startGame() {
-	this->m_reserved->rootNode = this->m_reserved->engine.load("def3.ovo");
+	this->m_reserved->rootNode = this->m_reserved->engine.load("scenafinita3.ovo");
 	if (this->m_reserved->rootNode == nullptr) {
 		std::cerr << "ERROR: Error during parse of the scene" << std::endl;
 		return;
@@ -345,6 +345,8 @@ void GameManager::gameLoop() {
 		this->m_reserved->engine.begin3D(this->m_reserved->cameraManager.getMainCamera(),
 			this->m_reserved->cameraManager.findCameraByName(MENU_CAMERA),
 			this->m_reserved->statusManager.getMenu());
+
+		this->m_reserved->listOfPiecesManager.updateLeapMotion();
 
 		if (this->m_reserved->statusManager.getCurrentGameStatus() == GameStatus::CHOICE || this->m_reserved->statusManager.getCurrentGameStatus() == GameStatus::GAME)
 			this->m_reserved->listOfPiecesManager.updateSelectPointer();

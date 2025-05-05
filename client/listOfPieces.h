@@ -121,6 +121,9 @@ public:
      */
 	unsigned int getNumberOfPiecesByCoordinates(const unsigned int& row, const unsigned int& col) const;
 
+    std::vector<Piece*> getAllPieces() const;
+
+
 private:
     /**
      * @brief Copy constructor for the ListOfPieces class.

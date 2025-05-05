@@ -251,3 +251,114 @@ void ListOfPiecesManager::createShadow() {
 		child->addChild(childCloned);
 	}
 }
+
+
+void ListOfPiecesManager::updateLeapMotion() {
+	Eng::Base& engine = Eng::Base::getInstance();
+	Eng::Base::HandLeapData* hands = engine.getHandsData();
+
+	static Piece* grabbedPieces[2] = { nullptr, nullptr };
+	static bool isHoldingPieces[2] = { false, false };
+
+	// Piccolo offset opzionale per calibrare
+	const glm::vec3 offsetCorrection(0.0f, 0.0f, 0.5f);
+
+	for (int h = 0; h < 2; ++h) {
+		auto& hand = hands[h];
+
+		glm::vec3 pinchPos = hand.pinchPosition + offsetCorrection;
+
+		if (hand.isPinching) {
+
+			if (!isHoldingPieces[h]) {
+				Piece* closestPiece = nullptr;
+				float radius = 0.0375f;  // soglia per agganciare
+				float minDistance = radius;
+
+				auto* whiteList = getWhitePieces();
+				auto* blackList = getBlackPieces();
+				std::vector<Piece*> allPieces = whiteList->getAllPieces();
+				std::vector<Piece*> blacks = blackList->getAllPieces();
+				allPieces.insert(allPieces.end(), blacks.begin(), blacks.end());
+
+				for (auto* piece : allPieces) {
+					glm::vec3 pieceCenter = glm::vec3(piece->getNode()->getFinalMatrix()[3]);
+					float dist = glm::distance(pinchPos, pieceCenter);
+
+					// Debug solo per le Torri
+					std::string name = piece->getNode()->getName();
+					if (name == "WhiteRookSx" || name == "BlackRookSx") {
+						std::cout << "DEBUG " << name
+							<< " pos(" << pieceCenter.x << ", " << pieceCenter.y << ", " << pieceCenter.z << ")"
+							<< " d=" << dist << std::endl;
+					}
+
+					if (dist < minDistance) {
+						minDistance = dist;
+						closestPiece = piece;
+					}
+				}
+
+
+				if (closestPiece != nullptr) {
+					isHoldingPieces[h] = true;
+					grabbedPieces[h] = closestPiece;
+				}
+			}
+			else {
+				if (grabbedPieces[h]) {
+					glm::mat4 newMatrix = glm::translate(glm::mat4(1.0f), pinchPos);
+					grabbedPieces[h]->getNode()->setMatrix(newMatrix);
+				}
+			}
+		}
+		else {
+			if (isHoldingPieces[h]) {
+				glm::vec3 currentPos = glm::vec3(grabbedPieces[h]->getNode()->getMatrix()[3]);
+				glm::vec3 snappedPos = snapToClosestCell(currentPos);
+
+				glm::mat4 snappedMatrix = glm::translate(glm::mat4(1.0f), snappedPos);
+				grabbedPieces[h]->getNode()->setMatrix(snappedMatrix);
+
+				std::cout << "H" << h << " REL " << grabbedPieces[h]->getNode()->getName() << std::endl;
+
+				isHoldingPieces[h] = false;
+				grabbedPieces[h] = nullptr;
+			}
+
+		}
+	}
+}
+
+
+
+glm::vec3 ListOfPiecesManager::snapToClosestCell(const glm::vec3& pos) {
+	float boardY = 1.209f;       // altezza piano scacchiera
+	float cellSize = 0.075f;     // dimensione di una cella
+
+	// Offset (angolo in basso a sinistra della scacchiera)
+	float originX = -0.3626f;    // X di WhiteRookSx (cella 0,0)
+	float originZ = 0.1005f;     // Z di WhiteRookSx (cella 0,0)
+
+	// Trova colonna e riga più vicine
+	int col = static_cast<int>(std::round((pos.x - originX) / cellSize));
+	int row = static_cast<int>(std::round((pos.z - originZ) / cellSize));
+
+	// Se la scacchiera è 8x8, limitiamo da 0 a 7
+	col = std::max(0, std::min(7, col));
+	row = std::max(0, std::min(7, row));
+
+	// Calcola la posizione centrata della cella
+	float snappedX = originX + (col * cellSize);
+	float snappedZ = originZ + (row * cellSize);
+
+	std::cout << "Snap to cell: row=" << row << " col=" << col
+		<< " pos(" << snappedX << ", " << boardY << ", " << snappedZ << ")" << std::endl;
+
+	return glm::vec3(snappedX, boardY, snappedZ);
+}
+
+
+
+
+

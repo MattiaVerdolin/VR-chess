@@ -78,6 +78,9 @@
     <ClCompile Include="ovr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="leap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine.h">
@@ -147,6 +150,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ovr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

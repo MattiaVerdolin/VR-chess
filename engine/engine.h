@@ -25,6 +25,7 @@
 #include "node.h"
 #include "camera.h"
 #include "fbo.h"
+#include "leap.h"
 #include "ovr.h"
 
 
@@ -185,6 +186,13 @@ public: //
     */
    void swap();
 
+   // Leap motion hand data
+   struct HandLeapData {
+       bool isPinching = false;
+       glm::vec3 pinchPosition = glm::vec3(0.0f);  // in world coords (meglio già convertito)
+   };
+
+   HandLeapData* getHandsData();
 
 private:
 
@@ -217,6 +225,21 @@ private:
 
    OvVR* ovr = nullptr;
 
+   // Leap Motion:
+   Leap* leap = nullptr;
+   std::vector<glm::vec3> leapVertices;
+   Shader* vsLeap = nullptr;
+   Shader* fsLeap = nullptr;
+   Shader* shaderLeap = nullptr;
+
+   int leapProjLoc = -1;
+   int leapMVLoc = -1;
+   int leapColorLoc = -1;
+
+   unsigned int leapVao = 0;
+   unsigned int leapVbo = 0;
+
+
    // Enums:
    enum Eye
    {
@@ -233,6 +256,8 @@ private:
    unsigned int fboHeight = 0;
 
    Fbo* fbo[EYE_LAST] = { nullptr, nullptr };
+
+   HandLeapData hands[2];  // 0 = left, 1 = right
 
 };
 

@@ -37,10 +37,14 @@ void CameraManager::createCameras() {
 	);
 	this->addNewCamera(chessboardCamera);
 
-	Camera* playerWhiteCamera = new PerspCamera(PLAYER_WHITE_CAMERA, 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
-	playerWhiteCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 1.5f, 1.5f))
+	Camera* playerWhiteCamera = new PerspCamera(PLAYER_WHITE_CAMERA, 100.0f, 100.0f, 0.01f, 100.0f, glm::radians(45.0f));
+	playerWhiteCamera->setMatrix(
+		glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
+		glm::rotate(glm::mat4(1.0f), glm::radians(-20.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
+		glm::translate(glm::mat4(1.0f), glm::vec3(0.4f, 1.4f, 2.0f))
 	);
+
+
 	this->addNewCamera(playerWhiteCamera);
 
 	Camera* playerBlackCamera = new PerspCamera(PLAYER_BLACK_CAMERA, 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));

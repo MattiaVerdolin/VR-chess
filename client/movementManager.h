@@ -146,5 +146,5 @@ private:
 	StatusManager& m_statusManager;
 
     /// Constant representing the space the pieces move in one step.
-	const float MOVEMENT_SPACE = 0.545f;
+	const float MOVEMENT_SPACE = 0.075f;
 };

@@ -128,6 +128,8 @@ public:
      */
     bool isGameFinished() const;
 
+    void updateLeapMotion();
+
 private:
     /**
      * @brief Constructs a ListOfPiecesManager.
@@ -210,4 +212,14 @@ private:
      * @brief Rotation angle for the selection pointer animation.
      */
     float m_rotationAngle;
+
+
+    // Stato per la presa
+
+    glm::vec3 snapToClosestCell(const glm::vec3& pos);
+
+
+    bool isHoldingPiece = false;
+    Piece* grabbedPiece = nullptr;
+
 };

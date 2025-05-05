@@ -328,6 +328,28 @@ const char* fragShaderCube = R"(
    }
 )";
 
+// Leap Motion shaders:
+const char* vertShaderLeap = R"(
+#version 440 core
+uniform mat4 projection;
+uniform mat4 modelview;
+layout(location = 0) in vec3 in_Position;
+void main(void)
+{
+    gl_Position = projection * modelview * vec4(in_Position, 1.0f);      
+}
+)";
+
+const char* fragShaderLeap = R"(
+#version 440 core
+uniform vec3 color;   
+out vec4 frag_Output;
+void main(void)
+{      
+    frag_Output = vec4(color, 1.0f);
+}
+)";
+
 
 /**
  * Init internal components.
@@ -408,6 +430,63 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
    shaderCube->build(vsCube, fsCube);
    shaderCube->render();
    shaderCube->bind(0, "in_Position");
+
+   // --- Leap Motion shader setup ---
+   vsLeap = new Shader();
+   vsLeap->loadFromMemory(Shader::TYPE_VERTEX, vertShaderLeap);
+
+   fsLeap = new Shader();
+   fsLeap->loadFromMemory(Shader::TYPE_FRAGMENT, fragShaderLeap);
+
+   shaderLeap = new Shader();
+   shaderLeap->build(vsLeap, fsLeap);
+   shaderLeap->render();
+   shaderLeap->bind(0, "in_Position");
+
+   leapProjLoc = shaderLeap->getParamLocation("projection");
+   leapMVLoc = shaderLeap->getParamLocation("modelview");
+   leapColorLoc = shaderLeap->getParamLocation("color");
+
+   // Build a sphere procedurally for Leap Motion joints:
+   GLfloat x, y, z, alpha, beta;
+   GLfloat radius = 5.0f;
+   int gradation = 10;
+
+   for (alpha = 0.0; alpha < glm::pi<float>(); alpha += glm::pi<float>() / gradation)
+       for (beta = 0.0f; beta < 2.01f * glm::pi<float>(); beta += glm::pi<float>() / gradation)
+       {
+           x = radius * cos(beta) * sin(alpha);
+           y = radius * sin(beta) * sin(alpha);
+           z = radius * cos(alpha);
+           leapVertices.push_back(glm::vec3(x, y, z));
+
+           x = radius * cos(beta) * sin(alpha + glm::pi<float>() / gradation);
+           y = radius * sin(beta) * sin(alpha + glm::pi<float>() / gradation);
+           z = radius * cos(alpha + glm::pi<float>() / gradation);
+           leapVertices.push_back(glm::vec3(x, y, z));
+       }
+
+   // Init VAO + VBO LEAP MOTION:
+   glGenVertexArrays(1, &leapVao);
+   glBindVertexArray(leapVao);
+
+   glGenBuffers(1, &leapVbo);
+   glBindBuffer(GL_ARRAY_BUFFER, leapVbo);
+   glBufferData(GL_ARRAY_BUFFER, leapVertices.size() * sizeof(glm::vec3), leapVertices.data(), GL_STATIC_DRAW);
+
+   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+   glEnableVertexAttribArray(0);
+
+   glBindVertexArray(0);
+
+   // Init Leap Motion:
+   leap = new Leap();
+   if (!leap->init()) {
+       std::cerr << "[ERROR] Unable to init Leap Motion" << std::endl;
+       delete leap;
+       leap = nullptr;
+   }
+
 
    // 1) Costruisco il VAO + VBO/EBO del cubo
    glGenVertexArrays(1, &globalVao);
@@ -537,6 +616,87 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
     if (mainCamera == nullptr)
         return;
 
+    auto renderLeapHands = [&](const LEAP_TRACKING_EVENT* l, const glm::mat4& leapView, const glm::mat4& leapProj) {
+        if (!l) return;
+
+        shaderLeap->render();
+        shaderLeap->setMatrix(leapProjLoc, leapProj);
+
+        glm::mat4 offsetDraw = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 1.0f, 0.5f))
+            * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+        for (unsigned int h = 0; h < l->nHands; h++) {
+            LEAP_HAND hand = l->pHands[h];
+
+            glm::vec3 thumbTip, indexTip;
+
+            for (unsigned int d = 0; d < 5; d++) {
+                LEAP_DIGIT finger = hand.digits[d];
+                for (unsigned int b = 0; b < 4; b++) {
+                    LEAP_BONE bone = finger.bones[b];
+                    if (b == 3) {
+                        if (d == 0) thumbTip = glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
+                        if (d == 1) indexTip = glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
+                    }
+                }
+            }
+
+            float distance = glm::length(thumbTip - indexTip);
+
+            // 🔥 Filtro stabile
+            static float pinchFilter[2] = { 0.0f, 0.0f };
+            float alpha = 0.7f;
+            pinchFilter[h] = alpha * distance + (1 - alpha) * pinchFilter[h];
+
+            bool isPinching = pinchFilter[h] < 30.0f;
+
+            // Solo stampa se cambia
+            static bool wasPinching[2] = { false, false };
+            if (isPinching != wasPinching[h]) {
+                std::cout << "H" << h << (isPinching ? " PINCH START" : " PINCH END") << std::endl;
+                wasPinching[h] = isPinching;
+            }
+
+            glm::vec3 pinchCenter = 0.5f * (thumbTip + indexTip);
+
+            glm::mat4 offsetCoordinates = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 1.0f, 0.0f))
+                * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f))
+                * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f));
+
+            glm::vec3 pinchWorld = glm::vec3(offsetCoordinates * glm::vec4(pinchCenter, 1.0f));
+
+            hands[h].isPinching = isPinching;
+            hands[h].pinchPosition = pinchWorld;
+
+            shaderLeap->setVec3(leapColorLoc, glm::vec3((float)h, (float)(1 - h), 0.5f));
+
+            auto drawPart = [&](glm::vec3 pos) {
+                glm::mat4 c = glm::translate(glm::mat4(1.0f), pos);
+                shaderLeap->setMatrix(leapMVLoc, leapView * offsetDraw * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f)) * c);
+                glBindVertexArray(leapVao);
+                glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)leapVertices.size());
+                glBindVertexArray(0);
+                };
+
+            // ✅ NON disegnare gomito (arm.prev_joint)
+
+            // ✅ Avambraccio
+            drawPart(glm::vec3(hand.arm.next_joint.x, hand.arm.next_joint.y, hand.arm.next_joint.z));
+
+            // ✅ Palmo
+            drawPart(glm::vec3(hand.palm.position.x, hand.palm.position.y, hand.palm.position.z));
+
+            // ✅ Tutte le dita
+            for (unsigned int d = 0; d < 5; d++) {
+                LEAP_DIGIT finger = hand.digits[d];
+                for (unsigned int b = 0; b < 4; b++) {
+                    LEAP_BONE bone = finger.bones[b];
+                    drawPart(glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z));
+                }
+            }
+        }
+        };
+
     // ---------------------------------
     // 1) Modalità VR
     // ---------------------------------
@@ -544,25 +704,22 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
         ovr->update();
         glm::mat4 headPos = ovr->getModelviewMatrix();
 
-        // Pre‐calcolo floor/head offsets
         float eyeHeight = 0.5f;
         glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, eyeHeight, 0));
         glm::mat4 horizontalOffset = glm::translate(glm::mat4(1.0f), glm::vec3(-0.2f, 0, 1.3f));
         glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f), glm::radians(290.0f), glm::vec3(0, 1, 0));
 
         for (int eye = 0; eye < EYE_LAST; ++eye) {
-            // 1.1) prepara FBO per questo eye
             fbo[eye]->render();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            // 1.2) calcolo matrici OpenVR
             OvVR::OvEye curEye = (OvVR::OvEye)eye;
             glm::mat4 projMat = ovr->getProjMatrix(curEye, nearPlane, farPlane);
             glm::mat4 eye2head = ovr->getEye2HeadMatrix(curEye);
             glm::mat4 ovrProjMat = projMat * glm::inverse(eye2head);
             glm::mat4 ovrModelView = glm::inverse(floorOffset * rotationOffset * horizontalOffset * headPos);
 
-            // ---- SKYBOX nel FBO ----
+            // SKYBOX
             glDepthFunc(GL_LEQUAL);
             glDepthMask(GL_FALSE);
             shaderCube->render();
@@ -588,22 +745,26 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
             glDepthFunc(GL_LESS);
             glCullFace(GL_BACK);
 
-            // ---- SCENA 3D nel FBO ----
+            // SCENA 3D
             shader->render();
             shader->setMatrix(shader->getParamLocation("projection"), ovrProjMat);
             mainCamera->render();
             reserved->listOfScene.renderElements(ovrModelView, nearPlane, farPlane);
 
-            // 1.3) invia al telefono/HMD
+            // Leap Motion rendering (VR)
+            if (leap) {
+                leap->update();
+                const LEAP_TRACKING_EVENT* l = leap->getCurFrame();
+                renderLeapHands(l, ovrModelView, ovrProjMat);
+            }
+
             ovr->pass(curEye, fboTexId[eye]);
         }
 
-        // Finish VR frame
         ovr->render();
         Fbo::disable();
         glViewport(0, 0, prevViewport[2], prevViewport[3]);
 
-        // Blit su schermo desktop (split-screen)
         if (menuCamera && !menu.empty()) {
             glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
             glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0, APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
@@ -615,7 +776,6 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
     // 2) Modalità Standard (non‐VR)
     // ---------------------------------
     else {
-        // 2.1) Scena 3D
         shader->render();
         shader->setMatrix(shader->getParamLocation("projection"), mainCamera->getProjectionMatrix());
         mainCamera->render();
@@ -623,7 +783,13 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
             mainCamera->getNearPlane(),
             mainCamera->getFarPlane());
 
-        // 2.2) Skybox
+        if (leap) {
+            leap->update();
+            const LEAP_TRACKING_EVENT* l = leap->getCurFrame();
+            renderLeapHands(l, mainCamera->getInverseCameraFinalMatrix(), mainCamera->getProjectionMatrix());
+        }
+
+        // Skybox
         glDepthFunc(GL_LEQUAL);
         glDepthMask(GL_FALSE);
         shaderCube->render();
@@ -651,10 +817,10 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
         glCullFace(GL_BACK);
     }
 
-    // 3) HUD / menu / FPS
     reserved->textManager.displayText(menu, menuCamera);
     reserved->textManager.displayFPS(this->getFPS(), menuCamera);
 }
+
 
 /**
  * Load cubemap into a texture.
@@ -759,9 +925,27 @@ bool ENG_API Eng::Base::free()
        ovr = nullptr;
    }
 
+   // Free Leap Motion:
+   glDeleteBuffers(1, &leapVbo);
+   glDeleteVertexArrays(1, &leapVao);
+   delete shaderLeap;
+   delete fsLeap;
+   delete vsLeap;
+
+   if (leap) {
+       leap->free();
+       delete leap;
+       leap = nullptr;
+   }
+
+
    return true;
 }
 
 ENG_API Fbo* Eng::Base::getCurrent(int numEye) {
     return fbo[numEye];
+}
+
+ENG_API Eng::Base::HandLeapData* Eng::Base::getHandsData() {
+    return this->hands;
 }

@@ -56,3 +56,8 @@ unsigned int ListOfPieces::getNumberOfPiecesByCoordinates(const unsigned int& ro
 			numberOfPiecesInSameCoordinates++;
 	return numberOfPiecesInSameCoordinates;
 }
+
+std::vector<Piece*> ListOfPieces::getAllPieces() const {
+	return m_listOfPieces;
+}
+
