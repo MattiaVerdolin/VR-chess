@@ -1,14 +1,14 @@
 /**
- * @file    textManager.h
- * @brief   Manager for text rendering.
+ * @file		textManager.h
+ * @brief	Text Manager header file
+ *
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  *
  * This file contains the `TextManager` class, which manages and displays text
  * on the graphical window. The class can render a list of strings and frames per second (FPS)
  * in a 3D context using an orthographic camera for rendering.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
  */
 
 #pragma once

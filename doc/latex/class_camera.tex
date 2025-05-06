@@ -28,10 +28,16 @@ virtual const unsigned int \mbox{\hyperlink{class_camera_a87fec34cb8956f2b8b22e9
 \begin{DoxyCompactList}\small\item\em Parse camera-\/specific data from a buffer. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_camera_a94aed57bd4b7289ac48278f12034bf75}{clone}} () const override=0
 \begin{DoxyCompactList}\small\item\em Clone the camera object. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_camera_a9a11abb2096d56ff475dadb5d04a311d}{on\+Window\+Reshape}} (int width, int height) override
+void \mbox{\hyperlink{class_camera_adf0796443be764ea62b0cf36a9496a2c}{on\+Window\+Reshape}} (int width, int height, \mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*}shader) override
 \begin{DoxyCompactList}\small\item\em Handle window reshape events to update the projection matrix. \end{DoxyCompactList}\item 
 const glm\+::mat4 \mbox{\hyperlink{class_camera_a571575e6fb308585be0daa915721e1af}{get\+Inverse\+Camera\+Final\+Matrix}} () const
 \begin{DoxyCompactList}\small\item\em Get the inverse of the camera\textquotesingle{}s final transformation matrix. \end{DoxyCompactList}\item 
+const glm\+::mat4 \mbox{\hyperlink{class_camera_ad1cdc6a0bcadbb023aa16ff43276026f}{get\+Projection\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the camera\textquotesingle{}s projection matrix. \end{DoxyCompactList}\item 
+const float \& \mbox{\hyperlink{class_camera_a2400934359dc078e7363043a59fdd6b3}{get\+Near\+Plane}} () const
+\begin{DoxyCompactList}\small\item\em Get the near clipping plane distance. \end{DoxyCompactList}\item 
+const float \& \mbox{\hyperlink{class_camera_afdd1f3d74b902196d0376f16f5b7daad}{get\+Far\+Plane}} () const
+\begin{DoxyCompactList}\small\item\em Get the far clipping plane distance. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_camera_a5611bb8579aaaaeceff5ceb9a18f0fc2}{set\+Main\+Camera}} (const bool \&val)
 \begin{DoxyCompactList}\small\item\em Set the camera as the main camera. \end{DoxyCompactList}\item 
 virtual const bool \& \mbox{\hyperlink{class_camera_a0070016701e33741275a9189861ba96c}{is\+Main\+Camera}} () const
@@ -249,6 +255,19 @@ Reimplemented from \mbox{\hyperlink{class_node_a9777d266e9b52f648f3ce309133d1a57
 
 Implemented in \mbox{\hyperlink{class_ortho_camera_af79adf5a4a81f269fee09e1151971794}{Ortho\+Camera}}, and \mbox{\hyperlink{class_persp_camera_a057de4d98b96f8a70d8f2d860721fdbe}{Persp\+Camera}}.
 
+\Hypertarget{class_camera_afdd1f3d74b902196d0376f16f5b7daad}\index{Camera@{Camera}!getFarPlane@{getFarPlane}}
+\index{getFarPlane@{getFarPlane}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{getFarPlane()}{getFarPlane()}}
+{\footnotesize\ttfamily \label{class_camera_afdd1f3d74b902196d0376f16f5b7daad} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} float \& Camera\+::get\+Far\+Plane (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get the far clipping plane distance. 
+
+\begin{DoxyReturn}{Returns}
+The distance to the far clipping plane. 
+\end{DoxyReturn}
 \Hypertarget{class_camera_a571575e6fb308585be0daa915721e1af}\index{Camera@{Camera}!getInverseCameraFinalMatrix@{getInverseCameraFinalMatrix}}
 \index{getInverseCameraFinalMatrix@{getInverseCameraFinalMatrix}!Camera@{Camera}}
 \doxysubsubsection{\texorpdfstring{getInverseCameraFinalMatrix()}{getInverseCameraFinalMatrix()}}
@@ -263,6 +282,32 @@ This method returns the inverse of the camera\textquotesingle{}s final transform
 
 \begin{DoxyReturn}{Returns}
 The inverse of the camera\textquotesingle{}s final transformation matrix. 
+\end{DoxyReturn}
+\Hypertarget{class_camera_a2400934359dc078e7363043a59fdd6b3}\index{Camera@{Camera}!getNearPlane@{getNearPlane}}
+\index{getNearPlane@{getNearPlane}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{getNearPlane()}{getNearPlane()}}
+{\footnotesize\ttfamily \label{class_camera_a2400934359dc078e7363043a59fdd6b3} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} float \& Camera\+::get\+Near\+Plane (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get the near clipping plane distance. 
+
+\begin{DoxyReturn}{Returns}
+The distance to the near clipping plane. 
+\end{DoxyReturn}
+\Hypertarget{class_camera_ad1cdc6a0bcadbb023aa16ff43276026f}\index{Camera@{Camera}!getProjectionMatrix@{getProjectionMatrix}}
+\index{getProjectionMatrix@{getProjectionMatrix}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{getProjectionMatrix()}{getProjectionMatrix()}}
+{\footnotesize\ttfamily \label{class_camera_ad1cdc6a0bcadbb023aa16ff43276026f} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::mat4 Camera\+::get\+Projection\+Matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get the camera\textquotesingle{}s projection matrix. 
+
+\begin{DoxyReturn}{Returns}
+The projection matrix used for transforming the 3D scene. 
 \end{DoxyReturn}
 \Hypertarget{class_camera_a0070016701e33741275a9189861ba96c}\index{Camera@{Camera}!isMainCamera@{isMainCamera}}
 \index{isMainCamera@{isMainCamera}!Camera@{Camera}}
@@ -293,11 +338,11 @@ This method is virtual and must be implemented in subclasses to load the appropr
 
 Implemented in \mbox{\hyperlink{class_ortho_camera_a5707b069a29c74ec3296a1593fcac528}{Ortho\+Camera}}, and \mbox{\hyperlink{class_persp_camera_a1d18cc866c320f34954a89818d354297}{Persp\+Camera}}.
 
-\Hypertarget{class_camera_a9a11abb2096d56ff475dadb5d04a311d}\index{Camera@{Camera}!onWindowReshape@{onWindowReshape}}
+\Hypertarget{class_camera_adf0796443be764ea62b0cf36a9496a2c}\index{Camera@{Camera}!onWindowReshape@{onWindowReshape}}
 \index{onWindowReshape@{onWindowReshape}!Camera@{Camera}}
 \doxysubsubsection{\texorpdfstring{onWindowReshape()}{onWindowReshape()}}
-{\footnotesize\ttfamily \label{class_camera_a9a11abb2096d56ff475dadb5d04a311d} 
-void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Camera\+::on\+Window\+Reshape (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \label{class_camera_adf0796443be764ea62b0cf36a9496a2c} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Camera\+::on\+Window\+Reshape (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{, }\item[{\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*}}]{shader}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -314,7 +359,7 @@ This method is called when the window is resized, and it updates the camera\text
 \end{DoxyParams}
 
 
-Implements \mbox{\hyperlink{class_reshape_listener_af163f635cd4adf08c010b9e3ebe0e8b3}{Reshape\+Listener}}.
+Implements \mbox{\hyperlink{class_reshape_listener_a98db96963aad6230c26bc07d53cd024b}{Reshape\+Listener}}.
 
 \Hypertarget{class_camera_a815562aa01b5ccfe876fcecbbcfb946d}\index{Camera@{Camera}!operator=@{operator=}}
 \index{operator=@{operator=}!Camera@{Camera}}

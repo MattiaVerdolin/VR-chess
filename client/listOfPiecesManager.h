@@ -4,9 +4,9 @@
  *        selection, and movement. Provides functionality for moving pieces, selecting,
  *        confirming choices, and updating the game state.
  * 
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once
@@ -128,6 +128,15 @@ public:
      */
     bool isGameFinished() const;
 
+    /**
+     * @brief Updates the state of chess pieces based on Leap Motion controller input.
+     * 
+     * This method handles the interaction between the Leap Motion controller and chess pieces.
+     * It manages piece grabbing, movement, and snapping to the chessboard grid.
+     * 
+     * The method uses a radius-based detection system to determine when a piece can be grabbed,
+     * and implements a snapping mechanism to ensure pieces are placed on valid board positions.
+     */
     void updateLeapMotion();
 
 private:

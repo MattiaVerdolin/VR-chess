@@ -6,9 +6,9 @@
  * (e.g., ID generation, name management) and rendering. The class is designed as an
  * abstract base class, requiring derived classes to implement specific functionality.
  *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once

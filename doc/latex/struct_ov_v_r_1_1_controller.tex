@@ -1,0 +1,156 @@
+\doxysection{Ov\+VR\+::Controller Struct Reference}
+\hypertarget{struct_ov_v_r_1_1_controller}{}\label{struct_ov_v_r_1_1_controller}\index{OvVR::Controller@{OvVR::Controller}}
+
+
+Structure representing a VR controller.  
+
+
+
+
+{\ttfamily \#include $<$ovr.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{struct_ov_v_r_1_1_controller_a45e7fc274a6f220f359886ddc1882a1f}{Controller}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{struct_ov_v_r_1_1_controller}{Controller} structure. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{struct_ov_v_r_1_1_controller_abb025473e6d567de6b51a13ea5dfdb6f}{\texorpdfstring{$\sim$}{\string~}\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{struct_ov_v_r_1_1_controller}{Controller} structure. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::mat4 \mbox{\hyperlink{struct_ov_v_r_1_1_controller_a3f2271bbd3773803761d7fc7ffd3ad0c}{get\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Gets the controller\textquotesingle{}s transformation matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::vec2 \mbox{\hyperlink{struct_ov_v_r_1_1_controller_a3aefda7939e01d9f2a1df9710dd64887}{get\+Axis}} (unsigned int axis\+Id, unsigned long long int \&b\+Pressed, unsigned long long int \&b\+Touched)
+\begin{DoxyCompactList}\small\item\em Gets the state of a controller axis. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool \mbox{\hyperlink{struct_ov_v_r_1_1_controller_afde6411be65f146dca67accb493964c6}{is\+Button\+Pressed}} (unsigned long long int \mbox{\hyperlink{struct_ov_v_r_1_1_controller_ac386634cdbce242fac6ce53d7323a1fb}{id}}, unsigned long long int mask)
+\begin{DoxyCompactList}\small\item\em Checks if a specific button is pressed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{struct_ov_v_r_1_1_controller_ac386634cdbce242fac6ce53d7323a1fb}{id}}
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_ov_v_r_1_1_controller}{Controller} device ID. \end{DoxyCompactList}\item 
+vr\+::\+VRController\+State\+\_\+t \mbox{\hyperlink{struct_ov_v_r_1_1_controller_a6b1a9bb44c03cd9009898ad74bb29674}{p\+Controller\+State}}
+\begin{DoxyCompactList}\small\item\em Current controller state. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{struct_ov_v_r_1_1_controller_ad8574bc83c46af7e0b3206e4782f138f}{matrix}}
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_ov_v_r_1_1_controller}{Controller} transformation matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure representing a VR controller. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_ov_v_r_1_1_controller_a45e7fc274a6f220f359886ddc1882a1f}\index{OvVR::Controller@{OvVR::Controller}!Controller@{Controller}}
+\index{Controller@{Controller}!OvVR::Controller@{OvVR::Controller}}
+\doxysubsubsection{\texorpdfstring{Controller()}{Controller()}}
+{\footnotesize\ttfamily \label{struct_ov_v_r_1_1_controller_a45e7fc274a6f220f359886ddc1882a1f} 
+Ov\+VR\+::\+Controller\+::\+Controller (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{struct_ov_v_r_1_1_controller}{Controller} structure. 
+
+\Hypertarget{struct_ov_v_r_1_1_controller_abb025473e6d567de6b51a13ea5dfdb6f}\index{OvVR::Controller@{OvVR::Controller}!````~Controller@{\texorpdfstring{$\sim$}{\string~}Controller}}
+\index{````~Controller@{\texorpdfstring{$\sim$}{\string~}Controller}!OvVR::Controller@{OvVR::Controller}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Controller()}{\string~Controller()}}
+{\footnotesize\ttfamily \label{struct_ov_v_r_1_1_controller_abb025473e6d567de6b51a13ea5dfdb6f} 
+Ov\+VR\+::\+Controller\+::\texorpdfstring{$\sim$}{\string~}\+Controller (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{struct_ov_v_r_1_1_controller}{Controller} structure. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_ov_v_r_1_1_controller_a3aefda7939e01d9f2a1df9710dd64887}\index{OvVR::Controller@{OvVR::Controller}!getAxis@{getAxis}}
+\index{getAxis@{getAxis}!OvVR::Controller@{OvVR::Controller}}
+\doxysubsubsection{\texorpdfstring{getAxis()}{getAxis()}}
+{\footnotesize\ttfamily \label{struct_ov_v_r_1_1_controller_a3aefda7939e01d9f2a1df9710dd64887} 
+glm\+::vec2 Ov\+VR\+::\+Controller\+::get\+Axis (\begin{DoxyParamCaption}\item[{unsigned int}]{axis\+Id}{, }\item[{unsigned long long int \&}]{b\+Pressed}{, }\item[{unsigned long long int \&}]{b\+Touched}{}\end{DoxyParamCaption})}
+
+
+
+Gets the state of a controller axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis\+Id} & The ID of the axis to query. \\
+\hline
+{\em b\+Pressed} & Reference to store the pressed buttons state. \\
+\hline
+{\em b\+Touched} & Reference to store the touched buttons state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A 2D vector containing the axis values. 
+\end{DoxyReturn}
+\Hypertarget{struct_ov_v_r_1_1_controller_a3f2271bbd3773803761d7fc7ffd3ad0c}\index{OvVR::Controller@{OvVR::Controller}!getMatrix@{getMatrix}}
+\index{getMatrix@{getMatrix}!OvVR::Controller@{OvVR::Controller}}
+\doxysubsubsection{\texorpdfstring{getMatrix()}{getMatrix()}}
+{\footnotesize\ttfamily \label{struct_ov_v_r_1_1_controller_a3f2271bbd3773803761d7fc7ffd3ad0c} 
+glm\+::mat4 Ov\+VR\+::\+Controller\+::get\+Matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the controller\textquotesingle{}s transformation matrix. 
+
+\begin{DoxyReturn}{Returns}
+The current transformation matrix of the controller. 
+\end{DoxyReturn}
+\Hypertarget{struct_ov_v_r_1_1_controller_afde6411be65f146dca67accb493964c6}\index{OvVR::Controller@{OvVR::Controller}!isButtonPressed@{isButtonPressed}}
+\index{isButtonPressed@{isButtonPressed}!OvVR::Controller@{OvVR::Controller}}
+\doxysubsubsection{\texorpdfstring{isButtonPressed()}{isButtonPressed()}}
+{\footnotesize\ttfamily \label{struct_ov_v_r_1_1_controller_afde6411be65f146dca67accb493964c6} 
+bool Ov\+VR\+::\+Controller\+::is\+Button\+Pressed (\begin{DoxyParamCaption}\item[{unsigned long long int}]{id}{, }\item[{unsigned long long int}]{mask}{}\end{DoxyParamCaption})}
+
+
+
+Checks if a specific button is pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The button ID to check. \\
+\hline
+{\em mask} & The button state mask. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the button is pressed, false otherwise. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_ov_v_r_1_1_controller_ac386634cdbce242fac6ce53d7323a1fb}\index{OvVR::Controller@{OvVR::Controller}!id@{id}}
+\index{id@{id}!OvVR::Controller@{OvVR::Controller}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{struct_ov_v_r_1_1_controller_ac386634cdbce242fac6ce53d7323a1fb} 
+unsigned int Ov\+VR\+::\+Controller\+::id}
+
+
+
+\doxylink{struct_ov_v_r_1_1_controller}{Controller} device ID. 
+
+\Hypertarget{struct_ov_v_r_1_1_controller_ad8574bc83c46af7e0b3206e4782f138f}\index{OvVR::Controller@{OvVR::Controller}!matrix@{matrix}}
+\index{matrix@{matrix}!OvVR::Controller@{OvVR::Controller}}
+\doxysubsubsection{\texorpdfstring{matrix}{matrix}}
+{\footnotesize\ttfamily \label{struct_ov_v_r_1_1_controller_ad8574bc83c46af7e0b3206e4782f138f} 
+glm\+::mat4 Ov\+VR\+::\+Controller\+::matrix}
+
+
+
+\doxylink{struct_ov_v_r_1_1_controller}{Controller} transformation matrix. 
+
+\Hypertarget{struct_ov_v_r_1_1_controller_a6b1a9bb44c03cd9009898ad74bb29674}\index{OvVR::Controller@{OvVR::Controller}!pControllerState@{pControllerState}}
+\index{pControllerState@{pControllerState}!OvVR::Controller@{OvVR::Controller}}
+\doxysubsubsection{\texorpdfstring{pControllerState}{pControllerState}}
+{\footnotesize\ttfamily \label{struct_ov_v_r_1_1_controller_a6b1a9bb44c03cd9009898ad74bb29674} 
+vr\+::\+VRController\+State\+\_\+t Ov\+VR\+::\+Controller\+::p\+Controller\+State}
+
+
+
+Current controller state. 
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{ovr_8h}{ovr.\+h}}\item 
+engine/\mbox{\hyperlink{ovr_8cpp}{ovr.\+cpp}}\end{DoxyCompactItemize}

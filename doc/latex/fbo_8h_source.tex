@@ -1,0 +1,99 @@
+\doxysection{fbo.\+h}
+\hypertarget{fbo_8h_source}{}\label{fbo_8h_source}\index{engine/fbo.h@{engine/fbo.h}}
+\mbox{\hyperlink{fbo_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ GLM:}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <glm/gtc/matrix\_transform.hpp>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <glm/gtc/type\_ptr.hpp>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ C/C++:}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{object_8h}{object.h}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ CLASS\ Fbo\ //}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_fbo_aa25c5a8ee43408c219b4512819cc2e48}{Fbo}}}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:\ \textcolor{comment}{//}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Enums:}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50}{Eye}}}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50a2758c6692dbfca7a5eebdc153be274ab}{EYE\_LEFT}}\ =\ 0,\ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50aa42b3d76bd49b5ad09593ab720968866}{EYE\_RIGHT}}\ =\ 1,\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Terminator:}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50af0e708db1868ff75168e69b030e72112}{EYE\_LAST}},\ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constants:}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\_ATTACHMENTS}}\ =\ 8;\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Enumerations:}}
+\DoxyCodeLine{00060\ \ \ \ \ enum\ :\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ }
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_fbo_a731fc86ea745ded088424d240348aee3a056d4db931b4e5973ecc3240805b5054}{BIND\_DEPTHBUFFER}}\ =\ 0,\ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_fbo_a731fc86ea745ded088424d240348aee3aa03f98fe077069d2959aaf05fdad1217}{BIND\_COLORTEXTURE}},\ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_fbo_a731fc86ea745ded088424d240348aee3a1405269d3e6249dd66d848e08ddff7dc}{BIND\_DEPTHTEXTURE}},\ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Const/dest:\ \ \ }}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_fbo}{Fbo}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{class_fbo}{\string~Fbo}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ Get/set:\ \ \ }}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ getTexture(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ textureNumber);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{int}\ getSizeX();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{int}\ getSizeY();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{int}\ getSizeZ();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ getHandle();}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ Management:}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{bool}\ isOk();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{bool}\ bindTexture(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ textureNumber,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ operation,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ texture,\ \textcolor{keywordtype}{int}\ param1\ =\ 0,\ \textcolor{keywordtype}{int}\ param2\ =\ 0);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{bool}\ bindRenderBuffer(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ renderBuffer,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ operation,\ \textcolor{keywordtype}{int}\ sizeX,\ \textcolor{keywordtype}{int}\ sizeY);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//\ Rendering:\ \ \ \ \ }}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{bool}\ render(\textcolor{keywordtype}{void}*\ data\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ disable();}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{private}:\ \textcolor{comment}{//}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{//\ Generic\ data:}}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fbo_a6fea5f641e2bd27cfa0523d00efdc1bb}{sizeX}},\ \mbox{\hyperlink{class_fbo_a9872a36128fa8977aa6a03801ca26c96}{sizeY}},\ \mbox{\hyperlink{class_fbo_a2660e8ca4317f74f2d154728b84a814d}{sizeZ}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fbo_aba0b4eb191c21c1cb8898915f053be85}{texture}}[\mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\_ATTACHMENTS}}];\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fbo_a3df506690a557886aefa57180a39047f}{drawBuffer}}[\mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\_ATTACHMENTS}}];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//\ OGL\ stuff:}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fbo_a211efcccbaf755999dd67f01524fd57f}{glId}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fbo_aa163ced232d03de27a0666c2a5457b02}{glRenderBufferId}}[\mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\_ATTACHMENTS}}];\ \ \ \ }
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ MRT\ cache:\ \ \ }}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fbo_a6300b5881dc74d0e36ffdc60493c2e41}{nrOfMrts}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}*\ \mbox{\hyperlink{class_fbo_ae37011c317414e0e6cdc482f3ce52069}{mrt}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{comment}{//\ Cache:}}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_fbo_ad4a6bf885fbbc4d29e2ecee8fc1c60b9}{updateMrtCache}}();}
+\DoxyCodeLine{00193\ \};}
+
+\end{DoxyCode}

@@ -1,15 +1,4 @@
-﻿/**
- * @file		engine.cpp
- * @brief	Graphics engine main file
- *
- * @author	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- * @author	Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
- */
-
-
-
-//////////////
+﻿//////////////
 // #INCLUDE //
 //////////////
 #include <filesystem>
@@ -603,6 +592,52 @@ void ENG_API Eng::Base::clearScene() {
     this->reserved->listOfScene.clearList();
 }
 
+void Eng::Base::drawLeapPart(const glm::mat4& view,
+    const glm::mat4& offsetDraw,
+    const glm::vec3& pos)
+{
+    glm::mat4 c = glm::translate(glm::mat4(1.0f), pos);
+    shaderLeap->setMatrix(leapMVLoc,
+        view * offsetDraw * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f)) * c);
+    glBindVertexArray(leapVao);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)leapVertices.size());
+    glBindVertexArray(0);
+}
+
+void Eng::Base::renderLeapHands(const LEAP_TRACKING_EVENT* l,
+    const glm::mat4& view,
+    const glm::mat4& proj)
+{
+    if (!l) return;
+
+    shaderLeap->render();
+    shaderLeap->setMatrix(leapProjLoc, proj);
+
+    glm::mat4 offsetDraw = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 1.0f, 0.5f))
+        * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+    for (unsigned int h = 0; h < l->nHands; ++h) {
+        LEAP_HAND hand = l->pHands[h];
+        glm::vec3 thumbTip, indexTip;
+        shaderLeap->setVec3(leapColorLoc, glm::vec3((float)h, (float)(1 - h), 0.5f));
+
+        // draw arm, palm, fingers:
+        drawLeapPart(view, offsetDraw,
+            glm::vec3(hand.arm.next_joint.x, hand.arm.next_joint.y, hand.arm.next_joint.z));
+        drawLeapPart(view, offsetDraw,
+            glm::vec3(hand.palm.position.x, hand.palm.position.y, hand.palm.position.z));
+
+        for (unsigned int d = 0; d < 5; ++d) {
+            LEAP_DIGIT finger = hand.digits[d];
+            for (unsigned int b = 0; b < 4; ++b) {
+                LEAP_BONE bone = finger.bones[b];
+                drawLeapPart(view, offsetDraw,
+                    glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z));
+            }
+        }
+    }
+}
+
 ////////////////////////////
 // Eng::Base::begin3D()   //
 ////////////////////////////
@@ -615,87 +650,6 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
 
     if (mainCamera == nullptr)
         return;
-
-    auto renderLeapHands = [&](const LEAP_TRACKING_EVENT* l, const glm::mat4& leapView, const glm::mat4& leapProj) {
-        if (!l) return;
-
-        shaderLeap->render();
-        shaderLeap->setMatrix(leapProjLoc, leapProj);
-
-        glm::mat4 offsetDraw = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 1.0f, 0.5f))
-            * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
-        for (unsigned int h = 0; h < l->nHands; h++) {
-            LEAP_HAND hand = l->pHands[h];
-
-            glm::vec3 thumbTip, indexTip;
-
-            for (unsigned int d = 0; d < 5; d++) {
-                LEAP_DIGIT finger = hand.digits[d];
-                for (unsigned int b = 0; b < 4; b++) {
-                    LEAP_BONE bone = finger.bones[b];
-                    if (b == 3) {
-                        if (d == 0) thumbTip = glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
-                        if (d == 1) indexTip = glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
-                    }
-                }
-            }
-
-            float distance = glm::length(thumbTip - indexTip);
-
-            // 🔥 Filtro stabile
-            static float pinchFilter[2] = { 0.0f, 0.0f };
-            float alpha = 0.7f;
-            pinchFilter[h] = alpha * distance + (1 - alpha) * pinchFilter[h];
-
-            bool isPinching = pinchFilter[h] < 30.0f;
-
-            // Solo stampa se cambia
-            static bool wasPinching[2] = { false, false };
-            if (isPinching != wasPinching[h]) {
-                std::cout << "H" << h << (isPinching ? " PINCH START" : " PINCH END") << std::endl;
-                wasPinching[h] = isPinching;
-            }
-
-            glm::vec3 pinchCenter = 0.5f * (thumbTip + indexTip);
-
-            glm::mat4 offsetCoordinates = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 1.0f, 0.0f))
-                * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f))
-                * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f));
-
-            glm::vec3 pinchWorld = glm::vec3(offsetCoordinates * glm::vec4(pinchCenter, 1.0f));
-
-            hands[h].isPinching = isPinching;
-            hands[h].pinchPosition = pinchWorld;
-
-            shaderLeap->setVec3(leapColorLoc, glm::vec3((float)h, (float)(1 - h), 0.5f));
-
-            auto drawPart = [&](glm::vec3 pos) {
-                glm::mat4 c = glm::translate(glm::mat4(1.0f), pos);
-                shaderLeap->setMatrix(leapMVLoc, leapView * offsetDraw * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f)) * c);
-                glBindVertexArray(leapVao);
-                glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)leapVertices.size());
-                glBindVertexArray(0);
-                };
-
-            // ✅ NON disegnare gomito (arm.prev_joint)
-
-            // ✅ Avambraccio
-            drawPart(glm::vec3(hand.arm.next_joint.x, hand.arm.next_joint.y, hand.arm.next_joint.z));
-
-            // ✅ Palmo
-            drawPart(glm::vec3(hand.palm.position.x, hand.palm.position.y, hand.palm.position.z));
-
-            // ✅ Tutte le dita
-            for (unsigned int d = 0; d < 5; d++) {
-                LEAP_DIGIT finger = hand.digits[d];
-                for (unsigned int b = 0; b < 4; b++) {
-                    LEAP_BONE bone = finger.bones[b];
-                    drawPart(glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z));
-                }
-            }
-        }
-        };
 
     // ---------------------------------
     // 1) Modalità VR
@@ -820,7 +774,6 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
     reserved->textManager.displayText(menu, menuCamera);
     reserved->textManager.displayFPS(this->getFPS(), menuCamera);
 }
-
 
 /**
  * Load cubemap into a texture.

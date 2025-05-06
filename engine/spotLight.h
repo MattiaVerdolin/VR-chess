@@ -1,14 +1,10 @@
 /**
- * @file    spotLight.h
- * @brief   Declaration of the SpotLight class, a concrete implementation of the Light class.
+ * @file		spotLight.h
+ * @brief	Spot Light header file
  *
- * This file defines the SpotLight class, which represents a spotlight source in a 3D scene.
- * The spotlight emits light in a specific direction and can have a cutoff angle and a spot exponent to control
- * the size and falloff of the spotlight's beam.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once

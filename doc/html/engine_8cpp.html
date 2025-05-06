@@ -104,31 +104,42 @@ $(function(){initNavTree('engine_8cpp.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">engine.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Graphics engine main file.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="engine_8h_source.html">engine.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;filesystem&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &quot;<a class="el" href="engine_8h_source.html">engine.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="notification_service_8h_source.html">notificationService.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="text_manager_8h_source.html">textManager.h</a>&quot;</code><br />
 <code>#include &quot;glm/glm.hpp&quot;</code><br />
 <code>#include &quot;glm/gtc/type_ptr.hpp&quot;</code><br />
+<code>#include &lt;GL/glew.h&gt;</code><br />
 <code>#include &quot;GL/freeglut.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="file_o_v_o_reader_8h_source.html">fileOVOReader.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="list_8h_source.html">list.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mesh_8h_source.html">mesh.h</a>&quot;</code><br />
 <code>#include &quot;FreeImage.h&quot;</code><br />
-<code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;source_location&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &quot;<a class="el" href="shader_8h_source.html">shader.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_eng_1_1_base_1_1_reserved.html">Eng::Base::Reserved</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_eng_1_1_base.html" title="Main class for the graphics engine. Implements the Singleton pattern.">Base</a> class reserved structure (using PIMPL/Bridge design pattern <a href="https://en.wikipedia.org/wiki/Opaque_pointer">https://en.wikipedia.org/wiki/Opaque_pointer</a>).  <a href="struct_eng_1_1_base_1_1_reserved.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a8cab6935063a6ac98fdfa0b98bd8f466" id="r_a8cab6935063a6ac98fdfa0b98bd8f466"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cab6935063a6ac98fdfa0b98bd8f466">APP_WINDOWSIZEX</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="memdesc:a8cab6935063a6ac98fdfa0b98bd8f466"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class reserved structure (using PIMPL/Bridge design pattern <a href="https://en.wikipedia.org/wiki/Opaque_pointer">https://en.wikipedia.org/wiki/Opaque_pointer</a>).  <br /></td></tr>
+<tr class="separator:a8cab6935063a6ac98fdfa0b98bd8f466"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af47d865515d26bf943cfa845dcd9a931" id="r_af47d865515d26bf943cfa845dcd9a931"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af47d865515d26bf943cfa845dcd9a931">APP_WINDOWSIZEY</a>&#160;&#160;&#160;512</td></tr>
+<tr class="separator:af47d865515d26bf943cfa845dcd9a931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -138,15 +149,202 @@ Variables</h2></td></tr>
 <tr class="separator:a4f50e96f11c68d45dc109185efe011ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa2bba9b04515c5bbf5c04d20f672b12" id="r_aaa2bba9b04515c5bbf5c04d20f672b12"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa2bba9b04515c5bbf5c04d20f672b12">previousTime</a> = 0</td></tr>
 <tr class="separator:aaa2bba9b04515c5bbf5c04d20f672b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19a5721afbcd65426ced0835ad20b4cb" id="r_a19a5721afbcd65426ced0835ad20b4cb"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19a5721afbcd65426ced0835ad20b4cb">nearPlane</a> = 0.01f</td></tr>
+<tr class="separator:a19a5721afbcd65426ced0835ad20b4cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afccc1873015c76bf295d68cb7c27e24e" id="r_afccc1873015c76bf295d68cb7c27e24e"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afccc1873015c76bf295d68cb7c27e24e">farPlane</a> = 100.0f</td></tr>
+<tr class="separator:afccc1873015c76bf295d68cb7c27e24e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b5233179163b3663e0a733dbe2c040c" id="r_a6b5233179163b3663e0a733dbe2c040c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b5233179163b3663e0a733dbe2c040c">cubemapId</a></td></tr>
+<tr class="separator:a6b5233179163b3663e0a733dbe2c040c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2abe403ccd6ef66822f4b4cbfc7c048" id="r_ad2abe403ccd6ef66822f4b4cbfc7c048"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2abe403ccd6ef66822f4b4cbfc7c048">cubemapNames</a> []</td></tr>
+<tr class="separator:ad2abe403ccd6ef66822f4b4cbfc7c048"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa21981bff0158d562204fd22c1ea29f5" id="r_aa21981bff0158d562204fd22c1ea29f5"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa21981bff0158d562204fd22c1ea29f5">globalVao</a> = 0</td></tr>
+<tr class="separator:aa21981bff0158d562204fd22c1ea29f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5603903caac7fd37de6bb7a813d460ef" id="r_a5603903caac7fd37de6bb7a813d460ef"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5603903caac7fd37de6bb7a813d460ef">cubeVboVertices</a> = 0</td></tr>
+<tr class="separator:a5603903caac7fd37de6bb7a813d460ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c4f4d2f37e97a90d5364b838ec61be3" id="r_a7c4f4d2f37e97a90d5364b838ec61be3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c4f4d2f37e97a90d5364b838ec61be3">cubeVertices</a> []</td></tr>
+<tr class="separator:a7c4f4d2f37e97a90d5364b838ec61be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e4075380b99fd10d948a14b5e7f5bc3" id="r_a6e4075380b99fd10d948a14b5e7f5bc3"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e4075380b99fd10d948a14b5e7f5bc3">cubeVboFaces</a> = 0</td></tr>
+<tr class="separator:a6e4075380b99fd10d948a14b5e7f5bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86390b3ceaf38a19e8d328ef53948e66" id="r_a86390b3ceaf38a19e8d328ef53948e66"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86390b3ceaf38a19e8d328ef53948e66">cubeFaces</a> []</td></tr>
+<tr class="separator:a86390b3ceaf38a19e8d328ef53948e66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c265e8906eca9887af32bd1e4109ee6" id="r_a5c265e8906eca9887af32bd1e4109ee6"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c265e8906eca9887af32bd1e4109ee6">vertShader</a></td></tr>
+<tr class="separator:a5c265e8906eca9887af32bd1e4109ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a646b75fec0f33233e1caa1fbe9f97d5c" id="r_a646b75fec0f33233e1caa1fbe9f97d5c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a646b75fec0f33233e1caa1fbe9f97d5c">fragShader</a></td></tr>
+<tr class="separator:a646b75fec0f33233e1caa1fbe9f97d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa785ab4633a93e34b01e10f6b58ec37f" id="r_aa785ab4633a93e34b01e10f6b58ec37f"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa785ab4633a93e34b01e10f6b58ec37f">vertShaderCube</a></td></tr>
+<tr class="separator:aa785ab4633a93e34b01e10f6b58ec37f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a96061d57c1c2df55d9a1b1bd36105" id="r_a77a96061d57c1c2df55d9a1b1bd36105"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77a96061d57c1c2df55d9a1b1bd36105">fragShaderCube</a></td></tr>
+<tr class="separator:a77a96061d57c1c2df55d9a1b1bd36105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f9eb89c434e0558fdbc888698439825" id="r_a8f9eb89c434e0558fdbc888698439825"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f9eb89c434e0558fdbc888698439825">vertShaderLeap</a></td></tr>
+<tr class="separator:a8f9eb89c434e0558fdbc888698439825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae51096edcc41798c0545ddb3aa1ab925" id="r_ae51096edcc41798c0545ddb3aa1ab925"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae51096edcc41798c0545ddb3aa1ab925">fragShaderLeap</a></td></tr>
+<tr class="separator:ae51096edcc41798c0545ddb3aa1ab925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Graphics engine main file. </p>
-<dl class="section author"><dt>Author</dt><dd>Luca Fantò (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'luc'+'a.'+'fan'+'to'+'@st'+'ud'+'ent'+'.s'+'ups'+'i.'+'ch'; return false;">luca.<span class="obfuscator">.nosp@m.</span>fant<span class="obfuscator">.nosp@m.</span>o@stu<span class="obfuscator">.nosp@m.</span>dent<span class="obfuscator">.nosp@m.</span>.sups<span class="obfuscator">.nosp@m.</span>i.ch</a>] </dd>
-<dd>
-Mattia Cainarca (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'mat'+'ti'+'a.c'+'ai'+'nar'+'ca'+'@st'+'ud'+'ent'+'.s'+'ups'+'i.'+'ch'; return false;">matti<span class="obfuscator">.nosp@m.</span>a.ca<span class="obfuscator">.nosp@m.</span>inarc<span class="obfuscator">.nosp@m.</span>a@st<span class="obfuscator">.nosp@m.</span>udent<span class="obfuscator">.nosp@m.</span>.sup<span class="obfuscator">.nosp@m.</span>si.ch</a>] </dd>
-<dd>
-Antonio Marroffino (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'ant'+'on'+'io.'+'ma'+'rro'+'ff'+'ino'+'@s'+'tud'+'en'+'t.s'+'up'+'si.'+'ch'; return false;">anton<span class="obfuscator">.nosp@m.</span>io.m<span class="obfuscator">.nosp@m.</span>arrof<span class="obfuscator">.nosp@m.</span>fino<span class="obfuscator">.nosp@m.</span>@stud<span class="obfuscator">.nosp@m.</span>ent.<span class="obfuscator">.nosp@m.</span>supsi<span class="obfuscator">.nosp@m.</span>.ch</a>] </dd></dl>
-</div><h2 class="groupheader">Variable Documentation</h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a8cab6935063a6ac98fdfa0b98bd8f466" name="a8cab6935063a6ac98fdfa0b98bd8f466"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cab6935063a6ac98fdfa0b98bd8f466">&#9670;&#160;</a></span>APP_WINDOWSIZEX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define APP_WINDOWSIZEX&#160;&#160;&#160;1024</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Base class reserved structure (using PIMPL/Bridge design pattern <a href="https://en.wikipedia.org/wiki/Opaque_pointer">https://en.wikipedia.org/wiki/Opaque_pointer</a>). </p>
+
+</div>
+</div>
+<a id="af47d865515d26bf943cfa845dcd9a931" name="af47d865515d26bf943cfa845dcd9a931"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af47d865515d26bf943cfa845dcd9a931">&#9670;&#160;</a></span>APP_WINDOWSIZEY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define APP_WINDOWSIZEY&#160;&#160;&#160;512</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a86390b3ceaf38a19e8d328ef53948e66" name="a86390b3ceaf38a19e8d328ef53948e66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86390b3ceaf38a19e8d328ef53948e66">&#9670;&#160;</a></span>cubeFaces</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short cubeFaces[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">{</div>
+<div class="line">   0, 1, 2,</div>
+<div class="line">   0, 2, 3,</div>
+<div class="line">   3, 2, 6,</div>
+<div class="line">   3, 6, 7,</div>
+<div class="line">   4, 0, 3,</div>
+<div class="line">   4, 3, 7,</div>
+<div class="line">   6, 5, 4,</div>
+<div class="line">   7, 6, 4,</div>
+<div class="line">   4, 5, 1,</div>
+<div class="line">   4, 1, 0,</div>
+<div class="line">   1, 5, 6,</div>
+<div class="line">   1, 6, 2,</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6b5233179163b3663e0a733dbe2c040c" name="a6b5233179163b3663e0a733dbe2c040c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b5233179163b3663e0a733dbe2c040c">&#9670;&#160;</a></span>cubemapId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int cubemapId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad2abe403ccd6ef66822f4b4cbfc7c048" name="ad2abe403ccd6ef66822f4b4cbfc7c048"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2abe403ccd6ef66822f4b4cbfc7c048">&#9670;&#160;</a></span>cubemapNames</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string cubemapNames[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">{</div>
+<div class="line">   <span class="stringliteral">&quot;textures/cubemap/negx.jpg&quot;</span>,</div>
+<div class="line">   <span class="stringliteral">&quot;textures/cubemap/posx.jpg&quot;</span>,</div>
+<div class="line">   <span class="stringliteral">&quot;textures/cubemap/posy.jpg&quot;</span>,</div>
+<div class="line">   <span class="stringliteral">&quot;textures/cubemap/negy.jpg&quot;</span>,</div>
+<div class="line">   <span class="stringliteral">&quot;textures/cubemap/posz.jpg&quot;</span>,</div>
+<div class="line">   <span class="stringliteral">&quot;textures/cubemap/negz.jpg&quot;</span>,</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6e4075380b99fd10d948a14b5e7f5bc3" name="a6e4075380b99fd10d948a14b5e7f5bc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e4075380b99fd10d948a14b5e7f5bc3">&#9670;&#160;</a></span>cubeVboFaces</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int cubeVboFaces = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5603903caac7fd37de6bb7a813d460ef" name="a5603903caac7fd37de6bb7a813d460ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5603903caac7fd37de6bb7a813d460ef">&#9670;&#160;</a></span>cubeVboVertices</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int cubeVboVertices = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c4f4d2f37e97a90d5364b838ec61be3" name="a7c4f4d2f37e97a90d5364b838ec61be3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c4f4d2f37e97a90d5364b838ec61be3">&#9670;&#160;</a></span>cubeVertices</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float cubeVertices[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= </div>
+<div class="line">{</div>
+<div class="line">   -1.0f,  1.0f,  1.0f,</div>
+<div class="line">   -1.0f, -1.0f,  1.0f,</div>
+<div class="line">    1.0f, -1.0f,  1.0f,</div>
+<div class="line">    1.0f,  1.0f,  1.0f,</div>
+<div class="line">   -1.0f,  1.0f, -1.0f,</div>
+<div class="line">   -1.0f, -1.0f, -1.0f,</div>
+<div class="line">    1.0f, -1.0f, -1.0f,</div>
+<div class="line">    1.0f,  1.0f, -1.0f,</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="afccc1873015c76bf295d68cb7c27e24e" name="afccc1873015c76bf295d68cb7c27e24e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afccc1873015c76bf295d68cb7c27e24e">&#9670;&#160;</a></span>farPlane</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float farPlane = 100.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a4f50e96f11c68d45dc109185efe011ad" name="a4f50e96f11c68d45dc109185efe011ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4f50e96f11c68d45dc109185efe011ad">&#9670;&#160;</a></span>fps</h2>
 
@@ -161,6 +359,72 @@ Antonio Marroffino (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'a
 
 </div>
 </div>
+<a id="a646b75fec0f33233e1caa1fbe9f97d5c" name="a646b75fec0f33233e1caa1fbe9f97d5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a646b75fec0f33233e1caa1fbe9f97d5c">&#9670;&#160;</a></span>fragShader</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* fragShader</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a77a96061d57c1c2df55d9a1b1bd36105" name="a77a96061d57c1c2df55d9a1b1bd36105"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a96061d57c1c2df55d9a1b1bd36105">&#9670;&#160;</a></span>fragShaderCube</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* fragShaderCube</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= R<span class="stringliteral">&quot;(</span></div>
+<div class="line"><span class="stringliteral">   #version 440 core</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   in vec3 texCoord;</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   // Texture mapping (cubemap):</span></div>
+<div class="line"><span class="stringliteral">   layout(binding = 0) uniform samplerCube cubemapSampler;</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   out vec4 fragOutput;</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   void main(void)</span></div>
+<div class="line"><span class="stringliteral">   {</span></div>
+<div class="line"><span class="stringliteral">      fragOutput = texture(cubemapSampler, texCoord);</span></div>
+<div class="line"><span class="stringliteral">   }</span></div>
+<div class="line"><span class="stringliteral">)&quot;</span></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae51096edcc41798c0545ddb3aa1ab925" name="ae51096edcc41798c0545ddb3aa1ab925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae51096edcc41798c0545ddb3aa1ab925">&#9670;&#160;</a></span>fragShaderLeap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* fragShaderLeap</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= R<span class="stringliteral">&quot;(</span></div>
+<div class="line"><span class="stringliteral">#version 440 core</span></div>
+<div class="line"><span class="stringliteral">uniform vec3 color;   </span></div>
+<div class="line"><span class="stringliteral">out vec4 frag_Output;</span></div>
+<div class="line"><span class="stringliteral">void main(void)</span></div>
+<div class="line"><span class="stringliteral">{      </span></div>
+<div class="line"><span class="stringliteral">    frag_Output = vec4(color, 1.0f);</span></div>
+<div class="line"><span class="stringliteral">}</span></div>
+<div class="line"><span class="stringliteral">)&quot;</span></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="abaf7d77bd2fc7eb6125fa605bd645b67" name="abaf7d77bd2fc7eb6125fa605bd645b67"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abaf7d77bd2fc7eb6125fa605bd645b67">&#9670;&#160;</a></span>frameCount</h2>
 
@@ -169,6 +433,34 @@ Antonio Marroffino (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'a
       <table class="memname">
         <tr>
           <td class="memname">int frameCount = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa21981bff0158d562204fd22c1ea29f5" name="aa21981bff0158d562204fd22c1ea29f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa21981bff0158d562204fd22c1ea29f5">&#9670;&#160;</a></span>globalVao</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int globalVao = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a19a5721afbcd65426ced0835ad20b4cb" name="a19a5721afbcd65426ced0835ad20b4cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19a5721afbcd65426ced0835ad20b4cb">&#9670;&#160;</a></span>nearPlane</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float nearPlane = 0.01f</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -187,6 +479,102 @@ Antonio Marroffino (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'a
       </table>
 </div><div class="memdoc">
 
+</div>
+</div>
+<a id="a5c265e8906eca9887af32bd1e4109ee6" name="a5c265e8906eca9887af32bd1e4109ee6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c265e8906eca9887af32bd1e4109ee6">&#9670;&#160;</a></span>vertShader</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* vertShader</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= R<span class="stringliteral">&quot;(</span></div>
+<div class="line"><span class="stringliteral">   #version 440 core</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   // Uniforms:</span></div>
+<div class="line"><span class="stringliteral">   uniform mat4 projection;</span></div>
+<div class="line"><span class="stringliteral">   uniform mat4 modelview;</span></div>
+<div class="line"><span class="stringliteral">   uniform mat3 normalMatrix;</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   // Attributes:</span></div>
+<div class="line"><span class="stringliteral">   layout(location = 0) in vec3 in_Position;</span></div>
+<div class="line"><span class="stringliteral">   layout(location = 1) in vec3 in_Normal;</span></div>
+<div class="line"><span class="stringliteral">   layout(location = 2) in vec2 in_TexCoord;</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   // Varying:</span></div>
+<div class="line"><span class="stringliteral">   out vec4 fragPosition;</span></div>
+<div class="line"><span class="stringliteral">   out vec3 normal;   </span></div>
+<div class="line"><span class="stringliteral">   out vec2 texCoord;</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   void main(void)</span></div>
+<div class="line"><span class="stringliteral">   {</span></div>
+<div class="line"><span class="stringliteral">      fragPosition = modelview * vec4(in_Position, 1.0f);</span></div>
+<div class="line"><span class="stringliteral">      gl_Position = projection * fragPosition;      </span></div>
+<div class="line"><span class="stringliteral">      normal = normalMatrix * in_Normal;</span></div>
+<div class="line"><span class="stringliteral">      texCoord = in_TexCoord;</span></div>
+<div class="line"><span class="stringliteral">   }</span></div>
+<div class="line"><span class="stringliteral">)&quot;</span></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa785ab4633a93e34b01e10f6b58ec37f" name="aa785ab4633a93e34b01e10f6b58ec37f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa785ab4633a93e34b01e10f6b58ec37f">&#9670;&#160;</a></span>vertShaderCube</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* vertShaderCube</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= R<span class="stringliteral">&quot;(</span></div>
+<div class="line"><span class="stringliteral">   #version 440 core</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   uniform mat4 projection;</span></div>
+<div class="line"><span class="stringliteral">   uniform mat4 modelview;</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   layout(location = 0) in vec3 in_Position;</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   out vec3 texCoord;</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">   void main(void)</span></div>
+<div class="line"><span class="stringliteral">   {</span></div>
+<div class="line"><span class="stringliteral">      texCoord = in_Position;</span></div>
+<div class="line"><span class="stringliteral">      gl_Position = projection * modelview * vec4(in_Position, 1.0f);</span></div>
+<div class="line"><span class="stringliteral">   }</span></div>
+<div class="line"><span class="stringliteral">)&quot;</span></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a8f9eb89c434e0558fdbc888698439825" name="a8f9eb89c434e0558fdbc888698439825"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f9eb89c434e0558fdbc888698439825">&#9670;&#160;</a></span>vertShaderLeap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* vertShaderLeap</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= R<span class="stringliteral">&quot;(</span></div>
+<div class="line"><span class="stringliteral">#version 440 core</span></div>
+<div class="line"><span class="stringliteral">uniform mat4 projection;</span></div>
+<div class="line"><span class="stringliteral">uniform mat4 modelview;</span></div>
+<div class="line"><span class="stringliteral">layout(location = 0) in vec3 in_Position;</span></div>
+<div class="line"><span class="stringliteral">void main(void)</span></div>
+<div class="line"><span class="stringliteral">{</span></div>
+<div class="line"><span class="stringliteral">    gl_Position = projection * modelview * vec4(in_Position, 1.0f);      </span></div>
+<div class="line"><span class="stringliteral">}</span></div>
+<div class="line"><span class="stringliteral">)&quot;</span></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

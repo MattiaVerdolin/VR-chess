@@ -3,31 +3,31 @@
 \mbox{\hyperlink{direct_light_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ }
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \#INCLUDE\ //}}
 \DoxyCodeLine{00015\ }
-\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#INCLUDE\ //}}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{comment}{//\ Project-\/specific\ includes}}
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{light_8h}{light.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{light_8h}{light.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ MAIN\ DIRECTLIGHT\ CLASS\ //}}
 \DoxyCodeLine{00022\ }
-\DoxyCodeLine{00024\ \textcolor{comment}{//\ MAIN\ DIRECTLIGHT\ CLASS\ //}}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\ \{}
-\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}(\textcolor{keyword}{const}\ std::string\&\ name\ =\ \textcolor{stringliteral}{"{}defaultDirectLight"{}},\ \textcolor{keyword}{const}\ glm::vec3\&\ direction\ =\ glm::vec3(0.0f));}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_direct_light_a46f47f3b171fc6a95fa9e6dc6ef103f5}{\string~DirectLight}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}\&\ other);}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}\&\ \mbox{\hyperlink{class_direct_light_ad3857caca1a103525047cde06ce1c971}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_aa7c94186ffb48c88058dea96547c8f3c}{render}}(\textcolor{keyword}{const}\ glm::mat4\&\ matrix\ =\ glm::mat4(1.0f))\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}}*\ \mbox{\hyperlink{class_light_ab4e365754a296e56fe3e6fed125f6fbe}{clone}}()\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_a5bc31ec3268cea795ce926bf8e885655}{setPosition}}(\textcolor{keyword}{const}\ glm::vec3\&\ direction)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}(\textcolor{keyword}{const}\ std::string\&\ name\ =\ \textcolor{stringliteral}{"{}defaultDirectLight"{}},\ \textcolor{keyword}{const}\ glm::vec3\&\ direction\ =\ glm::vec3(0.0f));}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_direct_light_a46f47f3b171fc6a95fa9e6dc6ef103f5}{\string~DirectLight}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}\&\ other);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}\&\ \mbox{\hyperlink{class_direct_light_ad3857caca1a103525047cde06ce1c971}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{DirectLight}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_aa7c94186ffb48c88058dea96547c8f3c}{render}}(\textcolor{keyword}{const}\ glm::mat4\&\ matrix\ =\ glm::mat4(1.0f))\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}}*\ \mbox{\hyperlink{class_light_ab4e365754a296e56fe3e6fed125f6fbe}{clone}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_a5bc31ec3268cea795ce926bf8e885655}{setPosition}}(\textcolor{keyword}{const}\ glm::vec3\&\ direction)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00095\ \};}
 
 \end{DoxyCode}

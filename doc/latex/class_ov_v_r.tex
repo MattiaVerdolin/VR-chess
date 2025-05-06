@@ -1,0 +1,487 @@
+\doxysection{Ov\+VR Class Reference}
+\hypertarget{class_ov_v_r}{}\label{class_ov_v_r}\index{OvVR@{OvVR}}
+
+
+Open\+GL-\/\+Open\+VR interface.  
+
+
+
+
+{\ttfamily \#include $<$ovr.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_ov_v_r_1_1_controller}{Controller}}
+\begin{DoxyCompactList}\small\item\em Structure representing a VR controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20c}{Ov\+Eye}} \{ \mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20caa5014febde9eb1f33f41720087371386}{EYE\+\_\+\+LEFT}} = 0
+, \mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20ca6f4d8e5ff0e94ff49a5d19c8cef5caac}{EYE\+\_\+\+RIGHT}} = 1
+, \mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20ca3bfa610f909c5eb417e33e936ba3cdbf}{EYE\+\_\+\+LAST}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for VR eye types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ov_v_r_aa0a70b019b844207d368ac321e67bf0b}{Ov\+VR}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ov_v_r}{Ov\+VR} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ov_v_r_adac268ed4df9d6a679e728e397965ade}{\texorpdfstring{$\sim$}{\string~}\+Ov\+VR}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_ov_v_r}{Ov\+VR} class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ov_v_r_a404daa8715a228ae29983c1cad6af112}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the VR system and controllers. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ov_v_r_a33408f3cb1c696d770305f5787c7ec67}{free}} ()
+\begin{DoxyCompactList}\small\item\em Frees all VR system resources. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_ov_v_r_a3f3fbb5a56085cc58d2eba20811c8da4}{get\+Tracking\+Sys\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the tracking system. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_ov_v_r_a112e7dcb8fa229819eafb05886df2ead}{get\+Manufacturer\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Gets the manufacturer name of the VR device. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_ov_v_r_a3614e512b3705aae94991e01f2e02e70}{get\+Model\+Number}} ()
+\begin{DoxyCompactList}\small\item\em Gets the model number of the VR device. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ov_v_r_a00cff58ed098cb7472c8851347b5cddf}{print\+Render\+Models}} ()
+\begin{DoxyCompactList}\small\item\em Prints information about available render models. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_ov_v_r_a883640acadbec4ef723575aebae0c0cb}{get\+Hmd\+Ideal\+Horiz\+Res}} ()
+\begin{DoxyCompactList}\small\item\em Gets the ideal horizontal resolution for the HMD. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_ov_v_r_ae7966a542e08866e95245d31c60167f2}{get\+Hmd\+Ideal\+Vert\+Res}} ()
+\begin{DoxyCompactList}\small\item\em Gets the ideal vertical resolution for the HMD. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_ov_v_r_acad3f65c1dd04157ceb17f10a8a9bdb0}{get\+Proj\+Matrix}} (\mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20c}{Ov\+Eye}} eye, float \mbox{\hyperlink{engine_8cpp_a19a5721afbcd65426ced0835ad20b4cb}{near\+Plane}}, float \mbox{\hyperlink{engine_8cpp_afccc1873015c76bf295d68cb7c27e24e}{far\+Plane}})
+\begin{DoxyCompactList}\small\item\em Gets the projection matrix for a specific eye. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_ov_v_r_a482f0c25391a2be4b6bdc4dc982e46c2}{get\+Eye2\+Head\+Matrix}} (\mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20c}{Ov\+Eye}} eye)
+\begin{DoxyCompactList}\small\item\em Gets the eye-\/to-\/head transformation matrix. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_ov_v_r_aadb9285e9e2b24ef7699879328beb6b9}{get\+Modelview\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current modelview matrix for the HMD. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ov_v_r_a3159c535116626047385ab2a9c78f668}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates the tracking state of all VR devices. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_ov_v_r_a53d5622c70fe765f99d8d2acd1f04caa}{get\+Nr\+Of\+Controllers}} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of connected controllers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_ov_v_r_1_1_controller}{Controller}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_ov_v_r_a47dec4f31822d61e0be06aa1c50f57ae}{get\+Controller}} (unsigned int pos) const
+\begin{DoxyCompactList}\small\item\em Gets a controller by its index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ov_v_r_a6a946209a3b2468709c73a5dc5454e03}{set\+Reprojection}} (bool flag)
+\begin{DoxyCompactList}\small\item\em Sets the reprojection mode for the VR compositor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ov_v_r_af0fe0c4f93747a6c7f4504e0caa6b600}{pass}} (\mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20c}{Ov\+Eye}} eye, unsigned int eye\+Texture)
+\begin{DoxyCompactList}\small\item\em Submits a rendered eye texture to the VR compositor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ov_v_r_aef7f58ab044e4aa62b42c65a1c8fa7d0}{render}} ()
+\begin{DoxyCompactList}\small\item\em Signals the end of the frame to the VR compositor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static glm\+::mat4 \mbox{\hyperlink{class_ov_v_r_a457e4e0948d5da558e7814d306a3f0f3}{ovr2ogl}} (const vr\+::\+Hmd\+Matrix34\+\_\+t \&matrix)
+\begin{DoxyCompactList}\small\item\em Converts an Open\+VR 3x4 matrix to an Open\+GL 4x4 matrix. \end{DoxyCompactList}\item 
+static glm\+::mat4 \mbox{\hyperlink{class_ov_v_r_ac6651192a0dfb0e03736cdae5243a2d1}{ovr2ogl}} (const vr\+::\+Hmd\+Matrix44\+\_\+t \&matrix)
+\begin{DoxyCompactList}\small\item\em Converts an Open\+VR 4x4 matrix to an Open\+GL 4x4 matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vr\+::\+IVRSystem \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_ov_v_r_a7f9ae0ed4fc21566c5c1d15a1b4bdf7d}{vr\+Sys}}
+\begin{DoxyCompactList}\small\item\em Open\+VR system interface. \end{DoxyCompactList}\item 
+vr\+::\+IVRRender\+Models \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_ov_v_r_ad38e379ab0f2f63109f217e9d0d40f63}{vr\+Models}}
+\begin{DoxyCompactList}\small\item\em Open\+VR render models interface. \end{DoxyCompactList}\item 
+vr\+::\+IVRCompositor \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_ov_v_r_a7672cb47adc0e891335c02408d696452}{vr\+Comp}}
+\begin{DoxyCompactList}\small\item\em Open\+VR compositor interface. \end{DoxyCompactList}\item 
+vr\+::\+Tracked\+Device\+Pose\+\_\+t \mbox{\hyperlink{class_ov_v_r_a0b421a89126b079b4dc2b989e881e6d8}{vr\+Poses}} \mbox{[}vr\+::k\+\_\+un\+Max\+Tracked\+Device\+Count\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array of device poses. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_ov_v_r_1_1_controller}{Controller}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_ov_v_r_a4b9e39c62a2341a0fcee815761010a69}{controllers}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_list}{List} of connected controllers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Open\+GL-\/\+Open\+VR interface. 
+
+This class provides a wrapper for the Open\+VR SDK, handling VR device initialization, tracking, rendering, and controller input management. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_ov_v_r_a8b38ab58d82e226df450dea42792b20c}\index{OvVR@{OvVR}!OvEye@{OvEye}}
+\index{OvEye@{OvEye}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{OvEye}{OvEye}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a8b38ab58d82e226df450dea42792b20c} 
+enum \mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20c}{Ov\+VR\+::\+Ov\+Eye}}}
+
+
+
+Enumeration for VR eye types. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_LEFT@{EYE\_LEFT}!OvVR@{OvVR}}\index{OvVR@{OvVR}!EYE\_LEFT@{EYE\_LEFT}}}\Hypertarget{class_ov_v_r_a8b38ab58d82e226df450dea42792b20caa5014febde9eb1f33f41720087371386}\label{class_ov_v_r_a8b38ab58d82e226df450dea42792b20caa5014febde9eb1f33f41720087371386} 
+EYE\+\_\+\+LEFT&Left eye. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_RIGHT@{EYE\_RIGHT}!OvVR@{OvVR}}\index{OvVR@{OvVR}!EYE\_RIGHT@{EYE\_RIGHT}}}\Hypertarget{class_ov_v_r_a8b38ab58d82e226df450dea42792b20ca6f4d8e5ff0e94ff49a5d19c8cef5caac}\label{class_ov_v_r_a8b38ab58d82e226df450dea42792b20ca6f4d8e5ff0e94ff49a5d19c8cef5caac} 
+EYE\+\_\+\+RIGHT&Right eye. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_LAST@{EYE\_LAST}!OvVR@{OvVR}}\index{OvVR@{OvVR}!EYE\_LAST@{EYE\_LAST}}}\Hypertarget{class_ov_v_r_a8b38ab58d82e226df450dea42792b20ca3bfa610f909c5eb417e33e936ba3cdbf}\label{class_ov_v_r_a8b38ab58d82e226df450dea42792b20ca3bfa610f909c5eb417e33e936ba3cdbf} 
+EYE\+\_\+\+LAST&Terminator. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ov_v_r_aa0a70b019b844207d368ac321e67bf0b}\index{OvVR@{OvVR}!OvVR@{OvVR}}
+\index{OvVR@{OvVR}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{OvVR()}{OvVR()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_aa0a70b019b844207d368ac321e67bf0b} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Ov\+VR\+::\+Ov\+VR (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_ov_v_r}{Ov\+VR} class. 
+
+Initializes the VR system pointers to nullptr and clears the controllers list. \Hypertarget{class_ov_v_r_adac268ed4df9d6a679e728e397965ade}\index{OvVR@{OvVR}!````~OvVR@{\texorpdfstring{$\sim$}{\string~}OvVR}}
+\index{````~OvVR@{\texorpdfstring{$\sim$}{\string~}OvVR}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}OvVR()}{\string~OvVR()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_adac268ed4df9d6a679e728e397965ade} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Ov\+VR\+::\texorpdfstring{$\sim$}{\string~}\+Ov\+VR (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{class_ov_v_r}{Ov\+VR} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ov_v_r_a33408f3cb1c696d770305f5787c7ec67}\index{OvVR@{OvVR}!free@{free}}
+\index{free@{free}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{free()}{free()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a33408f3cb1c696d770305f5787c7ec67} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Ov\+VR\+::free (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Frees all VR system resources. 
+
+This method cleans up all VR-\/related resources, including controllers, and shuts down the VR runtime.
+
+\begin{DoxyReturn}{Returns}
+true if cleanup was successful. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_a47dec4f31822d61e0be06aa1c50f57ae}\index{OvVR@{OvVR}!getController@{getController}}
+\index{getController@{getController}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{getController()}{getController()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a47dec4f31822d61e0be06aa1c50f57ae} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{struct_ov_v_r_1_1_controller}{Ov\+VR\+::\+Controller}} \texorpdfstring{$\ast$}{*} Ov\+VR\+::get\+Controller (\begin{DoxyParamCaption}\item[{unsigned int}]{pos}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets a controller by its index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The index of the controller to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the \doxylink{struct_ov_v_r_1_1_controller}{Controller} object, or nullptr if the index is invalid. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_a482f0c25391a2be4b6bdc4dc982e46c2}\index{OvVR@{OvVR}!getEye2HeadMatrix@{getEye2HeadMatrix}}
+\index{getEye2HeadMatrix@{getEye2HeadMatrix}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{getEye2HeadMatrix()}{getEye2HeadMatrix()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a482f0c25391a2be4b6bdc4dc982e46c2} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::mat4 Ov\+VR\+::get\+Eye2\+Head\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20c}{Ov\+Eye}}}]{eye}{}\end{DoxyParamCaption})}
+
+
+
+Gets the eye-\/to-\/head transformation matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eye} & The eye to get the transformation for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The eye-\/to-\/head transformation matrix. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_a883640acadbec4ef723575aebae0c0cb}\index{OvVR@{OvVR}!getHmdIdealHorizRes@{getHmdIdealHorizRes}}
+\index{getHmdIdealHorizRes@{getHmdIdealHorizRes}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{getHmdIdealHorizRes()}{getHmdIdealHorizRes()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a883640acadbec4ef723575aebae0c0cb} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int Ov\+VR\+::get\+Hmd\+Ideal\+Horiz\+Res (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the ideal horizontal resolution for the HMD. 
+
+\begin{DoxyReturn}{Returns}
+The recommended horizontal resolution in pixels. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_ae7966a542e08866e95245d31c60167f2}\index{OvVR@{OvVR}!getHmdIdealVertRes@{getHmdIdealVertRes}}
+\index{getHmdIdealVertRes@{getHmdIdealVertRes}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{getHmdIdealVertRes()}{getHmdIdealVertRes()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_ae7966a542e08866e95245d31c60167f2} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int Ov\+VR\+::get\+Hmd\+Ideal\+Vert\+Res (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the ideal vertical resolution for the HMD. 
+
+\begin{DoxyReturn}{Returns}
+The recommended vertical resolution in pixels. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_a112e7dcb8fa229819eafb05886df2ead}\index{OvVR@{OvVR}!getManufacturerName@{getManufacturerName}}
+\index{getManufacturerName@{getManufacturerName}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{getManufacturerName()}{getManufacturerName()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a112e7dcb8fa229819eafb05886df2ead} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} string Ov\+VR\+::get\+Manufacturer\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the manufacturer name of the VR device. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the manufacturer name. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_a3614e512b3705aae94991e01f2e02e70}\index{OvVR@{OvVR}!getModelNumber@{getModelNumber}}
+\index{getModelNumber@{getModelNumber}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{getModelNumber()}{getModelNumber()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a3614e512b3705aae94991e01f2e02e70} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} string Ov\+VR\+::get\+Model\+Number (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the model number of the VR device. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the model number. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_aadb9285e9e2b24ef7699879328beb6b9}\index{OvVR@{OvVR}!getModelviewMatrix@{getModelviewMatrix}}
+\index{getModelviewMatrix@{getModelviewMatrix}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{getModelviewMatrix()}{getModelviewMatrix()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_aadb9285e9e2b24ef7699879328beb6b9} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::mat4 Ov\+VR\+::get\+Modelview\+Matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the current modelview matrix for the HMD. 
+
+\begin{DoxyReturn}{Returns}
+The modelview matrix representing the HMD\textquotesingle{}s position and orientation. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_a53d5622c70fe765f99d8d2acd1f04caa}\index{OvVR@{OvVR}!getNrOfControllers@{getNrOfControllers}}
+\index{getNrOfControllers@{getNrOfControllers}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{getNrOfControllers()}{getNrOfControllers()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a53d5622c70fe765f99d8d2acd1f04caa} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int Ov\+VR\+::get\+Nr\+Of\+Controllers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the number of connected controllers. 
+
+\begin{DoxyReturn}{Returns}
+The number of detected VR controllers. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_acad3f65c1dd04157ceb17f10a8a9bdb0}\index{OvVR@{OvVR}!getProjMatrix@{getProjMatrix}}
+\index{getProjMatrix@{getProjMatrix}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{getProjMatrix()}{getProjMatrix()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_acad3f65c1dd04157ceb17f10a8a9bdb0} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::mat4 Ov\+VR\+::get\+Proj\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20c}{Ov\+Eye}}}]{eye}{, }\item[{float}]{near\+Plane}{, }\item[{float}]{far\+Plane}{}\end{DoxyParamCaption})}
+
+
+
+Gets the projection matrix for a specific eye. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eye} & The eye to get the projection matrix for. \\
+\hline
+{\em near\+Plane} & The near clipping plane distance. \\
+\hline
+{\em far\+Plane} & The far clipping plane distance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The projection matrix for the specified eye. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_a3f3fbb5a56085cc58d2eba20811c8da4}\index{OvVR@{OvVR}!getTrackingSysName@{getTrackingSysName}}
+\index{getTrackingSysName@{getTrackingSysName}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{getTrackingSysName()}{getTrackingSysName()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a3f3fbb5a56085cc58d2eba20811c8da4} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} string Ov\+VR\+::get\+Tracking\+Sys\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the name of the tracking system. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the tracking system name. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_a404daa8715a228ae29983c1cad6af112}\index{OvVR@{OvVR}!init@{init}}
+\index{init@{init}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a404daa8715a228ae29983c1cad6af112} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Ov\+VR\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the VR system and controllers. 
+
+This method initializes the Open\+VR runtime, render models interface, and compositor. It also detects and initializes any connected VR controllers.
+
+\begin{DoxyReturn}{Returns}
+true if initialization was successful, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_a457e4e0948d5da558e7814d306a3f0f3}\index{OvVR@{OvVR}!ovr2ogl@{ovr2ogl}}
+\index{ovr2ogl@{ovr2ogl}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{ovr2ogl()}{ovr2ogl()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a457e4e0948d5da558e7814d306a3f0f3} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::mat4 Ov\+VR\+::ovr2ogl (\begin{DoxyParamCaption}\item[{const vr\+::\+Hmd\+Matrix34\+\_\+t \&}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts an Open\+VR 3x4 matrix to an Open\+GL 4x4 matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The Open\+VR matrix to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The converted Open\+GL matrix. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_ac6651192a0dfb0e03736cdae5243a2d1}\index{OvVR@{OvVR}!ovr2ogl@{ovr2ogl}}
+\index{ovr2ogl@{ovr2ogl}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{ovr2ogl()}{ovr2ogl()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_ov_v_r_ac6651192a0dfb0e03736cdae5243a2d1} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::mat4 Ov\+VR\+::ovr2ogl (\begin{DoxyParamCaption}\item[{const vr\+::\+Hmd\+Matrix44\+\_\+t \&}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts an Open\+VR 4x4 matrix to an Open\+GL 4x4 matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The Open\+VR matrix to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The converted Open\+GL matrix. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_af0fe0c4f93747a6c7f4504e0caa6b600}\index{OvVR@{OvVR}!pass@{pass}}
+\index{pass@{pass}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{pass()}{pass()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_af0fe0c4f93747a6c7f4504e0caa6b600} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Ov\+VR\+::pass (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ov_v_r_a8b38ab58d82e226df450dea42792b20c}{Ov\+Eye}}}]{eye}{, }\item[{unsigned int}]{eye\+Texture}{}\end{DoxyParamCaption})}
+
+
+
+Submits a rendered eye texture to the VR compositor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eye} & The eye the texture is for. \\
+\hline
+{\em eye\+Texture} & The Open\+GL texture ID to submit. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ov_v_r_a00cff58ed098cb7472c8851347b5cddf}\index{OvVR@{OvVR}!printRenderModels@{printRenderModels}}
+\index{printRenderModels@{printRenderModels}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{printRenderModels()}{printRenderModels()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a00cff58ed098cb7472c8851347b5cddf} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Ov\+VR\+::print\+Render\+Models (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Prints information about available render models. 
+
+\begin{DoxyReturn}{Returns}
+true if the operation was successful. 
+\end{DoxyReturn}
+\Hypertarget{class_ov_v_r_aef7f58ab044e4aa62b42c65a1c8fa7d0}\index{OvVR@{OvVR}!render@{render}}
+\index{render@{render}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_aef7f58ab044e4aa62b42c65a1c8fa7d0} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Ov\+VR\+::render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Signals the end of the frame to the VR compositor. 
+
+\Hypertarget{class_ov_v_r_a6a946209a3b2468709c73a5dc5454e03}\index{OvVR@{OvVR}!setReprojection@{setReprojection}}
+\index{setReprojection@{setReprojection}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{setReprojection()}{setReprojection()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a6a946209a3b2468709c73a5dc5454e03} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Ov\+VR\+::set\+Reprojection (\begin{DoxyParamCaption}\item[{bool}]{flag}{}\end{DoxyParamCaption})}
+
+
+
+Sets the reprojection mode for the VR compositor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & true to enable interleaved reprojection, false to disable it. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ov_v_r_a3159c535116626047385ab2a9c78f668}\index{OvVR@{OvVR}!update@{update}}
+\index{update@{update}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a3159c535116626047385ab2a9c78f668} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Ov\+VR\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the tracking state of all VR devices. 
+
+This method updates the poses of all tracked devices, including the HMD and controllers.
+
+\begin{DoxyReturn}{Returns}
+true if the update was successful. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_ov_v_r_a4b9e39c62a2341a0fcee815761010a69}\index{OvVR@{OvVR}!controllers@{controllers}}
+\index{controllers@{controllers}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{controllers}{controllers}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a4b9e39c62a2341a0fcee815761010a69} 
+std\+::vector$<$\mbox{\hyperlink{struct_ov_v_r_1_1_controller}{Controller}}\texorpdfstring{$\ast$}{*}$>$ Ov\+VR\+::controllers\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{class_list}{List} of connected controllers. 
+
+\Hypertarget{class_ov_v_r_a7672cb47adc0e891335c02408d696452}\index{OvVR@{OvVR}!vrComp@{vrComp}}
+\index{vrComp@{vrComp}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{vrComp}{vrComp}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a7672cb47adc0e891335c02408d696452} 
+vr\+::\+IVRCompositor\texorpdfstring{$\ast$}{*} Ov\+VR\+::vr\+Comp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Open\+VR compositor interface. 
+
+\Hypertarget{class_ov_v_r_ad38e379ab0f2f63109f217e9d0d40f63}\index{OvVR@{OvVR}!vrModels@{vrModels}}
+\index{vrModels@{vrModels}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{vrModels}{vrModels}}
+{\footnotesize\ttfamily \label{class_ov_v_r_ad38e379ab0f2f63109f217e9d0d40f63} 
+vr\+::\+IVRRender\+Models\texorpdfstring{$\ast$}{*} Ov\+VR\+::vr\+Models\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Open\+VR render models interface. 
+
+\Hypertarget{class_ov_v_r_a0b421a89126b079b4dc2b989e881e6d8}\index{OvVR@{OvVR}!vrPoses@{vrPoses}}
+\index{vrPoses@{vrPoses}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{vrPoses}{vrPoses}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a0b421a89126b079b4dc2b989e881e6d8} 
+vr\+::\+Tracked\+Device\+Pose\+\_\+t Ov\+VR\+::vr\+Poses\mbox{[}vr\+::k\+\_\+un\+Max\+Tracked\+Device\+Count\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Array of device poses. 
+
+\Hypertarget{class_ov_v_r_a7f9ae0ed4fc21566c5c1d15a1b4bdf7d}\index{OvVR@{OvVR}!vrSys@{vrSys}}
+\index{vrSys@{vrSys}!OvVR@{OvVR}}
+\doxysubsubsection{\texorpdfstring{vrSys}{vrSys}}
+{\footnotesize\ttfamily \label{class_ov_v_r_a7f9ae0ed4fc21566c5c1d15a1b4bdf7d} 
+vr\+::\+IVRSystem\texorpdfstring{$\ast$}{*} Ov\+VR\+::vr\+Sys\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Open\+VR system interface. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{ovr_8h}{ovr.\+h}}\item 
+engine/\mbox{\hyperlink{ovr_8cpp}{ovr.\+cpp}}\end{DoxyCompactItemize}

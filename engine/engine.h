@@ -1,14 +1,14 @@
 /**
- * @file    engine.h
- * @brief   Main include file for the graphics engine.
+ * @file		engine.h
+ * @brief	Graphics engine header file
+ *
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  *
  * This file defines the main class for the graphics engine, `Base`, which follows the Singleton design pattern.
  * The class provides methods for initialization, scene management, and rendering. It also includes functions
  * for handling user input and managing FPS.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
  */
 
 #pragma once
@@ -172,6 +172,10 @@ public: //
     */
    void begin3D(Camera* camera1, Camera* camera2, const std::list<std::string>& layers);
 
+   /**
+    * @brief Build the cubemap for environment mapping.
+    * This function creates and configures the cubemap texture used for environment mapping.
+    */
    void buildCubemap();
 
    /**
@@ -179,6 +183,10 @@ public: //
     */
    void end3D();
 
+   /**
+    * @brief Load VR mode configuration from config file.
+    * @return true if VR mode was successfully loaded, false otherwise.
+    */
    bool loadVRModeFromConfig();
 
    /**
@@ -189,21 +197,53 @@ public: //
    // Leap motion hand data
    struct HandLeapData {
        bool isPinching = false;
-       glm::vec3 pinchPosition = glm::vec3(0.0f);  // in world coords (meglio già convertito)
+       glm::vec3 pinchPosition = glm::vec3(0.0f);  // in world coords 
    };
 
    HandLeapData* getHandsData();
 
-private:
+   /**
+    * @brief Get the current FBO (Framebuffer Object) for a specific eye.
+    * @param numEye The eye index (0 for left, 1 for right).
+    * @return Pointer to the current FBO for the specified eye.
+    */
+   Fbo* getCurrent(int numEye);
 
    /**
-    * @brief Private method to handle window reshaping.
-    * @param width The new width of the window.
-    * @param height The new height of the window.
+    * @brief Handle window reshape event.
+    * @param width The new window width.
+    * @param height The new window height.
     */
    void handleReshape(int width, int height);
 
-   Fbo* getCurrent(int numEye);
+private:
+    /**
+         * @brief Renders hands tracked by the Leap Motion device.
+         *
+         * This function sets up the Leap Motion shader, applies necessary transformations,
+         * and calls drawLeapPart() for each joint in the hand structure.
+         *
+         * @param l     Pointer to the Leap Motion tracking event (LEAP_TRACKING_EVENT).
+         * @param view  ModelView matrix used to correctly position the hand in the scene.
+         * @param proj  Projection matrix used for rendering.
+         */
+    void renderLeapHands(const LEAP_TRACKING_EVENT* l,
+        const glm::mat4& view,
+        const glm::mat4& proj);
+
+    /**
+     * @brief Draws a single hand joint.
+     *
+     * This function applies the offset, scaling, and translation matrices
+     * for the specified hand joint and then issues the draw call.
+     *
+     * @param view       The current ModelView matrix.
+     * @param offsetDraw Transformation matrix used to position the hand relative to the scene.
+     * @param pos        Position vector of the joint in Leap Motion coordinates.
+     */
+    void drawLeapPart(const glm::mat4& view,
+        const glm::mat4& offsetDraw,
+        const glm::vec3& pos);
 
    // Reserved:
    static Eng::Base instance; ///< The singleton instance of the engine

@@ -1,13 +1,14 @@
 /**
- * @file    notificationservice.h
- * @brief   Declaration of the NotificationService class for managing listeners and notifications.
+ * @file		notificationService.h
+ * @brief	Notification Service header file
+ *
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  *
  * This file defines the NotificationService class, which allows subscribing and unsubscribing listeners
  * for window reshape and matrix change events. It also provides methods to notify all subscribers of these events.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch] */
+ */
 
 #pragma once
 

@@ -3,34 +3,34 @@
 \mbox{\hyperlink{omni_light_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ }
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00016\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Project-\/specific\ headers}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{light_8h}{light.h}}"{}}}
 \DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{comment}{//\ Project-\/specific\ headers}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{light_8h}{light.h}}"{}}}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00023\ \textcolor{comment}{//\ MAIN\ OMNILIGHT\ CLASS\ //}}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\ \{}
-\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}(\textcolor{keyword}{const}\ std::string\&\ name\ =\ \textcolor{stringliteral}{"{}defaultOmniLight"{}},\ \textcolor{keyword}{const}\ glm::vec3\&\ position\ =\ glm::vec3(0.0f));}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_omni_light_ab84887e9e53ca30985efed024b4a27d9}{\string~OmniLight}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}\&\ other);}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}\&\ \mbox{\hyperlink{class_omni_light_a6e85c78eca01124f5457fc4d86cca911}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_aa7c94186ffb48c88058dea96547c8f3c}{render}}(\textcolor{keyword}{const}\ glm::mat4\&\ matrix\ =\ glm::mat4(1.0f))\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}}*\ \mbox{\hyperlink{class_light_ab4e365754a296e56fe3e6fed125f6fbe}{clone}}()\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ \mbox{\hyperlink{class_omni_light_a4a28865a7fa9b1b96816c47bb5605141}{getCutoff}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_omni_light_ac0384981c70b101f23ed7d3484871319}{m\_cutoff}};}
-\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ MAIN\ OMNILIGHT\ CLASS\ //}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}(\textcolor{keyword}{const}\ std::string\&\ name\ =\ \textcolor{stringliteral}{"{}defaultOmniLight"{}},\ \textcolor{keyword}{const}\ glm::vec3\&\ position\ =\ glm::vec3(0.0f));}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_omni_light_ab84887e9e53ca30985efed024b4a27d9}{\string~OmniLight}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}\&\ other);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}\&\ \mbox{\hyperlink{class_omni_light_a6e85c78eca01124f5457fc4d86cca911}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{OmniLight}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_aa7c94186ffb48c88058dea96547c8f3c}{render}}(\textcolor{keyword}{const}\ glm::mat4\&\ matrix\ =\ glm::mat4(1.0f))\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}}*\ \mbox{\hyperlink{class_light_ab4e365754a296e56fe3e6fed125f6fbe}{clone}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ \mbox{\hyperlink{class_omni_light_a4a28865a7fa9b1b96816c47bb5605141}{getCutoff}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_omni_light_ac0384981c70b101f23ed7d3484871319}{m\_cutoff}};}
+\DoxyCodeLine{00098\ \};}
 
 \end{DoxyCode}

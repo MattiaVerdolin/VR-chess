@@ -35,10 +35,12 @@ void \mbox{\hyperlink{class_list_a1affb58167f2b0337e81a340fdfb10e8}{pass}} (cons
 \begin{DoxyCompactList}\small\item\em Passes a root node to be added to the list for rendering. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_list_a3de5b85b2ecbc2dfe8a54a93ebe08e88}{clear\+List}} ()
 \begin{DoxyCompactList}\small\item\em Clears the list and frees all reserved memory. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_list_a622ba78734aaa8ec7ca035931e4db04a}{render\+Elements}} (const glm\+::mat4 \&camera\+Inverse\+Final\+Matrix) const
+void \mbox{\hyperlink{class_list_aa2083b07d0ede32a82ee7143da6655f6}{render\+Elements}} (const glm\+::mat4 \&camera\+Inverse\+Final\+Matrix, float z\+Near, float z\+Far) const
 \begin{DoxyCompactList}\small\item\em Renders all elements in the list. \end{DoxyCompactList}\item 
 const unsigned int \mbox{\hyperlink{class_list_a5ad0e2eecaf0872f9d6b6302b93a495d}{get\+Number\+Of\+Elements\+In\+List}} () const
-\begin{DoxyCompactList}\small\item\em Gets the number of elements in the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets the number of elements in the list. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ \mbox{\hyperlink{class_list_abdb1d3bed16f79020c8f7414f6120167}{get\+Render\+Items}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the list of render items containing nodes and their transformation matrices. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -145,6 +147,21 @@ Gets the number of elements in the list.
 \begin{DoxyReturn}{Returns}
 The number of elements currently in the list. 
 \end{DoxyReturn}
+\Hypertarget{class_list_abdb1d3bed16f79020c8f7414f6120167}\index{List@{List}!getRenderItems@{getRenderItems}}
+\index{getRenderItems@{getRenderItems}!List@{List}}
+\doxysubsubsection{\texorpdfstring{getRenderItems()}{getRenderItems()}}
+{\footnotesize\ttfamily \label{class_list_abdb1d3bed16f79020c8f7414f6120167} 
+std\+::vector$<$ \mbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::get\+Render\+Items (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the list of render items containing nodes and their transformation matrices. 
+
+This method returns a vector of \doxylink{struct_render_item}{Render\+Item} structures, each containing a pointer to a \doxylink{class_node}{Node} and its associated final transformation matrix. This can be used to access the complete rendering state of all nodes in the list.
+
+\begin{DoxyReturn}{Returns}
+A vector of \doxylink{struct_render_item}{Render\+Item} structures containing all nodes and their transformation matrices. 
+\end{DoxyReturn}
 \Hypertarget{class_list_a9df2add910cbb1b1dcbb6a01e37b0286}\index{List@{List}!getReservedById@{getReservedById}}
 \index{getReservedById@{getReservedById}!List@{List}}
 \doxysubsubsection{\texorpdfstring{getReservedById()}{getReservedById()}}
@@ -211,11 +228,11 @@ This method recursively traverses the scene graph and adds nodes to the renderin
 {\em root\+Node} & The root node of the scene graph to traverse. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_list_a622ba78734aaa8ec7ca035931e4db04a}\index{List@{List}!renderElements@{renderElements}}
+\Hypertarget{class_list_aa2083b07d0ede32a82ee7143da6655f6}\index{List@{List}!renderElements@{renderElements}}
 \index{renderElements@{renderElements}!List@{List}}
 \doxysubsubsection{\texorpdfstring{renderElements()}{renderElements()}}
-{\footnotesize\ttfamily \label{class_list_a622ba78734aaa8ec7ca035931e4db04a} 
-void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::render\+Elements (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{camera\+Inverse\+Final\+Matrix}{}\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \label{class_list_aa2083b07d0ede32a82ee7143da6655f6} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::render\+Elements (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{camera\+Inverse\+Final\+Matrix}{, }\item[{float}]{z\+Near}{, }\item[{float}]{z\+Far}{}\end{DoxyParamCaption}) const}
 
 
 

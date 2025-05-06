@@ -16,43 +16,51 @@
 \DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{node_8h}{node.h}}"{}}}
 \DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{notification_service_8h}{notificationService.h}}"{}}}
 \DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{change_matrix_listener_8h}{changeMatrixListener.h}}"{}}}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00030\ \textcolor{comment}{//\ MAIN\ LIST\ CLASS\ //}}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{List}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_change_matrix_listener}{ChangeMatrixListener}}\ \{}
-\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{List}}();}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{\string~List}}();}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_list_a2ebef7c72b962d8c9a3d45ebea0b727c}{List}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{List}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_a30c550a25292468955bcc1a7fdbf9cba}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{List}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_a1affb58167f2b0337e81a340fdfb10e8}{pass}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_node}{Node}}*\ rootNode);}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{camera_8h}{camera.h}}"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_render_item}{RenderItem}}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{struct_render_item_ae719ce81f80b8738af8d4ae03eef338a}{node}};\ \ \ \ \ \ \ \textcolor{comment}{//\ puntatore\ al\ nodo}}
+\DoxyCodeLine{00035\ \ \ \ \ glm::mat4\ \ \ \ \mbox{\hyperlink{struct_render_item_a3328962798c928463213f22d703aa421}{matrix}};\ \ \ \ \ \textcolor{comment}{//\ trasformazione\ finale}}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ MAIN\ LIST\ CLASS\ //}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{List}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_change_matrix_listener}{ChangeMatrixListener}}\ \{}
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{List}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{\string~List}}();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_list_a2ebef7c72b962d8c9a3d45ebea0b727c}{List}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{List}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_a30c550a25292468955bcc1a7fdbf9cba}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{List}}\&)\ =\ \textcolor{keyword}{delete};}
 \DoxyCodeLine{00071\ }
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_a3de5b85b2ecbc2dfe8a54a93ebe08e88}{clearList}}();}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_a622ba78734aaa8ec7ca035931e4db04a}{renderElements}}(\textcolor{keyword}{const}\ glm::mat4\&\ cameraInverseFinalMatrix)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_a1affb58167f2b0337e81a340fdfb10e8}{pass}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_node}{Node}}*\ rootNode);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_a3de5b85b2ecbc2dfe8a54a93ebe08e88}{clearList}}();}
 \DoxyCodeLine{00085\ }
-\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_list_a5ad0e2eecaf0872f9d6b6302b93a495d}{getNumberOfElementsInList}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}};}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_a4c73e940802e3cd4ccc70d4a6186d8d6}{addRowToListOfNodeToRender}}(\mbox{\hyperlink{class_node}{Node}}*\ node);}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_aeb960f1d515013f16f1c7a2b54421728}{resetListAndFreeMemory}}();}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_aa2083b07d0ede32a82ee7143da6655f6}{renderElements}}(\textcolor{keyword}{const}\ glm::mat4\&\ cameraInverseFinalMatrix,\ \textcolor{keywordtype}{float}\ zNear,\ \textcolor{keywordtype}{float}\ zFar)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_list_a5ad0e2eecaf0872f9d6b6302b93a495d}{getNumberOfElementsInList}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00111\ \ \ \ \ std::vector<RenderItem>\ \mbox{\hyperlink{class_list_abdb1d3bed16f79020c8f7414f6120167}{getRenderItems}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00112\ }
-\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_change_matrix_listener_af309992d69f2ea31a8d4dd249bc3731b}{onMatrixChange}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ nodeChangedID)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00121\ }
-\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}}*\ \mbox{\hyperlink{class_list_a9df2add910cbb1b1dcbb6a01e37b0286}{getReservedById}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ \textcolor{keywordtype}{id});}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00133\ \ \ \ \ std::unique\_ptr<Reserved>\ \mbox{\hyperlink{class_list_ac99c668626a5c8af901786e27b4f1d88}{m\_reserved}};}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00138\ \ \ \ \ std::list<Reserved*>\ \mbox{\hyperlink{class_list_a8f1c8d2d3a0938997abba18d39364e80}{m\_listOfReservedToRender}};}
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{class_notification_service}{NotificationService}}\&\ \mbox{\hyperlink{class_list_a637c14207e86ae0a331acfd02b09956a}{m\_notificationService}};}
-\DoxyCodeLine{00144\ \};}
+\DoxyCodeLine{00113\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_a4c73e940802e3cd4ccc70d4a6186d8d6}{addRowToListOfNodeToRender}}(\mbox{\hyperlink{class_node}{Node}}*\ node);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_aeb960f1d515013f16f1c7a2b54421728}{resetListAndFreeMemory}}();}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_change_matrix_listener_af309992d69f2ea31a8d4dd249bc3731b}{onMatrixChange}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ nodeChangedID)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}}*\ \mbox{\hyperlink{class_list_a9df2add910cbb1b1dcbb6a01e37b0286}{getReservedById}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00153\ \ \ \ \ std::unique\_ptr<Reserved>\ \mbox{\hyperlink{class_list_ac99c668626a5c8af901786e27b4f1d88}{m\_reserved}};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00158\ \ \ \ \ std::list<Reserved*>\ \mbox{\hyperlink{class_list_a8f1c8d2d3a0938997abba18d39364e80}{m\_listOfReservedToRender}};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{class_notification_service}{NotificationService}}\&\ \mbox{\hyperlink{class_list_a637c14207e86ae0a331acfd02b09956a}{m\_notificationService}};}
+\DoxyCodeLine{00164\ \};}
 
 \end{DoxyCode}

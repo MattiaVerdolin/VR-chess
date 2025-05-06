@@ -38,7 +38,13 @@ const unsigned int \mbox{\hyperlink{class_mesh_add68ca4ef348ad8baf88f38488f53599
 std\+::vector$<$ glm\+::vec3 $>$ \mbox{\hyperlink{class_mesh_a165198f185d83c438ae6df0c786b354d}{get\+Vertices}} ()
 \begin{DoxyCompactList}\small\item\em Retrieves the list of vertices in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_mesh_ab9f0b1f850fc4002b2711fdf918d4838}{\texorpdfstring{$\sim$}{\string~}\+Mesh}} ()
-\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_mesh}{Mesh} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_mesh}{Mesh} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mesh_a0c3a1f2c48fd6c890b5c24b41ca3ee55}{compute\+Bounding\+Sphere}} ()
+\begin{DoxyCompactList}\small\item\em Computes the bounding sphere for the mesh. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_mesh_abab7f875975792cbd7852f05910156fe}{get\+Bounding\+Center}} ()
+\begin{DoxyCompactList}\small\item\em Gets the center point of the mesh\textquotesingle{}s bounding sphere. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_mesh_a9365d14c5d4a1a46d21c2b53b6d15ab8}{get\+Bounding\+Radius}} ()
+\begin{DoxyCompactList}\small\item\em Gets the radius of the mesh\textquotesingle{}s bounding sphere. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -87,11 +93,38 @@ const std\+::string \& \mbox{\hyperlink{class_object_a623e33bd86ef50533cc0737173
 \begin{DoxyCompactList}\small\item\em Retrieve the name of the object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{set\+Name}} (const std\+::string \&name)
 \begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_mesh_aafa4e21067a9b0c4407daf5e3c9ea991}{setup\+Mesh}} ()
+\begin{DoxyCompactList}\small\item\em Sets up the Open\+GL buffers and vertex attributes for the mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_mesh_1_1_reserved}{Reserved}} $>$ \mbox{\hyperlink{class_mesh_a5bcf47d58282b2bf114169b27fc3c1d5}{m\+\_\+reserved}}
-\begin{DoxyCompactList}\small\item\em Pointer to the reserved internal data structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pointer to the reserved internal data structure. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_mesh_a79afa055e485fb65b1a7aa5b8eda2940}{VAO}}
+\begin{DoxyCompactList}\small\item\em Open\+GL vertex array object identifier. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_mesh_a586febcd9c58d05836b7d422fe9320aa}{vertices\+Vbo}}
+\begin{DoxyCompactList}\small\item\em Open\+GL vertex buffer object identifiers for different vertex attributes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_mesh_a69ae4ff89bc2e4973226e739a9dc6d6d}{normal\+Vertices\+Vbo}}
+\item 
+unsigned int \mbox{\hyperlink{class_mesh_a65b580a6c6eb59ac5f199d2b71779af3}{uv\+Vertices\+Vbo}}
+\item 
+unsigned int \mbox{\hyperlink{class_mesh_a206043a9eed524afe82b13b712b1e42e}{face\+Vbo}}
+\item 
+std\+::vector$<$ unsigned int $>$ \mbox{\hyperlink{class_mesh_ab4a7675364b3134c880d2ff6ec57cad0}{face\+Indices}}
+\begin{DoxyCompactList}\small\item\em Vector containing the indices for face rendering. \end{DoxyCompactList}\item 
+std\+::vector$<$ glm\+::vec3 $>$ \mbox{\hyperlink{class_mesh_a8f0d158e5058b644698cede5dbe9f80a}{coor\+Vertices}}
+\begin{DoxyCompactList}\small\item\em Vector containing the 3D coordinates of all vertices. \end{DoxyCompactList}\item 
+std\+::vector$<$ glm\+::vec3 $>$ \mbox{\hyperlink{class_mesh_a70748cef54c05c21618bc8b5e8851963}{normal\+Vertices}}
+\begin{DoxyCompactList}\small\item\em Vector containing the normal vectors for all vertices. \end{DoxyCompactList}\item 
+std\+::vector$<$ glm\+::vec2 $>$ \mbox{\hyperlink{class_mesh_a6b57624c2c5632c1660638fcacba5bcf}{uv\+Vertices}}
+\begin{DoxyCompactList}\small\item\em Vector containing the UV texture coordinates for all vertices. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_mesh_ab62ccf52f0ced773a0a589cb3453c821}{bounding\+Center}}
+\begin{DoxyCompactList}\small\item\em Center point of the mesh\textquotesingle{}s bounding sphere. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_mesh_a7f7eb69696a34515c85e60f13faafa8a}{bounding\+Radius}}
+\begin{DoxyCompactList}\small\item\em Radius of the mesh\textquotesingle{}s bounding sphere. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
 \begin{DoxyCompactItemize}
@@ -182,7 +215,7 @@ Copy constructor for the \doxylink{class_mesh}{Mesh} class.
 \index{````~Mesh@{\texorpdfstring{$\sim$}{\string~}Mesh}!Mesh@{Mesh}}
 \doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Mesh()}{\string~Mesh()}}
 {\footnotesize\ttfamily \label{class_mesh_ab9f0b1f850fc4002b2711fdf918d4838} 
-\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Mesh\+::\texorpdfstring{$\sim$}{\string~}\+Mesh (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Mesh\+::\texorpdfstring{$\sim$}{\string~}\+Mesh (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
@@ -208,6 +241,48 @@ A pointer to the newly cloned \doxylink{class_mesh}{Mesh} object.
 
 Reimplemented from \mbox{\hyperlink{class_node_a9777d266e9b52f648f3ce309133d1a57}{Node}}.
 
+\Hypertarget{class_mesh_a0c3a1f2c48fd6c890b5c24b41ca3ee55}\index{Mesh@{Mesh}!computeBoundingSphere@{computeBoundingSphere}}
+\index{computeBoundingSphere@{computeBoundingSphere}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{computeBoundingSphere()}{computeBoundingSphere()}}
+{\footnotesize\ttfamily \label{class_mesh_a0c3a1f2c48fd6c890b5c24b41ca3ee55} 
+void Mesh\+::compute\+Bounding\+Sphere (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Computes the bounding sphere for the mesh. 
+
+This method calculates the center point and radius of the smallest sphere that completely contains all vertices of the mesh. This is useful for collision detection and culling operations. \Hypertarget{class_mesh_abab7f875975792cbd7852f05910156fe}\index{Mesh@{Mesh}!getBoundingCenter@{getBoundingCenter}}
+\index{getBoundingCenter@{getBoundingCenter}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{getBoundingCenter()}{getBoundingCenter()}}
+{\footnotesize\ttfamily \label{class_mesh_abab7f875975792cbd7852f05910156fe} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} glm\+::vec3 Mesh\+::get\+Bounding\+Center (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the center point of the mesh\textquotesingle{}s bounding sphere. 
+
+\begin{DoxyReturn}{Returns}
+A glm\+::vec3 containing the coordinates of the bounding sphere\textquotesingle{}s center. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This value is only valid after \doxylink{class_mesh_a0c3a1f2c48fd6c890b5c24b41ca3ee55}{compute\+Bounding\+Sphere()} has been called. 
+\end{DoxyNote}
+\Hypertarget{class_mesh_a9365d14c5d4a1a46d21c2b53b6d15ab8}\index{Mesh@{Mesh}!getBoundingRadius@{getBoundingRadius}}
+\index{getBoundingRadius@{getBoundingRadius}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{getBoundingRadius()}{getBoundingRadius()}}
+{\footnotesize\ttfamily \label{class_mesh_a9365d14c5d4a1a46d21c2b53b6d15ab8} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} float Mesh\+::get\+Bounding\+Radius (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the radius of the mesh\textquotesingle{}s bounding sphere. 
+
+\begin{DoxyReturn}{Returns}
+The radius of the bounding sphere as a float value. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This value is only valid after \doxylink{class_mesh_a0c3a1f2c48fd6c890b5c24b41ca3ee55}{compute\+Bounding\+Sphere()} has been called. 
+\end{DoxyNote}
 \Hypertarget{class_mesh_a165198f185d83c438ae6df0c786b354d}\index{Mesh@{Mesh}!getVertices@{getVertices}}
 \index{getVertices@{getVertices}!Mesh@{Mesh}}
 \doxysubsubsection{\texorpdfstring{getVertices()}{getVertices()}}
@@ -277,9 +352,65 @@ Renders the mesh using the provided transformation matrix.
 
 Reimplemented from \mbox{\hyperlink{class_node_a93d7587db1e3b5c4d92b29fc83e702ec}{Node}}.
 
+\Hypertarget{class_mesh_aafa4e21067a9b0c4407daf5e3c9ea991}\index{Mesh@{Mesh}!setupMesh@{setupMesh}}
+\index{setupMesh@{setupMesh}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{setupMesh()}{setupMesh()}}
+{\footnotesize\ttfamily \label{class_mesh_aafa4e21067a9b0c4407daf5e3c9ea991} 
+void Mesh\+::setup\+Mesh (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Sets up the Open\+GL buffers and vertex attributes for the mesh. 
+
+This method initializes the VAO and VBOs, uploads vertex data to the GPU, and configures the vertex attribute pointers for position, normal, and UV coordinates. 
 
 \doxysubsection{Member Data Documentation}
+\Hypertarget{class_mesh_ab62ccf52f0ced773a0a589cb3453c821}\index{Mesh@{Mesh}!boundingCenter@{boundingCenter}}
+\index{boundingCenter@{boundingCenter}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{boundingCenter}{boundingCenter}}
+{\footnotesize\ttfamily \label{class_mesh_ab62ccf52f0ced773a0a589cb3453c821} 
+glm\+::vec3 Mesh\+::bounding\+Center\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Center point of the mesh\textquotesingle{}s bounding sphere. 
+
+\Hypertarget{class_mesh_a7f7eb69696a34515c85e60f13faafa8a}\index{Mesh@{Mesh}!boundingRadius@{boundingRadius}}
+\index{boundingRadius@{boundingRadius}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{boundingRadius}{boundingRadius}}
+{\footnotesize\ttfamily \label{class_mesh_a7f7eb69696a34515c85e60f13faafa8a} 
+float Mesh\+::bounding\+Radius\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Radius of the mesh\textquotesingle{}s bounding sphere. 
+
+\Hypertarget{class_mesh_a8f0d158e5058b644698cede5dbe9f80a}\index{Mesh@{Mesh}!coorVertices@{coorVertices}}
+\index{coorVertices@{coorVertices}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{coorVertices}{coorVertices}}
+{\footnotesize\ttfamily \label{class_mesh_a8f0d158e5058b644698cede5dbe9f80a} 
+std\+::vector$<$glm\+::vec3$>$ Mesh\+::coor\+Vertices\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector containing the 3D coordinates of all vertices. 
+
+\Hypertarget{class_mesh_ab4a7675364b3134c880d2ff6ec57cad0}\index{Mesh@{Mesh}!faceIndices@{faceIndices}}
+\index{faceIndices@{faceIndices}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{faceIndices}{faceIndices}}
+{\footnotesize\ttfamily \label{class_mesh_ab4a7675364b3134c880d2ff6ec57cad0} 
+std\+::vector$<$unsigned int$>$ Mesh\+::face\+Indices\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector containing the indices for face rendering. 
+
+\Hypertarget{class_mesh_a206043a9eed524afe82b13b712b1e42e}\index{Mesh@{Mesh}!faceVbo@{faceVbo}}
+\index{faceVbo@{faceVbo}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{faceVbo}{faceVbo}}
+{\footnotesize\ttfamily \label{class_mesh_a206043a9eed524afe82b13b712b1e42e} 
+unsigned int Mesh\+::face\+Vbo\hspace{0.3cm}{\ttfamily [private]}}
+
 \Hypertarget{class_mesh_a5bcf47d58282b2bf114169b27fc3c1d5}\index{Mesh@{Mesh}!m\_reserved@{m\_reserved}}
 \index{m\_reserved@{m\_reserved}!Mesh@{Mesh}}
 \doxysubsubsection{\texorpdfstring{m\_reserved}{m\_reserved}}
@@ -289,6 +420,58 @@ std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{struct_mesh_1_1_reserved}{Reserved}}$>
 
 
 Pointer to the reserved internal data structure. 
+
+\Hypertarget{class_mesh_a70748cef54c05c21618bc8b5e8851963}\index{Mesh@{Mesh}!normalVertices@{normalVertices}}
+\index{normalVertices@{normalVertices}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{normalVertices}{normalVertices}}
+{\footnotesize\ttfamily \label{class_mesh_a70748cef54c05c21618bc8b5e8851963} 
+std\+::vector$<$glm\+::vec3$>$ Mesh\+::normal\+Vertices\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector containing the normal vectors for all vertices. 
+
+\Hypertarget{class_mesh_a69ae4ff89bc2e4973226e739a9dc6d6d}\index{Mesh@{Mesh}!normalVerticesVbo@{normalVerticesVbo}}
+\index{normalVerticesVbo@{normalVerticesVbo}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{normalVerticesVbo}{normalVerticesVbo}}
+{\footnotesize\ttfamily \label{class_mesh_a69ae4ff89bc2e4973226e739a9dc6d6d} 
+unsigned int Mesh\+::normal\+Vertices\+Vbo\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_mesh_a6b57624c2c5632c1660638fcacba5bcf}\index{Mesh@{Mesh}!uvVertices@{uvVertices}}
+\index{uvVertices@{uvVertices}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{uvVertices}{uvVertices}}
+{\footnotesize\ttfamily \label{class_mesh_a6b57624c2c5632c1660638fcacba5bcf} 
+std\+::vector$<$glm\+::vec2$>$ Mesh\+::uv\+Vertices\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector containing the UV texture coordinates for all vertices. 
+
+\Hypertarget{class_mesh_a65b580a6c6eb59ac5f199d2b71779af3}\index{Mesh@{Mesh}!uvVerticesVbo@{uvVerticesVbo}}
+\index{uvVerticesVbo@{uvVerticesVbo}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{uvVerticesVbo}{uvVerticesVbo}}
+{\footnotesize\ttfamily \label{class_mesh_a65b580a6c6eb59ac5f199d2b71779af3} 
+unsigned int Mesh\+::uv\+Vertices\+Vbo\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_mesh_a79afa055e485fb65b1a7aa5b8eda2940}\index{Mesh@{Mesh}!VAO@{VAO}}
+\index{VAO@{VAO}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{VAO}{VAO}}
+{\footnotesize\ttfamily \label{class_mesh_a79afa055e485fb65b1a7aa5b8eda2940} 
+unsigned int Mesh\+::\+VAO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Open\+GL vertex array object identifier. 
+
+\Hypertarget{class_mesh_a586febcd9c58d05836b7d422fe9320aa}\index{Mesh@{Mesh}!verticesVbo@{verticesVbo}}
+\index{verticesVbo@{verticesVbo}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{verticesVbo}{verticesVbo}}
+{\footnotesize\ttfamily \label{class_mesh_a586febcd9c58d05836b7d422fe9320aa} 
+unsigned int Mesh\+::vertices\+Vbo\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Open\+GL vertex buffer object identifiers for different vertex attributes. 
 
 
 

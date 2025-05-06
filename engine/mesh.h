@@ -1,14 +1,10 @@
 /**
- * @file	mesh.h
- * @brief	Header file for the Mesh class.
+ * @file		mesh.h
+ * @brief	Mesh class header file
  *
- * This file contains the declaration of the Mesh class, which extends the Node class
- * and represents a 3D mesh in the scene. The class includes methods for rendering, cloning,
- * parsing, and retrieving vertex data.
- *
- * @authors	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once
@@ -84,10 +80,29 @@ public:
      */
     ~Mesh();
 
+    /**
+     * @brief Computes the bounding sphere for the mesh.
+     * 
+     * This method calculates the center point and radius of the smallest sphere that
+     * completely contains all vertices of the mesh. This is useful for collision detection
+     * and culling operations.
+     */
     void computeBoundingSphere();
 
+    /**
+     * @brief Gets the center point of the mesh's bounding sphere.
+     * 
+     * @return A glm::vec3 containing the coordinates of the bounding sphere's center.
+     * @note This value is only valid after computeBoundingSphere() has been called.
+     */
     glm::vec3 getBoundingCenter();
 
+    /**
+     * @brief Gets the radius of the mesh's bounding sphere.
+     * 
+     * @return The radius of the bounding sphere as a float value.
+     * @note This value is only valid after computeBoundingSphere() has been called.
+     */
     float getBoundingRadius();
 
 private:
@@ -104,13 +119,51 @@ private:
      */
     std::unique_ptr<Reserved> m_reserved;
 
-    unsigned int VAO, verticesVbo, normalVerticesVbo, uvVerticesVbo, faceVbo;
+    /**
+     * @brief OpenGL vertex array object identifier.
+     */
+    unsigned int VAO;
+
+    /**
+     * @brief OpenGL vertex buffer object identifiers for different vertex attributes.
+     */
+    unsigned int verticesVbo, normalVerticesVbo, uvVerticesVbo, faceVbo;
+
+    /**
+     * @brief Vector containing the indices for face rendering.
+     */
     std::vector<unsigned int> faceIndices;
+
+    /**
+     * @brief Vector containing the 3D coordinates of all vertices.
+     */
     std::vector<glm::vec3> coorVertices;
+
+    /**
+     * @brief Vector containing the normal vectors for all vertices.
+     */
     std::vector<glm::vec3> normalVertices;
+
+    /**
+     * @brief Vector containing the UV texture coordinates for all vertices.
+     */
     std::vector<glm::vec2> uvVertices;
+
+    /**
+     * @brief Center point of the mesh's bounding sphere.
+     */
     glm::vec3 boundingCenter;
+
+    /**
+     * @brief Radius of the mesh's bounding sphere.
+     */
     float boundingRadius;
 
+    /**
+     * @brief Sets up the OpenGL buffers and vertex attributes for the mesh.
+     * 
+     * This method initializes the VAO and VBOs, uploads vertex data to the GPU,
+     * and configures the vertex attribute pointers for position, normal, and UV coordinates.
+     */
     void setupMesh();
 };

@@ -1,14 +1,10 @@
 /**
- * @file    perspCamera.h
- * @brief   PerspCamera include file
+ * @file		perspCamera.h
+ * @brief	Perspective Camera header file
  *
- * This file defines the PerspCamera class, which represents a perspective camera in a 3D scene.
- * A perspective camera simulates a camera that uses perspective projection, where objects appear smaller
- * as they are farther from the camera.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once

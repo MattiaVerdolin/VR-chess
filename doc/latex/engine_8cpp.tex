@@ -1,27 +1,35 @@
 \doxysection{engine/engine.cpp File Reference}
 \hypertarget{engine_8cpp}{}\label{engine_8cpp}\index{engine/engine.cpp@{engine/engine.cpp}}
-
-
-Graphics engine main file.  
-
-
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include "{}engine.\+h"{}}\newline
 {\ttfamily \#include "{}notification\+Service.\+h"{}}\newline
 {\ttfamily \#include "{}text\+Manager.\+h"{}}\newline
 {\ttfamily \#include "{}glm/glm.\+hpp"{}}\newline
 {\ttfamily \#include "{}glm/gtc/type\+\_\+ptr.\+hpp"{}}\newline
+{\ttfamily \#include $<$GL/glew.\+h$>$}\newline
 {\ttfamily \#include "{}GL/freeglut.\+h"{}}\newline
 {\ttfamily \#include "{}file\+OVOReader.\+h"{}}\newline
 {\ttfamily \#include "{}list.\+h"{}}\newline
+{\ttfamily \#include "{}mesh.\+h"{}}\newline
 {\ttfamily \#include "{}Free\+Image.\+h"{}}\newline
-{\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$source\+\_\+location$>$}\newline
 {\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include "{}shader.\+h"{}}\newline
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Eng\+::\+Base\+::\+Reserved}}
-\begin{DoxyCompactList}\small\item\em \doxylink{class_eng_1_1_base}{Base} class reserved structure (using PIMPL/\+Bridge design pattern \href{https://en.wikipedia.org/wiki/Opaque_pointer}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Opaque\+\_\+pointer}}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{engine_8cpp_a8cab6935063a6ac98fdfa0b98bd8f466}{APP\+\_\+\+WINDOWSIZEX}}~1024
+\begin{DoxyCompactList}\small\item\em Base class reserved structure (using PIMPL/\+Bridge design pattern \href{https://en.wikipedia.org/wiki/Opaque_pointer}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Opaque\+\_\+pointer}}). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{engine_8cpp_af47d865515d26bf943cfa845dcd9a931}{APP\+\_\+\+WINDOWSIZEY}}~512
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -30,33 +38,221 @@ int \mbox{\hyperlink{engine_8cpp_abaf7d77bd2fc7eb6125fa605bd645b67}{frame\+Count
 float \mbox{\hyperlink{engine_8cpp_a4f50e96f11c68d45dc109185efe011ad}{fps}} = 0.\+0f
 \item 
 int \mbox{\hyperlink{engine_8cpp_aaa2bba9b04515c5bbf5c04d20f672b12}{previous\+Time}} = 0
+\item 
+const float \mbox{\hyperlink{engine_8cpp_a19a5721afbcd65426ced0835ad20b4cb}{near\+Plane}} = 0.\+01f
+\item 
+const float \mbox{\hyperlink{engine_8cpp_afccc1873015c76bf295d68cb7c27e24e}{far\+Plane}} = 100.\+0f
+\item 
+unsigned int \mbox{\hyperlink{engine_8cpp_a6b5233179163b3663e0a733dbe2c040c}{cubemap\+Id}}
+\item 
+std\+::string \mbox{\hyperlink{engine_8cpp_ad2abe403ccd6ef66822f4b4cbfc7c048}{cubemap\+Names}} \mbox{[}$\,$\mbox{]}
+\item 
+unsigned int \mbox{\hyperlink{engine_8cpp_aa21981bff0158d562204fd22c1ea29f5}{global\+Vao}} = 0
+\item 
+unsigned int \mbox{\hyperlink{engine_8cpp_a5603903caac7fd37de6bb7a813d460ef}{cube\+Vbo\+Vertices}} = 0
+\item 
+float \mbox{\hyperlink{engine_8cpp_a7c4f4d2f37e97a90d5364b838ec61be3}{cube\+Vertices}} \mbox{[}$\,$\mbox{]}
+\item 
+unsigned int \mbox{\hyperlink{engine_8cpp_a6e4075380b99fd10d948a14b5e7f5bc3}{cube\+Vbo\+Faces}} = 0
+\item 
+unsigned short \mbox{\hyperlink{engine_8cpp_a86390b3ceaf38a19e8d328ef53948e66}{cube\+Faces}} \mbox{[}$\,$\mbox{]}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{engine_8cpp_a5c265e8906eca9887af32bd1e4109ee6}{vert\+Shader}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{engine_8cpp_a646b75fec0f33233e1caa1fbe9f97d5c}{frag\+Shader}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{engine_8cpp_aa785ab4633a93e34b01e10f6b58ec37f}{vert\+Shader\+Cube}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{engine_8cpp_a77a96061d57c1c2df55d9a1b1bd36105}{frag\+Shader\+Cube}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{engine_8cpp_a8f9eb89c434e0558fdbc888698439825}{vert\+Shader\+Leap}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{engine_8cpp_ae51096edcc41798c0545ddb3aa1ab925}{frag\+Shader\+Leap}}
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-Graphics engine main file. 
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{engine_8cpp_a8cab6935063a6ac98fdfa0b98bd8f466}\index{engine.cpp@{engine.cpp}!APP\_WINDOWSIZEX@{APP\_WINDOWSIZEX}}
+\index{APP\_WINDOWSIZEX@{APP\_WINDOWSIZEX}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{APP\_WINDOWSIZEX}{APP\_WINDOWSIZEX}}
+{\footnotesize\ttfamily \label{engine_8cpp_a8cab6935063a6ac98fdfa0b98bd8f466} 
+\#define APP\+\_\+\+WINDOWSIZEX~1024}
 
-\begin{DoxyAuthor}{Author}
-Luca Fantò (C) SUPSI \mbox{[}\href{mailto:luca.fanto@student.supsi.ch}{\texttt{ luca.\+fanto@student.\+supsi.\+ch}}\mbox{]} 
 
-Mattia Cainarca (C) SUPSI \mbox{[}\href{mailto:mattia.cainarca@student.supsi.ch}{\texttt{ mattia.\+cainarca@student.\+supsi.\+ch}}\mbox{]} 
 
-Antonio Marroffino (C) SUPSI \mbox{[}\href{mailto:antonio.marroffino@student.supsi.ch}{\texttt{ antonio.\+marroffino@student.\+supsi.\+ch}}\mbox{]} 
-\end{DoxyAuthor}
+Base class reserved structure (using PIMPL/\+Bridge design pattern \href{https://en.wikipedia.org/wiki/Opaque_pointer}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Opaque\+\_\+pointer}}). 
+
+\Hypertarget{engine_8cpp_af47d865515d26bf943cfa845dcd9a931}\index{engine.cpp@{engine.cpp}!APP\_WINDOWSIZEY@{APP\_WINDOWSIZEY}}
+\index{APP\_WINDOWSIZEY@{APP\_WINDOWSIZEY}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{APP\_WINDOWSIZEY}{APP\_WINDOWSIZEY}}
+{\footnotesize\ttfamily \label{engine_8cpp_af47d865515d26bf943cfa845dcd9a931} 
+\#define APP\+\_\+\+WINDOWSIZEY~512}
+
 
 
 \doxysubsection{Variable Documentation}
+\Hypertarget{engine_8cpp_a86390b3ceaf38a19e8d328ef53948e66}\index{engine.cpp@{engine.cpp}!cubeFaces@{cubeFaces}}
+\index{cubeFaces@{cubeFaces}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{cubeFaces}{cubeFaces}}
+{\footnotesize\ttfamily \label{engine_8cpp_a86390b3ceaf38a19e8d328ef53948e66} 
+unsigned short cube\+Faces\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ 0,\ 1,\ 2,}
+\DoxyCodeLine{\ \ \ 0,\ 2,\ 3,}
+\DoxyCodeLine{\ \ \ 3,\ 2,\ 6,}
+\DoxyCodeLine{\ \ \ 3,\ 6,\ 7,}
+\DoxyCodeLine{\ \ \ 4,\ 0,\ 3,}
+\DoxyCodeLine{\ \ \ 4,\ 3,\ 7,}
+\DoxyCodeLine{\ \ \ 6,\ 5,\ 4,}
+\DoxyCodeLine{\ \ \ 7,\ 6,\ 4,}
+\DoxyCodeLine{\ \ \ 4,\ 5,\ 1,}
+\DoxyCodeLine{\ \ \ 4,\ 1,\ 0,}
+\DoxyCodeLine{\ \ \ 1,\ 5,\ 6,}
+\DoxyCodeLine{\ \ \ 1,\ 6,\ 2,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{engine_8cpp_a6b5233179163b3663e0a733dbe2c040c}\index{engine.cpp@{engine.cpp}!cubemapId@{cubemapId}}
+\index{cubemapId@{cubemapId}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{cubemapId}{cubemapId}}
+{\footnotesize\ttfamily \label{engine_8cpp_a6b5233179163b3663e0a733dbe2c040c} 
+unsigned int cubemap\+Id}
+
+\Hypertarget{engine_8cpp_ad2abe403ccd6ef66822f4b4cbfc7c048}\index{engine.cpp@{engine.cpp}!cubemapNames@{cubemapNames}}
+\index{cubemapNames@{cubemapNames}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{cubemapNames}{cubemapNames}}
+{\footnotesize\ttfamily \label{engine_8cpp_ad2abe403ccd6ef66822f4b4cbfc7c048} 
+std\+::string cubemap\+Names\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}textures/cubemap/negx.jpg"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}textures/cubemap/posx.jpg"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}textures/cubemap/posy.jpg"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}textures/cubemap/negy.jpg"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}textures/cubemap/posz.jpg"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}textures/cubemap/negz.jpg"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{engine_8cpp_a6e4075380b99fd10d948a14b5e7f5bc3}\index{engine.cpp@{engine.cpp}!cubeVboFaces@{cubeVboFaces}}
+\index{cubeVboFaces@{cubeVboFaces}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{cubeVboFaces}{cubeVboFaces}}
+{\footnotesize\ttfamily \label{engine_8cpp_a6e4075380b99fd10d948a14b5e7f5bc3} 
+unsigned int cube\+Vbo\+Faces = 0}
+
+\Hypertarget{engine_8cpp_a5603903caac7fd37de6bb7a813d460ef}\index{engine.cpp@{engine.cpp}!cubeVboVertices@{cubeVboVertices}}
+\index{cubeVboVertices@{cubeVboVertices}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{cubeVboVertices}{cubeVboVertices}}
+{\footnotesize\ttfamily \label{engine_8cpp_a5603903caac7fd37de6bb7a813d460ef} 
+unsigned int cube\+Vbo\+Vertices = 0}
+
+\Hypertarget{engine_8cpp_a7c4f4d2f37e97a90d5364b838ec61be3}\index{engine.cpp@{engine.cpp}!cubeVertices@{cubeVertices}}
+\index{cubeVertices@{cubeVertices}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{cubeVertices}{cubeVertices}}
+{\footnotesize\ttfamily \label{engine_8cpp_a7c4f4d2f37e97a90d5364b838ec61be3} 
+float cube\+Vertices\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ -\/1.0f,\ \ 1.0f,\ \ 1.0f,}
+\DoxyCodeLine{\ \ \ -\/1.0f,\ -\/1.0f,\ \ 1.0f,}
+\DoxyCodeLine{\ \ \ \ 1.0f,\ -\/1.0f,\ \ 1.0f,}
+\DoxyCodeLine{\ \ \ \ 1.0f,\ \ 1.0f,\ \ 1.0f,}
+\DoxyCodeLine{\ \ \ -\/1.0f,\ \ 1.0f,\ -\/1.0f,}
+\DoxyCodeLine{\ \ \ -\/1.0f,\ -\/1.0f,\ -\/1.0f,}
+\DoxyCodeLine{\ \ \ \ 1.0f,\ -\/1.0f,\ -\/1.0f,}
+\DoxyCodeLine{\ \ \ \ 1.0f,\ \ 1.0f,\ -\/1.0f,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{engine_8cpp_afccc1873015c76bf295d68cb7c27e24e}\index{engine.cpp@{engine.cpp}!farPlane@{farPlane}}
+\index{farPlane@{farPlane}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{farPlane}{farPlane}}
+{\footnotesize\ttfamily \label{engine_8cpp_afccc1873015c76bf295d68cb7c27e24e} 
+const float far\+Plane = 100.\+0f}
+
 \Hypertarget{engine_8cpp_a4f50e96f11c68d45dc109185efe011ad}\index{engine.cpp@{engine.cpp}!fps@{fps}}
 \index{fps@{fps}!engine.cpp@{engine.cpp}}
 \doxysubsubsection{\texorpdfstring{fps}{fps}}
 {\footnotesize\ttfamily \label{engine_8cpp_a4f50e96f11c68d45dc109185efe011ad} 
 float fps = 0.\+0f}
 
+\Hypertarget{engine_8cpp_a646b75fec0f33233e1caa1fbe9f97d5c}\index{engine.cpp@{engine.cpp}!fragShader@{fragShader}}
+\index{fragShader@{fragShader}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{fragShader}{fragShader}}
+{\footnotesize\ttfamily \label{engine_8cpp_a646b75fec0f33233e1caa1fbe9f97d5c} 
+const char\texorpdfstring{$\ast$}{*} frag\+Shader}
+
+\Hypertarget{engine_8cpp_a77a96061d57c1c2df55d9a1b1bd36105}\index{engine.cpp@{engine.cpp}!fragShaderCube@{fragShaderCube}}
+\index{fragShaderCube@{fragShaderCube}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{fragShaderCube}{fragShaderCube}}
+{\footnotesize\ttfamily \label{engine_8cpp_a77a96061d57c1c2df55d9a1b1bd36105} 
+const char\texorpdfstring{$\ast$}{*} frag\+Shader\+Cube}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \#version\ 440\ core}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ in\ vec3\ texCoord;}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ //\ Texture\ mapping\ (cubemap):}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ layout(binding\ =\ 0)\ uniform\ samplerCube\ cubemapSampler;}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ out\ vec4\ fragOutput;}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ void\ main(void)}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ fragOutput\ =\ texture(cubemapSampler,\ texCoord);}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \}}}
+\DoxyCodeLine{\textcolor{stringliteral}{)"{}}}
+
+\end{DoxyCode}
+\Hypertarget{engine_8cpp_ae51096edcc41798c0545ddb3aa1ab925}\index{engine.cpp@{engine.cpp}!fragShaderLeap@{fragShaderLeap}}
+\index{fragShaderLeap@{fragShaderLeap}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{fragShaderLeap}{fragShaderLeap}}
+{\footnotesize\ttfamily \label{engine_8cpp_ae51096edcc41798c0545ddb3aa1ab925} 
+const char\texorpdfstring{$\ast$}{*} frag\+Shader\+Leap}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{\textcolor{stringliteral}{\#version\ 440\ core}}
+\DoxyCodeLine{\textcolor{stringliteral}{uniform\ vec3\ color;\ \ \ }}
+\DoxyCodeLine{\textcolor{stringliteral}{out\ vec4\ frag\_Output;}}
+\DoxyCodeLine{\textcolor{stringliteral}{void\ main(void)}}
+\DoxyCodeLine{\textcolor{stringliteral}{\{\ \ \ \ \ \ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ frag\_Output\ =\ vec4(color,\ 1.0f);}}
+\DoxyCodeLine{\textcolor{stringliteral}{\}}}
+\DoxyCodeLine{\textcolor{stringliteral}{)"{}}}
+
+\end{DoxyCode}
 \Hypertarget{engine_8cpp_abaf7d77bd2fc7eb6125fa605bd645b67}\index{engine.cpp@{engine.cpp}!frameCount@{frameCount}}
 \index{frameCount@{frameCount}!engine.cpp@{engine.cpp}}
 \doxysubsubsection{\texorpdfstring{frameCount}{frameCount}}
 {\footnotesize\ttfamily \label{engine_8cpp_abaf7d77bd2fc7eb6125fa605bd645b67} 
 int frame\+Count = 0}
+
+\Hypertarget{engine_8cpp_aa21981bff0158d562204fd22c1ea29f5}\index{engine.cpp@{engine.cpp}!globalVao@{globalVao}}
+\index{globalVao@{globalVao}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{globalVao}{globalVao}}
+{\footnotesize\ttfamily \label{engine_8cpp_aa21981bff0158d562204fd22c1ea29f5} 
+unsigned int global\+Vao = 0}
+
+\Hypertarget{engine_8cpp_a19a5721afbcd65426ced0835ad20b4cb}\index{engine.cpp@{engine.cpp}!nearPlane@{nearPlane}}
+\index{nearPlane@{nearPlane}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{nearPlane}{nearPlane}}
+{\footnotesize\ttfamily \label{engine_8cpp_a19a5721afbcd65426ced0835ad20b4cb} 
+const float near\+Plane = 0.\+01f}
 
 \Hypertarget{engine_8cpp_aaa2bba9b04515c5bbf5c04d20f672b12}\index{engine.cpp@{engine.cpp}!previousTime@{previousTime}}
 \index{previousTime@{previousTime}!engine.cpp@{engine.cpp}}
@@ -64,3 +260,87 @@ int frame\+Count = 0}
 {\footnotesize\ttfamily \label{engine_8cpp_aaa2bba9b04515c5bbf5c04d20f672b12} 
 int previous\+Time = 0}
 
+\Hypertarget{engine_8cpp_a5c265e8906eca9887af32bd1e4109ee6}\index{engine.cpp@{engine.cpp}!vertShader@{vertShader}}
+\index{vertShader@{vertShader}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{vertShader}{vertShader}}
+{\footnotesize\ttfamily \label{engine_8cpp_a5c265e8906eca9887af32bd1e4109ee6} 
+const char\texorpdfstring{$\ast$}{*} vert\+Shader}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \#version\ 440\ core}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ //\ Uniforms:}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ uniform\ mat4\ projection;}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ uniform\ mat4\ modelview;}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ uniform\ mat3\ normalMatrix;}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ //\ Attributes:}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ layout(location\ =\ 0)\ in\ vec3\ in\_Position;}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ layout(location\ =\ 1)\ in\ vec3\ in\_Normal;}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ layout(location\ =\ 2)\ in\ vec2\ in\_TexCoord;}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ //\ Varying:}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ out\ vec4\ fragPosition;}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ out\ vec3\ normal;\ \ \ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ out\ vec2\ texCoord;}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ void\ main(void)}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ fragPosition\ =\ modelview\ *\ vec4(in\_Position,\ 1.0f);}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ gl\_Position\ =\ projection\ *\ fragPosition;\ \ \ \ \ \ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ normal\ =\ normalMatrix\ *\ in\_Normal;}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ texCoord\ =\ in\_TexCoord;}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \}}}
+\DoxyCodeLine{\textcolor{stringliteral}{)"{}}}
+
+\end{DoxyCode}
+\Hypertarget{engine_8cpp_aa785ab4633a93e34b01e10f6b58ec37f}\index{engine.cpp@{engine.cpp}!vertShaderCube@{vertShaderCube}}
+\index{vertShaderCube@{vertShaderCube}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{vertShaderCube}{vertShaderCube}}
+{\footnotesize\ttfamily \label{engine_8cpp_aa785ab4633a93e34b01e10f6b58ec37f} 
+const char\texorpdfstring{$\ast$}{*} vert\+Shader\+Cube}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \#version\ 440\ core}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ uniform\ mat4\ projection;}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ uniform\ mat4\ modelview;}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ layout(location\ =\ 0)\ in\ vec3\ in\_Position;}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ out\ vec3\ texCoord;}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ void\ main(void)}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ texCoord\ =\ in\_Position;}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ gl\_Position\ =\ projection\ *\ modelview\ *\ vec4(in\_Position,\ 1.0f);}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \}}}
+\DoxyCodeLine{\textcolor{stringliteral}{)"{}}}
+
+\end{DoxyCode}
+\Hypertarget{engine_8cpp_a8f9eb89c434e0558fdbc888698439825}\index{engine.cpp@{engine.cpp}!vertShaderLeap@{vertShaderLeap}}
+\index{vertShaderLeap@{vertShaderLeap}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{vertShaderLeap}{vertShaderLeap}}
+{\footnotesize\ttfamily \label{engine_8cpp_a8f9eb89c434e0558fdbc888698439825} 
+const char\texorpdfstring{$\ast$}{*} vert\+Shader\+Leap}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{\textcolor{stringliteral}{\#version\ 440\ core}}
+\DoxyCodeLine{\textcolor{stringliteral}{uniform\ mat4\ projection;}}
+\DoxyCodeLine{\textcolor{stringliteral}{uniform\ mat4\ modelview;}}
+\DoxyCodeLine{\textcolor{stringliteral}{layout(location\ =\ 0)\ in\ vec3\ in\_Position;}}
+\DoxyCodeLine{\textcolor{stringliteral}{void\ main(void)}}
+\DoxyCodeLine{\textcolor{stringliteral}{\{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ gl\_Position\ =\ projection\ *\ modelview\ *\ vec4(in\_Position,\ 1.0f);\ \ \ \ \ \ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\}}}
+\DoxyCodeLine{\textcolor{stringliteral}{)"{}}}
+
+\end{DoxyCode}

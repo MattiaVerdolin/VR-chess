@@ -108,12 +108,14 @@ $(function(){initNavTree('mesh_8h.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p>Header file for the <a class="el" href="class_mesh.html" title="Class representing a 3D Mesh object.">Mesh</a> class.  
+<p><a class="el" href="class_mesh.html" title="Class representing a 3D Mesh object.">Mesh</a> class header file.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;glm/gtc/packing.hpp&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="node_8h_source.html">node.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="shader_8h_source.html">shader.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fbo_8h_source.html">fbo.h</a>&quot;</code><br />
 </div>
 <p><a href="mesh_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -124,9 +126,12 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Header file for the <a class="el" href="class_mesh.html" title="Class representing a 3D Mesh object.">Mesh</a> class. </p>
-<p>This file contains the declaration of the <a class="el" href="class_mesh.html" title="Class representing a 3D Mesh object.">Mesh</a> class, which extends the <a class="el" href="class_node.html" title="Represents a node in a hierarchical 3D scene graph.">Node</a> class and represents a 3D mesh in the scene. The class includes methods for rendering, cloning, parsing, and retrieving vertex data.</p>
-<dl class="section author"><dt>Authors</dt><dd>Luca Fantò (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'luc'+'a.'+'fan'+'to'+'@st'+'ud'+'ent'+'.s'+'ups'+'i.'+'ch'; return false;">luca.<span class="obfuscator">.nosp@m.</span>fant<span class="obfuscator">.nosp@m.</span>o@stu<span class="obfuscator">.nosp@m.</span>dent<span class="obfuscator">.nosp@m.</span>.sups<span class="obfuscator">.nosp@m.</span>i.ch</a>] Mattia Cainarca (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'mat'+'ti'+'a.c'+'ai'+'nar'+'ca'+'@st'+'ud'+'ent'+'.s'+'ups'+'i.'+'ch'; return false;">matti<span class="obfuscator">.nosp@m.</span>a.ca<span class="obfuscator">.nosp@m.</span>inarc<span class="obfuscator">.nosp@m.</span>a@st<span class="obfuscator">.nosp@m.</span>udent<span class="obfuscator">.nosp@m.</span>.sup<span class="obfuscator">.nosp@m.</span>si.ch</a>] Antonio Marroffino (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'ant'+'on'+'io.'+'ma'+'rro'+'ff'+'ino'+'@s'+'tud'+'en'+'t.s'+'up'+'si.'+'ch'; return false;">anton<span class="obfuscator">.nosp@m.</span>io.m<span class="obfuscator">.nosp@m.</span>arrof<span class="obfuscator">.nosp@m.</span>fino<span class="obfuscator">.nosp@m.</span>@stud<span class="obfuscator">.nosp@m.</span>ent.<span class="obfuscator">.nosp@m.</span>supsi<span class="obfuscator">.nosp@m.</span>.ch</a>] </dd></dl>
+<div class="textblock"><p><a class="el" href="class_mesh.html" title="Class representing a 3D Mesh object.">Mesh</a> class header file. </p>
+<dl class="section author"><dt>Author</dt><dd>Mattia Cainarca (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'mat'+'ti'+'a.c'+'ai'+'nar'+'ca'+'@st'+'ud'+'ent'+'.s'+'ups'+'i.'+'ch'; return false;">matti<span class="obfuscator">.nosp@m.</span>a.ca<span class="obfuscator">.nosp@m.</span>inarc<span class="obfuscator">.nosp@m.</span>a@st<span class="obfuscator">.nosp@m.</span>udent<span class="obfuscator">.nosp@m.</span>.sup<span class="obfuscator">.nosp@m.</span>si.ch</a>] </dd>
+<dd>
+Riccardo Cristallo (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'ric'+'ca'+'rdo'+'.c'+'ris'+'ta'+'llo'+'@s'+'tud'+'en'+'t.s'+'up'+'si.'+'ch'; return false;">ricca<span class="obfuscator">.nosp@m.</span>rdo.<span class="obfuscator">.nosp@m.</span>crist<span class="obfuscator">.nosp@m.</span>allo<span class="obfuscator">.nosp@m.</span>@stud<span class="obfuscator">.nosp@m.</span>ent.<span class="obfuscator">.nosp@m.</span>supsi<span class="obfuscator">.nosp@m.</span>.ch</a>] </dd>
+<dd>
+Mattia Verdolin (C) SUPSI [<a href="#" onclick="location.href='mai'+'lto:'+'mat'+'ti'+'a.v'+'er'+'dol'+'in'+'@st'+'ud'+'ent'+'.s'+'ups'+'i.'+'ch'; return false;">matti<span class="obfuscator">.nosp@m.</span>a.ve<span class="obfuscator">.nosp@m.</span>rdoli<span class="obfuscator">.nosp@m.</span>n@st<span class="obfuscator">.nosp@m.</span>udent<span class="obfuscator">.nosp@m.</span>.sup<span class="obfuscator">.nosp@m.</span>si.ch</a>] </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

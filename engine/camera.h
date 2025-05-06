@@ -1,14 +1,10 @@
 /**
- * @file    camera.h
- * @brief   Declaration of the Camera class, an abstract base class for camera objects.
+ * @file		camera.h
+ * @brief	Camera class header file
  *
- * This file defines the abstract base class for a camera in a 3D scene. The camera defines the projection
- * matrix and handles the window resizing event to update the projection matrix accordingly. Subclasses
- * of this class implement different types of camera behavior (e.g., perspective, orthographic).
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once
@@ -101,10 +97,22 @@ public:
      */
     const glm::mat4 getInverseCameraFinalMatrix() const;
 
+    /**
+     * @brief Get the camera's projection matrix.
+     * @return The projection matrix used for transforming the 3D scene.
+     */
     const glm::mat4 getProjectionMatrix() const;
 
+    /**
+     * @brief Get the near clipping plane distance.
+     * @return The distance to the near clipping plane.
+     */
     const float& getNearPlane() const;
 
+    /**
+     * @brief Get the far clipping plane distance.
+     * @return The distance to the far clipping plane.
+     */
     const float& getFarPlane() const;
 
     /**

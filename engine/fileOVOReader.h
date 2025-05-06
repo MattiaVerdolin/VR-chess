@@ -1,14 +1,14 @@
 /**
- * @file    fileOVOReader.h
- * @brief   FileOVOReader include file
+ * @file		fileOVOReader.h
+ * @brief	OVO File Reader header file
+ *
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  *
  * This file defines the FileOVOReader class, which is responsible for reading and parsing `.ovo` files,
  * a custom binary format. It handles the file opening, chunk reading, material retrieval, and node parsing.
  * This class uses a singleton pattern to ensure only one instance is used for file processing.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
  */
 
 #pragma once

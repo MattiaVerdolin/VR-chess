@@ -1,0 +1,467 @@
+\doxysection{Shader Class Reference}
+\hypertarget{class_shader}{}\label{class_shader}\index{Shader@{Shader}}
+
+
+Open\+GL shader management class.  
+
+
+
+
+{\ttfamily \#include $<$shader.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa2763fcf78f0ea2392d98e2df2aa51480}{TYPE\+\_\+\+UNDEFINED}} = 0
+, \mbox{\hyperlink{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa5b7eb388eb556de014c31c5c0a396d13}{TYPE\+\_\+\+VERTEX}}
+, \mbox{\hyperlink{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa4d56117d4ce42a91994ad2f3dbdaa626}{TYPE\+\_\+\+FRAGMENT}}
+, \mbox{\hyperlink{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa949434e3b4725930893112497e55dfd3}{TYPE\+\_\+\+PROGRAM}}
+, \newline
+\mbox{\hyperlink{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa8a4f0acf4256256bd76bb9908bc0dc01}{TYPE\+\_\+\+LAST}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for shader types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_shader_ae6a64311923fdd19a3497a9c9f85c83c}{Shader}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_shader}{Shader} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_shader_ab445f33ed661b960c3b563e4862aa3f6}{\texorpdfstring{$\sim$}{\string~}\+Shader}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_shader}{Shader} class. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_shader_abcff73300bb4ad05a6a26c7e45a9f461}{get\+Param\+Location}} (const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Gets the location of a uniform variable in the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shader_a14dcd085a99b4583e312305a129f29af}{set\+Matrix}} (int param, const glm\+::mat4 \&mat)
+\begin{DoxyCompactList}\small\item\em Sets a 4x4 matrix uniform variable in the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shader_a49e1be74ad7a72dd21ff64a7e949ae82}{set\+Float}} (int param, float value)
+\begin{DoxyCompactList}\small\item\em Sets a float uniform variable in the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shader_ac5b1e66a265f014ca646df8d60616fd7}{set\+Int}} (int param, int value)
+\begin{DoxyCompactList}\small\item\em Sets an integer uniform variable in the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shader_a45cdc63d51df30ea4eef2643db4bab36}{set\+Vec3}} (int param, const glm\+::vec3 \&vect)
+\begin{DoxyCompactList}\small\item\em Sets a 3D vector uniform variable in the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shader_a7cb28157368bb081e264b9eae405b137}{set\+Vec4}} (int param, const glm\+::vec4 \&vect)
+\begin{DoxyCompactList}\small\item\em Sets a 4D vector uniform variable in the shader. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_shader_aa5e796e77aa612cf96eaa3923acda153}{load\+From\+Memory}} (int kind, const char \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Loads and compiles a shader from source code in memory. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_shader_a22e3e6a8a387e7255c2fdcd5367bd774}{load\+From\+File}} (int kind, const char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em Loads and compiles a shader from a file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_shader_a36b2a135888055d2c03712541f1b26ba}{build}} (\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*}vertex\+Shader, \mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*}fragment\+Shader)
+\begin{DoxyCompactList}\small\item\em Builds a shader program from vertex and fragment shaders. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shader_a08a5d48dcd650199e92a563180066df4}{bind}} (int location, const char \texorpdfstring{$\ast$}{*}attrib\+Name)
+\begin{DoxyCompactList}\small\item\em Binds a vertex attribute to a specific location. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_shader_aa0ca298acac7b422fe0d2e582cdb5218}{render}} (void \texorpdfstring{$\ast$}{*}data=nullptr)
+\begin{DoxyCompactList}\small\item\em Activates the shader program for rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shader_ab9b6e7d7a3ca89a35102f22445b8f96c}{set\+Matrix3}} (int param, const glm\+::mat3 \&mat)
+\begin{DoxyCompactList}\small\item\em Sets a 3x3 matrix uniform variable in the shader. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_shader_a62cc4293296063e0964f514ee141311a}{get\+Current}} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently active shader program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const unsigned int \mbox{\hyperlink{class_shader_af710c6f8f3cb6c499d44f6a8f47ed570}{MAX\+\_\+\+LOGSIZE}} = 4096
+\begin{DoxyCompactList}\small\item\em Maximum size for shader log messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_shader_a24cd869ce48a60b5a3d3858f50b3f059}{type}}
+\begin{DoxyCompactList}\small\item\em The type of shader (vertex, fragment, or program) \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_shader_a3c3c9922abec995faa3c22948bb21c18}{gl\+Id}}
+\begin{DoxyCompactList}\small\item\em Open\+GL identifier for the shader or program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_shader_a7d5fce17222b5599c04313d5bddaa055}{current}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the currently active shader program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Open\+GL shader management class. 
+
+This class provides functionality for loading, compiling, and managing Open\+GL shaders. It supports vertex and fragment shaders, and handles shader program creation and uniform variable management. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_shader_a6de8a43ab86e5bb4feb697d870011a8f}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_shader_a6de8a43ab86e5bb4feb697d870011a8f} 
+anonymous enum}
+
+
+
+Enumeration for shader types. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TYPE\_UNDEFINED@{TYPE\_UNDEFINED}!Shader@{Shader}}\index{Shader@{Shader}!TYPE\_UNDEFINED@{TYPE\_UNDEFINED}}}\Hypertarget{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa2763fcf78f0ea2392d98e2df2aa51480}\label{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa2763fcf78f0ea2392d98e2df2aa51480} 
+TYPE\+\_\+\+UNDEFINED&Undefined shader type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TYPE\_VERTEX@{TYPE\_VERTEX}!Shader@{Shader}}\index{Shader@{Shader}!TYPE\_VERTEX@{TYPE\_VERTEX}}}\Hypertarget{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa5b7eb388eb556de014c31c5c0a396d13}\label{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa5b7eb388eb556de014c31c5c0a396d13} 
+TYPE\+\_\+\+VERTEX&Vertex shader. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TYPE\_FRAGMENT@{TYPE\_FRAGMENT}!Shader@{Shader}}\index{Shader@{Shader}!TYPE\_FRAGMENT@{TYPE\_FRAGMENT}}}\Hypertarget{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa4d56117d4ce42a91994ad2f3dbdaa626}\label{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa4d56117d4ce42a91994ad2f3dbdaa626} 
+TYPE\+\_\+\+FRAGMENT&Fragment shader. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TYPE\_PROGRAM@{TYPE\_PROGRAM}!Shader@{Shader}}\index{Shader@{Shader}!TYPE\_PROGRAM@{TYPE\_PROGRAM}}}\Hypertarget{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa949434e3b4725930893112497e55dfd3}\label{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa949434e3b4725930893112497e55dfd3} 
+TYPE\+\_\+\+PROGRAM&\doxylink{class_shader}{Shader} program. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TYPE\_LAST@{TYPE\_LAST}!Shader@{Shader}}\index{Shader@{Shader}!TYPE\_LAST@{TYPE\_LAST}}}\Hypertarget{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa8a4f0acf4256256bd76bb9908bc0dc01}\label{class_shader_a6de8a43ab86e5bb4feb697d870011a8fa8a4f0acf4256256bd76bb9908bc0dc01} 
+TYPE\+\_\+\+LAST&Terminator. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_shader_ae6a64311923fdd19a3497a9c9f85c83c}\index{Shader@{Shader}!Shader@{Shader}}
+\index{Shader@{Shader}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{Shader()}{Shader()}}
+{\footnotesize\ttfamily \label{class_shader_ae6a64311923fdd19a3497a9c9f85c83c} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Shader\+::\+Shader (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_shader}{Shader} class. 
+
+Initializes the shader type as undefined and the Open\+GL ID to 0.
+
+Constructor. \Hypertarget{class_shader_ab445f33ed661b960c3b563e4862aa3f6}\index{Shader@{Shader}!````~Shader@{\texorpdfstring{$\sim$}{\string~}Shader}}
+\index{````~Shader@{\texorpdfstring{$\sim$}{\string~}Shader}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Shader()}{\string~Shader()}}
+{\footnotesize\ttfamily \label{class_shader_ab445f33ed661b960c3b563e4862aa3f6} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Shader\+::\texorpdfstring{$\sim$}{\string~}\+Shader (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{class_shader}{Shader} class. 
+
+Cleans up Open\+GL resources. Must be called when the Open\+GL context is available.
+
+Destructor. Make sure to call it only when the Open\+GL context is available. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_shader_a08a5d48dcd650199e92a563180066df4}\index{Shader@{Shader}!bind@{bind}}
+\index{bind@{bind}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily \label{class_shader_a08a5d48dcd650199e92a563180066df4} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Shader\+::bind (\begin{DoxyParamCaption}\item[{int}]{location}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{attrib\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Binds a vertex attribute to a specific location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em location} & The attribute location to bind to. \\
+\hline
+{\em attrib\+Name} & The name of the attribute in the shader. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_shader_a36b2a135888055d2c03712541f1b26ba}\index{Shader@{Shader}!build@{build}}
+\index{build@{build}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily \label{class_shader_a36b2a135888055d2c03712541f1b26ba} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Shader\+::build (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*}}]{vertex\+Shader}{, }\item[{\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*}}]{fragment\+Shader}{}\end{DoxyParamCaption})}
+
+
+
+Builds a shader program from vertex and fragment shaders. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertex\+Shader} & Pointer to the vertex shader, or nullptr if not used. \\
+\hline
+{\em fragment\+Shader} & Pointer to the fragment shader, or nullptr if not used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if program creation was successful, false otherwise.
+\end{DoxyReturn}
+Loads and compiles a full program. 
+\begin{DoxyParams}{Parameters}
+{\em vertex\+Shader} & pointer to a vertex shader, or nullptr if not used \\
+\hline
+{\em fragment\+Shader} & pointer to a fragment shader, or nullptr if not used \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false on success/failure 
+\end{DoxyReturn}
+\Hypertarget{class_shader_a62cc4293296063e0964f514ee141311a}\index{Shader@{Shader}!getCurrent@{getCurrent}}
+\index{getCurrent@{getCurrent}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{getCurrent()}{getCurrent()}}
+{\footnotesize\ttfamily \label{class_shader_a62cc4293296063e0964f514ee141311a} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} Shader\+::get\+Current (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the currently active shader program. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the currently active shader program, or nullptr if none is active. 
+\end{DoxyReturn}
+\Hypertarget{class_shader_abcff73300bb4ad05a6a26c7e45a9f461}\index{Shader@{Shader}!getParamLocation@{getParamLocation}}
+\index{getParamLocation@{getParamLocation}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{getParamLocation()}{getParamLocation()}}
+{\footnotesize\ttfamily \label{class_shader_abcff73300bb4ad05a6a26c7e45a9f461} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} int Shader\+::get\+Param\+Location (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Gets the location of a uniform variable in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the uniform variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The location ID of the uniform variable, or -\/1 if not found.
+\end{DoxyReturn}
+Returns the param location given its variable name. 
+\begin{DoxyParams}{Parameters}
+{\em name} & variable name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+location ID or -\/1 if not found 
+\end{DoxyReturn}
+\Hypertarget{class_shader_a22e3e6a8a387e7255c2fdcd5367bd774}\index{Shader@{Shader}!loadFromFile@{loadFromFile}}
+\index{loadFromFile@{loadFromFile}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{loadFromFile()}{loadFromFile()}}
+{\footnotesize\ttfamily \label{class_shader_a22e3e6a8a387e7255c2fdcd5367bd774} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Shader\+::load\+From\+File (\begin{DoxyParamCaption}\item[{int}]{type}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Loads and compiles a shader from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kind} & The type of shader (vertex or fragment). \\
+\hline
+{\em filename} & Path to the shader source file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if loading and compilation was successful, false otherwise.
+\end{DoxyReturn}
+Loads and compiles a vertex, pixel or geometry shader from a specified source text file. 
+\begin{DoxyParams}{Parameters}
+{\em subtype} & subtype of shader (pixel, vertex, geometry or program shader) \\
+\hline
+{\em filename} & text file containing the vertex shader code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false on success/failure 
+\end{DoxyReturn}
+\Hypertarget{class_shader_aa5e796e77aa612cf96eaa3923acda153}\index{Shader@{Shader}!loadFromMemory@{loadFromMemory}}
+\index{loadFromMemory@{loadFromMemory}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{loadFromMemory()}{loadFromMemory()}}
+{\footnotesize\ttfamily \label{class_shader_aa5e796e77aa612cf96eaa3923acda153} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Shader\+::load\+From\+Memory (\begin{DoxyParamCaption}\item[{int}]{type}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Loads and compiles a shader from source code in memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kind} & The type of shader (vertex or fragment). \\
+\hline
+{\em data} & Pointer to the shader source code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if loading and compilation was successful, false otherwise.
+\end{DoxyReturn}
+Loads and compiles a vertex or fragment shader from source code stored in memory. 
+\begin{DoxyParams}{Parameters}
+{\em subtype} & subtype of shader (vertex or fragment) \\
+\hline
+{\em data} & pointer to the string containing the source code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false on success/failure 
+\end{DoxyReturn}
+\Hypertarget{class_shader_aa0ca298acac7b422fe0d2e582cdb5218}\index{Shader@{Shader}!render@{render}}
+\index{render@{render}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_shader_aa0ca298acac7b422fe0d2e582cdb5218} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Shader\+::render (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{data}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Activates the shader program for rendering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Optional pointer to custom data (unused in current implementation). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if activation was successful, false otherwise.
+\end{DoxyReturn}
+\doxylink{class_shader}{Shader} rendering procedure. 
+\begin{DoxyParams}{Parameters}
+{\em data} & generic pointer to optional custom data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on failure 
+\end{DoxyReturn}
+\Hypertarget{class_shader_a49e1be74ad7a72dd21ff64a7e949ae82}\index{Shader@{Shader}!setFloat@{setFloat}}
+\index{setFloat@{setFloat}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{setFloat()}{setFloat()}}
+{\footnotesize\ttfamily \label{class_shader_a49e1be74ad7a72dd21ff64a7e949ae82} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Shader\+::set\+Float (\begin{DoxyParamCaption}\item[{int}]{param}{, }\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Sets a float uniform variable in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & The location of the uniform variable. \\
+\hline
+{\em value} & The float value to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_shader_ac5b1e66a265f014ca646df8d60616fd7}\index{Shader@{Shader}!setInt@{setInt}}
+\index{setInt@{setInt}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{setInt()}{setInt()}}
+{\footnotesize\ttfamily \label{class_shader_ac5b1e66a265f014ca646df8d60616fd7} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Shader\+::set\+Int (\begin{DoxyParamCaption}\item[{int}]{param}{, }\item[{int}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Sets an integer uniform variable in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & The location of the uniform variable. \\
+\hline
+{\em value} & The integer value to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_shader_a14dcd085a99b4583e312305a129f29af}\index{Shader@{Shader}!setMatrix@{setMatrix}}
+\index{setMatrix@{setMatrix}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{setMatrix()}{setMatrix()}}
+{\footnotesize\ttfamily \label{class_shader_a14dcd085a99b4583e312305a129f29af} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Shader\+::set\+Matrix (\begin{DoxyParamCaption}\item[{int}]{param}{, }\item[{const glm\+::mat4 \&}]{mat}{}\end{DoxyParamCaption})}
+
+
+
+Sets a 4x4 matrix uniform variable in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & The location of the uniform variable. \\
+\hline
+{\em mat} & The matrix value to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_shader_ab9b6e7d7a3ca89a35102f22445b8f96c}\index{Shader@{Shader}!setMatrix3@{setMatrix3}}
+\index{setMatrix3@{setMatrix3}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{setMatrix3()}{setMatrix3()}}
+{\footnotesize\ttfamily \label{class_shader_ab9b6e7d7a3ca89a35102f22445b8f96c} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Shader\+::set\+Matrix3 (\begin{DoxyParamCaption}\item[{int}]{param}{, }\item[{const glm\+::mat3 \&}]{mat}{}\end{DoxyParamCaption})}
+
+
+
+Sets a 3x3 matrix uniform variable in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & The location of the uniform variable. \\
+\hline
+{\em mat} & The matrix value to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_shader_a45cdc63d51df30ea4eef2643db4bab36}\index{Shader@{Shader}!setVec3@{setVec3}}
+\index{setVec3@{setVec3}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{setVec3()}{setVec3()}}
+{\footnotesize\ttfamily \label{class_shader_a45cdc63d51df30ea4eef2643db4bab36} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Shader\+::set\+Vec3 (\begin{DoxyParamCaption}\item[{int}]{param}{, }\item[{const glm\+::vec3 \&}]{vect}{}\end{DoxyParamCaption})}
+
+
+
+Sets a 3D vector uniform variable in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & The location of the uniform variable. \\
+\hline
+{\em vect} & The vector value to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_shader_a7cb28157368bb081e264b9eae405b137}\index{Shader@{Shader}!setVec4@{setVec4}}
+\index{setVec4@{setVec4}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{setVec4()}{setVec4()}}
+{\footnotesize\ttfamily \label{class_shader_a7cb28157368bb081e264b9eae405b137} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Shader\+::set\+Vec4 (\begin{DoxyParamCaption}\item[{int}]{param}{, }\item[{const glm\+::vec4 \&}]{vect}{}\end{DoxyParamCaption})}
+
+
+
+Sets a 4D vector uniform variable in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & The location of the uniform variable. \\
+\hline
+{\em vect} & The vector value to set. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_shader_a7d5fce17222b5599c04313d5bddaa055}\index{Shader@{Shader}!current@{current}}
+\index{current@{current}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{current}{current}}
+{\footnotesize\ttfamily \label{class_shader_a7d5fce17222b5599c04313d5bddaa055} 
+\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} Shader\+::current = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Pointer to the currently active shader program. 
+
+\Hypertarget{class_shader_a3c3c9922abec995faa3c22948bb21c18}\index{Shader@{Shader}!glId@{glId}}
+\index{glId@{glId}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{glId}{glId}}
+{\footnotesize\ttfamily \label{class_shader_a3c3c9922abec995faa3c22948bb21c18} 
+unsigned int Shader\+::gl\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Open\+GL identifier for the shader or program. 
+
+\Hypertarget{class_shader_af710c6f8f3cb6c499d44f6a8f47ed570}\index{Shader@{Shader}!MAX\_LOGSIZE@{MAX\_LOGSIZE}}
+\index{MAX\_LOGSIZE@{MAX\_LOGSIZE}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{MAX\_LOGSIZE}{MAX\_LOGSIZE}}
+{\footnotesize\ttfamily \label{class_shader_af710c6f8f3cb6c499d44f6a8f47ed570} 
+const unsigned int Shader\+::\+MAX\+\_\+\+LOGSIZE = 4096\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Maximum size for shader log messages. 
+
+\Hypertarget{class_shader_a24cd869ce48a60b5a3d3858f50b3f059}\index{Shader@{Shader}!type@{type}}
+\index{type@{type}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{class_shader_a24cd869ce48a60b5a3d3858f50b3f059} 
+int Shader\+::type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The type of shader (vertex, fragment, or program) 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{shader_8h}{shader.\+h}}\item 
+engine/\mbox{\hyperlink{shader_8cpp}{shader.\+cpp}}\end{DoxyCompactItemize}

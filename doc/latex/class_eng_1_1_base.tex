@@ -12,8 +12,10 @@ Main class for the graphics engine. Implements the Singleton pattern.
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
+struct \mbox{\hyperlink{struct_eng_1_1_base_1_1_hand_leap_data}{Hand\+Leap\+Data}}
+\item 
 struct \mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Reserved}}
-\begin{DoxyCompactList}\small\item\em \doxylink{class_eng_1_1_base}{Base} class reserved structure (using PIMPL/\+Bridge design pattern \href{https://en.wikipedia.org/wiki/Opaque_pointer}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Opaque\+\_\+pointer}}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -43,27 +45,93 @@ void \mbox{\hyperlink{class_eng_1_1_base_a6c17fc3be4ea9d5d4af115ccc2cfdadd}{clea
 \begin{DoxyCompactList}\small\item\em Clear the current scene. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_eng_1_1_base_a3178a2cc100b772ea521d3b441c7d718}{begin3D}} (\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}camera1, \mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}camera2, const std\+::list$<$ std\+::string $>$ \&layers)
 \begin{DoxyCompactList}\small\item\em Start 3D rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_ae9bb960ebe68c17a6cd15c7762782201}{build\+Cubemap}} ()
+\begin{DoxyCompactList}\small\item\em Build the cubemap for environment mapping. This function creates and configures the cubemap texture used for environment mapping. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_eng_1_1_base_a974e6386722fb13945002c4f5c150b57}{end3D}} ()
 \begin{DoxyCompactList}\small\item\em End 3D rendering. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_eng_1_1_base_afb1779762130c191ca411e8b909329f3}{load\+VRMode\+From\+Config}} ()
+\begin{DoxyCompactList}\small\item\em Load VR mode configuration from config file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_eng_1_1_base_ae3678d41d28398d92b37258ac9fa5695}{swap}} ()
-\begin{DoxyCompactList}\small\item\em Swap the buffers for rendering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Swap the buffers for rendering. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_eng_1_1_base_1_1_hand_leap_data}{Hand\+Leap\+Data}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_a051c9e02e7bc5cfa3dfcad4149d1cf5a}{get\+Hands\+Data}} ()
+\item 
+\mbox{\hyperlink{class_fbo}{Fbo}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_aa69f9d8193b63f126370025d532bffdc}{get\+Current}} (int num\+Eye)
+\begin{DoxyCompactList}\small\item\em Get the current FBO (Framebuffer \doxylink{class_object}{Object}) for a specific eye. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_aa4056f5a3edbc6f4d1764d6cec20e16d}{handle\+Reshape}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Handle window reshape event. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{class_eng_1_1_base}{Base}} \& \mbox{\hyperlink{class_eng_1_1_base_a3c21bcd7bace09d5913ced6de5b15518}{get\+Instance}} ()
 \begin{DoxyCompactList}\small\item\em Get the singleton instance of the \doxylink{class_eng_1_1_base}{Base} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82c}{Eye}} \{ \mbox{\hyperlink{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cad0a314dea9d4d5f7a656c854ccc25141}{EYE\+\_\+\+LEFT}} = 0
+, \mbox{\hyperlink{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cabc2fba5d93bb83a78f4541ffc50c0cc6}{EYE\+\_\+\+RIGHT}} = 1
+, \mbox{\hyperlink{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cab5f653489cc39f0baefd8d238323c4d5}{EYE\+\_\+\+LAST}}
+ \}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{class_eng_1_1_base_aa4056f5a3edbc6f4d1764d6cec20e16d}{handle\+Reshape}} (int width, int height)
-\begin{DoxyCompactList}\small\item\em Private method to handle window reshaping. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_a8be5cba8c8e44225ef5b047b86a5d14d}{render\+Leap\+Hands}} (const LEAP\+\_\+\+TRACKING\+\_\+\+EVENT \texorpdfstring{$\ast$}{*}l, const glm\+::mat4 \&view, const glm\+::mat4 \&proj)
+\begin{DoxyCompactList}\small\item\em Renders hands tracked by the \doxylink{class_leap}{Leap} Motion device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eng_1_1_base_a8dea88dec5b87a45d799a49211ca42bf}{draw\+Leap\+Part}} (const glm\+::mat4 \&view, const glm\+::mat4 \&offset\+Draw, const glm\+::vec3 \&pos)
+\begin{DoxyCompactList}\small\item\em Draws a single hand joint. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_eng_1_1_base_a46524a1c562ab3afca032e44a00ce7c6}{Base}} ()
 \begin{DoxyCompactList}\small\item\em Private constructor for the singleton instance. Initializes internal resources for the engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Reserved}} $>$ \mbox{\hyperlink{class_eng_1_1_base_a17dea5630935db11dec6d91c9fc88693}{reserved}}
-\begin{DoxyCompactList}\small\item\em \doxylink{struct_eng_1_1_base_1_1_reserved}{Reserved} structure for internal use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_eng_1_1_base_1_1_reserved}{Reserved} structure for internal use. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_a59868dcfc17782d565d24ae3873ddbd5}{vs}} = nullptr
+\item 
+\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_ab1e50fa3ab91277ccad2b2b9c9caaf28}{fs}} = nullptr
+\item 
+\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_a75ed633484ba6ad5843d68f4181696a4}{shader}} = nullptr
+\item 
+\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_a0fa2ebc98b92961f07e9ec228000a3d0}{vs\+Cube}} = nullptr
+\item 
+\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_aba0cabdd6f11d88b00735d513ddd4b37}{fs\+Cube}} = nullptr
+\item 
+\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_a466efa70260f38e78239653e7e33d204}{shader\+Cube}} = nullptr
+\item 
+\mbox{\hyperlink{class_ov_v_r}{Ov\+VR}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_a4b82d3d7a8a6dcafbecd7cbe8a45a2a5}{ovr}} = nullptr
+\item 
+\mbox{\hyperlink{class_leap}{Leap}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_ae61daafaf8efe3f3841e1486320f896a}{leap}} = nullptr
+\item 
+std\+::vector$<$ glm\+::vec3 $>$ \mbox{\hyperlink{class_eng_1_1_base_a4bb751ec189a3e66cf7edd05ff5da054}{leap\+Vertices}}
+\item 
+\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_a33ca2c0b9c668193757b42cf3843f24d}{vs\+Leap}} = nullptr
+\item 
+\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_a0c8483b71d031b0eb3ca28449a35b0dd}{fs\+Leap}} = nullptr
+\item 
+\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_ac965da20be619717c211d39ea03e2b29}{shader\+Leap}} = nullptr
+\item 
+int \mbox{\hyperlink{class_eng_1_1_base_a026181578f18ec3f38cbfdbdbc050491}{leap\+Proj\+Loc}} = -\/1
+\item 
+int \mbox{\hyperlink{class_eng_1_1_base_acdb1fbff20483a9b3996710c420bc299}{leap\+MVLoc}} = -\/1
+\item 
+int \mbox{\hyperlink{class_eng_1_1_base_a268dc96cf48da90057bdeeeab2af0599}{leap\+Color\+Loc}} = -\/1
+\item 
+unsigned int \mbox{\hyperlink{class_eng_1_1_base_aaad09e31ed45493cfe203817f8f61d18}{leap\+Vao}} = 0
+\item 
+unsigned int \mbox{\hyperlink{class_eng_1_1_base_a5180884e44b635dd5ac645080e155a50}{leap\+Vbo}} = 0
+\item 
+unsigned int \mbox{\hyperlink{class_eng_1_1_base_a5b60982c2606f2a42372777b058c652a}{tex\+Id}} = 0
+\item 
+unsigned int \mbox{\hyperlink{class_eng_1_1_base_a6f94b65fe39cc7115e39ed6430a8a9f4}{fbo\+Tex\+Id}} \mbox{[}\mbox{\hyperlink{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cab5f653489cc39f0baefd8d238323c4d5}{EYE\+\_\+\+LAST}}\mbox{]} = \{ 0, 0 \}
+\item 
+unsigned int \mbox{\hyperlink{class_eng_1_1_base_a54f65060a267b9167f91fbe1b051e399}{fbo\+Width}} = 0
+\item 
+unsigned int \mbox{\hyperlink{class_eng_1_1_base_a643833f37dbb2daa76b66aaa409470d0}{fbo\+Height}} = 0
+\item 
+\mbox{\hyperlink{class_fbo}{Fbo}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eng_1_1_base_a587ab97268c05269942024f01fa9561f}{fbo}} \mbox{[}\mbox{\hyperlink{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cab5f653489cc39f0baefd8d238323c4d5}{EYE\+\_\+\+LAST}}\mbox{]} = \{ nullptr, nullptr \}
+\item 
+\mbox{\hyperlink{struct_eng_1_1_base_1_1_hand_leap_data}{Hand\+Leap\+Data}} \mbox{\hyperlink{class_eng_1_1_base_a945e36ede509bb527e1c585149fd5a68}{hands}} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -75,6 +143,29 @@ static \mbox{\hyperlink{class_eng_1_1_base}{Eng\+::\+Base}} \mbox{\hyperlink{cla
 Main class for the graphics engine. Implements the Singleton pattern. 
 
 The {\ttfamily \doxylink{class_eng_1_1_base}{Base}} class is responsible for initializing the engine, managing scenes, handling user input, and managing frame rate. It is designed as a singleton to ensure only one instance of the engine exists. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82c}\index{Eng::Base@{Eng::Base}!Eye@{Eye}}
+\index{Eye@{Eye}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{Eye}{Eye}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82c} 
+enum \mbox{\hyperlink{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82c}{Eng\+::\+Base\+::\+Eye}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_LEFT@{EYE\_LEFT}!Eng::Base@{Eng::Base}}\index{Eng::Base@{Eng::Base}!EYE\_LEFT@{EYE\_LEFT}}}\Hypertarget{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cad0a314dea9d4d5f7a656c854ccc25141}\label{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cad0a314dea9d4d5f7a656c854ccc25141} 
+EYE\+\_\+\+LEFT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_RIGHT@{EYE\_RIGHT}!Eng::Base@{Eng::Base}}\index{Eng::Base@{Eng::Base}!EYE\_RIGHT@{EYE\_RIGHT}}}\Hypertarget{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cabc2fba5d93bb83a78f4541ffc50c0cc6}\label{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cabc2fba5d93bb83a78f4541ffc50c0cc6} 
+EYE\+\_\+\+RIGHT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_LAST@{EYE\_LAST}!Eng::Base@{Eng::Base}}\index{Eng::Base@{Eng::Base}!EYE\_LAST@{EYE\_LAST}}}\Hypertarget{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cab5f653489cc39f0baefd8d238323c4d5}\label{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cab5f653489cc39f0baefd8d238323c4d5} 
+EYE\+\_\+\+LAST&\\
+\hline
+
+\end{DoxyEnumFields}
+
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}\index{Eng::Base@{Eng::Base}!Base@{Base}}
@@ -116,7 +207,7 @@ Constructor.
 \index{begin3D@{begin3D}!Eng::Base@{Eng::Base}}
 \doxysubsubsection{\texorpdfstring{begin3D()}{begin3D()}}
 {\footnotesize\ttfamily \label{class_eng_1_1_base_a3178a2cc100b772ea521d3b441c7d718} 
-void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::begin3D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}}]{main\+Camera}{, }\item[{\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}}]{menu\+Camera}{, }\item[{const std\+::list$<$ std\+::string $>$ \&}]{menu}{}\end{DoxyParamCaption})}
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::begin3D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}}]{camera1}{, }\item[{\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}}]{camera2}{, }\item[{const std\+::list$<$ std\+::string $>$ \&}]{layers}{}\end{DoxyParamCaption})}
 
 
 
@@ -128,10 +219,20 @@ Start 3D rendering.
 \hline
 {\em camera2} & A pointer to the second camera. \\
 \hline
-{\em layers} & A list of layers to be rendered.\\
+{\em layers} & A list of layers to be rendered. \\
 \hline
 \end{DoxyParams}
-passing all node of the scene and save them into a list \Hypertarget{class_eng_1_1_base_a5d9ba3e2afa46a0717a0566c2f44f724}\index{Eng::Base@{Eng::Base}!clear@{clear}}
+\Hypertarget{class_eng_1_1_base_ae9bb960ebe68c17a6cd15c7762782201}\index{Eng::Base@{Eng::Base}!buildCubemap@{buildCubemap}}
+\index{buildCubemap@{buildCubemap}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{buildCubemap()}{buildCubemap()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_ae9bb960ebe68c17a6cd15c7762782201} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::build\+Cubemap (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Build the cubemap for environment mapping. This function creates and configures the cubemap texture used for environment mapping. 
+
+Load cubemap into a texture. \Hypertarget{class_eng_1_1_base_a5d9ba3e2afa46a0717a0566c2f44f724}\index{Eng::Base@{Eng::Base}!clear@{clear}}
 \index{clear@{clear}!Eng::Base@{Eng::Base}}
 \doxysubsubsection{\texorpdfstring{clear()}{clear()}}
 {\footnotesize\ttfamily \label{class_eng_1_1_base_a5d9ba3e2afa46a0717a0566c2f44f724} 
@@ -151,7 +252,28 @@ void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd6099
 
 Clear the current scene. 
 
-clear all list of the scene \Hypertarget{class_eng_1_1_base_a974e6386722fb13945002c4f5c150b57}\index{Eng::Base@{Eng::Base}!end3D@{end3D}}
+clear all list of the scene \Hypertarget{class_eng_1_1_base_a8dea88dec5b87a45d799a49211ca42bf}\index{Eng::Base@{Eng::Base}!drawLeapPart@{drawLeapPart}}
+\index{drawLeapPart@{drawLeapPart}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{drawLeapPart()}{drawLeapPart()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a8dea88dec5b87a45d799a49211ca42bf} 
+void Eng\+::\+Base\+::draw\+Leap\+Part (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{view}{, }\item[{const glm\+::mat4 \&}]{offset\+Draw}{, }\item[{const glm\+::vec3 \&}]{pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Draws a single hand joint. 
+
+This function applies the offset, scaling, and translation matrices for the specified hand joint and then issues the draw call.
+
+
+\begin{DoxyParams}{Parameters}
+{\em view} & The current Model\+View matrix. \\
+\hline
+{\em offset\+Draw} & Transformation matrix used to position the hand relative to the scene. \\
+\hline
+{\em pos} & Position vector of the joint in \doxylink{class_leap}{Leap} Motion coordinates. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eng_1_1_base_a974e6386722fb13945002c4f5c150b57}\index{Eng::Base@{Eng::Base}!end3D@{end3D}}
 \index{end3D@{end3D}!Eng::Base@{Eng::Base}}
 \doxysubsubsection{\texorpdfstring{end3D()}{end3D()}}
 {\footnotesize\ttfamily \label{class_eng_1_1_base_a974e6386722fb13945002c4f5c150b57} 
@@ -177,6 +299,24 @@ Free resources used by the engine.
 Free internal components. \begin{DoxyReturn}{Returns}
 TF 
 \end{DoxyReturn}
+\Hypertarget{class_eng_1_1_base_aa69f9d8193b63f126370025d532bffdc}\index{Eng::Base@{Eng::Base}!getCurrent@{getCurrent}}
+\index{getCurrent@{getCurrent}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{getCurrent()}{getCurrent()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_aa69f9d8193b63f126370025d532bffdc} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_fbo}{Fbo}} \texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::get\+Current (\begin{DoxyParamCaption}\item[{int}]{num\+Eye}{}\end{DoxyParamCaption})}
+
+
+
+Get the current FBO (Framebuffer \doxylink{class_object}{Object}) for a specific eye. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Eye} & The eye index (0 for left, 1 for right). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the current FBO for the specified eye. 
+\end{DoxyReturn}
 \Hypertarget{class_eng_1_1_base_a40b6f6e35aabe4de18d27f56fb8537ab}\index{Eng::Base@{Eng::Base}!getFPS@{getFPS}}
 \index{getFPS@{getFPS}!Eng::Base@{Eng::Base}}
 \doxysubsubsection{\texorpdfstring{getFPS()}{getFPS()}}
@@ -190,6 +330,12 @@ Get the current frames per second (FPS) value.
 \begin{DoxyReturn}{Returns}
 The current FPS value. 
 \end{DoxyReturn}
+\Hypertarget{class_eng_1_1_base_a051c9e02e7bc5cfa3dfcad4149d1cf5a}\index{Eng::Base@{Eng::Base}!getHandsData@{getHandsData}}
+\index{getHandsData@{getHandsData}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{getHandsData()}{getHandsData()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a051c9e02e7bc5cfa3dfcad4149d1cf5a} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{struct_eng_1_1_base_1_1_hand_leap_data}{Eng\+::\+Base\+::\+Hand\+Leap\+Data}} \texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::get\+Hands\+Data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
 \Hypertarget{class_eng_1_1_base_a3c21bcd7bace09d5913ced6de5b15518}\index{Eng::Base@{Eng::Base}!getInstance@{getInstance}}
 \index{getInstance@{getInstance}!Eng::Base@{Eng::Base}}
 \doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
@@ -210,17 +356,17 @@ reference to singleton instance
 \index{handleReshape@{handleReshape}!Eng::Base@{Eng::Base}}
 \doxysubsubsection{\texorpdfstring{handleReshape()}{handleReshape()}}
 {\footnotesize\ttfamily \label{class_eng_1_1_base_aa4056f5a3edbc6f4d1764d6cec20e16d} 
-void Eng\+::\+Base\+::handle\+Reshape (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+void Eng\+::\+Base\+::handle\+Reshape (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})}
 
 
 
-Private method to handle window reshaping. 
+Handle window reshape event. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em width} & The new width of the window. \\
+{\em width} & The new window width. \\
 \hline
-{\em height} & The new height of the window. \\
+{\em height} & The new window height. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{class_eng_1_1_base_afc0dd380b8955e2313d41893e630be12}\index{Eng::Base@{Eng::Base}!init@{init}}
@@ -257,6 +403,19 @@ Load a scene from a specified file.
 \begin{DoxyReturn}{Returns}
 A pointer to the root node of the loaded scene. 
 \end{DoxyReturn}
+\Hypertarget{class_eng_1_1_base_afb1779762130c191ca411e8b909329f3}\index{Eng::Base@{Eng::Base}!loadVRModeFromConfig@{loadVRModeFromConfig}}
+\index{loadVRModeFromConfig@{loadVRModeFromConfig}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{loadVRModeFromConfig()}{loadVRModeFromConfig()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_afb1779762130c191ca411e8b909329f3} 
+bool \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::load\+VRMode\+From\+Config (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Load VR mode configuration from config file. 
+
+\begin{DoxyReturn}{Returns}
+true if VR mode was successfully loaded, false otherwise. 
+\end{DoxyReturn}
 \Hypertarget{class_eng_1_1_base_ac4eb1f66179273abba59260a6b4c5cbd}\index{Eng::Base@{Eng::Base}!operator=@{operator=}}
 \index{operator=@{operator=}!Eng::Base@{Eng::Base}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
@@ -285,7 +444,28 @@ Pass a scene to the engine for rendering.
 {\em root\+Node} & A pointer to the root node of the scene.\\
 \hline
 \end{DoxyParams}
-passing all node of the scene and save them into a list \Hypertarget{class_eng_1_1_base_af6ed5042d5fb8d46b3bd339ecc916d33}\index{Eng::Base@{Eng::Base}!setKeyboardCallback@{setKeyboardCallback}}
+passing all node of the scene and save them into a list \Hypertarget{class_eng_1_1_base_a8be5cba8c8e44225ef5b047b86a5d14d}\index{Eng::Base@{Eng::Base}!renderLeapHands@{renderLeapHands}}
+\index{renderLeapHands@{renderLeapHands}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{renderLeapHands()}{renderLeapHands()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a8be5cba8c8e44225ef5b047b86a5d14d} 
+void Eng\+::\+Base\+::render\+Leap\+Hands (\begin{DoxyParamCaption}\item[{const LEAP\+\_\+\+TRACKING\+\_\+\+EVENT \texorpdfstring{$\ast$}{*}}]{l}{, }\item[{const glm\+::mat4 \&}]{view}{, }\item[{const glm\+::mat4 \&}]{proj}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders hands tracked by the \doxylink{class_leap}{Leap} Motion device. 
+
+This function sets up the \doxylink{class_leap}{Leap} Motion shader, applies necessary transformations, and calls \doxylink{class_eng_1_1_base_a8dea88dec5b87a45d799a49211ca42bf}{draw\+Leap\+Part()} for each joint in the hand structure.
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & Pointer to the \doxylink{class_leap}{Leap} Motion tracking event (LEAP\+\_\+\+TRACKING\+\_\+\+EVENT). \\
+\hline
+{\em view} & Model\+View matrix used to correctly position the hand in the scene. \\
+\hline
+{\em proj} & Projection matrix used for rendering. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eng_1_1_base_af6ed5042d5fb8d46b3bd339ecc916d33}\index{Eng::Base@{Eng::Base}!setKeyboardCallback@{setKeyboardCallback}}
 \index{setKeyboardCallback@{setKeyboardCallback}!Eng::Base@{Eng::Base}}
 \doxysubsubsection{\texorpdfstring{setKeyboardCallback()}{setKeyboardCallback()}}
 {\footnotesize\ttfamily \label{class_eng_1_1_base_af6ed5042d5fb8d46b3bd339ecc916d33} 
@@ -328,6 +508,54 @@ Swap the buffers for rendering.
 Swap buffers. 
 
 \doxysubsection{Member Data Documentation}
+\Hypertarget{class_eng_1_1_base_a587ab97268c05269942024f01fa9561f}\index{Eng::Base@{Eng::Base}!fbo@{fbo}}
+\index{fbo@{fbo}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{fbo}{fbo}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a587ab97268c05269942024f01fa9561f} 
+\mbox{\hyperlink{class_fbo}{Fbo}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::fbo\mbox{[}\mbox{\hyperlink{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cab5f653489cc39f0baefd8d238323c4d5}{EYE\+\_\+\+LAST}}\mbox{]} = \{ nullptr, nullptr \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a643833f37dbb2daa76b66aaa409470d0}\index{Eng::Base@{Eng::Base}!fboHeight@{fboHeight}}
+\index{fboHeight@{fboHeight}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{fboHeight}{fboHeight}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a643833f37dbb2daa76b66aaa409470d0} 
+unsigned int Eng\+::\+Base\+::fbo\+Height = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a6f94b65fe39cc7115e39ed6430a8a9f4}\index{Eng::Base@{Eng::Base}!fboTexId@{fboTexId}}
+\index{fboTexId@{fboTexId}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{fboTexId}{fboTexId}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a6f94b65fe39cc7115e39ed6430a8a9f4} 
+unsigned int Eng\+::\+Base\+::fbo\+Tex\+Id\mbox{[}\mbox{\hyperlink{class_eng_1_1_base_a42ec6457a69cf2372c3763734818f82cab5f653489cc39f0baefd8d238323c4d5}{EYE\+\_\+\+LAST}}\mbox{]} = \{ 0, 0 \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a54f65060a267b9167f91fbe1b051e399}\index{Eng::Base@{Eng::Base}!fboWidth@{fboWidth}}
+\index{fboWidth@{fboWidth}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{fboWidth}{fboWidth}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a54f65060a267b9167f91fbe1b051e399} 
+unsigned int Eng\+::\+Base\+::fbo\+Width = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_ab1e50fa3ab91277ccad2b2b9c9caaf28}\index{Eng::Base@{Eng::Base}!fs@{fs}}
+\index{fs@{fs}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{fs}{fs}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_ab1e50fa3ab91277ccad2b2b9c9caaf28} 
+\mbox{\hyperlink{class_shader}{Shader}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::fs = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_aba0cabdd6f11d88b00735d513ddd4b37}\index{Eng::Base@{Eng::Base}!fsCube@{fsCube}}
+\index{fsCube@{fsCube}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{fsCube}{fsCube}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_aba0cabdd6f11d88b00735d513ddd4b37} 
+\mbox{\hyperlink{class_shader}{Shader}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::fs\+Cube = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a0c8483b71d031b0eb3ca28449a35b0dd}\index{Eng::Base@{Eng::Base}!fsLeap@{fsLeap}}
+\index{fsLeap@{fsLeap}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{fsLeap}{fsLeap}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a0c8483b71d031b0eb3ca28449a35b0dd} 
+\mbox{\hyperlink{class_shader}{Shader}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::fs\+Leap = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a945e36ede509bb527e1c585149fd5a68}\index{Eng::Base@{Eng::Base}!hands@{hands}}
+\index{hands@{hands}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{hands}{hands}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a945e36ede509bb527e1c585149fd5a68} 
+\mbox{\hyperlink{struct_eng_1_1_base_1_1_hand_leap_data}{Hand\+Leap\+Data}} Eng\+::\+Base\+::hands\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
 \Hypertarget{class_eng_1_1_base_ad981031db3f340f6674922fcc72dacbb}\index{Eng::Base@{Eng::Base}!instance@{instance}}
 \index{instance@{instance}!Eng::Base@{Eng::Base}}
 \doxysubsubsection{\texorpdfstring{instance}{instance}}
@@ -337,6 +565,54 @@ Swap buffers.
 
 
 The singleton instance of the engine. 
+
+\Hypertarget{class_eng_1_1_base_ae61daafaf8efe3f3841e1486320f896a}\index{Eng::Base@{Eng::Base}!leap@{leap}}
+\index{leap@{leap}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{leap}{leap}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_ae61daafaf8efe3f3841e1486320f896a} 
+\mbox{\hyperlink{class_leap}{Leap}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::leap = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a268dc96cf48da90057bdeeeab2af0599}\index{Eng::Base@{Eng::Base}!leapColorLoc@{leapColorLoc}}
+\index{leapColorLoc@{leapColorLoc}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{leapColorLoc}{leapColorLoc}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a268dc96cf48da90057bdeeeab2af0599} 
+int Eng\+::\+Base\+::leap\+Color\+Loc = -\/1\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_acdb1fbff20483a9b3996710c420bc299}\index{Eng::Base@{Eng::Base}!leapMVLoc@{leapMVLoc}}
+\index{leapMVLoc@{leapMVLoc}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{leapMVLoc}{leapMVLoc}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_acdb1fbff20483a9b3996710c420bc299} 
+int Eng\+::\+Base\+::leap\+MVLoc = -\/1\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a026181578f18ec3f38cbfdbdbc050491}\index{Eng::Base@{Eng::Base}!leapProjLoc@{leapProjLoc}}
+\index{leapProjLoc@{leapProjLoc}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{leapProjLoc}{leapProjLoc}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a026181578f18ec3f38cbfdbdbc050491} 
+int Eng\+::\+Base\+::leap\+Proj\+Loc = -\/1\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_aaad09e31ed45493cfe203817f8f61d18}\index{Eng::Base@{Eng::Base}!leapVao@{leapVao}}
+\index{leapVao@{leapVao}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{leapVao}{leapVao}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_aaad09e31ed45493cfe203817f8f61d18} 
+unsigned int Eng\+::\+Base\+::leap\+Vao = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a5180884e44b635dd5ac645080e155a50}\index{Eng::Base@{Eng::Base}!leapVbo@{leapVbo}}
+\index{leapVbo@{leapVbo}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{leapVbo}{leapVbo}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a5180884e44b635dd5ac645080e155a50} 
+unsigned int Eng\+::\+Base\+::leap\+Vbo = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a4bb751ec189a3e66cf7edd05ff5da054}\index{Eng::Base@{Eng::Base}!leapVertices@{leapVertices}}
+\index{leapVertices@{leapVertices}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{leapVertices}{leapVertices}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a4bb751ec189a3e66cf7edd05ff5da054} 
+std\+::vector$<$glm\+::vec3$>$ Eng\+::\+Base\+::leap\+Vertices\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a4b82d3d7a8a6dcafbecd7cbe8a45a2a5}\index{Eng::Base@{Eng::Base}!ovr@{ovr}}
+\index{ovr@{ovr}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{ovr}{ovr}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a4b82d3d7a8a6dcafbecd7cbe8a45a2a5} 
+\mbox{\hyperlink{class_ov_v_r}{Ov\+VR}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::ovr = nullptr\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{class_eng_1_1_base_a17dea5630935db11dec6d91c9fc88693}\index{Eng::Base@{Eng::Base}!reserved@{reserved}}
 \index{reserved@{reserved}!Eng::Base@{Eng::Base}}
@@ -348,7 +624,49 @@ std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Rese
 
 \doxylink{struct_eng_1_1_base_1_1_reserved}{Reserved} structure for internal use. 
 
-Unique pointer to the reserved structure 
+Unique pointer to the reserved structure \Hypertarget{class_eng_1_1_base_a75ed633484ba6ad5843d68f4181696a4}\index{Eng::Base@{Eng::Base}!shader@{shader}}
+\index{shader@{shader}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{shader}{shader}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a75ed633484ba6ad5843d68f4181696a4} 
+\mbox{\hyperlink{class_shader}{Shader}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::shader = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a466efa70260f38e78239653e7e33d204}\index{Eng::Base@{Eng::Base}!shaderCube@{shaderCube}}
+\index{shaderCube@{shaderCube}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{shaderCube}{shaderCube}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a466efa70260f38e78239653e7e33d204} 
+\mbox{\hyperlink{class_shader}{Shader}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::shader\+Cube = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_ac965da20be619717c211d39ea03e2b29}\index{Eng::Base@{Eng::Base}!shaderLeap@{shaderLeap}}
+\index{shaderLeap@{shaderLeap}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{shaderLeap}{shaderLeap}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_ac965da20be619717c211d39ea03e2b29} 
+\mbox{\hyperlink{class_shader}{Shader}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::shader\+Leap = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a5b60982c2606f2a42372777b058c652a}\index{Eng::Base@{Eng::Base}!texId@{texId}}
+\index{texId@{texId}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{texId}{texId}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a5b60982c2606f2a42372777b058c652a} 
+unsigned int Eng\+::\+Base\+::tex\+Id = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a59868dcfc17782d565d24ae3873ddbd5}\index{Eng::Base@{Eng::Base}!vs@{vs}}
+\index{vs@{vs}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{vs}{vs}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a59868dcfc17782d565d24ae3873ddbd5} 
+\mbox{\hyperlink{class_shader}{Shader}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::vs = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a0fa2ebc98b92961f07e9ec228000a3d0}\index{Eng::Base@{Eng::Base}!vsCube@{vsCube}}
+\index{vsCube@{vsCube}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{vsCube}{vsCube}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a0fa2ebc98b92961f07e9ec228000a3d0} 
+\mbox{\hyperlink{class_shader}{Shader}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::vs\+Cube = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eng_1_1_base_a33ca2c0b9c668193757b42cf3843f24d}\index{Eng::Base@{Eng::Base}!vsLeap@{vsLeap}}
+\index{vsLeap@{vsLeap}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{vsLeap}{vsLeap}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a33ca2c0b9c668193757b42cf3843f24d} 
+\mbox{\hyperlink{class_shader}{Shader}}\texorpdfstring{$\ast$}{*} Eng\+::\+Base\+::vs\+Leap = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

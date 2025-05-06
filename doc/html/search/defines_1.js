@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['eng_5fapi_0',['ENG_API',['../change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996',1,'ENG_API:&#160;changeMatrixListener.h'],['../engine_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996',1,'ENG_API:&#160;engine.h'],['../object_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996',1,'ENG_API:&#160;object.h'],['../reshape_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996',1,'ENG_API:&#160;reshapeListener.h']]]
+  ['chessboard_0',['CHESSBOARD',['../list_of_pieces_manager_8cpp.html#aa9c56fd582566970bd3294acb25cab6c',1,'listOfPiecesManager.cpp']]],
+  ['chessboard_5fcamera_1',['CHESSBOARD_CAMERA',['../camera_manager_8h.html#a8c5a7dfbaf1d0e34a518ea0a05a2d782',1,'cameraManager.h']]],
+  ['chessboard_5fspot_2',['CHESSBOARD_SPOT',['../light_manager_8h.html#a5300a58d6b95492dfc82bfcced9c2c22',1,'lightManager.h']]]
 ];

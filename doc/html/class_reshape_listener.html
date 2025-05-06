@@ -130,9 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a59f7da873e620444bfb9de79d4452151" id="r_a59f7da873e620444bfb9de79d4452151"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59f7da873e620444bfb9de79d4452151">~ReshapeListener</a> ()=default</td></tr>
 <tr class="memdesc:a59f7da873e620444bfb9de79d4452151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for the <a class="el" href="class_reshape_listener.html" title="Interface for receiving notifications when a window is resized.">ReshapeListener</a> class.  <br /></td></tr>
 <tr class="separator:a59f7da873e620444bfb9de79d4452151"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af163f635cd4adf08c010b9e3ebe0e8b3" id="r_af163f635cd4adf08c010b9e3ebe0e8b3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af163f635cd4adf08c010b9e3ebe0e8b3">onWindowReshape</a> (int width, int height)=0</td></tr>
-<tr class="memdesc:af163f635cd4adf08c010b9e3ebe0e8b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback method to be called when the window is reshaped.  <br /></td></tr>
-<tr class="separator:af163f635cd4adf08c010b9e3ebe0e8b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98db96963aad6230c26bc07d53cd024b" id="r_a98db96963aad6230c26bc07d53cd024b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98db96963aad6230c26bc07d53cd024b">onWindowReshape</a> (int width, int height, <a class="el" href="class_shader.html">Shader</a> *shader)=0</td></tr>
+<tr class="memdesc:a98db96963aad6230c26bc07d53cd024b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback method to be called when the window is reshaped.  <br /></td></tr>
+<tr class="separator:a98db96963aad6230c26bc07d53cd024b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for receiving notifications when a window is resized. </p>
@@ -167,8 +167,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af163f635cd4adf08c010b9e3ebe0e8b3" name="af163f635cd4adf08c010b9e3ebe0e8b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af163f635cd4adf08c010b9e3ebe0e8b3">&#9670;&#160;</a></span>onWindowReshape()</h2>
+<a id="a98db96963aad6230c26bc07d53cd024b" name="a98db96963aad6230c26bc07d53cd024b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98db96963aad6230c26bc07d53cd024b">&#9670;&#160;</a></span>onWindowReshape()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -184,7 +184,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> *</td>          <td class="paramname"><span class="paramname"><em>shader</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -204,7 +209,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_camera.html#a9a11abb2096d56ff475dadb5d04a311d">Camera</a>.</p>
+<p>Implemented in <a class="el" href="class_camera.html#adf0796443be764ea62b0cf36a9496a2c">Camera</a>.</p>
 
 </div>
 </div>

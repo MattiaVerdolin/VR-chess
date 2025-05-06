@@ -1,12 +1,3 @@
-/**
- * @file		shader.cpp
- * @brief	Minimal OpenGL shader class
- *
- * @author	Achille Peternier (C) SUPSI [achille.peternier@supsi.ch]
- */
-
-
-
  //////////////
  // #INCLUDE //
  //////////////

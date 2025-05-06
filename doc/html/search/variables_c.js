@@ -65,8 +65,12 @@ var searchData=
   ['m_5fwidth_62',['m_width',['../class_camera.html#a6d655887e5e87b12e19094ec89b74449',1,'Camera']]],
   ['mass_63',['mass',['../struct_phys_props.html#ad9c5da8635832f7209f0f5c719686c1f',1,'PhysProps']]],
   ['masscenter_64',['massCenter',['../struct_phys_props.html#a3446550a200d76d98801fa481a42f08b',1,'PhysProps']]],
-  ['maxnumberofactivelights_65',['maxNumberOfActiveLights',['../class_light.html#adf91e2721bd8619d930f411f324fbe9a',1,'Light']]],
-  ['menu_66',['menu',['../struct_status_manager_1_1_reserved.html#adba2bf07b9c9c41db0162185a1978038',1,'StatusManager::Reserved']]],
-  ['movement_5fspace_67',['MOVEMENT_SPACE',['../class_movement_manager.html#a3d0a803deb9c56de40b5f7bbb521810f',1,'MovementManager']]],
-  ['movementmanager_68',['movementManager',['../struct_game_manager_1_1_reserved.html#a66079efa17e0680b83769330468bf144',1,'GameManager::Reserved']]]
+  ['matrix_65',['matrix',['../struct_render_item.html#a3328962798c928463213f22d703aa421',1,'RenderItem::matrix'],['../struct_ov_v_r_1_1_controller.html#ad8574bc83c46af7e0b3206e4782f138f',1,'OvVR::Controller::matrix']]],
+  ['max_5fattachments_66',['MAX_ATTACHMENTS',['../class_fbo.html#a90536c1e587e43c3c0df22284edae148',1,'Fbo']]],
+  ['max_5flogsize_67',['MAX_LOGSIZE',['../class_shader.html#af710c6f8f3cb6c499d44f6a8f47ed570',1,'Shader']]],
+  ['maxnumberofactivelights_68',['maxNumberOfActiveLights',['../class_light.html#adf91e2721bd8619d930f411f324fbe9a',1,'Light']]],
+  ['menu_69',['menu',['../struct_status_manager_1_1_reserved.html#adba2bf07b9c9c41db0162185a1978038',1,'StatusManager::Reserved']]],
+  ['movement_5fspace_70',['MOVEMENT_SPACE',['../class_movement_manager.html#a3d0a803deb9c56de40b5f7bbb521810f',1,'MovementManager']]],
+  ['movementmanager_71',['movementManager',['../struct_game_manager_1_1_reserved.html#a66079efa17e0680b83769330468bf144',1,'GameManager::Reserved']]],
+  ['mrt_72',['mrt',['../class_fbo.html#ae37011c317414e0e6cdc482f3ce52069',1,'Fbo']]]
 ];

@@ -146,12 +146,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a94aed57bd4b7289ac48278f12034bf75" id="r_a94aed57bd4b7289ac48278f12034bf75"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94aed57bd4b7289ac48278f12034bf75">clone</a> () const override=0</td></tr>
 <tr class="memdesc:a94aed57bd4b7289ac48278f12034bf75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clone the camera object.  <br /></td></tr>
 <tr class="separator:a94aed57bd4b7289ac48278f12034bf75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a11abb2096d56ff475dadb5d04a311d" id="r_a9a11abb2096d56ff475dadb5d04a311d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a11abb2096d56ff475dadb5d04a311d">onWindowReshape</a> (int width, int height) override</td></tr>
-<tr class="memdesc:a9a11abb2096d56ff475dadb5d04a311d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle window reshape events to update the projection matrix.  <br /></td></tr>
-<tr class="separator:a9a11abb2096d56ff475dadb5d04a311d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf0796443be764ea62b0cf36a9496a2c" id="r_adf0796443be764ea62b0cf36a9496a2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf0796443be764ea62b0cf36a9496a2c">onWindowReshape</a> (int width, int height, <a class="el" href="class_shader.html">Shader</a> *shader) override</td></tr>
+<tr class="memdesc:adf0796443be764ea62b0cf36a9496a2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle window reshape events to update the projection matrix.  <br /></td></tr>
+<tr class="separator:adf0796443be764ea62b0cf36a9496a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a571575e6fb308585be0daa915721e1af" id="r_a571575e6fb308585be0daa915721e1af"><td class="memItemLeft" align="right" valign="top">const glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a571575e6fb308585be0daa915721e1af">getInverseCameraFinalMatrix</a> () const</td></tr>
 <tr class="memdesc:a571575e6fb308585be0daa915721e1af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the inverse of the camera's final transformation matrix.  <br /></td></tr>
 <tr class="separator:a571575e6fb308585be0daa915721e1af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1cdc6a0bcadbb023aa16ff43276026f" id="r_ad1cdc6a0bcadbb023aa16ff43276026f"><td class="memItemLeft" align="right" valign="top">const glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1cdc6a0bcadbb023aa16ff43276026f">getProjectionMatrix</a> () const</td></tr>
+<tr class="memdesc:ad1cdc6a0bcadbb023aa16ff43276026f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the camera's projection matrix.  <br /></td></tr>
+<tr class="separator:ad1cdc6a0bcadbb023aa16ff43276026f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2400934359dc078e7363043a59fdd6b3" id="r_a2400934359dc078e7363043a59fdd6b3"><td class="memItemLeft" align="right" valign="top">const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2400934359dc078e7363043a59fdd6b3">getNearPlane</a> () const</td></tr>
+<tr class="memdesc:a2400934359dc078e7363043a59fdd6b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the near clipping plane distance.  <br /></td></tr>
+<tr class="separator:a2400934359dc078e7363043a59fdd6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdd1f3d74b902196d0376f16f5b7daad" id="r_afdd1f3d74b902196d0376f16f5b7daad"><td class="memItemLeft" align="right" valign="top">const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdd1f3d74b902196d0376f16f5b7daad">getFarPlane</a> () const</td></tr>
+<tr class="memdesc:afdd1f3d74b902196d0376f16f5b7daad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the far clipping plane distance.  <br /></td></tr>
+<tr class="separator:afdd1f3d74b902196d0376f16f5b7daad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5611bb8579aaaaeceff5ceb9a18f0fc2" id="r_a5611bb8579aaaaeceff5ceb9a18f0fc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5611bb8579aaaaeceff5ceb9a18f0fc2">setMainCamera</a> (const bool &amp;val)</td></tr>
 <tr class="memdesc:a5611bb8579aaaaeceff5ceb9a18f0fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the camera as the main camera.  <br /></td></tr>
 <tr class="separator:a5611bb8579aaaaeceff5ceb9a18f0fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -476,6 +485,26 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="afdd1f3d74b902196d0376f16f5b7daad" name="afdd1f3d74b902196d0376f16f5b7daad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdd1f3d74b902196d0376f16f5b7daad">&#9670;&#160;</a></span>getFarPlane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> float &amp; Camera::getFarPlane </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the far clipping plane distance. </p>
+<dl class="section return"><dt>Returns</dt><dd>The distance to the far clipping plane. </dd></dl>
+
+</div>
+</div>
 <a id="a571575e6fb308585be0daa915721e1af" name="a571575e6fb308585be0daa915721e1af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a571575e6fb308585be0daa915721e1af">&#9670;&#160;</a></span>getInverseCameraFinalMatrix()</h2>
 
@@ -494,6 +523,46 @@ Additional Inherited Members</h2></td></tr>
 <p>Get the inverse of the camera's final transformation matrix. </p>
 <p>This method returns the inverse of the camera's final transformation matrix, which is used for various calculations, such as world-to-camera space transformations.</p>
 <dl class="section return"><dt>Returns</dt><dd>The inverse of the camera's final transformation matrix. </dd></dl>
+
+</div>
+</div>
+<a id="a2400934359dc078e7363043a59fdd6b3" name="a2400934359dc078e7363043a59fdd6b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2400934359dc078e7363043a59fdd6b3">&#9670;&#160;</a></span>getNearPlane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> float &amp; Camera::getNearPlane </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the near clipping plane distance. </p>
+<dl class="section return"><dt>Returns</dt><dd>The distance to the near clipping plane. </dd></dl>
+
+</div>
+</div>
+<a id="ad1cdc6a0bcadbb023aa16ff43276026f" name="ad1cdc6a0bcadbb023aa16ff43276026f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1cdc6a0bcadbb023aa16ff43276026f">&#9670;&#160;</a></span>getProjectionMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> glm::mat4 Camera::getProjectionMatrix </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the camera's projection matrix. </p>
+<dl class="section return"><dt>Returns</dt><dd>The projection matrix used for transforming the 3D scene. </dd></dl>
 
 </div>
 </div>
@@ -556,8 +625,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a9a11abb2096d56ff475dadb5d04a311d" name="a9a11abb2096d56ff475dadb5d04a311d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a11abb2096d56ff475dadb5d04a311d">&#9670;&#160;</a></span>onWindowReshape()</h2>
+<a id="adf0796443be764ea62b0cf36a9496a2c" name="adf0796443be764ea62b0cf36a9496a2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf0796443be764ea62b0cf36a9496a2c">&#9670;&#160;</a></span>onWindowReshape()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -573,7 +642,12 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> *</td>          <td class="paramname"><span class="paramname"><em>shader</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -593,7 +667,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_reshape_listener.html#af163f635cd4adf08c010b9e3ebe0e8b3">ReshapeListener</a>.</p>
+<p>Implements <a class="el" href="class_reshape_listener.html#a98db96963aad6230c26bc07d53cd024b">ReshapeListener</a>.</p>
 
 </div>
 </div>

@@ -140,9 +140,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5aae5023a463f57b627bf5075fd52ffc" id="r_a5aae5023a463f57b627bf5075fd52ffc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5aae5023a463f57b627bf5075fd52ffc">unsubscribeListener</a> (<a class="el" href="class_change_matrix_listener.html">ChangeMatrixListener</a> *listener)</td></tr>
 <tr class="memdesc:a5aae5023a463f57b627bf5075fd52ffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribe a listener from matrix change events.  <br /></td></tr>
 <tr class="separator:a5aae5023a463f57b627bf5075fd52ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a400e20c0a800fc133e2634897cc14b1d" id="r_a400e20c0a800fc133e2634897cc14b1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a400e20c0a800fc133e2634897cc14b1d">notifyOnReshapeWindow</a> (int width, int height) const</td></tr>
-<tr class="memdesc:a400e20c0a800fc133e2634897cc14b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify all subscribed ReshapeListeners of a window reshape event.  <br /></td></tr>
-<tr class="separator:a400e20c0a800fc133e2634897cc14b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af576e3fb0fbd32302ae6fbae1940ddf4" id="r_af576e3fb0fbd32302ae6fbae1940ddf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af576e3fb0fbd32302ae6fbae1940ddf4">notifyOnReshapeWindow</a> (int width, int height, <a class="el" href="class_shader.html">Shader</a> *shader) const</td></tr>
+<tr class="memdesc:af576e3fb0fbd32302ae6fbae1940ddf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify all subscribed ReshapeListeners of a window reshape event.  <br /></td></tr>
+<tr class="separator:af576e3fb0fbd32302ae6fbae1940ddf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5f5507308e90d7f81b45394c2d43e8a" id="r_ab5f5507308e90d7f81b45394c2d43e8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5f5507308e90d7f81b45394c2d43e8a">notifyOnChangeMatrix</a> (const unsigned int &amp;matrixId) const</td></tr>
 <tr class="memdesc:ab5f5507308e90d7f81b45394c2d43e8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify all subscribed ChangeMatrixListeners of a matrix change event.  <br /></td></tr>
 <tr class="separator:ab5f5507308e90d7f81b45394c2d43e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -302,8 +302,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a400e20c0a800fc133e2634897cc14b1d" name="a400e20c0a800fc133e2634897cc14b1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a400e20c0a800fc133e2634897cc14b1d">&#9670;&#160;</a></span>notifyOnReshapeWindow()</h2>
+<a id="af576e3fb0fbd32302ae6fbae1940ddf4" name="af576e3fb0fbd32302ae6fbae1940ddf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af576e3fb0fbd32302ae6fbae1940ddf4">&#9670;&#160;</a></span>notifyOnReshapeWindow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -316,7 +316,12 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>&#160;) const</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> *</td>          <td class="paramname"><span class="paramname"><em>shader</em></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">

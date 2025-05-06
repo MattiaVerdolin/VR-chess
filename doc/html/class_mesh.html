@@ -105,6 +105,7 @@ $(function(){initNavTree('class_mesh.html',''); initResizable(true); });
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_mesh-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Mesh Class Reference</div></div>
@@ -157,6 +158,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab9f0b1f850fc4002b2711fdf918d4838" id="r_ab9f0b1f850fc4002b2711fdf918d4838"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9f0b1f850fc4002b2711fdf918d4838">~Mesh</a> ()</td></tr>
 <tr class="memdesc:ab9f0b1f850fc4002b2711fdf918d4838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="class_mesh.html" title="Class representing a 3D Mesh object.">Mesh</a> class.  <br /></td></tr>
 <tr class="separator:ab9f0b1f850fc4002b2711fdf918d4838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c3a1f2c48fd6c890b5c24b41ca3ee55" id="r_a0c3a1f2c48fd6c890b5c24b41ca3ee55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c3a1f2c48fd6c890b5c24b41ca3ee55">computeBoundingSphere</a> ()</td></tr>
+<tr class="memdesc:a0c3a1f2c48fd6c890b5c24b41ca3ee55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the bounding sphere for the mesh.  <br /></td></tr>
+<tr class="separator:a0c3a1f2c48fd6c890b5c24b41ca3ee55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abab7f875975792cbd7852f05910156fe" id="r_abab7f875975792cbd7852f05910156fe"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abab7f875975792cbd7852f05910156fe">getBoundingCenter</a> ()</td></tr>
+<tr class="memdesc:abab7f875975792cbd7852f05910156fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the center point of the mesh's bounding sphere.  <br /></td></tr>
+<tr class="separator:abab7f875975792cbd7852f05910156fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9365d14c5d4a1a46d21c2b53b6d15ab8" id="r_a9365d14c5d4a1a46d21c2b53b6d15ab8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9365d14c5d4a1a46d21c2b53b6d15ab8">getBoundingRadius</a> ()</td></tr>
+<tr class="memdesc:a9365d14c5d4a1a46d21c2b53b6d15ab8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the radius of the mesh's bounding sphere.  <br /></td></tr>
+<tr class="separator:a9365d14c5d4a1a46d21c2b53b6d15ab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_node"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_node')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_node.html">Node</a></td></tr>
 <tr class="memitem:a9a01c871d55d2553384519d70d65bf5a inherit pub_methods_class_node" id="r_a9a01c871d55d2553384519d70d65bf5a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a9a01c871d55d2553384519d70d65bf5a">Node</a> (const std::string &amp;name=&quot;defaultNode&quot;)</td></tr>
 <tr class="memdesc:a9a01c871d55d2553384519d70d65bf5a inherit pub_methods_class_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="class_node.html" title="Represents a node in a hierarchical 3D scene graph.">Node</a> class.  <br /></td></tr>
@@ -223,11 +233,47 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2353e70d1cd4e3d478b70611cc53e191 inherit pub_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the name of the object.  <br /></td></tr>
 <tr class="separator:a2353e70d1cd4e3d478b70611cc53e191 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aafa4e21067a9b0c4407daf5e3c9ea991" id="r_aafa4e21067a9b0c4407daf5e3c9ea991"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafa4e21067a9b0c4407daf5e3c9ea991">setupMesh</a> ()</td></tr>
+<tr class="memdesc:aafa4e21067a9b0c4407daf5e3c9ea991"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the OpenGL buffers and vertex attributes for the mesh.  <br /></td></tr>
+<tr class="separator:aafa4e21067a9b0c4407daf5e3c9ea991"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a5bcf47d58282b2bf114169b27fc3c1d5" id="r_a5bcf47d58282b2bf114169b27fc3c1d5"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="struct_mesh_1_1_reserved.html">Reserved</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bcf47d58282b2bf114169b27fc3c1d5">m_reserved</a></td></tr>
 <tr class="memdesc:a5bcf47d58282b2bf114169b27fc3c1d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the reserved internal data structure.  <br /></td></tr>
 <tr class="separator:a5bcf47d58282b2bf114169b27fc3c1d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79afa055e485fb65b1a7aa5b8eda2940" id="r_a79afa055e485fb65b1a7aa5b8eda2940"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79afa055e485fb65b1a7aa5b8eda2940">VAO</a></td></tr>
+<tr class="memdesc:a79afa055e485fb65b1a7aa5b8eda2940"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenGL vertex array object identifier.  <br /></td></tr>
+<tr class="separator:a79afa055e485fb65b1a7aa5b8eda2940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a586febcd9c58d05836b7d422fe9320aa" id="r_a586febcd9c58d05836b7d422fe9320aa"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a586febcd9c58d05836b7d422fe9320aa">verticesVbo</a></td></tr>
+<tr class="memdesc:a586febcd9c58d05836b7d422fe9320aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenGL vertex buffer object identifiers for different vertex attributes.  <br /></td></tr>
+<tr class="separator:a586febcd9c58d05836b7d422fe9320aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69ae4ff89bc2e4973226e739a9dc6d6d" id="r_a69ae4ff89bc2e4973226e739a9dc6d6d"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69ae4ff89bc2e4973226e739a9dc6d6d">normalVerticesVbo</a></td></tr>
+<tr class="separator:a69ae4ff89bc2e4973226e739a9dc6d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65b580a6c6eb59ac5f199d2b71779af3" id="r_a65b580a6c6eb59ac5f199d2b71779af3"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65b580a6c6eb59ac5f199d2b71779af3">uvVerticesVbo</a></td></tr>
+<tr class="separator:a65b580a6c6eb59ac5f199d2b71779af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a206043a9eed524afe82b13b712b1e42e" id="r_a206043a9eed524afe82b13b712b1e42e"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a206043a9eed524afe82b13b712b1e42e">faceVbo</a></td></tr>
+<tr class="separator:a206043a9eed524afe82b13b712b1e42e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4a7675364b3134c880d2ff6ec57cad0" id="r_ab4a7675364b3134c880d2ff6ec57cad0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4a7675364b3134c880d2ff6ec57cad0">faceIndices</a></td></tr>
+<tr class="memdesc:ab4a7675364b3134c880d2ff6ec57cad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector containing the indices for face rendering.  <br /></td></tr>
+<tr class="separator:ab4a7675364b3134c880d2ff6ec57cad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f0d158e5058b644698cede5dbe9f80a" id="r_a8f0d158e5058b644698cede5dbe9f80a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; glm::vec3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f0d158e5058b644698cede5dbe9f80a">coorVertices</a></td></tr>
+<tr class="memdesc:a8f0d158e5058b644698cede5dbe9f80a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector containing the 3D coordinates of all vertices.  <br /></td></tr>
+<tr class="separator:a8f0d158e5058b644698cede5dbe9f80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70748cef54c05c21618bc8b5e8851963" id="r_a70748cef54c05c21618bc8b5e8851963"><td class="memItemLeft" align="right" valign="top">std::vector&lt; glm::vec3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70748cef54c05c21618bc8b5e8851963">normalVertices</a></td></tr>
+<tr class="memdesc:a70748cef54c05c21618bc8b5e8851963"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector containing the normal vectors for all vertices.  <br /></td></tr>
+<tr class="separator:a70748cef54c05c21618bc8b5e8851963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b57624c2c5632c1660638fcacba5bcf" id="r_a6b57624c2c5632c1660638fcacba5bcf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; glm::vec2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b57624c2c5632c1660638fcacba5bcf">uvVertices</a></td></tr>
+<tr class="memdesc:a6b57624c2c5632c1660638fcacba5bcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector containing the UV texture coordinates for all vertices.  <br /></td></tr>
+<tr class="separator:a6b57624c2c5632c1660638fcacba5bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab62ccf52f0ced773a0a589cb3453c821" id="r_ab62ccf52f0ced773a0a589cb3453c821"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab62ccf52f0ced773a0a589cb3453c821">boundingCenter</a></td></tr>
+<tr class="memdesc:ab62ccf52f0ced773a0a589cb3453c821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Center point of the mesh's bounding sphere.  <br /></td></tr>
+<tr class="separator:ab62ccf52f0ced773a0a589cb3453c821"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f7eb69696a34515c85e60f13faafa8a" id="r_a7f7eb69696a34515c85e60f13faafa8a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f7eb69696a34515c85e60f13faafa8a">boundingRadius</a></td></tr>
+<tr class="memdesc:a7f7eb69696a34515c85e60f13faafa8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Radius of the mesh's bounding sphere.  <br /></td></tr>
+<tr class="separator:a7f7eb69696a34515c85e60f13faafa8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -344,9 +390,6 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> Mesh::~Mesh </td>
@@ -355,11 +398,6 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Destructor for the <a class="el" href="class_mesh.html" title="Class representing a 3D Mesh object.">Mesh</a> class. </p>
@@ -394,6 +432,68 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the newly cloned <a class="el" href="class_mesh.html" title="Class representing a 3D Mesh object.">Mesh</a> object. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_node.html#a9777d266e9b52f648f3ce309133d1a57">Node</a>.</p>
+
+</div>
+</div>
+<a id="a0c3a1f2c48fd6c890b5c24b41ca3ee55" name="a0c3a1f2c48fd6c890b5c24b41ca3ee55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c3a1f2c48fd6c890b5c24b41ca3ee55">&#9670;&#160;</a></span>computeBoundingSphere()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mesh::computeBoundingSphere </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the bounding sphere for the mesh. </p>
+<p>This method calculates the center point and radius of the smallest sphere that completely contains all vertices of the mesh. This is useful for collision detection and culling operations. </p>
+
+</div>
+</div>
+<a id="abab7f875975792cbd7852f05910156fe" name="abab7f875975792cbd7852f05910156fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abab7f875975792cbd7852f05910156fe">&#9670;&#160;</a></span>getBoundingCenter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> glm::vec3 Mesh::getBoundingCenter </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the center point of the mesh's bounding sphere. </p>
+<dl class="section return"><dt>Returns</dt><dd>A glm::vec3 containing the coordinates of the bounding sphere's center. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This value is only valid after <a class="el" href="#a0c3a1f2c48fd6c890b5c24b41ca3ee55" title="Computes the bounding sphere for the mesh.">computeBoundingSphere()</a> has been called. </dd></dl>
+
+</div>
+</div>
+<a id="a9365d14c5d4a1a46d21c2b53b6d15ab8" name="a9365d14c5d4a1a46d21c2b53b6d15ab8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9365d14c5d4a1a46d21c2b53b6d15ab8">&#9670;&#160;</a></span>getBoundingRadius()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> float Mesh::getBoundingRadius </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the radius of the mesh's bounding sphere. </p>
+<dl class="section return"><dt>Returns</dt><dd>The radius of the bounding sphere as a float value. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This value is only valid after <a class="el" href="#a0c3a1f2c48fd6c890b5c24b41ca3ee55" title="Computes the bounding sphere for the mesh.">computeBoundingSphere()</a> has been called. </dd></dl>
 
 </div>
 </div>
@@ -521,7 +621,153 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aafa4e21067a9b0c4407daf5e3c9ea991" name="aafa4e21067a9b0c4407daf5e3c9ea991"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafa4e21067a9b0c4407daf5e3c9ea991">&#9670;&#160;</a></span>setupMesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mesh::setupMesh </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets up the OpenGL buffers and vertex attributes for the mesh. </p>
+<p>This method initializes the VAO and VBOs, uploads vertex data to the GPU, and configures the vertex attribute pointers for position, normal, and UV coordinates. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab62ccf52f0ced773a0a589cb3453c821" name="ab62ccf52f0ced773a0a589cb3453c821"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab62ccf52f0ced773a0a589cb3453c821">&#9670;&#160;</a></span>boundingCenter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec3 Mesh::boundingCenter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Center point of the mesh's bounding sphere. </p>
+
+</div>
+</div>
+<a id="a7f7eb69696a34515c85e60f13faafa8a" name="a7f7eb69696a34515c85e60f13faafa8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f7eb69696a34515c85e60f13faafa8a">&#9670;&#160;</a></span>boundingRadius</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Mesh::boundingRadius</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Radius of the mesh's bounding sphere. </p>
+
+</div>
+</div>
+<a id="a8f0d158e5058b644698cede5dbe9f80a" name="a8f0d158e5058b644698cede5dbe9f80a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f0d158e5058b644698cede5dbe9f80a">&#9670;&#160;</a></span>coorVertices</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;glm::vec3&gt; Mesh::coorVertices</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector containing the 3D coordinates of all vertices. </p>
+
+</div>
+</div>
+<a id="ab4a7675364b3134c880d2ff6ec57cad0" name="ab4a7675364b3134c880d2ff6ec57cad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4a7675364b3134c880d2ff6ec57cad0">&#9670;&#160;</a></span>faceIndices</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;unsigned int&gt; Mesh::faceIndices</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector containing the indices for face rendering. </p>
+
+</div>
+</div>
+<a id="a206043a9eed524afe82b13b712b1e42e" name="a206043a9eed524afe82b13b712b1e42e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a206043a9eed524afe82b13b712b1e42e">&#9670;&#160;</a></span>faceVbo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Mesh::faceVbo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a5bcf47d58282b2bf114169b27fc3c1d5" name="a5bcf47d58282b2bf114169b27fc3c1d5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5bcf47d58282b2bf114169b27fc3c1d5">&#9670;&#160;</a></span>m_reserved</h2>
 
@@ -543,6 +789,146 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Pointer to the reserved internal data structure. </p>
+
+</div>
+</div>
+<a id="a70748cef54c05c21618bc8b5e8851963" name="a70748cef54c05c21618bc8b5e8851963"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70748cef54c05c21618bc8b5e8851963">&#9670;&#160;</a></span>normalVertices</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;glm::vec3&gt; Mesh::normalVertices</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector containing the normal vectors for all vertices. </p>
+
+</div>
+</div>
+<a id="a69ae4ff89bc2e4973226e739a9dc6d6d" name="a69ae4ff89bc2e4973226e739a9dc6d6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ae4ff89bc2e4973226e739a9dc6d6d">&#9670;&#160;</a></span>normalVerticesVbo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Mesh::normalVerticesVbo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6b57624c2c5632c1660638fcacba5bcf" name="a6b57624c2c5632c1660638fcacba5bcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b57624c2c5632c1660638fcacba5bcf">&#9670;&#160;</a></span>uvVertices</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;glm::vec2&gt; Mesh::uvVertices</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector containing the UV texture coordinates for all vertices. </p>
+
+</div>
+</div>
+<a id="a65b580a6c6eb59ac5f199d2b71779af3" name="a65b580a6c6eb59ac5f199d2b71779af3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65b580a6c6eb59ac5f199d2b71779af3">&#9670;&#160;</a></span>uvVerticesVbo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Mesh::uvVerticesVbo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a79afa055e485fb65b1a7aa5b8eda2940" name="a79afa055e485fb65b1a7aa5b8eda2940"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79afa055e485fb65b1a7aa5b8eda2940">&#9670;&#160;</a></span>VAO</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Mesh::VAO</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>OpenGL vertex array object identifier. </p>
+
+</div>
+</div>
+<a id="a586febcd9c58d05836b7d422fe9320aa" name="a586febcd9c58d05836b7d422fe9320aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a586febcd9c58d05836b7d422fe9320aa">&#9670;&#160;</a></span>verticesVbo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Mesh::verticesVbo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>OpenGL vertex buffer object identifiers for different vertex attributes. </p>
 
 </div>
 </div>

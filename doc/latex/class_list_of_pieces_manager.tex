@@ -47,7 +47,9 @@ void \mbox{\hyperlink{class_list_of_pieces_manager_a72e6593f72e8ef38e8fc1c0a258a
 void \mbox{\hyperlink{class_list_of_pieces_manager_aee2f02c2a2aecd71b484e170b95c0fda}{update\+Chessboard}} (\mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*}white\+List, \mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*}black\+List)
 \begin{DoxyCompactList}\small\item\em Updates the chessboard with new lists of white and black pieces. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_list_of_pieces_manager_a1add9aa78d5241ed85baf9cb6ac0176f}{is\+Game\+Finished}} () const
-\begin{DoxyCompactList}\small\item\em Checks if the game is finished. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Checks if the game is finished. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_of_pieces_manager_a645262a2ec697bec658178e4f7a29c43}{update\+Leap\+Motion}} ()
+\begin{DoxyCompactList}\small\item\em Updates the state of chess pieces based on \doxylink{class_leap}{Leap} Motion controller input. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_on_state_update_listener}{On\+State\+Update\+Listener}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -82,7 +84,9 @@ void \mbox{\hyperlink{class_list_of_pieces_manager_a0691ce4a123c0f35e098c6a2e10a
 void \mbox{\hyperlink{class_list_of_pieces_manager_a6e03ecef7798ddf1c19eba4edf3cfd78}{clear\+Lists}} ()
 \begin{DoxyCompactList}\small\item\em Clears the lists of pieces for both players. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_list_of_pieces_manager_ab5767ca41766b33b7506736c179e1ab1}{create\+Shadow}} ()
-\begin{DoxyCompactList}\small\item\em Creates shadow effects for the chess pieces. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates shadow effects for the chess pieces. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_list_of_pieces_manager_adc56df2f39f6e3e02def7a90b032ce1a}{snap\+To\+Closest\+Cell}} (const glm\+::vec3 \&pos)
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -99,7 +103,11 @@ void \mbox{\hyperlink{class_list_of_pieces_manager_ab5767ca41766b33b7506736c179e
 int \mbox{\hyperlink{class_list_of_pieces_manager_a1e7e062711a0237995e2b90a8dcff846}{m\+\_\+iterator\+On\+List}}
 \begin{DoxyCompactList}\small\item\em Index of the currently selected piece. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{class_list_of_pieces_manager_a4330f3f3e27ab9f17f695b8ca0053e44}{m\+\_\+rotation\+Angle}}
-\begin{DoxyCompactList}\small\item\em Rotation angle for the selection pointer animation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Rotation angle for the selection pointer animation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_list_of_pieces_manager_a8c2d1ffb9609c83155448a7155dade9d}{is\+Holding\+Piece}} = false
+\item 
+\mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_of_pieces_manager_a87eb4a7d3fd25e95aa99685119afbea4}{grabbed\+Piece}} = nullptr
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_on_state_update_listener}{On\+State\+Update\+Listener}}}
 \begin{DoxyCompactItemize}
@@ -388,6 +396,12 @@ Handles events during the pre-\/game state.
 
 Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_a6a67d89aa4202d1f178e20adcc546220}{On\+State\+Update\+Listener}}.
 
+\Hypertarget{class_list_of_pieces_manager_adc56df2f39f6e3e02def7a90b032ce1a}\index{ListOfPiecesManager@{ListOfPiecesManager}!snapToClosestCell@{snapToClosestCell}}
+\index{snapToClosestCell@{snapToClosestCell}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{snapToClosestCell()}{snapToClosestCell()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_adc56df2f39f6e3e02def7a90b032ce1a} 
+glm\+::vec3 List\+Of\+Pieces\+Manager\+::snap\+To\+Closest\+Cell (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
 \Hypertarget{class_list_of_pieces_manager_aee2f02c2a2aecd71b484e170b95c0fda}\index{ListOfPiecesManager@{ListOfPiecesManager}!updateChessboard@{updateChessboard}}
 \index{updateChessboard@{updateChessboard}!ListOfPiecesManager@{ListOfPiecesManager}}
 \doxysubsubsection{\texorpdfstring{updateChessboard()}{updateChessboard()}}
@@ -405,7 +419,19 @@ Updates the chessboard with new lists of white and black pieces.
 {\em black\+List} & \doxylink{class_list}{List} of black pieces. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_list_of_pieces_manager_a72e6593f72e8ef38e8fc1c0a258a7f06}\index{ListOfPiecesManager@{ListOfPiecesManager}!updateSelectPointer@{updateSelectPointer}}
+\Hypertarget{class_list_of_pieces_manager_a645262a2ec697bec658178e4f7a29c43}\index{ListOfPiecesManager@{ListOfPiecesManager}!updateLeapMotion@{updateLeapMotion}}
+\index{updateLeapMotion@{updateLeapMotion}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{updateLeapMotion()}{updateLeapMotion()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a645262a2ec697bec658178e4f7a29c43} 
+void List\+Of\+Pieces\+Manager\+::update\+Leap\+Motion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the state of chess pieces based on \doxylink{class_leap}{Leap} Motion controller input. 
+
+This method handles the interaction between the \doxylink{class_leap}{Leap} Motion controller and chess pieces. It manages piece grabbing, movement, and snapping to the chessboard grid.
+
+The method uses a radius-\/based detection system to determine when a piece can be grabbed, and implements a snapping mechanism to ensure pieces are placed on valid board positions. \Hypertarget{class_list_of_pieces_manager_a72e6593f72e8ef38e8fc1c0a258a7f06}\index{ListOfPiecesManager@{ListOfPiecesManager}!updateSelectPointer@{updateSelectPointer}}
 \index{updateSelectPointer@{updateSelectPointer}!ListOfPiecesManager@{ListOfPiecesManager}}
 \doxysubsubsection{\texorpdfstring{updateSelectPointer()}{updateSelectPointer()}}
 {\footnotesize\ttfamily \label{class_list_of_pieces_manager_a72e6593f72e8ef38e8fc1c0a258a7f06} 
@@ -418,6 +444,18 @@ Updates the selection pointer\textquotesingle{}s transformation matrix.
 
 
 \doxysubsection{Member Data Documentation}
+\Hypertarget{class_list_of_pieces_manager_a87eb4a7d3fd25e95aa99685119afbea4}\index{ListOfPiecesManager@{ListOfPiecesManager}!grabbedPiece@{grabbedPiece}}
+\index{grabbedPiece@{grabbedPiece}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{grabbedPiece}{grabbedPiece}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a87eb4a7d3fd25e95aa99685119afbea4} 
+\mbox{\hyperlink{class_piece}{Piece}}\texorpdfstring{$\ast$}{*} List\+Of\+Pieces\+Manager\+::grabbed\+Piece = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_list_of_pieces_manager_a8c2d1ffb9609c83155448a7155dade9d}\index{ListOfPiecesManager@{ListOfPiecesManager}!isHoldingPiece@{isHoldingPiece}}
+\index{isHoldingPiece@{isHoldingPiece}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{isHoldingPiece}{isHoldingPiece}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a8c2d1ffb9609c83155448a7155dade9d} 
+bool List\+Of\+Pieces\+Manager\+::is\+Holding\+Piece = false\hspace{0.3cm}{\ttfamily [private]}}
+
 \Hypertarget{class_list_of_pieces_manager_a321662aa427d67aef00ec506942a8ef5}\index{ListOfPiecesManager@{ListOfPiecesManager}!m\_blackList@{m\_blackList}}
 \index{m\_blackList@{m\_blackList}!ListOfPiecesManager@{ListOfPiecesManager}}
 \doxysubsubsection{\texorpdfstring{m\_blackList}{m\_blackList}}

@@ -260,7 +260,6 @@ void ListOfPiecesManager::updateLeapMotion() {
 	static Piece* grabbedPieces[2] = { nullptr, nullptr };
 	static bool isHoldingPieces[2] = { false, false };
 
-	// Piccolo offset opzionale per calibrare
 	const glm::vec3 offsetCorrection(0.0f, 0.0f, 0.5f);
 
 	for (int h = 0; h < 2; ++h) {
@@ -272,7 +271,7 @@ void ListOfPiecesManager::updateLeapMotion() {
 
 			if (!isHoldingPieces[h]) {
 				Piece* closestPiece = nullptr;
-				float radius = 0.0375f;  // soglia per agganciare
+				float radius = 0.0375f;  // threshold for pinching
 				float minDistance = radius;
 
 				auto* whiteList = getWhitePieces();
@@ -284,14 +283,6 @@ void ListOfPiecesManager::updateLeapMotion() {
 				for (auto* piece : allPieces) {
 					glm::vec3 pieceCenter = glm::vec3(piece->getNode()->getFinalMatrix()[3]);
 					float dist = glm::distance(pinchPos, pieceCenter);
-
-					// Debug solo per le Torri
-					std::string name = piece->getNode()->getName();
-					if (name == "WhiteRookSx" || name == "BlackRookSx") {
-						std::cout << "DEBUG " << name
-							<< " pos(" << pieceCenter.x << ", " << pieceCenter.y << ", " << pieceCenter.z << ")"
-							<< " d=" << dist << std::endl;
-					}
 
 					if (dist < minDistance) {
 						minDistance = dist;
@@ -330,25 +321,23 @@ void ListOfPiecesManager::updateLeapMotion() {
 	}
 }
 
-
-
 glm::vec3 ListOfPiecesManager::snapToClosestCell(const glm::vec3& pos) {
-	float boardY = 1.209f;       // altezza piano scacchiera
-	float cellSize = 0.075f;     // dimensione di una cella
+	float boardY = 1.209f;       // height of the chessboard plane
+	float cellSize = 0.075f;     // size of a cell
 
-	// Offset (angolo in basso a sinistra della scacchiera)
-	float originX = -0.3626f;    // X di WhiteRookSx (cella 0,0)
-	float originZ = 0.1005f;     // Z di WhiteRookSx (cella 0,0)
+	// Offset (bottom-left corner of the chessboard)
+	float originX = -0.3626f;    // X of WhiteRookSx (cell 0,0)
+	float originZ = 0.1005f;     // Z of WhiteRookSx (cell 0,0)
 
-	// Trova colonna e riga più vicine
+	// Find the closest column and row
 	int col = static_cast<int>(std::round((pos.x - originX) / cellSize));
 	int row = static_cast<int>(std::round((pos.z - originZ) / cellSize));
 
-	// Se la scacchiera è 8x8, limitiamo da 0 a 7
+	// If the board is 8x8, limit indices from 0 to 7
 	col = std::max(0, std::min(7, col));
 	row = std::max(0, std::min(7, row));
 
-	// Calcola la posizione centrata della cella
+	// Compute the centered position of the cell
 	float snappedX = originX + (col * cellSize);
 	float snappedZ = originZ + (row * cellSize);
 
@@ -357,8 +346,3 @@ glm::vec3 ListOfPiecesManager::snapToClosestCell(const glm::vec3& pos) {
 
 	return glm::vec3(snappedX, boardY, snappedZ);
 }
-
-
-
-
-

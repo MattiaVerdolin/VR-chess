@@ -1,14 +1,14 @@
 /**
- * @file    list.h
- * @brief   Concrete List include file
+ * @file		list.h
+ * @brief	List class header file
  *
  * This file defines the List class, which manages a collection of nodes for rendering purposes.
  * It holds and renders the elements in the scene graph, manages the final transformation matrix of each node,
  * and interacts with a notification system that listens for matrix changes.
  *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once
@@ -100,9 +100,14 @@ public:
     const unsigned int getNumberOfElementsInList() const;
 
     /**
-         * @brief Ritorna una lista di RenderItem pronti per il rendering.
-         * @note Viene restituita una copia perché incapsuliamo la struttura interna.
-         */
+     * @brief Retrieves the list of render items containing nodes and their transformation matrices.
+     * 
+     * This method returns a vector of RenderItem structures, each containing a pointer to a Node
+     * and its associated final transformation matrix. This can be used to access the complete
+     * rendering state of all nodes in the list.
+     * 
+     * @return A vector of RenderItem structures containing all nodes and their transformation matrices.
+     */
     std::vector<RenderItem> getRenderItems() const;
 
 private:

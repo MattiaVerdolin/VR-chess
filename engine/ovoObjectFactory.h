@@ -1,14 +1,10 @@
 /**
- * @file    ovoObjectFactory.h
- * @brief   Factory class for creating objects based on chunk ID and data.
+ * @file		ovoObjectFactory.h
+ * @brief	OVO Object Factory header file
  *
- * This file defines the `OVOObjectFactory` class, which is responsible for creating different types of
- * objects (such as nodes, materials, meshes, lights) based on chunk IDs and associated data.
- * The factory handles various object types and subtypes, making it easier to instantiate objects dynamically.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once

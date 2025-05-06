@@ -1,13 +1,10 @@
 /**
- * @file    omniLight.h
- * @brief   OmniLight include file
+ * @file		omniLight.h
+ * @brief	Omnidirectional Light header file
  *
- * This file defines the OmniLight class, which represents an omnidirectional light source in a 3D scene.
- * The OmniLight emits light in all directions from a single point.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once

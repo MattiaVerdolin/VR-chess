@@ -1,13 +1,10 @@
 /**
- * @file    orthoCamera.h
- * @brief   Declaration of the OrthoCamera class, a concrete implementation of a camera with orthographic projection.
+ * @file		orthoCamera.h
+ * @brief	Orthographic Camera header file
  *
- * This file defines the OrthoCamera class, which is a specific type of camera that uses an orthographic projection.
- * The class inherits from the Camera class and implements the required methods, such as loading the projection matrix.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once

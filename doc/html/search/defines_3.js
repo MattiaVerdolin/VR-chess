@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['lamp_5fomni_0',['LAMP_OMNI',['../light_manager_8h.html#a79b221e422dca73cd75e70e41cdd4d1a',1,'lightManager.h']]],
-  ['lib_5fname_1',['LIB_NAME',['../engine_8h.html#a6e43beaa714b1bf01ce2271440786e38',1,'engine.h']]],
-  ['lib_5fversion_2',['LIB_VERSION',['../engine_8h.html#a1418b909446cf0c11d3f26ef91d8e850',1,'engine.h']]]
+  ['gl_5fmax_5ftexture_5fmax_5fanisotropy_5fext_0',['GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT',['../texture_8cpp.html#ad1cf646d8224fdedcce963d095f71c1b',1,'texture.cpp']]],
+  ['gl_5ftexture_5fmax_5fanisotropy_5fext_1',['GL_TEXTURE_MAX_ANISOTROPY_EXT',['../texture_8cpp.html#a00b65957cb070504d8e364031b176737',1,'texture.cpp']]]
 ];

@@ -7,9 +7,9 @@
  * during different game states. It provides methods to add, remove, and find cameras
  * by name and also handles camera movement and state updates.
  *
- * @authors Luca Fantò (C) SUPSI
- *          Mattia Cainarca (C) SUPSI
- *          Antonio Marroffino (C) SUPSI
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once

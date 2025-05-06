@@ -1,0 +1,53 @@
+\doxysection{leap.\+h}
+\hypertarget{leap_8h_source}{}\label{leap_8h_source}\index{engine/leap.h@{engine/leap.h}}
+\mbox{\hyperlink{leap_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ GLM:}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <glm/gtc/matrix\_transform.hpp>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <glm/gtc/type\_ptr.hpp>}\ \ \ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ C/C++:}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Leap\ Motion\ SDK:}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <LeapC.h>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ CLASS\ Leap\ //}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_leap_aa3098c1c5c86d7e2da872a402e952aec}{Leap}}}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:\ \textcolor{comment}{//}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_leap_aa3098c1c5c86d7e2da872a402e952aec}{Leap}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_leap_a01c04edca136fec95a77caef1e18b150}{\string~Leap}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_leap_a964fff790646d97f5908817b94614f55}{init}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_leap_a8bc3e493be6e28875b3065593c3d850b}{free}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_leap_af53f554a1502a211ff790adf3c4d4426}{update}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{const}\ LEAP\_TRACKING\_EVENT*\ \mbox{\hyperlink{class_leap_a0c59b9da5c5e45c20ddd558b122ef32f}{getCurFrame}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{private}:\ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Leap\ Motion:}}
+\DoxyCodeLine{00107\ \ \ \ \ LEAP\_CONNECTION\ \mbox{\hyperlink{class_leap_a1485220cdb00aaf4c062517334e6405c}{connection}};}
+\DoxyCodeLine{00108\ \ \ \ \ LEAP\_DEVICE\_REF\ \mbox{\hyperlink{class_leap_a0c9d31e33376a061ac2e33e56e815050}{leapDevice}};}
+\DoxyCodeLine{00109\ \ \ \ \ LEAP\_TRACKING\_EVENT\ \mbox{\hyperlink{class_leap_ac6e1d97272f9a7dd398644657cd3cdbb}{curFrame}};}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_leap_aabf041609c7e7d0b73a4c17b936fda60}{lastFrameId}};}
+\DoxyCodeLine{00111\ \};}
+
+\end{DoxyCode}

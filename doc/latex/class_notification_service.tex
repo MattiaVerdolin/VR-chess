@@ -26,7 +26,7 @@ void \mbox{\hyperlink{class_notification_service_a9984988a72c6627af65a91529f84f0
 \begin{DoxyCompactList}\small\item\em Unsubscribe a listener from window reshape events. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_notification_service_a5aae5023a463f57b627bf5075fd52ffc}{unsubscribe\+Listener}} (\mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}} \texorpdfstring{$\ast$}{*}listener)
 \begin{DoxyCompactList}\small\item\em Unsubscribe a listener from matrix change events. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_notification_service_a400e20c0a800fc133e2634897cc14b1d}{notify\+On\+Reshape\+Window}} (int width, int height) const
+void \mbox{\hyperlink{class_notification_service_af576e3fb0fbd32302ae6fbae1940ddf4}{notify\+On\+Reshape\+Window}} (int width, int height, \mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*}shader) const
 \begin{DoxyCompactList}\small\item\em Notify all subscribed Reshape\+Listeners of a window reshape event. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_notification_service_ab5f5507308e90d7f81b45394c2d43e8a}{notify\+On\+Change\+Matrix}} (const unsigned int \&matrix\+Id) const
 \begin{DoxyCompactList}\small\item\em Notify all subscribed Change\+Matrix\+Listeners of a matrix change event. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -118,11 +118,11 @@ This method calls the on\+Matrix\+Change method on all subscribed \doxylink{clas
 {\em matrix\+Id} & The ID of the matrix that was changed. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_notification_service_a400e20c0a800fc133e2634897cc14b1d}\index{NotificationService@{NotificationService}!notifyOnReshapeWindow@{notifyOnReshapeWindow}}
+\Hypertarget{class_notification_service_af576e3fb0fbd32302ae6fbae1940ddf4}\index{NotificationService@{NotificationService}!notifyOnReshapeWindow@{notifyOnReshapeWindow}}
 \index{notifyOnReshapeWindow@{notifyOnReshapeWindow}!NotificationService@{NotificationService}}
 \doxysubsubsection{\texorpdfstring{notifyOnReshapeWindow()}{notifyOnReshapeWindow()}}
-{\footnotesize\ttfamily \label{class_notification_service_a400e20c0a800fc133e2634897cc14b1d} 
-\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Notification\+Service\+::notify\+On\+Reshape\+Window (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \label{class_notification_service_af576e3fb0fbd32302ae6fbae1940ddf4} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Notification\+Service\+::notify\+On\+Reshape\+Window (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{, }\item[{\mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*}}]{shader}{}\end{DoxyParamCaption}) const}
 
 
 

@@ -1,14 +1,10 @@
 /**
- * @file    texture.h
- * @brief   Declaration of the Texture class, a concrete class for handling 2D textures in the rendering engine.
+ * @file		texture.h
+ * @brief	Texture class header file
  *
- * This file defines the Texture class, which provides functionality for loading,
- * managing, and rendering 2D textures. It also supports anisotropic filtering
- * if the feature is available on the system.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once
@@ -73,8 +69,12 @@ public:
      */
     const unsigned int parse(const char* data, unsigned int& position) override;
 
+    /**
+     * @brief Creates a 1x1 white texture.
+     * 
+     * This method generates a simple white texture with a single pixel (RGBA: 255,255,255,255).
+     */
     void createWhiteTexture();
-
 
 private:
     /**

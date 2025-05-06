@@ -36,7 +36,8 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Enumerations", "functions_enum.html", null ]
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -46,6 +47,7 @@ var NAVTREE =
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -55,9 +57,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_list_of_pieces_manager.html#a72e6593f72e8ef38e8fc1c0a258a7f06",
-"class_status_manager.html#a51f09b36feb0ef8b3174981a6f1d558f",
-"struct_phys_props.html#ac468b95d0ae398876091e278560b8fd9"
+"class_game_manager.html#ae7d2631cd4bcf7889830e3ca1ccbb5f6",
+"class_notification_service.html#ae5e0e14893e836b2acc66591b20106ce",
+"files.html",
+"struct_texture_1_1_reserved.html#abb829cb8bde88018c2cfdcfaa24856cc"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

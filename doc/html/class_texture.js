@@ -3,6 +3,7 @@ var class_texture =
     [ "Reserved", "struct_texture_1_1_reserved.html", "struct_texture_1_1_reserved" ],
     [ "Texture", "class_texture.html#ad844373238930d60747526db8df6d20e", null ],
     [ "~Texture", "class_texture.html#aa6c34e4b77dcbd6cdd888a4431133116", null ],
+    [ "createWhiteTexture", "class_texture.html#ae3b74dff98893ddea67b76e22ef7df5b", null ],
     [ "parse", "class_texture.html#aa03e5bb53ff3406057d6768679226550", null ],
     [ "render", "class_texture.html#a46b4b64eebd715c36997577c51690a89", null ],
     [ "setAnisotropicFilter", "class_texture.html#ad7677ef3dd7e759713520e717270f11f", null ],

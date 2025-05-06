@@ -3,63 +3,63 @@
 \mbox{\hyperlink{light_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ }
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \#INCLUDE\ //}}
 \DoxyCodeLine{00015\ }
-\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#INCLUDE\ //}}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{comment}{//\ Project-\/specific\ includes}}
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{node_8h}{node.h}}"{}}}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{comment}{//\ Standard\ libraries}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{node_8h}{node.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ MAIN\ LIGHT\ CLASS\ //}}
 \DoxyCodeLine{00025\ }
-\DoxyCodeLine{00027\ \textcolor{comment}{//\ MAIN\ LIGHT\ CLASS\ //}}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}}\ \{}
-\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a93d7587db1e3b5c4d92b29fc83e702ec}{render}}(\textcolor{keyword}{const}\ glm::mat4\&\ matrix\ =\ glm::mat4(1.0f))\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_light_ae3e3209d4b97d0bbbd614ded5e1213d9}{\string~Light}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_node_a2a71e920c29f9ed353b07e12ec4ec552}{parse}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ data,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ position)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}}*\ \mbox{\hyperlink{class_light_ab4e365754a296e56fe3e6fed125f6fbe}{clone}}()\ \textcolor{keyword}{const\ override}\ =\ 0;}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_a5bc31ec3268cea795ce926bf8e885655}{setPosition}}(\textcolor{keyword}{const}\ glm::vec3\&\ position);}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{class_light_a6048e9eed2858d9ffd7a40c103627461}{getPosition}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_a028bbafdde82e708d84d50d615ec6be3}{resetLightCounter}}();}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_ab7a8bd130aef5a30973558d13ca2bdfe}{turnOn}}();}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_aa595a808a3684b6733f575488fed53de}{turnOff}}();}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_a50ead5a5e1a1da3a34bd3a2ed4788b91}{increaseIntensity}}();}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_a01c0c6a32eb36b0bf41281c76688d2d1}{decreaseIntensity}}();}
-\DoxyCodeLine{00130\ }
-\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ \mbox{\hyperlink{class_light_a509e973d3eab9984e5716e306b49f10c}{isLightOn}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00137\ }
-\DoxyCodeLine{00138\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keyword}{const}\ glm::vec4\&\ position);}
-\DoxyCodeLine{00148\ }
-\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\&\ other);}
-\DoxyCodeLine{00157\ }
-\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\&\ \mbox{\hyperlink{class_light_a8e3994dc24b3b0f1365ed74a371aa60d}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00166\ \ \ \ \ glm::vec4\ \mbox{\hyperlink{class_light_a8d21cb8168c0e29b2b3eb977f452c360}{m\_position}};}
-\DoxyCodeLine{00167\ }
-\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{class_material}{Material}}*\ \mbox{\hyperlink{class_light_a83eb2a302d0423b41c7c378818b97d3c}{m\_lightMaterial}};}
-\DoxyCodeLine{00170\ }
-\DoxyCodeLine{00172\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_light_a56d65d50934d8ba311d09b6455a227da}{m\_tempAlbedo}};}
-\DoxyCodeLine{00173\ }
-\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_light_a5704396d051eb39f3c046cce042f3f79}{m\_lightIsOn}};}
-\DoxyCodeLine{00176\ }
-\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_light_adf91e2721bd8619d930f411f324fbe9a}{maxNumberOfActiveLights}};}
-\DoxyCodeLine{00179\ }
-\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_light_a337a585df3f7a98b16b068e55d245f83}{lightActiveCounter}};}
-\DoxyCodeLine{00182\ \};}
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}}\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a93d7587db1e3b5c4d92b29fc83e702ec}{render}}(\textcolor{keyword}{const}\ glm::mat4\&\ matrix\ =\ glm::mat4(1.0f))\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_light_ae3e3209d4b97d0bbbd614ded5e1213d9}{\string~Light}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_node_a2a71e920c29f9ed353b07e12ec4ec552}{parse}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ data,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ position)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_node_a9a01c871d55d2553384519d70d65bf5a}{Node}}*\ \mbox{\hyperlink{class_light_ab4e365754a296e56fe3e6fed125f6fbe}{clone}}()\ \textcolor{keyword}{const\ override}\ =\ 0;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_a5bc31ec3268cea795ce926bf8e885655}{setPosition}}(\textcolor{keyword}{const}\ glm::vec3\&\ position);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{class_light_a6048e9eed2858d9ffd7a40c103627461}{getPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_a028bbafdde82e708d84d50d615ec6be3}{resetLightCounter}}();}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_ab7a8bd130aef5a30973558d13ca2bdfe}{turnOn}}();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_aa595a808a3684b6733f575488fed53de}{turnOff}}();}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_a50ead5a5e1a1da3a34bd3a2ed4788b91}{increaseIntensity}}();}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_light_a01c0c6a32eb36b0bf41281c76688d2d1}{decreaseIntensity}}();}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ \mbox{\hyperlink{class_light_a509e973d3eab9984e5716e306b49f10c}{isLightOn}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keyword}{const}\ glm::vec4\&\ position);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\&\ other);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\&\ \mbox{\hyperlink{class_light_a8e3994dc24b3b0f1365ed74a371aa60d}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}{Light}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00162\ \ \ \ \ glm::vec4\ \mbox{\hyperlink{class_light_a8d21cb8168c0e29b2b3eb977f452c360}{m\_position}};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{class_material}{Material}}*\ \mbox{\hyperlink{class_light_a83eb2a302d0423b41c7c378818b97d3c}{m\_lightMaterial}};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00168\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_light_a56d65d50934d8ba311d09b6455a227da}{m\_tempAlbedo}};}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_light_a5704396d051eb39f3c046cce042f3f79}{m\_lightIsOn}};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_light_adf91e2721bd8619d930f411f324fbe9a}{maxNumberOfActiveLights}};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_light_a337a585df3f7a98b16b068e55d245f83}{lightActiveCounter}};}
+\DoxyCodeLine{00178\ \};}
 
 \end{DoxyCode}

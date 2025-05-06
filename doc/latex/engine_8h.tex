@@ -2,18 +2,23 @@
 \hypertarget{engine_8h}{}\label{engine_8h}\index{engine/engine.h@{engine/engine.h}}
 
 
-Main include file for the graphics engine.  
+Graphics engine header file.  
 
 
 {\ttfamily \#include $<$memory$>$}\newline
 {\ttfamily \#include $<$list$>$}\newline
 {\ttfamily \#include "{}node.\+h"{}}\newline
 {\ttfamily \#include "{}camera.\+h"{}}\newline
+{\ttfamily \#include "{}fbo.\+h"{}}\newline
+{\ttfamily \#include "{}leap.\+h"{}}\newline
+{\ttfamily \#include "{}ovr.\+h"{}}\newline
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{class_eng_1_1_base}{Eng\+::\+Base}}
-\begin{DoxyCompactList}\small\item\em Main class for the graphics engine. Implements the Singleton pattern. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Main class for the graphics engine. Implements the Singleton pattern. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_eng_1_1_base_1_1_hand_leap_data}{Eng\+::\+Base\+::\+Hand\+Leap\+Data}}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -31,14 +36,16 @@ namespace \mbox{\hyperlink{namespace_eng}{Eng}}
 
 
 \doxysubsection{Detailed Description}
-Main include file for the graphics engine. 
+Graphics engine header file. 
 
-This file defines the main class for the graphics engine, {\ttfamily Base}, which follows the Singleton design pattern. The class provides methods for initialization, scene management, and rendering. It also includes functions for handling user input and managing FPS.
+\begin{DoxyAuthor}{Author}
+Mattia Cainarca (C) SUPSI \mbox{[}\href{mailto:mattia.cainarca@student.supsi.ch}{\texttt{ mattia.\+cainarca@student.\+supsi.\+ch}}\mbox{]} 
 
-\begin{DoxyAuthor}{Authors}
-Luca Fantò (C) SUPSI \mbox{[}\href{mailto:luca.fanto@student.supsi.ch}{\texttt{ luca.\+fanto@student.\+supsi.\+ch}}\mbox{]} Mattia Cainarca (C) SUPSI \mbox{[}\href{mailto:mattia.cainarca@student.supsi.ch}{\texttt{ mattia.\+cainarca@student.\+supsi.\+ch}}\mbox{]} Antonio Marroffino (C) SUPSI \mbox{[}\href{mailto:antonio.marroffino@student.supsi.ch}{\texttt{ antonio.\+marroffino@student.\+supsi.\+ch}}\mbox{]} 
+Riccardo Cristallo (C) SUPSI \mbox{[}\href{mailto:riccardo.cristallo@student.supsi.ch}{\texttt{ riccardo.\+cristallo@student.\+supsi.\+ch}}\mbox{]} 
+
+Mattia Verdolin (C) SUPSI \mbox{[}\href{mailto:mattia.verdolin@student.supsi.ch}{\texttt{ mattia.\+verdolin@student.\+supsi.\+ch}}\mbox{]}
 \end{DoxyAuthor}
-
+This file defines the main class for the graphics engine, {\ttfamily Base}, which follows the Singleton design pattern. The class provides methods for initialization, scene management, and rendering. It also includes functions for handling user input and managing FPS. 
 
 \doxysubsection{Macro Definition Documentation}
 \Hypertarget{engine_8h_a2ef14742296b6d1fdaf5e70dfdd60996}\index{engine.h@{engine.h}!ENG\_API@{ENG\_API}}

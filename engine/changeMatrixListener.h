@@ -1,14 +1,10 @@
 /**
- * @file    changematrixlistener.h
- * @brief   Declaration of the ChangeMatrixListener class, an interface for listening to matrix changes.
+ * @file		changeMatrixListener.h
+ * @brief	Change Matrix Listener header file
  *
- * This file defines the ChangeMatrixListener class, which provides a listener interface for
- * handling matrix changes. Classes that wish to be notified when a matrix changes can
- * implement this interface.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once

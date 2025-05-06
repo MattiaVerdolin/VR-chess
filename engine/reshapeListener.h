@@ -1,13 +1,14 @@
 /**
- * @file    reshapelistener.h
- * @brief   Declaration of the ReshapeListener class, an interface for handling window resize events.
+ * @file		reshapeListener.h
+ * @brief	Reshape Listener header file
+ *
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  *
  * This file defines the ReshapeListener class, which provides an interface for listening to
  * window reshape events. Classes that wish to respond to window resizing can implement this interface.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch] */
+ */
 
 #pragma once
 

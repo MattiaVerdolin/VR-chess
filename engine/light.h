@@ -1,14 +1,10 @@
 /**
- * @file    light.h
- * @brief   Declaration of the Light class, an abstract base class for managing light sources.
+ * @file		light.h
+ * @brief	Light class header file
  *
- * This file defines the Light class, which provides functionality for managing light sources in a 3D scene.
- * It includes methods to control light properties like position, intensity, and status (on/off),
- * as well as rendering the light source.
- *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once

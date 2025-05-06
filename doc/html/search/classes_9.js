@@ -6,5 +6,6 @@ var searchData=
   ['orthocamera_3',['OrthoCamera',['../class_ortho_camera.html',1,'']]],
   ['ovlight_4',['OvLight',['../class_ov_light.html',1,'']]],
   ['ovobject_5',['OvObject',['../class_ov_object.html',1,'']]],
-  ['ovoobjectfactory_6',['OVOObjectFactory',['../class_o_v_o_object_factory.html',1,'']]]
+  ['ovoobjectfactory_6',['OVOObjectFactory',['../class_o_v_o_object_factory.html',1,'']]],
+  ['ovvr_7',['OvVR',['../class_ov_v_r.html',1,'']]]
 ];

@@ -1,15 +1,15 @@
 /**
- * @file	material.h
- * @brief	Material class definition and functionality.
+ * @file		material.h
+ * @brief	Material class header file
+ *
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  *
  * This file contains the declaration of the Material class,
  * which handles material properties for rendering, including
  * texture management and material attributes such as emission,
  * ambient, specular, and diffuse components.
- *
- * @authors	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
  */
 
 #pragma once

@@ -1,0 +1,438 @@
+\doxysection{Fbo Class Reference}
+\hypertarget{class_fbo}{}\label{class_fbo}\index{Fbo@{Fbo}}
+
+
+Frame buffer class to deal with Open\+GL FBOs.  
+
+
+
+
+{\ttfamily \#include $<$fbo.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50}{Eye}} \{ \mbox{\hyperlink{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50a2758c6692dbfca7a5eebdc153be274ab}{EYE\+\_\+\+LEFT}} = 0
+, \mbox{\hyperlink{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50aa42b3d76bd49b5ad09593ab720968866}{EYE\+\_\+\+RIGHT}} = 1
+, \mbox{\hyperlink{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50af0e708db1868ff75168e69b030e72112}{EYE\+\_\+\+LAST}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for specifying which eye to render for stereo rendering. \end{DoxyCompactList}\item 
+enum \+: unsigned int \{ \mbox{\hyperlink{class_fbo_a731fc86ea745ded088424d240348aee3a056d4db931b4e5973ecc3240805b5054}{BIND\+\_\+\+DEPTHBUFFER}} = 0
+, \mbox{\hyperlink{class_fbo_a731fc86ea745ded088424d240348aee3aa03f98fe077069d2959aaf05fdad1217}{BIND\+\_\+\+COLORTEXTURE}}
+, \mbox{\hyperlink{class_fbo_a731fc86ea745ded088424d240348aee3a1405269d3e6249dd66d848e08ddff7dc}{BIND\+\_\+\+DEPTHTEXTURE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for specifying the type of binding operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_fbo_aa25c5a8ee43408c219b4512819cc2e48}{Fbo}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the FBO class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_fbo_a306b3cba8f689809576e45c1ae23e988}{\texorpdfstring{$\sim$}{\string~}\+Fbo}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the FBO class. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_fbo_ab26da9c756c82e733e1a7a419fd62b8c}{get\+Texture}} (unsigned int texture\+Number)
+\begin{DoxyCompactList}\small\item\em Get the texture ID for a specific texture number. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_fbo_a9d59107270afa6773be5a42922ba263b}{get\+SizeX}} ()
+\begin{DoxyCompactList}\small\item\em Get the width of the framebuffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_fbo_a0b6094fbde8e4cec3d9f28c50d53a51c}{get\+SizeY}} ()
+\begin{DoxyCompactList}\small\item\em Get the height of the framebuffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_fbo_ac90e9683ac4049c2ec36b19e7e11785d}{get\+SizeZ}} ()
+\begin{DoxyCompactList}\small\item\em Get the depth of the framebuffer. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_fbo_a72e7de7b2bd55e47c1241e949ac39d79}{get\+Handle}} ()
+\begin{DoxyCompactList}\small\item\em Get the Open\+GL handle for this framebuffer object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_fbo_a5719579d8b7f089cbe4980d99ddde146}{is\+Ok}} ()
+\begin{DoxyCompactList}\small\item\em Check if the framebuffer object is valid and ready for use. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_fbo_adfca7539e4f7ca024ee334fcb6d13dfc}{bind\+Texture}} (unsigned int texture\+Number, unsigned int operation, unsigned int \mbox{\hyperlink{class_fbo_aba0b4eb191c21c1cb8898915f053be85}{texture}}, int param1=0, int param2=0)
+\begin{DoxyCompactList}\small\item\em Bind a texture to the framebuffer object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_fbo_ae062aa970938024b66fb237f21662534}{bind\+Render\+Buffer}} (unsigned int render\+Buffer, unsigned int operation, int \mbox{\hyperlink{class_fbo_a6fea5f641e2bd27cfa0523d00efdc1bb}{sizeX}}, int \mbox{\hyperlink{class_fbo_a9872a36128fa8977aa6a03801ca26c96}{sizeY}})
+\begin{DoxyCompactList}\small\item\em Bind a renderbuffer to the framebuffer object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_fbo_af7b56dc5b9a1cd8a2286cb38fa9ca87f}{render}} (void \texorpdfstring{$\ast$}{*}data=nullptr)
+\begin{DoxyCompactList}\small\item\em Render the framebuffer contents. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_fbo_a516145b0c705c75342ab8e76435e281d}{disable}} ()
+\begin{DoxyCompactList}\small\item\em Disable the current framebuffer object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const unsigned int \mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\+\_\+\+ATTACHMENTS}} = 8
+\begin{DoxyCompactList}\small\item\em Maximum number of available render buffers or textures per FBO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_fbo_ad4a6bf885fbbc4d29e2ecee8fc1c60b9}{update\+Mrt\+Cache}} ()
+\begin{DoxyCompactList}\small\item\em Update the Multiple Render Target (MRT) cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_fbo_a6fea5f641e2bd27cfa0523d00efdc1bb}{sizeX}}
+\item 
+int \mbox{\hyperlink{class_fbo_a9872a36128fa8977aa6a03801ca26c96}{sizeY}}
+\item 
+int \mbox{\hyperlink{class_fbo_a2660e8ca4317f74f2d154728b84a814d}{sizeZ}}
+\begin{DoxyCompactList}\small\item\em FBO width, height and depth. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_fbo_aba0b4eb191c21c1cb8898915f053be85}{texture}} \mbox{[}\mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\+\_\+\+ATTACHMENTS}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Attached textures. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_fbo_a3df506690a557886aefa57180a39047f}{draw\+Buffer}} \mbox{[}\mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\+\_\+\+ATTACHMENTS}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Set color attachment per texture. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_fbo_a211efcccbaf755999dd67f01524fd57f}{gl\+Id}}
+\begin{DoxyCompactList}\small\item\em Open\+GL ID. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_fbo_aa163ced232d03de27a0666c2a5457b02}{gl\+Render\+Buffer\+Id}} \mbox{[}\mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\+\_\+\+ATTACHMENTS}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Render buffer IDs. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_fbo_a6300b5881dc74d0e36ffdc60493c2e41}{nr\+Of\+Mrts}}
+\begin{DoxyCompactList}\small\item\em Number of MRTs. \end{DoxyCompactList}\item 
+unsigned int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_fbo_ae37011c317414e0e6cdc482f3ce52069}{mrt}}
+\begin{DoxyCompactList}\small\item\em Cached list of buffers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Frame buffer class to deal with Open\+GL FBOs. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_fbo_a731fc86ea745ded088424d240348aee3}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_fbo_a731fc86ea745ded088424d240348aee3} 
+anonymous enum \+: unsigned int}
+
+
+
+Enumeration for specifying the type of binding operation. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BIND\_DEPTHBUFFER@{BIND\_DEPTHBUFFER}!Fbo@{Fbo}}\index{Fbo@{Fbo}!BIND\_DEPTHBUFFER@{BIND\_DEPTHBUFFER}}}\Hypertarget{class_fbo_a731fc86ea745ded088424d240348aee3a056d4db931b4e5973ecc3240805b5054}\label{class_fbo_a731fc86ea745ded088424d240348aee3a056d4db931b4e5973ecc3240805b5054} 
+BIND\+\_\+\+DEPTHBUFFER&Bind depth buffer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BIND\_COLORTEXTURE@{BIND\_COLORTEXTURE}!Fbo@{Fbo}}\index{Fbo@{Fbo}!BIND\_COLORTEXTURE@{BIND\_COLORTEXTURE}}}\Hypertarget{class_fbo_a731fc86ea745ded088424d240348aee3aa03f98fe077069d2959aaf05fdad1217}\label{class_fbo_a731fc86ea745ded088424d240348aee3aa03f98fe077069d2959aaf05fdad1217} 
+BIND\+\_\+\+COLORTEXTURE&Bind color texture. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BIND\_DEPTHTEXTURE@{BIND\_DEPTHTEXTURE}!Fbo@{Fbo}}\index{Fbo@{Fbo}!BIND\_DEPTHTEXTURE@{BIND\_DEPTHTEXTURE}}}\Hypertarget{class_fbo_a731fc86ea745ded088424d240348aee3a1405269d3e6249dd66d848e08ddff7dc}\label{class_fbo_a731fc86ea745ded088424d240348aee3a1405269d3e6249dd66d848e08ddff7dc} 
+BIND\+\_\+\+DEPTHTEXTURE&Bind depth texture. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50}\index{Fbo@{Fbo}!Eye@{Eye}}
+\index{Eye@{Eye}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{Eye}{Eye}}
+{\footnotesize\ttfamily \label{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50} 
+enum \mbox{\hyperlink{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50}{Fbo\+::\+Eye}}}
+
+
+
+Enumeration for specifying which eye to render for stereo rendering. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_LEFT@{EYE\_LEFT}!Fbo@{Fbo}}\index{Fbo@{Fbo}!EYE\_LEFT@{EYE\_LEFT}}}\Hypertarget{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50a2758c6692dbfca7a5eebdc153be274ab}\label{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50a2758c6692dbfca7a5eebdc153be274ab} 
+EYE\+\_\+\+LEFT&Left eye rendering. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_RIGHT@{EYE\_RIGHT}!Fbo@{Fbo}}\index{Fbo@{Fbo}!EYE\_RIGHT@{EYE\_RIGHT}}}\Hypertarget{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50aa42b3d76bd49b5ad09593ab720968866}\label{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50aa42b3d76bd49b5ad09593ab720968866} 
+EYE\+\_\+\+RIGHT&Right eye rendering. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_LAST@{EYE\_LAST}!Fbo@{Fbo}}\index{Fbo@{Fbo}!EYE\_LAST@{EYE\_LAST}}}\Hypertarget{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50af0e708db1868ff75168e69b030e72112}\label{class_fbo_aae0ab4a2434c10377f8464feb7b3dc50af0e708db1868ff75168e69b030e72112} 
+EYE\+\_\+\+LAST&Last eye index. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_fbo_aa25c5a8ee43408c219b4512819cc2e48}\index{Fbo@{Fbo}!Fbo@{Fbo}}
+\index{Fbo@{Fbo}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{Fbo()}{Fbo()}}
+{\footnotesize\ttfamily \label{class_fbo_aa25c5a8ee43408c219b4512819cc2e48} 
+Fbo\+::\+Fbo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the FBO class. 
+
+Initializes a new framebuffer object with default values. \Hypertarget{class_fbo_a306b3cba8f689809576e45c1ae23e988}\index{Fbo@{Fbo}!````~Fbo@{\texorpdfstring{$\sim$}{\string~}Fbo}}
+\index{````~Fbo@{\texorpdfstring{$\sim$}{\string~}Fbo}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Fbo()}{\string~Fbo()}}
+{\footnotesize\ttfamily \label{class_fbo_a306b3cba8f689809576e45c1ae23e988} 
+Fbo\+::\texorpdfstring{$\sim$}{\string~}\+Fbo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for the FBO class. 
+
+Cleans up any resources associated with the framebuffer object. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_fbo_ae062aa970938024b66fb237f21662534}\index{Fbo@{Fbo}!bindRenderBuffer@{bindRenderBuffer}}
+\index{bindRenderBuffer@{bindRenderBuffer}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{bindRenderBuffer()}{bindRenderBuffer()}}
+{\footnotesize\ttfamily \label{class_fbo_ae062aa970938024b66fb237f21662534} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Fbo\+::bind\+Render\+Buffer (\begin{DoxyParamCaption}\item[{unsigned int}]{render\+Buffer}{, }\item[{unsigned int}]{operation}{, }\item[{int}]{sizeX}{, }\item[{int}]{sizeY}{}\end{DoxyParamCaption})}
+
+
+
+Bind a renderbuffer to the framebuffer object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em render\+Buffer} & The index of the renderbuffer attachment point. \\
+\hline
+{\em operation} & The type of binding operation. \\
+\hline
+{\em sizeX} & The width of the renderbuffer. \\
+\hline
+{\em sizeY} & The height of the renderbuffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the binding was successful, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_fbo_adfca7539e4f7ca024ee334fcb6d13dfc}\index{Fbo@{Fbo}!bindTexture@{bindTexture}}
+\index{bindTexture@{bindTexture}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{bindTexture()}{bindTexture()}}
+{\footnotesize\ttfamily \label{class_fbo_adfca7539e4f7ca024ee334fcb6d13dfc} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Fbo\+::bind\+Texture (\begin{DoxyParamCaption}\item[{unsigned int}]{texture\+Number}{, }\item[{unsigned int}]{operation}{, }\item[{unsigned int}]{texture}{, }\item[{int}]{param1}{ = {\ttfamily 0}, }\item[{int}]{param2}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Bind a texture to the framebuffer object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+Number} & The index of the texture attachment point. \\
+\hline
+{\em operation} & The type of binding operation (BIND\+\_\+\+DEPTHBUFFER, BIND\+\_\+\+COLORTEXTURE, or BIND\+\_\+\+DEPTHTEXTURE). \\
+\hline
+{\em texture} & The Open\+GL texture ID to bind. \\
+\hline
+{\em param1} & Optional parameter for the binding operation. \\
+\hline
+{\em param2} & Optional parameter for the binding operation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the binding was successful, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_fbo_a516145b0c705c75342ab8e76435e281d}\index{Fbo@{Fbo}!disable@{disable}}
+\index{disable@{disable}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{disable()}{disable()}}
+{\footnotesize\ttfamily \label{class_fbo_a516145b0c705c75342ab8e76435e281d} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Fbo\+::disable (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Disable the current framebuffer object. 
+
+This static method unbinds the current framebuffer and returns to the default framebuffer. \Hypertarget{class_fbo_a72e7de7b2bd55e47c1241e949ac39d79}\index{Fbo@{Fbo}!getHandle@{getHandle}}
+\index{getHandle@{getHandle}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{getHandle()}{getHandle()}}
+{\footnotesize\ttfamily \label{class_fbo_a72e7de7b2bd55e47c1241e949ac39d79} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int Fbo\+::get\+Handle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get the Open\+GL handle for this framebuffer object. 
+
+\begin{DoxyReturn}{Returns}
+The Open\+GL framebuffer object ID. 
+\end{DoxyReturn}
+\Hypertarget{class_fbo_a9d59107270afa6773be5a42922ba263b}\index{Fbo@{Fbo}!getSizeX@{getSizeX}}
+\index{getSizeX@{getSizeX}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{getSizeX()}{getSizeX()}}
+{\footnotesize\ttfamily \label{class_fbo_a9d59107270afa6773be5a42922ba263b} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} int Fbo\+::get\+SizeX (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get the width of the framebuffer. 
+
+\begin{DoxyReturn}{Returns}
+The width in pixels. 
+\end{DoxyReturn}
+\Hypertarget{class_fbo_a0b6094fbde8e4cec3d9f28c50d53a51c}\index{Fbo@{Fbo}!getSizeY@{getSizeY}}
+\index{getSizeY@{getSizeY}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{getSizeY()}{getSizeY()}}
+{\footnotesize\ttfamily \label{class_fbo_a0b6094fbde8e4cec3d9f28c50d53a51c} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} int Fbo\+::get\+SizeY (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get the height of the framebuffer. 
+
+\begin{DoxyReturn}{Returns}
+The height in pixels. 
+\end{DoxyReturn}
+\Hypertarget{class_fbo_ac90e9683ac4049c2ec36b19e7e11785d}\index{Fbo@{Fbo}!getSizeZ@{getSizeZ}}
+\index{getSizeZ@{getSizeZ}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{getSizeZ()}{getSizeZ()}}
+{\footnotesize\ttfamily \label{class_fbo_ac90e9683ac4049c2ec36b19e7e11785d} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} int Fbo\+::get\+SizeZ (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get the depth of the framebuffer. 
+
+\begin{DoxyReturn}{Returns}
+The depth in pixels. 
+\end{DoxyReturn}
+\Hypertarget{class_fbo_ab26da9c756c82e733e1a7a419fd62b8c}\index{Fbo@{Fbo}!getTexture@{getTexture}}
+\index{getTexture@{getTexture}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{getTexture()}{getTexture()}}
+{\footnotesize\ttfamily \label{class_fbo_ab26da9c756c82e733e1a7a419fd62b8c} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int Fbo\+::get\+Texture (\begin{DoxyParamCaption}\item[{unsigned int}]{texture\+Number}{}\end{DoxyParamCaption})}
+
+
+
+Get the texture ID for a specific texture number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+Number} & The index of the texture to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Open\+GL texture ID for the specified texture. 
+\end{DoxyReturn}
+\Hypertarget{class_fbo_a5719579d8b7f089cbe4980d99ddde146}\index{Fbo@{Fbo}!isOk@{isOk}}
+\index{isOk@{isOk}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{isOk()}{isOk()}}
+{\footnotesize\ttfamily \label{class_fbo_a5719579d8b7f089cbe4980d99ddde146} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Fbo\+::is\+Ok (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Check if the framebuffer object is valid and ready for use. 
+
+\begin{DoxyReturn}{Returns}
+True if the framebuffer is valid, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_fbo_af7b56dc5b9a1cd8a2286cb38fa9ca87f}\index{Fbo@{Fbo}!render@{render}}
+\index{render@{render}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_fbo_af7b56dc5b9a1cd8a2286cb38fa9ca87f} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Fbo\+::render (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{data}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Render the framebuffer contents. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Optional pointer to additional data needed for rendering. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if rendering was successful, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_fbo_ad4a6bf885fbbc4d29e2ecee8fc1c60b9}\index{Fbo@{Fbo}!updateMrtCache@{updateMrtCache}}
+\index{updateMrtCache@{updateMrtCache}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{updateMrtCache()}{updateMrtCache()}}
+{\footnotesize\ttfamily \label{class_fbo_ad4a6bf885fbbc4d29e2ecee8fc1c60b9} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} bool Fbo\+::update\+Mrt\+Cache (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Update the Multiple Render Target (MRT) cache. 
+
+\begin{DoxyReturn}{Returns}
+True if the cache was successfully updated, false otherwise. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_fbo_a3df506690a557886aefa57180a39047f}\index{Fbo@{Fbo}!drawBuffer@{drawBuffer}}
+\index{drawBuffer@{drawBuffer}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{drawBuffer}{drawBuffer}}
+{\footnotesize\ttfamily \label{class_fbo_a3df506690a557886aefa57180a39047f} 
+int Fbo\+::draw\+Buffer\mbox{[}\mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\+\_\+\+ATTACHMENTS}}\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Set color attachment per texture. 
+
+\Hypertarget{class_fbo_a211efcccbaf755999dd67f01524fd57f}\index{Fbo@{Fbo}!glId@{glId}}
+\index{glId@{glId}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{glId}{glId}}
+{\footnotesize\ttfamily \label{class_fbo_a211efcccbaf755999dd67f01524fd57f} 
+unsigned int Fbo\+::gl\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Open\+GL ID. 
+
+\Hypertarget{class_fbo_aa163ced232d03de27a0666c2a5457b02}\index{Fbo@{Fbo}!glRenderBufferId@{glRenderBufferId}}
+\index{glRenderBufferId@{glRenderBufferId}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{glRenderBufferId}{glRenderBufferId}}
+{\footnotesize\ttfamily \label{class_fbo_aa163ced232d03de27a0666c2a5457b02} 
+unsigned int Fbo\+::gl\+Render\+Buffer\+Id\mbox{[}\mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\+\_\+\+ATTACHMENTS}}\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Render buffer IDs. 
+
+\Hypertarget{class_fbo_a90536c1e587e43c3c0df22284edae148}\index{Fbo@{Fbo}!MAX\_ATTACHMENTS@{MAX\_ATTACHMENTS}}
+\index{MAX\_ATTACHMENTS@{MAX\_ATTACHMENTS}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{MAX\_ATTACHMENTS}{MAX\_ATTACHMENTS}}
+{\footnotesize\ttfamily \label{class_fbo_a90536c1e587e43c3c0df22284edae148} 
+const unsigned int Fbo\+::\+MAX\+\_\+\+ATTACHMENTS = 8\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Maximum number of available render buffers or textures per FBO. 
+
+\Hypertarget{class_fbo_ae37011c317414e0e6cdc482f3ce52069}\index{Fbo@{Fbo}!mrt@{mrt}}
+\index{mrt@{mrt}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{mrt}{mrt}}
+{\footnotesize\ttfamily \label{class_fbo_ae37011c317414e0e6cdc482f3ce52069} 
+unsigned int\texorpdfstring{$\ast$}{*} Fbo\+::mrt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cached list of buffers. 
+
+\Hypertarget{class_fbo_a6300b5881dc74d0e36ffdc60493c2e41}\index{Fbo@{Fbo}!nrOfMrts@{nrOfMrts}}
+\index{nrOfMrts@{nrOfMrts}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{nrOfMrts}{nrOfMrts}}
+{\footnotesize\ttfamily \label{class_fbo_a6300b5881dc74d0e36ffdc60493c2e41} 
+int Fbo\+::nr\+Of\+Mrts\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of MRTs. 
+
+\Hypertarget{class_fbo_a6fea5f641e2bd27cfa0523d00efdc1bb}\index{Fbo@{Fbo}!sizeX@{sizeX}}
+\index{sizeX@{sizeX}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{sizeX}{sizeX}}
+{\footnotesize\ttfamily \label{class_fbo_a6fea5f641e2bd27cfa0523d00efdc1bb} 
+int Fbo\+::sizeX\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_fbo_a9872a36128fa8977aa6a03801ca26c96}\index{Fbo@{Fbo}!sizeY@{sizeY}}
+\index{sizeY@{sizeY}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{sizeY}{sizeY}}
+{\footnotesize\ttfamily \label{class_fbo_a9872a36128fa8977aa6a03801ca26c96} 
+int Fbo\+::sizeY\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_fbo_a2660e8ca4317f74f2d154728b84a814d}\index{Fbo@{Fbo}!sizeZ@{sizeZ}}
+\index{sizeZ@{sizeZ}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{sizeZ}{sizeZ}}
+{\footnotesize\ttfamily \label{class_fbo_a2660e8ca4317f74f2d154728b84a814d} 
+int Fbo\+::sizeZ\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+FBO width, height and depth. 
+
+\Hypertarget{class_fbo_aba0b4eb191c21c1cb8898915f053be85}\index{Fbo@{Fbo}!texture@{texture}}
+\index{texture@{texture}!Fbo@{Fbo}}
+\doxysubsubsection{\texorpdfstring{texture}{texture}}
+{\footnotesize\ttfamily \label{class_fbo_aba0b4eb191c21c1cb8898915f053be85} 
+unsigned int Fbo\+::texture\mbox{[}\mbox{\hyperlink{class_fbo_a90536c1e587e43c3c0df22284edae148}{MAX\+\_\+\+ATTACHMENTS}}\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Attached textures. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{fbo_8h}{fbo.\+h}}\item 
+engine/\mbox{\hyperlink{fbo_8cpp}{fbo.\+cpp}}\end{DoxyCompactItemize}

@@ -1,11 +1,3 @@
-/**
- * @file		leap.cpp
- * @brief	Minimal Leap Motion API wrapper
- *
- * @author	Achille Peternier (C) SUPSI [achille.peternier@supsi.ch]
- */
-
-
 
  //////////////
  // #INCLUDE //

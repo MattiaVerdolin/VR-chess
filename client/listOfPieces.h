@@ -6,9 +6,9 @@
  * The class provides methods for adding, removing, cloning, and querying pieces based on various criteria,
  * such as coordinates or index.
  *
- * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
- *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
- *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
  */
 
 #pragma once
@@ -121,8 +121,14 @@ public:
      */
 	unsigned int getNumberOfPiecesByCoordinates(const unsigned int& row, const unsigned int& col) const;
 
+    /**
+     * @brief Get all pieces in the list.
+     * 
+     * This method returns all pieces currently in the list.
+     * 
+     * @return The vector of pieces in the list.
+     */
     std::vector<Piece*> getAllPieces() const;
-
 
 private:
     /**

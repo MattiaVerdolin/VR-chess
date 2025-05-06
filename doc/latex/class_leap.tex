@@ -1,0 +1,181 @@
+\doxysection{Leap Class Reference}
+\hypertarget{class_leap}{}\label{class_leap}\index{Leap@{Leap}}
+
+
+\doxylink{class_leap}{Leap} Motion wrapper.  
+
+
+
+
+{\ttfamily \#include $<$leap.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_leap_aa3098c1c5c86d7e2da872a402e952aec}{Leap}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_leap}{Leap} Motion wrapper. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_leap_a01c04edca136fec95a77caef1e18b150}{\texorpdfstring{$\sim$}{\string~}\+Leap}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_leap}{Leap} Motion wrapper. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_leap_a964fff790646d97f5908817b94614f55}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{class_leap}{Leap} Motion controller connection. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_leap_a8bc3e493be6e28875b3065593c3d850b}{free}} ()
+\begin{DoxyCompactList}\small\item\em Release resources associated with the \doxylink{class_leap}{Leap} Motion controller. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_leap_af53f554a1502a211ff790adf3c4d4426}{update}} ()
+\begin{DoxyCompactList}\small\item\em Update the current frame data from the \doxylink{class_leap}{Leap} Motion controller. \end{DoxyCompactList}\item 
+const LEAP\+\_\+\+TRACKING\+\_\+\+EVENT \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_leap_a0c59b9da5c5e45c20ddd558b122ef32f}{get\+Cur\+Frame}} () const
+\begin{DoxyCompactList}\small\item\em Get the current tracking frame data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+LEAP\+\_\+\+CONNECTION \mbox{\hyperlink{class_leap_a1485220cdb00aaf4c062517334e6405c}{connection}}
+\item 
+LEAP\+\_\+\+DEVICE\+\_\+\+REF \mbox{\hyperlink{class_leap_a0c9d31e33376a061ac2e33e56e815050}{leap\+Device}}
+\item 
+LEAP\+\_\+\+TRACKING\+\_\+\+EVENT \mbox{\hyperlink{class_leap_ac6e1d97272f9a7dd398644657cd3cdbb}{cur\+Frame}}
+\item 
+signed long long \mbox{\hyperlink{class_leap_aabf041609c7e7d0b73a4c17b936fda60}{last\+Frame\+Id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_leap}{Leap} Motion wrapper. 
+
+This class provides a wrapper for the \doxylink{class_leap}{Leap} Motion controller, handling connection, initialization, and frame updates for hand tracking. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_leap_aa3098c1c5c86d7e2da872a402e952aec}\index{Leap@{Leap}!Leap@{Leap}}
+\index{Leap@{Leap}!Leap@{Leap}}
+\doxysubsubsection{\texorpdfstring{Leap()}{Leap()}}
+{\footnotesize\ttfamily \label{class_leap_aa3098c1c5c86d7e2da872a402e952aec} 
+Leap\+::\+Leap (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_leap}{Leap} Motion wrapper. 
+
+Initializes the connection, current frame, and last frame ID to default values.
+
+Constructor. \Hypertarget{class_leap_a01c04edca136fec95a77caef1e18b150}\index{Leap@{Leap}!````~Leap@{\texorpdfstring{$\sim$}{\string~}Leap}}
+\index{````~Leap@{\texorpdfstring{$\sim$}{\string~}Leap}!Leap@{Leap}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Leap()}{\string~Leap()}}
+{\footnotesize\ttfamily \label{class_leap_a01c04edca136fec95a77caef1e18b150} 
+Leap\+::\texorpdfstring{$\sim$}{\string~}\+Leap (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{class_leap}{Leap} Motion wrapper. 
+
+Cleans up any resources associated with the \doxylink{class_leap}{Leap} Motion controller.
+
+Destructor. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_leap_a8bc3e493be6e28875b3065593c3d850b}\index{Leap@{Leap}!free@{free}}
+\index{free@{free}!Leap@{Leap}}
+\doxysubsubsection{\texorpdfstring{free()}{free()}}
+{\footnotesize\ttfamily \label{class_leap_a8bc3e493be6e28875b3065593c3d850b} 
+bool Leap\+::free (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Release resources associated with the \doxylink{class_leap}{Leap} Motion controller. 
+
+This method closes and destroys the connection to the \doxylink{class_leap}{Leap} Motion controller, cleaning up all associated resources.
+
+\begin{DoxyReturn}{Returns}
+True if cleanup was successful, false otherwise.
+\end{DoxyReturn}
+Releases \doxylink{class_leap}{Leap} Motion resources. \begin{DoxyReturn}{Returns}
+TF 
+\end{DoxyReturn}
+\Hypertarget{class_leap_a0c59b9da5c5e45c20ddd558b122ef32f}\index{Leap@{Leap}!getCurFrame@{getCurFrame}}
+\index{getCurFrame@{getCurFrame}!Leap@{Leap}}
+\doxysubsubsection{\texorpdfstring{getCurFrame()}{getCurFrame()}}
+{\footnotesize\ttfamily \label{class_leap_a0c59b9da5c5e45c20ddd558b122ef32f} 
+const LEAP\+\_\+\+TRACKING\+\_\+\+EVENT \texorpdfstring{$\ast$}{*} Leap\+::get\+Cur\+Frame (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get the current tracking frame data. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the current LEAP\+\_\+\+TRACKING\+\_\+\+EVENT structure containing the latest hand tracking data, or nullptr if no frame is available.
+\end{DoxyReturn}
+Gets a pointer to the last updated frame. \begin{DoxyReturn}{Returns}
+pointer to last frame, or nullptr on error 
+\end{DoxyReturn}
+\Hypertarget{class_leap_a964fff790646d97f5908817b94614f55}\index{Leap@{Leap}!init@{init}}
+\index{init@{init}!Leap@{Leap}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_leap_a964fff790646d97f5908817b94614f55} 
+bool Leap\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{class_leap}{Leap} Motion controller connection. 
+
+This method establishes a connection to the \doxylink{class_leap}{Leap} Motion controller and verifies that exactly one device is available. It handles the creation and opening of the connection, and retrieves a reference to the device.
+
+\begin{DoxyReturn}{Returns}
+True if initialization was successful, false otherwise. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The method will output error messages to std\+::cout if initialization fails.
+\end{DoxyNote}
+Initializes \doxylink{class_leap}{Leap} Motion connection. \begin{DoxyReturn}{Returns}
+TF 
+\end{DoxyReturn}
+\Hypertarget{class_leap_af53f554a1502a211ff790adf3c4d4426}\index{Leap@{Leap}!update@{update}}
+\index{update@{update}!Leap@{Leap}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_leap_af53f554a1502a211ff790adf3c4d4426} 
+bool Leap\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Update the current frame data from the \doxylink{class_leap}{Leap} Motion controller. 
+
+This method polls the \doxylink{class_leap}{Leap} Motion controller for new tracking events and updates the current frame data. It handles frame skipping and lag detection.
+
+\begin{DoxyReturn}{Returns}
+True if the update was successful, false otherwise. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The method will output warning messages to std\+::cout if significant lag is detected.
+\end{DoxyNote}
+Acquire new events. \begin{DoxyReturn}{Returns}
+TF 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_leap_a1485220cdb00aaf4c062517334e6405c}\index{Leap@{Leap}!connection@{connection}}
+\index{connection@{connection}!Leap@{Leap}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily \label{class_leap_a1485220cdb00aaf4c062517334e6405c} 
+LEAP\+\_\+\+CONNECTION Leap\+::connection\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_leap_ac6e1d97272f9a7dd398644657cd3cdbb}\index{Leap@{Leap}!curFrame@{curFrame}}
+\index{curFrame@{curFrame}!Leap@{Leap}}
+\doxysubsubsection{\texorpdfstring{curFrame}{curFrame}}
+{\footnotesize\ttfamily \label{class_leap_ac6e1d97272f9a7dd398644657cd3cdbb} 
+LEAP\+\_\+\+TRACKING\+\_\+\+EVENT Leap\+::cur\+Frame\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_leap_aabf041609c7e7d0b73a4c17b936fda60}\index{Leap@{Leap}!lastFrameId@{lastFrameId}}
+\index{lastFrameId@{lastFrameId}!Leap@{Leap}}
+\doxysubsubsection{\texorpdfstring{lastFrameId}{lastFrameId}}
+{\footnotesize\ttfamily \label{class_leap_aabf041609c7e7d0b73a4c17b936fda60} 
+signed long long Leap\+::last\+Frame\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_leap_a0c9d31e33376a061ac2e33e56e815050}\index{Leap@{Leap}!leapDevice@{leapDevice}}
+\index{leapDevice@{leapDevice}!Leap@{Leap}}
+\doxysubsubsection{\texorpdfstring{leapDevice}{leapDevice}}
+{\footnotesize\ttfamily \label{class_leap_a0c9d31e33376a061ac2e33e56e815050} 
+LEAP\+\_\+\+DEVICE\+\_\+\+REF Leap\+::leap\+Device\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{leap_8h}{leap.\+h}}\item 
+engine/\mbox{\hyperlink{leap_8cpp}{leap.\+cpp}}\end{DoxyCompactItemize}

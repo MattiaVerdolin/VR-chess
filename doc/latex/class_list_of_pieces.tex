@@ -29,7 +29,9 @@ int \mbox{\hyperlink{class_list_of_pieces_a2ef91b5330a02f049d0e61115fff33a3}{get
 \mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_of_pieces_a12523b78a512a96239faa4e7cc4b8e2b}{get\+Piece\+By\+Coordinates}} (const unsigned int \&row, const unsigned int \&col) const
 \begin{DoxyCompactList}\small\item\em Retrieve a piece by its row and column coordinates. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{class_list_of_pieces_a666792da7f96b5617b5e58299ac11fba}{get\+Number\+Of\+Pieces\+By\+Coordinates}} (const unsigned int \&row, const unsigned int \&col) const
-\begin{DoxyCompactList}\small\item\em Get the number of pieces located at specific coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the number of pieces located at specific coordinates. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_list_of_pieces_a5da1ab77e24b6d9b1a5818b71e924679}{get\+All\+Pieces}} () const
+\begin{DoxyCompactList}\small\item\em Get all pieces in the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -119,6 +121,21 @@ Creates a deep copy of the current \doxylink{class_list_of_pieces}{List\+Of\+Pie
 
 \begin{DoxyReturn}{Returns}
 A new instance of \doxylink{class_list_of_pieces}{List\+Of\+Pieces} that is a copy of the current object. 
+\end{DoxyReturn}
+\Hypertarget{class_list_of_pieces_a5da1ab77e24b6d9b1a5818b71e924679}\index{ListOfPieces@{ListOfPieces}!getAllPieces@{getAllPieces}}
+\index{getAllPieces@{getAllPieces}!ListOfPieces@{ListOfPieces}}
+\doxysubsubsection{\texorpdfstring{getAllPieces()}{getAllPieces()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_a5da1ab77e24b6d9b1a5818b71e924679} 
+std\+::vector$<$ \mbox{\hyperlink{class_piece}{Piece}} \texorpdfstring{$\ast$}{*} $>$ List\+Of\+Pieces\+::get\+All\+Pieces (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get all pieces in the list. 
+
+This method returns all pieces currently in the list.
+
+\begin{DoxyReturn}{Returns}
+The vector of pieces in the list. 
 \end{DoxyReturn}
 \Hypertarget{class_list_of_pieces_a666792da7f96b5617b5e58299ac11fba}\index{ListOfPieces@{ListOfPieces}!getNumberOfPiecesByCoordinates@{getNumberOfPiecesByCoordinates}}
 \index{getNumberOfPiecesByCoordinates@{getNumberOfPiecesByCoordinates}!ListOfPieces@{ListOfPieces}}

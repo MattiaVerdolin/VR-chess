@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['player_5fblack_5fcamera_0',['PLAYER_BLACK_CAMERA',['../camera_manager_8h.html#a100197b8b3cc490cf776e1078a403bbe',1,'cameraManager.h']]],
-  ['player_5fwhite_5fcamera_1',['PLAYER_WHITE_CAMERA',['../camera_manager_8h.html#a30fdedee8cda6c5356a5fa1897ddfa19',1,'cameraManager.h']]]
+  ['main_5fcamera_0',['MAIN_CAMERA',['../camera_manager_8h.html#a6fcdcd8d56e3910f94796a2559a715a6',1,'cameraManager.h']]],
+  ['menu_5fcamera_1',['MENU_CAMERA',['../camera_manager_8h.html#aa029b0c85142165692c8afaac1c9ff8f',1,'cameraManager.h']]]
 ];

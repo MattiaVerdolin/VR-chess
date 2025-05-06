@@ -39,10 +39,16 @@ virtual void \mbox{\hyperlink{class_camera_a462f50e69b551da89e7c5c5e94b6338b}{re
 \begin{DoxyCompactList}\small\item\em Render the camera\textquotesingle{}s view using a given transformation matrix. \end{DoxyCompactList}\item 
 virtual const unsigned int \mbox{\hyperlink{class_camera_a87fec34cb8956f2b8b22e997a53d7030}{parse}} (const char \texorpdfstring{$\ast$}{*}data, unsigned int \&position) override
 \begin{DoxyCompactList}\small\item\em Parse camera-\/specific data from a buffer. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_camera_a9a11abb2096d56ff475dadb5d04a311d}{on\+Window\+Reshape}} (int width, int height) override
+void \mbox{\hyperlink{class_camera_adf0796443be764ea62b0cf36a9496a2c}{on\+Window\+Reshape}} (int width, int height, \mbox{\hyperlink{class_shader}{Shader}} \texorpdfstring{$\ast$}{*}shader) override
 \begin{DoxyCompactList}\small\item\em Handle window reshape events to update the projection matrix. \end{DoxyCompactList}\item 
 const glm\+::mat4 \mbox{\hyperlink{class_camera_a571575e6fb308585be0daa915721e1af}{get\+Inverse\+Camera\+Final\+Matrix}} () const
 \begin{DoxyCompactList}\small\item\em Get the inverse of the camera\textquotesingle{}s final transformation matrix. \end{DoxyCompactList}\item 
+const glm\+::mat4 \mbox{\hyperlink{class_camera_ad1cdc6a0bcadbb023aa16ff43276026f}{get\+Projection\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the camera\textquotesingle{}s projection matrix. \end{DoxyCompactList}\item 
+const float \& \mbox{\hyperlink{class_camera_a2400934359dc078e7363043a59fdd6b3}{get\+Near\+Plane}} () const
+\begin{DoxyCompactList}\small\item\em Get the near clipping plane distance. \end{DoxyCompactList}\item 
+const float \& \mbox{\hyperlink{class_camera_afdd1f3d74b902196d0376f16f5b7daad}{get\+Far\+Plane}} () const
+\begin{DoxyCompactList}\small\item\em Get the far clipping plane distance. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_camera_a5611bb8579aaaaeceff5ceb9a18f0fc2}{set\+Main\+Camera}} (const bool \&val)
 \begin{DoxyCompactList}\small\item\em Set the camera as the main camera. \end{DoxyCompactList}\item 
 virtual const bool \& \mbox{\hyperlink{class_camera_a0070016701e33741275a9189861ba96c}{is\+Main\+Camera}} () const

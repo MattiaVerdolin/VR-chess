@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['subtype_0',['Subtype',['../class_ov_light.html#a1019edb0540a20be7581a2b38d439016',1,'OvLight']]]
+  ['gamestatus_0',['GameStatus',['../game_status_8h.html#a881b49e3802366255ad852f1c8624fd1',1,'gameStatus.h']]]
 ];

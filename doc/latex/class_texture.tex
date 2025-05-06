@@ -30,7 +30,9 @@ struct \mbox{\hyperlink{struct_texture_1_1_reserved}{Reserved}}
 void \mbox{\hyperlink{class_texture_a46b4b64eebd715c36997577c51690a89}{render}} (const glm\+::mat4 \&matrix=glm\+::mat4(1.\+0f)) override
 \begin{DoxyCompactList}\small\item\em Render the texture with the specified transformation matrix. \end{DoxyCompactList}\item 
 const unsigned int \mbox{\hyperlink{class_texture_aa03e5bb53ff3406057d6768679226550}{parse}} (const char \texorpdfstring{$\ast$}{*}data, unsigned int \&position) override
-\begin{DoxyCompactList}\small\item\em Parse the texture from a file based on its name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Parse the texture from a file based on its name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_texture_ae3b74dff98893ddea67b76e22ef7df5b}{create\+White\+Texture}} ()
+\begin{DoxyCompactList}\small\item\em Creates a 1x1 white texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -121,7 +123,17 @@ Destructor that releases texture resources.
 This destructor ensures that all resources allocated for the texture, such as the Open\+GL texture ID and any associated data, are properly released to avoid memory leaks or dangling pointers. 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_texture_aa03e5bb53ff3406057d6768679226550}\index{Texture@{Texture}!parse@{parse}}
+\Hypertarget{class_texture_ae3b74dff98893ddea67b76e22ef7df5b}\index{Texture@{Texture}!createWhiteTexture@{createWhiteTexture}}
+\index{createWhiteTexture@{createWhiteTexture}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{createWhiteTexture()}{createWhiteTexture()}}
+{\footnotesize\ttfamily \label{class_texture_ae3b74dff98893ddea67b76e22ef7df5b} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Texture\+::create\+White\+Texture (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Creates a 1x1 white texture. 
+
+This method generates a simple white texture with a single pixel (RGBA\+: 255,255,255,255). \Hypertarget{class_texture_aa03e5bb53ff3406057d6768679226550}\index{Texture@{Texture}!parse@{parse}}
 \index{parse@{parse}!Texture@{Texture}}
 \doxysubsubsection{\texorpdfstring{parse()}{parse()}}
 {\footnotesize\ttfamily \label{class_texture_aa03e5bb53ff3406057d6768679226550} 
