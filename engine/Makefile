@@ -4,12 +4,20 @@ AR = ar
 LD = g++
 WINDRES = windres
 
-INC = -I../dependencies/glm/include
+INC = -I../dependencies/glm/include \
+      -I../dependencies/glew/include \
+      -I../dependencies/leap/include \
+      -I../dependencies/openvr/include
+
 CFLAGS = -Wall -std=c++20 -fPIC -m64 -fexceptions
 RCFLAGS = 
 RESINC = 
-LIBDIR =
-LIB =
+LIBDIR = -L../dependencies/glew/lib/x64/Release \
+         -L../dependencies/leap/lib/x64 \
+         -L../dependencies/openvr/lib/x64
+
+LIB = -lglew -lLeapC -lopenvr_api
+
 LDFLAGS = -m64 -lGL -lGLU -lglut -lfreeimage
 
 INC_DEBUG = $(INC)

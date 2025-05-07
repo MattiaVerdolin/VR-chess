@@ -1,71 +1,80 @@
-﻿//////////////
-// #INCLUDE //
-//////////////
+﻿/**
+ * @file		engine.cpp
+ * @brief	Graphics engine main file
+ *
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Riccardo Cristallo (C) SUPSI [riccardo.cristallo@student.supsi.ch]
+ * @author	Mattia Verdolin (C) SUPSI [mattia.verdolin@student.supsi.ch]
+
+ */
+
+
+ ////////////////////////
+ // INCLUDES & DEFINES //
+ ////////////////////////
+
 #include <filesystem>
 #include <iostream>
 
-   // Main include:
-    #include "engine.h"
-    #include "notificationService.h"
-    #include "textManager.h"
-    #include "glm/glm.hpp"
-    #include "glm/gtc/type_ptr.hpp"
-    #include <GL/glew.h>
-    #include "GL/freeglut.h"
-    #include "fileOVOReader.h"
-    #include "list.h"
-    #include "mesh.h"
-    #include "FreeImage.h"
+// Main include:
+#include "engine.h"
+#include "notificationService.h"
+#include "textManager.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include <GL/glew.h>
+#include "GL/freeglut.h"
+#include "fileOVOReader.h"
+#include "list.h"
+#include "mesh.h"
+#include "FreeImage.h"
 
-   // C/C++:
-    #include <iostream>
-    #include <source_location>
-    #include <chrono>
-    #include <fstream>
-    #include <string>
+// C/C++:
+#include <iostream>
+#include <source_location>
+#include <chrono>
+#include <fstream>
+#include <string>
 
+#include "shader.h"
 
-
-	#include "shader.h"
-
-
-/////////////////////////
-// RESERVED STRUCTURES //
-/////////////////////////
+// Window size definitions:
+#define APP_WINDOWSIZEX   1024
+#define APP_WINDOWSIZEY   512
 
 /**
  * @brief Base class reserved structure (using PIMPL/Bridge design pattern https://en.wikipedia.org/wiki/Opaque_pointer).
  */
-
- // Window size:
-#define APP_WINDOWSIZEX   1024
-#define APP_WINDOWSIZEY   512
 //#define APP_FBOSIZEX      APP_WINDOWSIZEX / 2
 //#define APP_FBOSIZEY      APP_WINDOWSIZEY / 1
+
+/////////////////////////////////////
+// STRUCT: Base::Reserved (PIMPL)  //
+/////////////////////////////////////
 
 struct Eng::Base::Reserved
 {
     int windowId;
-   // Flags:
-   bool initFlag;
+    bool initFlag;
 
-   FileOVOReader& fileOVOReader;
+    FileOVOReader& fileOVOReader;
+    List listOfScene;
+    NotificationService& notificationService;
+    TextManager& textManager;
 
-   List listOfScene;
+    bool vrEnabled;
 
-   NotificationService& notificationService;
-
-   TextManager& textManager;
-
-   bool vrEnabled;
-
-   /**
-    * Constructor.
-    */
-   Reserved() : windowId{ -1 }, initFlag{ false }, vrEnabled{ false }, fileOVOReader{ FileOVOReader::getInstance() }, listOfScene{List()}, notificationService{NotificationService::getInstance()},
-       textManager{TextManager::getInstance()}
-   {}
+    Reserved() : windowId{ -1 }, initFlag{ false }, vrEnabled{ false },
+        fileOVOReader{ FileOVOReader::getInstance() },
+        listOfScene{ List() },
+        notificationService{ NotificationService::getInstance() },
+        textManager{ TextManager::getInstance() } {}
 };
+
+
+//////////////////////////////
+// GLOBAL VARIABLES & DATA  //
+//////////////////////////////
 
 int frameCount = 0;
 float fps = 0.0f;
@@ -73,19 +82,18 @@ int previousTime = 0;
 const float nearPlane = 0.01f;
 const float farPlane = 100.0f;
 
-// Textures:
+// Textures (Cubemap)
 unsigned int cubemapId;
-std::string cubemapNames[] =
-{
-   "textures/cubemap/negx.jpg",
-   "textures/cubemap/posx.jpg",
-   "textures/cubemap/posy.jpg",
-   "textures/cubemap/negy.jpg",
-   "textures/cubemap/posz.jpg",
-   "textures/cubemap/negz.jpg",
+std::string cubemapNames[] = {
+    "textures/cubemap/negx.jpg",
+    "textures/cubemap/posx.jpg",
+    "textures/cubemap/posy.jpg",
+    "textures/cubemap/negy.jpg",
+    "textures/cubemap/posz.jpg",
+    "textures/cubemap/negz.jpg",
 };
 
-// Cube VBO:
+// Cube VAO/VBO/Faces
 unsigned int globalVao = 0;
 unsigned int cubeVboVertices = 0;
 float cubeVertices[] = // Vertex and tex. coords are the same
@@ -99,6 +107,7 @@ float cubeVertices[] = // Vertex and tex. coords are the same
     1.0f, -1.0f, -1.0f,
     1.0f,  1.0f, -1.0f,
 };
+
 unsigned int cubeVboFaces = 0;
 unsigned short cubeFaces[] =
 {
@@ -116,90 +125,14 @@ unsigned short cubeFaces[] =
    1, 6, 2,
 };
 
-Eng::Base Eng::Base::instance;
-
-void Eng::Base::handleReshape(int width, int height) {
-
-    this->reserved->notificationService.notifyOnReshapeWindow(width, height, shader);
-}
-
-////////////////////////
-// BODY OF CLASS Base //
-////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Constructor.
- */
-ENG_API Eng::Base::Base() : reserved(std::make_unique<Eng::Base::Reserved>())
-{
-#ifdef _DEBUG
-   std::cout << "[+] " << std::source_location::current().function_name() << " invoked" << std::endl;
-#endif
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Destructor.
- */
-ENG_API Eng::Base::~Base()
-{
-#ifdef _DEBUG
-   std::cout << "[-] " << std::source_location::current().function_name() << " invoked" << std::endl;
-#endif
-}
-
-
-bool ENG_API Eng::Base::loadVRModeFromConfig() {
-    std::ifstream configFile("../config.txt");
-    if (!configFile.is_open()) {
-        std::cerr << "[WARN] Impossibile aprire config.txt. Modalità VR disattivata." << std::endl;
-        return false;
-    }
-
-    std::string line;
-    while (std::getline(configFile, line)) {
-        if (line.find("mode=vr") != std::string::npos)
-            return true;
-        else if (line.find("mode=standard") != std::string::npos)
-            return false;
-    }
-
-    std::cerr << "[WARN] Modalità non specificata correttamente. Default: standard." << std::endl;
-    return false;
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Gets a reference to the (unique) singleton instance.
- * @return reference to singleton instance
- */
-Eng::Base ENG_API &Eng::Base::getInstance()
-{
-   return Eng::Base::instance;
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ENG_API Eng::Base::setKeyboardCallback(void (*keyboardCallback)(unsigned char, int, int)) 
-{
-    if (keyboardCallback != nullptr)
-        glutKeyboardFunc(keyboardCallback);
-}
-
-void ENG_API Eng::Base::setSpecialCallback(void (*specialCallback)(int, int, int)) 
-{
-    if (specialCallback != nullptr)
-        glutSpecialFunc(specialCallback);
-}
 
 /////////////
 // SHADERS //
 /////////////
 
-////////////////////////////
+// --------------------------------------------------------------------------
+// Standard Shaders
+// --------------------------------------------------------------------------
 const char* vertShader = R"(
    #version 440 core
 
@@ -229,7 +162,7 @@ const char* vertShader = R"(
    }
 )";
 
-////////////////////////////
+
 const char* fragShader = R"(
    #version 440 core
 
@@ -282,7 +215,10 @@ void main(void)
 }
 )";
 
-//////////////////////////////////////////
+// --------------------------------------------------------------------------
+// Skybox Shaders
+// --------------------------------------------------------------------------
+
 const char* vertShaderCube = R"(
    #version 440 core
 
@@ -300,7 +236,6 @@ const char* vertShaderCube = R"(
    }
 )";
 
-//////////////////////////////////////////
 const char* fragShaderCube = R"(
    #version 440 core
 
@@ -317,7 +252,9 @@ const char* fragShaderCube = R"(
    }
 )";
 
-// Leap Motion shaders:
+// --------------------------------------------------------------------------
+// Leap Motion Shaders
+// --------------------------------------------------------------------------
 const char* vertShaderLeap = R"(
 #version 440 core
 uniform mat4 projection;
@@ -340,385 +277,471 @@ void main(void)
 )";
 
 
-/**
- * Init internal components.
- * @return TF
- */
+//////////////////////////////////////
+// SINGLETON & CALLBACKS MANAGEMENT //
+//////////////////////////////////////
+
+Eng::Base Eng::Base::instance;
+
+void Eng::Base::handleReshape(int width, int height) {
+    this->reserved->notificationService.notifyOnReshapeWindow(width, height, shader);
+}
+
+Eng::Base& Eng::Base::getInstance() {
+    return Eng::Base::instance;
+}
+
+void Eng::Base::setKeyboardCallback(void (*keyboardCallback)(unsigned char, int, int)) {
+    if (keyboardCallback != nullptr)
+        glutKeyboardFunc(keyboardCallback);
+}
+
+void Eng::Base::setSpecialCallback(void (*specialCallback)(int, int, int)) {
+    if (specialCallback != nullptr)
+        glutSpecialFunc(specialCallback);
+}
+
+
+///////////////////////////////////////////////////////
+// BASE CLASS CONSTRUCTORS / DESTRUCTOR              //
+///////////////////////////////////////////////////////
+ENG_API Eng::Base::Base() : reserved(std::make_unique<Eng::Base::Reserved>())
+{
+#ifdef _DEBUG
+    std::cout << "[+] " << std::source_location::current().function_name() << " invoked" << std::endl;
+#endif
+}
+
+ENG_API Eng::Base::~Base()
+{
+#ifdef _DEBUG
+    std::cout << "[-] " << std::source_location::current().function_name() << " invoked" << std::endl;
+#endif
+}
+
+
+// ===============================================================
+// INIT ENGINE SETUP
+// ===============================================================
+//
+//    1️. Init GLUT
+//    2️. Init VR (se attivo)
+//    3️. Compile shaders
+//    4️. Setup VAO/VBO cubemap
+//    5️. Setup Leap Motion shaders & buffers
+//    6️. FBO (VR)
+//    7️. Final setup (OpenGL options + FreeImage + buildCubemap)
+//
+// ===============================================================
+
+
 bool ENG_API Eng::Base::init(void (*closeCallBack)())
 {
-   // Already initialized?
-   if (reserved->initFlag)
-   {
-      std::cout << "ERROR: engine already initialized" << std::endl;
-      return false;
-   }
 
-   reserved->vrEnabled = loadVRModeFromConfig();
-
-   //PER ORA
-   int argc = 1;
-   char* argv[1] = { const_cast<char*>("Engine") };
-   glutInit(&argc, argv);
-
-
-   glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-   glutInitContextVersion(4, 4);
-   glutInitContextProfile(GLUT_CORE_PROFILE);
-   
-   glutInitWindowPosition(100, 100);
-   glutInitWindowSize(APP_WINDOWSIZEX, APP_WINDOWSIZEY);
-   glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-   reserved->windowId = glutCreateWindow("3D Chessboard Game");
-
-   std::cout << glGetString(GL_VENDOR) << std::endl;
-   std::cout << glGetString(GL_RENDERER) << std::endl;
-
-   //GLEW INIT
-   GLenum err = glewInit();
-   if (err != GLEW_OK)
-   {
-       std::cout << "Generic Glew Error" << std::endl;
-   }
-
-   if (!glewIsSupported("GL_VERSION_4_4"))
-   {
-       std::cout << "Version error" << std::endl;
-   }
-
-   // INIT OPENVR
-   if (reserved->vrEnabled) {
-       ovr = new OvVR();
-       if (!ovr->init()) {
-           std::cerr << "[ERROR] OpenVR initialization failed." << std::endl;
-           return false;
-       }
-   }
-
-   // Compile vertex shader:
-   vs = new Shader();
-   vs->loadFromMemory(Shader::TYPE_VERTEX, vertShader);
-
-   // Compile fragment shader:
-   fs = new Shader();
-   fs->loadFromMemory(Shader::TYPE_FRAGMENT, fragShader);
-
-   // Setup shader program:
-   shader = new Shader();
-   shader->build(vs, fs);
-   shader->render();
-   shader->bind(0, "in_Position");
-   shader->bind(1, "in_Normal");
-
-   vsCube = new Shader();
-   vsCube->loadFromMemory(Shader::TYPE_VERTEX, vertShaderCube);
-
-   fsCube = new Shader();
-   fsCube->loadFromMemory(Shader::TYPE_FRAGMENT, fragShaderCube);
-
-   shaderCube = new Shader();
-   shaderCube->build(vsCube, fsCube);
-   shaderCube->render();
-   shaderCube->bind(0, "in_Position");
-
-   // --- Leap Motion shader setup ---
-   vsLeap = new Shader();
-   vsLeap->loadFromMemory(Shader::TYPE_VERTEX, vertShaderLeap);
-
-   fsLeap = new Shader();
-   fsLeap->loadFromMemory(Shader::TYPE_FRAGMENT, fragShaderLeap);
-
-   shaderLeap = new Shader();
-   shaderLeap->build(vsLeap, fsLeap);
-   shaderLeap->render();
-   shaderLeap->bind(0, "in_Position");
-
-   leapProjLoc = shaderLeap->getParamLocation("projection");
-   leapMVLoc = shaderLeap->getParamLocation("modelview");
-   leapColorLoc = shaderLeap->getParamLocation("color");
-
-   // Build a sphere procedurally for Leap Motion joints:
-   GLfloat x, y, z, alpha, beta;
-   GLfloat radius = 5.0f;
-   int gradation = 10;
-
-   for (alpha = 0.0; alpha < glm::pi<float>(); alpha += glm::pi<float>() / gradation)
-       for (beta = 0.0f; beta < 2.01f * glm::pi<float>(); beta += glm::pi<float>() / gradation)
-       {
-           x = radius * cos(beta) * sin(alpha);
-           y = radius * sin(beta) * sin(alpha);
-           z = radius * cos(alpha);
-           leapVertices.push_back(glm::vec3(x, y, z));
-
-           x = radius * cos(beta) * sin(alpha + glm::pi<float>() / gradation);
-           y = radius * sin(beta) * sin(alpha + glm::pi<float>() / gradation);
-           z = radius * cos(alpha + glm::pi<float>() / gradation);
-           leapVertices.push_back(glm::vec3(x, y, z));
-       }
-
-   // Init VAO + VBO LEAP MOTION:
-   glGenVertexArrays(1, &leapVao);
-   glBindVertexArray(leapVao);
-
-   glGenBuffers(1, &leapVbo);
-   glBindBuffer(GL_ARRAY_BUFFER, leapVbo);
-   glBufferData(GL_ARRAY_BUFFER, leapVertices.size() * sizeof(glm::vec3), leapVertices.data(), GL_STATIC_DRAW);
-
-   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-   glEnableVertexAttribArray(0);
-
-   glBindVertexArray(0);
-
-   // Init Leap Motion:
-   leap = new Leap();
-   if (!leap->init()) {
-       std::cerr << "[ERROR] Unable to init Leap Motion" << std::endl;
-       delete leap;
-       leap = nullptr;
-   }
-
-
-   // 1) Costruisco il VAO + VBO/EBO del cubo
-   glGenVertexArrays(1, &globalVao);
-   glBindVertexArray(globalVao);
-
-   glGenBuffers(1, &cubeVboVertices);
-   glBindBuffer(GL_ARRAY_BUFFER, cubeVboVertices);
-   glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
-   glEnableVertexAttribArray(0);
-   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-   glGenBuffers(1, &cubeVboFaces);
-   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cubeVboFaces);
-   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cubeFaces), cubeFaces, GL_STATIC_DRAW);
-
-   glBindVertexArray(0);
-
-   // 2) Associazione del samplerCube a texture unit 0
-   glActiveTexture(GL_TEXTURE0);
-   glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapId);
-   GLint locSampler = shaderCube->getParamLocation("cubemapSampler");
-   shaderCube->setInt(locSampler, 0);
-
-   ///////////////////////////////////////////////////////Fbo init()
-   if (reserved->vrEnabled) {
-       GLint prevViewport[4];
-       glGetIntegerv(GL_VIEWPORT, prevViewport);
-
-       fboWidth = ovr->getHmdIdealHorizRes();
-       fboHeight = ovr->getHmdIdealVertRes();
-
-       for (int c = 0; c < EYE_LAST; c++)
-       {
-           glGenTextures(1, &fboTexId[c]);
-           glBindTexture(GL_TEXTURE_2D, fboTexId[c]);
-           glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fboWidth, fboHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-           glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-           glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-           glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-           glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-           fbo[c] = new Fbo();
-           fbo[c]->bindTexture(0, Fbo::BIND_COLORTEXTURE, fboTexId[c]);
-           fbo[c]->bindRenderBuffer(1, Fbo::BIND_DEPTHBUFFER, fboWidth, fboHeight);
-           if (!fbo[c]->isOk())
-               std::cout << "[ERROR] Invalid FBO" << std::endl;
-       }
-       Fbo::disable();
-       glViewport(0, 0, prevViewport[2], prevViewport[3]);
-   }
-   ////////////////////////////////////////////////////////
-
-
-
-   glutDisplayFunc([]() {});
-   glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height); });
-   if (closeCallBack != nullptr) glutCloseFunc(closeCallBack);
-
-   glm::vec4 gAmbient(0.2f, 0.2f, 0.2f, 1.0f);
-
-   glEnable(GL_DEPTH_TEST);
-   //glEnable(GL_CULL_FACE);
-   //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //WIREFRAME
-
-   FreeImage_Initialise();
-
-   // Done:
-   std::cout << "[>] " << LIB_NAME << " initialized" << std::endl;
-   
-   buildCubemap();
-   
-   reserved->initFlag = true;
-   return true;
-}
-
-const ENG_API float& Eng::Base::getFPS() {
-    frameCount++;
-
-    // Ottieni il tempo attuale
-    int currentTime = glutGet(GLUT_ELAPSED_TIME);
-    int elapsedTime = currentTime - previousTime;
-
-    if (elapsedTime > 1000) { // Un secondo è passato
-        fps = frameCount / (elapsedTime / 1000.0f); // Calcola FPS
-        previousTime = currentTime; // Resetta il tempo
-        frameCount = 0; // Resetta il contatore
+    // **Controllo inizializzazione già avvenuta**
+    if (reserved->initFlag)
+    {
+        std::cout << "ERROR: engine already initialized" << std::endl;
+        return false;
     }
-    return fps;
-}
+
+    // **Caricamento modalità da file config**
+    reserved->vrEnabled = loadVRModeFromConfig();
 
 
-ENG_API Node* Eng::Base::load(const std::string& fileName) {
-    if (!this->reserved->fileOVOReader.hasOVOExtension(fileName)) {
-        std::cerr << "ERROR: Files given is not supported" << std::endl;
-        return nullptr;
+    // **Init GLUT**
+    int argc = 1;
+    char* argv[1] = { const_cast<char*>("Engine") };
+    glutInit(&argc, argv);
+
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+    glutInitContextVersion(4, 4);
+    glutInitContextProfile(GLUT_CORE_PROFILE);
+    glutInitWindowPosition(100, 100);
+    glutInitWindowSize(APP_WINDOWSIZEX, APP_WINDOWSIZEY);
+    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+    reserved->windowId = glutCreateWindow("3D Chessboard Game");
+
+    std::cout << glGetString(GL_VENDOR) << std::endl;
+    std::cout << glGetString(GL_RENDERER) << std::endl;
+
+
+    // **Init GLEW**
+    GLenum err = glewInit();
+    if (err != GLEW_OK)
+    {
+        std::cout << "Generic Glew Error" << std::endl;
     }
-    Node* rootNode = this->reserved->fileOVOReader.parseFile(fileName);
-    return rootNode;
-}
+    if (!glewIsSupported("GL_VERSION_4_4"))
+    {
+        std::cout << "Version error" << std::endl;
+    }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * passing all node of the scene and save them into a list
- */
-void ENG_API Eng::Base::passScene(Node* rootNode) {
-    this->reserved->listOfScene.pass(rootNode);
-}
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- *  clear all list of the scene
- */
-void ENG_API Eng::Base::clearScene() {
-    this->reserved->listOfScene.clearList();
-}
-
-void Eng::Base::drawLeapPart(const glm::mat4& view,
-    const glm::mat4& offsetDraw,
-    const glm::vec3& pos)
-{
-    glm::mat4 c = glm::translate(glm::mat4(1.0f), pos);
-    shaderLeap->setMatrix(leapMVLoc,
-        view * offsetDraw * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f)) * c);
-    glBindVertexArray(leapVao);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)leapVertices.size());
-    glBindVertexArray(0);
-}
-
-void Eng::Base::renderLeapHands(const LEAP_TRACKING_EVENT* l,
-    const glm::mat4& view,
-    const glm::mat4& proj)
-{
-    if (!l) return;
-
-    shaderLeap->render();
-    shaderLeap->setMatrix(leapProjLoc, proj);
-
-    glm::mat4 offsetDraw = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 1.0f, 0.5f))
-        * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
-    for (unsigned int h = 0; h < l->nHands; ++h) {
-        LEAP_HAND hand = l->pHands[h];
-        glm::vec3 thumbTip, indexTip;
-        shaderLeap->setVec3(leapColorLoc, glm::vec3((float)h, (float)(1 - h), 0.5f));
-
-        // draw arm, palm, fingers:
-        drawLeapPart(view, offsetDraw,
-            glm::vec3(hand.arm.next_joint.x, hand.arm.next_joint.y, hand.arm.next_joint.z));
-        drawLeapPart(view, offsetDraw,
-            glm::vec3(hand.palm.position.x, hand.palm.position.y, hand.palm.position.z));
-
-        for (unsigned int d = 0; d < 5; ++d) {
-            LEAP_DIGIT finger = hand.digits[d];
-            for (unsigned int b = 0; b < 4; ++b) {
-                LEAP_BONE bone = finger.bones[b];
-                drawLeapPart(view, offsetDraw,
-                    glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z));
-            }
+    // **Init OpenVR (se attivo)**
+    if (reserved->vrEnabled) {
+        ovr = new OvVR();
+        if (!ovr->init()) {
+            std::cerr << "[ERROR] OpenVR initialization failed." << std::endl;
+            return false;
         }
     }
+
+
+    // **Compilazione e Setup Shader Principali**
+    vs = new Shader();
+    vs->loadFromMemory(Shader::TYPE_VERTEX, vertShader);
+
+    fs = new Shader();
+    fs->loadFromMemory(Shader::TYPE_FRAGMENT, fragShader);
+
+    shader = new Shader();
+    shader->build(vs, fs);
+    shader->render();
+    shader->bind(0, "in_Position");
+    shader->bind(1, "in_Normal");
+
+
+    // **Compilazione e Setup Shader Cubemap**
+    vsCube = new Shader();
+    vsCube->loadFromMemory(Shader::TYPE_VERTEX, vertShaderCube);
+
+    fsCube = new Shader();
+    fsCube->loadFromMemory(Shader::TYPE_FRAGMENT, fragShaderCube);
+
+    shaderCube = new Shader();
+    shaderCube->build(vsCube, fsCube);
+    shaderCube->render();
+    shaderCube->bind(0, "in_Position");
+
+
+    // **Setup Leap Motion Shader**
+    vsLeap = new Shader();
+    vsLeap->loadFromMemory(Shader::TYPE_VERTEX, vertShaderLeap);
+
+    fsLeap = new Shader();
+    fsLeap->loadFromMemory(Shader::TYPE_FRAGMENT, fragShaderLeap);
+
+    shaderLeap = new Shader();
+    shaderLeap->build(vsLeap, fsLeap);
+    shaderLeap->render();
+    shaderLeap->bind(0, "in_Position");
+
+    // Prelevo i location degli uniform
+    leapProjLoc = shaderLeap->getParamLocation("projection");
+    leapMVLoc = shaderLeap->getParamLocation("modelview");
+    leapColorLoc = shaderLeap->getParamLocation("color");
+
+
+    // **Costruzione sfera procedurale per Leap Motion (joints)**
+    GLfloat x, y, z, alpha, beta;
+    GLfloat radius = 5.0f;
+    int gradation = 10;
+    for (alpha = 0.0; alpha < glm::pi<float>(); alpha += glm::pi<float>() / gradation)
+        for (beta = 0.0f; beta < 2.01f * glm::pi<float>(); beta += glm::pi<float>() / gradation)
+        {
+            x = radius * cos(beta) * sin(alpha);
+            y = radius * sin(beta) * sin(alpha);
+            z = radius * cos(alpha);
+            leapVertices.push_back(glm::vec3(x, y, z));
+
+            x = radius * cos(beta) * sin(alpha + glm::pi<float>() / gradation);
+            y = radius * sin(beta) * sin(alpha + glm::pi<float>() / gradation);
+            z = radius * cos(alpha + glm::pi<float>() / gradation);
+            leapVertices.push_back(glm::vec3(x, y, z));
+        }
+
+
+    // **Setup VAO + VBO Leap Motion**
+    glGenVertexArrays(1, &leapVao);
+    glBindVertexArray(leapVao);
+
+    glGenBuffers(1, &leapVbo);
+    glBindBuffer(GL_ARRAY_BUFFER, leapVbo);
+    glBufferData(GL_ARRAY_BUFFER, leapVertices.size() * sizeof(glm::vec3), leapVertices.data(), GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+    glEnableVertexAttribArray(0);
+    glBindVertexArray(0);
+
+
+    // **Init Leap Motion**
+    leap = new Leap();
+    if (!leap->init()) {
+        std::cerr << "[ERROR] Unable to init Leap Motion" << std::endl;
+        delete leap;
+        leap = nullptr;
+    }
+
+
+    // **Costruzione VAO + VBO/EBO Cubo (Skybox)**
+    glGenVertexArrays(1, &globalVao);
+    glBindVertexArray(globalVao);
+
+    glGenBuffers(1, &cubeVboVertices);
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVboVertices);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+    glGenBuffers(1, &cubeVboFaces);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cubeVboFaces);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cubeFaces), cubeFaces, GL_STATIC_DRAW);
+    glBindVertexArray(0);
+
+
+    // **Setup samplerCube a texture unit 0**
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapId);
+    GLint locSampler = shaderCube->getParamLocation("cubemapSampler");
+    shaderCube->setInt(locSampler, 0);
+
+
+    // **FBO Init (VR Mode)**
+    if (reserved->vrEnabled) {
+        GLint prevViewport[4];
+        glGetIntegerv(GL_VIEWPORT, prevViewport);
+
+        fboWidth = ovr->getHmdIdealHorizRes();
+        fboHeight = ovr->getHmdIdealVertRes();
+
+        for (int c = 0; c < EYE_LAST; c++)
+        {
+            glGenTextures(1, &fboTexId[c]);
+            glBindTexture(GL_TEXTURE_2D, fboTexId[c]);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fboWidth, fboHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+            fbo[c] = new Fbo();
+            fbo[c]->bindTexture(0, Fbo::BIND_COLORTEXTURE, fboTexId[c]);
+            fbo[c]->bindRenderBuffer(1, Fbo::BIND_DEPTHBUFFER, fboWidth, fboHeight);
+
+            if (!fbo[c]->isOk())
+                std::cout << "[ERROR] Invalid FBO" << std::endl;
+        }
+        Fbo::disable();
+        glViewport(0, 0, prevViewport[2], prevViewport[3]);
+    }
+
+
+    // **Setup GLUT Callbacks**
+    glutDisplayFunc([]() {});
+    glutReshapeFunc([](int width, int height) { Eng::Base::instance.handleReshape(width, height); });
+    if (closeCallBack != nullptr) glutCloseFunc(closeCallBack);
+
+
+    // **Setup OpenGL Options + FreeImage Init**
+    glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_CULL_FACE);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // Uncomment per wireframe
+
+    FreeImage_Initialise();
+
+
+    // **Costruzione Cubemap**
+    buildCubemap();
+
+
+    // **Finalizzazione**
+    std::cout << "[>] " << LIB_NAME << " initialized" << std::endl;
+    reserved->initFlag = true;
+    return true;
 }
 
-////////////////////////////
-// Eng::Base::begin3D()   //
-////////////////////////////
+
+//=======================================================================
+// "DISPLAY CALLBACK": begin3D  
+//=======================================================================
+//
+// 1️.  Clear iniziale + salvataggio viewport
+// 2️.  Lambda: renderLeapHands (rendering delle mani con Leap Motion)
+// 3️.  Lambda: drawSkybox (rendering della skybox)
+// 4️.  Modalità VR
+//
+//      - Update posizione testa VR
+//      - Setup offset (pavimento, traslazione, rotazione)
+//      - Loop su entrambi gli occhi:
+//          • FBO render
+//          • Proiezione + modelview per occhio
+//          • drawSkybox()
+//          • Scena principale
+//          • Leap Motion (VR) -> renderLeapHands()
+//          • Pass frame a OpenVR
+//      - Output su schermo
+//
+// 5️.  Modalità non-VR
+//
+//      - Shader e camera setup
+//      - Rendering scena principale
+//      - Leap Motion (non-VR) -> renderLeapHands()
+//      - drawSkybox()
+//========================================================================
 void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const std::list<std::string>& menu)
 {
+    // **Clear screen iniziale**
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // **Salva viewport corrente**
     GLint prevViewport[4];
     glGetIntegerv(GL_VIEWPORT, prevViewport);
 
     if (mainCamera == nullptr)
         return;
 
-    // ---------------------------------
-    // 1) Modalità VR
-    // ---------------------------------
+    // **Funzione lambda: rendering Leap Motion (mani)**
+    auto renderLeapHands = [&](const LEAP_TRACKING_EVENT* l, const glm::mat4& leapView, const glm::mat4& leapProj) {
+        if (!l) return;
+
+        shaderLeap->render();
+        shaderLeap->setMatrix(leapProjLoc, leapProj);
+
+        // Offset per correggere la posizione delle mani nel mondo
+        glm::mat4 offsetDraw = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 1.0f, 0.5f))
+            * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+        for (unsigned int h = 0; h < l->nHands; h++) {
+            LEAP_HAND hand = l->pHands[h];
+            glm::vec3 thumbTip, indexTip;
+
+            // Trova la posizione dei polpastrelli di pollice e indice
+            for (unsigned int d = 0; d < 5; d++) {
+                LEAP_DIGIT finger = hand.digits[d];
+                for (unsigned int b = 0; b < 4; b++) {
+                    LEAP_BONE bone = finger.bones[b];
+                    if (b == 3) { // Ultimo segmento (punta del dito)
+                        if (d == 0) thumbTip = glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
+                        if (d == 1) indexTip = glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
+                    }
+                }
+            }
+
+            // Calcola distanza tra pollice e indice (per "pinch detection")
+            float distance = glm::length(thumbTip - indexTip);
+
+            // Filtro per stabilizzare il pinch (evita oscillazioni rapide)
+            static float pinchFilter[2] = { 0.0f, 0.0f };
+            float alpha = 0.7f;
+            pinchFilter[h] = alpha * distance + (1 - alpha) * pinchFilter[h];
+            bool isPinching = pinchFilter[h] < 40.0f;
+
+            // Converte la posizione del pinch in coordinate mondo
+            glm::vec3 pinchCenter = 0.5f * (thumbTip + indexTip);
+            glm::mat4 offsetCoordinates = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 1.0f, 0.0f))
+                * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f))
+                * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f));
+            glm::vec3 pinchWorld = glm::vec3(offsetCoordinates * glm::vec4(pinchCenter, 1.0f));
+
+            // Salva stato e posizione della mano
+            hands[h].isPinching = isPinching;
+            hands[h].pinchPosition = pinchWorld;
+
+            // Colore diverso per mano 0 e 1
+            shaderLeap->setVec3(leapColorLoc, glm::vec3((float)h, (float)(1 - h), 0.5f));
+
+            // Funzione di utilità: disegna una sfera in posizione 'pos'
+            auto drawPart = [&](glm::vec3 pos) {
+                glm::mat4 c = glm::translate(glm::mat4(1.0f), pos);
+                shaderLeap->setMatrix(leapMVLoc, leapView * offsetDraw * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f)) * c);
+                glBindVertexArray(leapVao);
+                glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)leapVertices.size());
+                glBindVertexArray(0);
+                };
+
+            // Disegna: avambraccio, palmo e tutte le falangi delle dita
+            drawPart(glm::vec3(hand.arm.next_joint.x, hand.arm.next_joint.y, hand.arm.next_joint.z)); // Avambraccio
+            drawPart(glm::vec3(hand.palm.position.x, hand.palm.position.y, hand.palm.position.z));     // Palmo
+            for (unsigned int d = 0; d < 5; d++) {
+                LEAP_DIGIT finger = hand.digits[d];
+                for (unsigned int b = 0; b < 4; b++) {
+                    LEAP_BONE bone = finger.bones[b];
+                    drawPart(glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z));
+                }
+            }
+        }
+        };
+
+    // **Funzione lambda: disegno Skybox**
+    auto drawSkybox = [&](const glm::mat4& proj, const glm::mat4& view) {
+        // Setup profondità per skybox (il cubo viene disegnato "dietro" tutto)
+        glDepthFunc(GL_LEQUAL);
+        glDepthMask(GL_FALSE);
+        shaderCube->render();
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_FRONT);
+
+        // Imposta proiezione e modello
+        GLint locP = shaderCube->getParamLocation("projection");
+        GLint locMV = shaderCube->getParamLocation("modelview");
+        shaderCube->setMatrix(locP, proj);
+
+        // Mantieni solo la rotazione della view matrix (no traslazioni)
+        glm::mat4 rotOnly = glm::mat4(glm::mat3(view));
+        glm::mat4 skyModel = glm::scale(rotOnly, glm::vec3(50.0f));
+        shaderCube->setMatrix(locMV, skyModel);
+
+        // Disegna cubo
+        glBindVertexArray(globalVao);
+        glDrawElements(GL_TRIANGLES, sizeof(cubeFaces) / sizeof(unsigned short), GL_UNSIGNED_SHORT, nullptr);
+        glBindVertexArray(0);
+
+        // Ripristina stato
+        glDepthMask(GL_TRUE);
+        glDepthFunc(GL_LESS);
+        glCullFace(GL_BACK);
+        };
+
+    // **Modalità VR**
     if (reserved->vrEnabled) {
+        // Aggiorna la posizione della testa
         ovr->update();
         glm::mat4 headPos = ovr->getModelviewMatrix();
 
-        float eyeHeight = 0.5f;
-        glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, eyeHeight, 0));
+        // Offset di scena: pavimento, traslazioni e rotazioni iniziali
+        glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.5f, 0));
         glm::mat4 horizontalOffset = glm::translate(glm::mat4(1.0f), glm::vec3(-0.2f, 0, 1.3f));
         glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f), glm::radians(290.0f), glm::vec3(0, 1, 0));
 
+        // Loop sugli occhi (sinistro e destro)
         for (int eye = 0; eye < EYE_LAST; ++eye) {
-            fbo[eye]->render();
+            fbo[eye]->render(); // Inizia rendering su FBO
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+            // Calcola matrici di proiezione e modello-view per l'occhio corrente
             OvVR::OvEye curEye = (OvVR::OvEye)eye;
             glm::mat4 projMat = ovr->getProjMatrix(curEye, nearPlane, farPlane);
             glm::mat4 eye2head = ovr->getEye2HeadMatrix(curEye);
             glm::mat4 ovrProjMat = projMat * glm::inverse(eye2head);
             glm::mat4 ovrModelView = glm::inverse(floorOffset * rotationOffset * horizontalOffset * headPos);
 
-            // SKYBOX
-            glDepthFunc(GL_LEQUAL);
-            glDepthMask(GL_FALSE);
-            shaderCube->render();
-            glEnable(GL_CULL_FACE);
-            glCullFace(GL_FRONT);
+            // Disegna la skybox
+            drawSkybox(ovrProjMat, ovrModelView);
 
-            GLint locP = shaderCube->getParamLocation("projection");
-            GLint locMV = shaderCube->getParamLocation("modelview");
-            shaderCube->setMatrix(locP, ovrProjMat);
-
-            glm::mat4 rotOnly = glm::mat4(glm::mat3(ovrModelView));
-            glm::mat4 skyModel = glm::scale(rotOnly, glm::vec3(50.0f));
-            shaderCube->setMatrix(locMV, skyModel);
-
-            glBindVertexArray(globalVao);
-            glDrawElements(GL_TRIANGLES,
-                sizeof(cubeFaces) / sizeof(unsigned short),
-                GL_UNSIGNED_SHORT,
-                nullptr);
-            glBindVertexArray(0);
-
-            glDepthMask(GL_TRUE);
-            glDepthFunc(GL_LESS);
-            glCullFace(GL_BACK);
-
-            // SCENA 3D
+            // Rendering scena principale
             shader->render();
             shader->setMatrix(shader->getParamLocation("projection"), ovrProjMat);
             mainCamera->render();
             reserved->listOfScene.renderElements(ovrModelView, nearPlane, farPlane);
 
-            // Leap Motion rendering (VR)
+            // Leap Motion (VR)
             if (leap) {
                 leap->update();
                 const LEAP_TRACKING_EVENT* l = leap->getCurFrame();
                 renderLeapHands(l, ovrModelView, ovrProjMat);
             }
 
+            // Passa frame a OpenVR
             ovr->pass(curEye, fboTexId[eye]);
         }
 
+        // Disegna i due frame buffer sugli schermi (output)
         ovr->render();
         Fbo::disable();
         glViewport(0, 0, prevViewport[2], prevViewport[3]);
 
+        // Se il menu è attivo, copia l'immagine VR nel menu
         if (menuCamera && !menu.empty()) {
             glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
             glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0, APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
@@ -726,17 +749,19 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
             glBlitFramebuffer(0, 0, fboWidth, fboHeight, APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
         }
     }
-    // ---------------------------------
-    // 2) Modalità Standard (non‐VR)
-    // ---------------------------------
+    // **Modalità Standard (non-VR)**
     else {
+        // Disegna la scena principale
         shader->render();
         shader->setMatrix(shader->getParamLocation("projection"), mainCamera->getProjectionMatrix());
         mainCamera->render();
-        reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix(),
+        reserved->listOfScene.renderElements(
+            mainCamera->getInverseCameraFinalMatrix(),
             mainCamera->getNearPlane(),
-            mainCamera->getFarPlane());
+            mainCamera->getFarPlane()
+        );
 
+        // Leap Motion (non-VR)
         if (leap) {
             leap->update();
             const LEAP_TRACKING_EVENT* l = leap->getCurFrame();
@@ -744,36 +769,10 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
         }
 
         // Skybox
-        glDepthFunc(GL_LEQUAL);
-        glDepthMask(GL_FALSE);
-        shaderCube->render();
-        glEnable(GL_CULL_FACE);
-        glCullFace(GL_FRONT);
-
-        GLint locP = shaderCube->getParamLocation("projection");
-        GLint locMV = shaderCube->getParamLocation("modelview");
-        shaderCube->setMatrix(locP, mainCamera->getProjectionMatrix());
-
-        glm::mat4 view = mainCamera->getInverseCameraFinalMatrix();
-        glm::mat4 rotOnly = glm::mat4(glm::mat3(view));
-        glm::mat4 skyModel = glm::scale(rotOnly, glm::vec3(50.0f));
-        shaderCube->setMatrix(locMV, skyModel);
-
-        glBindVertexArray(globalVao);
-        glDrawElements(GL_TRIANGLES,
-            sizeof(cubeFaces) / sizeof(unsigned short),
-            GL_UNSIGNED_SHORT,
-            nullptr);
-        glBindVertexArray(0);
-
-        glDepthMask(GL_TRUE);
-        glDepthFunc(GL_LESS);
-        glCullFace(GL_BACK);
+        drawSkybox(mainCamera->getProjectionMatrix(), mainCamera->getInverseCameraFinalMatrix());
     }
-
-    reserved->textManager.displayText(menu, menuCamera);
-    reserved->textManager.displayFPS(this->getFPS(), menuCamera);
 }
+
 
 /**
  * Load cubemap into a texture.
@@ -820,12 +819,78 @@ void ENG_API Eng::Base::buildCubemap()
     }
 }
 
+
+//////////////////////////////////////////
+// UTILITY: CUBEMAP, FPS, FILE LOADING  //
+//////////////////////////////////////////
+
+bool ENG_API Eng::Base::loadVRModeFromConfig() {
+    std::ifstream configFile("../config.txt");
+    if (!configFile.is_open()) {
+        std::cerr << "[WARN] Impossibile aprire config.txt. Modalità VR disattivata." << std::endl;
+        return false;
+    }
+
+    std::string line;
+    while (std::getline(configFile, line)) {
+        if (line.find("mode=vr") != std::string::npos)
+            return true;
+        else if (line.find("mode=standard") != std::string::npos)
+            return false;
+    }
+
+    std::cerr << "[WARN] Modalità non specificata correttamente. Default: standard." << std::endl;
+    return false;
+}
+
+
+ENG_API Node* Eng::Base::load(const std::string& fileName) {
+    if (!this->reserved->fileOVOReader.hasOVOExtension(fileName)) {
+        std::cerr << "ERROR: Files given is not supported" << std::endl;
+        return nullptr;
+    }
+    Node* rootNode = this->reserved->fileOVOReader.parseFile(fileName);
+    return rootNode;
+}
+
+
+const ENG_API float& Eng::Base::getFPS() {
+    frameCount++;
+
+    // Ottieni il tempo attuale
+    int currentTime = glutGet(GLUT_ELAPSED_TIME);
+    int elapsedTime = currentTime - previousTime;
+
+    if (elapsedTime > 1000) { // Un secondo è passato
+        fps = frameCount / (elapsedTime / 1000.0f); // Calcola FPS
+        previousTime = currentTime; // Resetta il tempo
+        frameCount = 0; // Resetta il contatore
+    }
+    return fps;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * passing all node of the scene and save them into a list
+ */
+void ENG_API Eng::Base::passScene(Node* rootNode) {
+    this->reserved->listOfScene.pass(rootNode);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *  clear all list of the scene
+ */
+void ENG_API Eng::Base::clearScene() {
+    this->reserved->listOfScene.clearList();
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Swap buffers.
  */
 void ENG_API Eng::Base::swap() {
-    if(glutGetWindow())
+    if (glutGetWindow())
         glutSwapBuffers();
 }
 
@@ -846,53 +911,53 @@ void ENG_API Eng::Base::clear() {
  */
 bool ENG_API Eng::Base::free()
 {
-   // Not initialized?
-   if (!reserved->initFlag)
-   {
-      std::cout << "ERROR: engine not initialized" << std::endl;
-      return false;
-   }
+    // Not initialized?
+    if (!reserved->initFlag)
+    {
+        std::cout << "ERROR: engine not initialized" << std::endl;
+        return false;
+    }
 
-   FreeImage_DeInitialise();
-   // Here you can properly dispose of any allocated resource (including third-party dependencies)...
+    FreeImage_DeInitialise();
+    // Here you can properly dispose of any allocated resource (including third-party dependencies)...
 
-   // Done:
-   std::cout << "[<] " << LIB_NAME << " deinitialized" << std::endl;
-   reserved->initFlag = false;
-   delete shader;
-   delete fs;
-   delete vs;
+    // Done:
+    std::cout << "[<] " << LIB_NAME << " deinitialized" << std::endl;
+    reserved->initFlag = false;
+    delete shader;
+    delete fs;
+    delete vs;
 
-   delete shaderCube;
-   delete fsCube;
-   delete vsCube;
+    delete shaderCube;
+    delete fsCube;
+    delete vsCube;
 
-   glDeleteBuffers(1, &cubeVboVertices);
-   glDeleteBuffers(1, &cubeVboFaces);
-   glDeleteVertexArrays(1, &globalVao);
-   glDeleteTextures(1, &cubemapId);
+    glDeleteBuffers(1, &cubeVboVertices);
+    glDeleteBuffers(1, &cubeVboFaces);
+    glDeleteVertexArrays(1, &globalVao);
+    glDeleteTextures(1, &cubemapId);
 
-   if (ovr) {
-       ovr->free();
-       delete ovr;
-       ovr = nullptr;
-   }
+    if (ovr) {
+        ovr->free();
+        delete ovr;
+        ovr = nullptr;
+    }
 
-   // Free Leap Motion:
-   glDeleteBuffers(1, &leapVbo);
-   glDeleteVertexArrays(1, &leapVao);
-   delete shaderLeap;
-   delete fsLeap;
-   delete vsLeap;
+    // Free Leap Motion:
+    glDeleteBuffers(1, &leapVbo);
+    glDeleteVertexArrays(1, &leapVao);
+    delete shaderLeap;
+    delete fsLeap;
+    delete vsLeap;
 
-   if (leap) {
-       leap->free();
-       delete leap;
-       leap = nullptr;
-   }
+    if (leap) {
+        leap->free();
+        delete leap;
+        leap = nullptr;
+    }
 
 
-   return true;
+    return true;
 }
 
 ENG_API Fbo* Eng::Base::getCurrent(int numEye) {
