@@ -825,7 +825,7 @@ void ENG_API Eng::Base::buildCubemap()
 //////////////////////////////////////////
 
 bool ENG_API Eng::Base::loadVRModeFromConfig() {
-    std::ifstream configFile("../config.txt");
+    std::ifstream configFile("./config.txt");
     if (!configFile.is_open()) {
         std::cerr << "[WARN] Impossibile aprire config.txt. Modalità VR disattivata." << std::endl;
         return false;
