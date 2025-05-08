@@ -579,9 +579,7 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
 //      - Leap Motion (non-VR) -> renderLeapHands()
 //      - drawSkybox()
 //========================================================================
-void ENG_API Eng::Base::begin3D(Camera* mainCamera,
-    Camera* menuCamera,
-    const std::list<std::string>& menu)
+void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const std::list<std::string>& menu)
 {
     // Clear initial screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -599,7 +597,7 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera,
         glm::mat4 headPos = ovr->getModelviewMatrix();
 
         glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), { 0, 0.5f, 0 });
-        glm::mat4 horizontalOffset = glm::translate(glm::mat4(1.0f), { -0.2f, 0, 1.3f });
+        glm::mat4 horizontalOffset = glm::translate(glm::mat4(1.0f), { 0.0f, 0, 1.3f });
         glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f), glm::radians(290.0f), { 0,1,0 });
 
         for (int eye = 0; eye < EYE_LAST; ++eye) {
@@ -667,16 +665,14 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera,
     glViewport(prevViewport[0], prevViewport[1], prevViewport[2], prevViewport[3]);
 }
 
-void ENG_API Eng::Base::renderLeapHands(const LEAP_TRACKING_EVENT* event,
-    const glm::mat4& view,
-    const glm::mat4& proj)
+void ENG_API Eng::Base::renderLeapHands(const LEAP_TRACKING_EVENT* event, const glm::mat4& view, const glm::mat4& proj)
 {
     if (!event) return;
 
     shaderLeap->render();
     shaderLeap->setMatrix(leapProjLoc, proj);
 
-    glm::mat4 offsetDraw = glm::translate(glm::mat4(1.0f), { -0.5f,1.0f,0.5f })
+    glm::mat4 offsetDraw = glm::translate(glm::mat4(1.0f), { -0.1f,1.0f, 0.5f })
         * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), { 0,1,0 });
 
     for (unsigned h = 0; h < event->nHands; ++h) {
@@ -723,9 +719,7 @@ void ENG_API Eng::Base::renderLeapHands(const LEAP_TRACKING_EVENT* event,
     }
 }
 
-void ENG_API Eng::Base::drawLeapPart(const glm::vec3& position,
-    const glm::mat4& view,
-    const glm::mat4& offsetDraw)
+void ENG_API Eng::Base::drawLeapPart(const glm::vec3& position, const glm::mat4& view, const glm::mat4& offsetDraw)
 {
     glm::mat4 model = glm::translate(glm::mat4(1.0f), position);
     glm::mat4 mvp = view * offsetDraw * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f)) * model;
@@ -735,8 +729,7 @@ void ENG_API Eng::Base::drawLeapPart(const glm::vec3& position,
     glBindVertexArray(0);
 }
 
-void ENG_API Eng::Base::drawSkybox(const glm::mat4& proj,
-    const glm::mat4& view)
+void ENG_API Eng::Base::drawSkybox(const glm::mat4& proj, const glm::mat4& view)
 {
     glDepthFunc(GL_LEQUAL);
     glDepthMask(GL_FALSE);
@@ -906,7 +899,6 @@ bool ENG_API Eng::Base::free()
     }
 
     FreeImage_DeInitialise();
-    // Here you can properly dispose of any allocated resource (including third-party dependencies)...
 
     // Done:
     std::cout << "[<] " << LIB_NAME << " deinitialized" << std::endl;

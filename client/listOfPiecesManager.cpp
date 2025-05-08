@@ -260,7 +260,7 @@ void ListOfPiecesManager::updateLeapMotion() {
 	static Piece* grabbedPieces[2] = { nullptr, nullptr };
 	static bool isHoldingPieces[2] = { false, false };
 
-	const glm::vec3 offsetCorrection(0.0f, 0.0f, 0.5f);
+	const glm::vec3 offsetCorrection(0.4f, 0.0f, 0.5f);
 
 	for (int h = 0; h < 2; ++h) {
 		auto& hand = hands[h];

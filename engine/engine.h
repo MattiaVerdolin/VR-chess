@@ -223,9 +223,7 @@ private:
      * @param view The view (model-view) matrix for Leap rendering.
      * @param proj The projection matrix for Leap rendering.
      */
-    void renderLeapHands(const LEAP_TRACKING_EVENT* event,
-        const glm::mat4& view,
-        const glm::mat4& proj);
+    void renderLeapHands(const LEAP_TRACKING_EVENT* event, const glm::mat4& view, const glm::mat4& proj);
 
     /**
      * @brief Draws a single Leap Motion part (e.g., joint) as a sphere.
@@ -233,17 +231,14 @@ private:
      * @param view The view matrix used to transform the part.
      * @param offsetDraw Precomputed offset matrix for centering and scaling.
      */
-    void drawLeapPart(const glm::vec3& position,
-        const glm::mat4& view,
-        const glm::mat4& offsetDraw);
+    void drawLeapPart(const glm::vec3& position, const glm::mat4& view, const glm::mat4& offsetDraw);
 
     /**
      * @brief Draws the environment skybox.
      * @param proj The projection matrix.
      * @param view The view matrix (rotation only).
      */
-    void drawSkybox(const glm::mat4& proj,
-        const glm::mat4& view);
+    void drawSkybox(const glm::mat4& proj, const glm::mat4& view);
 
    // Reserved:
    static Eng::Base instance; ///< The singleton instance of the engine
