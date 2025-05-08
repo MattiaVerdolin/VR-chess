@@ -218,32 +218,32 @@ public: //
 
 private:
     /**
-         * @brief Renders hands tracked by the Leap Motion device.
-         *
-         * This function sets up the Leap Motion shader, applies necessary transformations,
-         * and calls drawLeapPart() for each joint in the hand structure.
-         *
-         * @param l     Pointer to the Leap Motion tracking event (LEAP_TRACKING_EVENT).
-         * @param view  ModelView matrix used to correctly position the hand in the scene.
-         * @param proj  Projection matrix used for rendering.
-         */
-    void renderLeapHands(const LEAP_TRACKING_EVENT* l,
+     * @brief Renders Leap Motion hands into the current scene.
+     * @param event Pointer to the LEAP tracking event data.
+     * @param view The view (model-view) matrix for Leap rendering.
+     * @param proj The projection matrix for Leap rendering.
+     */
+    void renderLeapHands(const LEAP_TRACKING_EVENT* event,
         const glm::mat4& view,
         const glm::mat4& proj);
 
     /**
-     * @brief Draws a single hand joint.
-     *
-     * This function applies the offset, scaling, and translation matrices
-     * for the specified hand joint and then issues the draw call.
-     *
-     * @param view       The current ModelView matrix.
-     * @param offsetDraw Transformation matrix used to position the hand relative to the scene.
-     * @param pos        Position vector of the joint in Leap Motion coordinates.
+     * @brief Draws a single Leap Motion part (e.g., joint) as a sphere.
+     * @param position World-space position of the part.
+     * @param view The view matrix used to transform the part.
+     * @param offsetDraw Precomputed offset matrix for centering and scaling.
      */
-    void drawLeapPart(const glm::mat4& view,
-        const glm::mat4& offsetDraw,
-        const glm::vec3& pos);
+    void drawLeapPart(const glm::vec3& position,
+        const glm::mat4& view,
+        const glm::mat4& offsetDraw);
+
+    /**
+     * @brief Draws the environment skybox.
+     * @param proj The projection matrix.
+     * @param view The view matrix (rotation only).
+     */
+    void drawSkybox(const glm::mat4& proj,
+        const glm::mat4& view);
 
    // Reserved:
    static Eng::Base instance; ///< The singleton instance of the engine

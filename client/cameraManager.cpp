@@ -43,18 +43,15 @@ void CameraManager::createCameras() {
 		glm::rotate(glm::mat4(1.0f), glm::radians(-20.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
 		glm::translate(glm::mat4(1.0f), glm::vec3(0.4f, 1.4f, 2.0f))
 	);
-
-
 	this->addNewCamera(playerWhiteCamera);
 
 	Camera* playerBlackCamera = new PerspCamera(PLAYER_BLACK_CAMERA, 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
-	playerBlackCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::rotate(glm::mat4(1.0f), glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::rotate(glm::mat4(1.0f), glm::radians(-30.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, 10.0f, 15.0f))
+	playerBlackCamera->setMatrix(
+		glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
+		glm::rotate(glm::mat4(1.0f), glm::radians(-20.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
+		glm::translate(glm::mat4(1.0f), glm::vec3(-0.4f, 1.4f, 1.7f))
 	);
 	this->addNewCamera(playerBlackCamera);
-
 }
 
 bool CameraManager::addNewCamera(Camera* newCamera, Node* parentNode) {
@@ -101,25 +98,22 @@ Camera* CameraManager::findCameraByName(const std::string& cameraName, const Nod
 void CameraManager::moveCameraRight() {
 	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
 
-	// Ruota verso destra attorno all'asse Y
 	float angle = glm::radians(5.0f);
-	glm::mat4 rot = glm::rotate(glm::mat4(1.0f), -angle, glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::mat4 rot = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
 	mainCamera->setMatrix(rot * mainCamera->getMatrix());
 }
 
 void CameraManager::moveCameraLeft() {
 	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
 
-	// Ruota verso sinistra attorno all'asse Y
 	float angle = glm::radians(5.0f);
-	glm::mat4 rot = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::mat4 rot = glm::rotate(glm::mat4(1.0f), -angle, glm::vec3(0.0f, 1.0f, 0.0f));
 	mainCamera->setMatrix(rot * mainCamera->getMatrix());
 }
 
 void CameraManager::moveCameraUp() {
 	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
 
-	// Inclinazione verso l'alto attorno all'asse X
 	float angle = glm::radians(5.0f);
 	glm::mat4 rot = glm::rotate(glm::mat4(1.0f), -angle, glm::vec3(1.0f, 0.0f, 0.0f));
 	mainCamera->setMatrix(rot * mainCamera->getMatrix());
@@ -128,12 +122,10 @@ void CameraManager::moveCameraUp() {
 void CameraManager::moveCameraDown() {
 	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
 
-	// Inclinazione verso il basso attorno all'asse X
 	float angle = glm::radians(5.0f);
 	glm::mat4 rot = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(1.0f, 0.0f, 0.0f));
 	mainCamera->setMatrix(rot * mainCamera->getMatrix());
 }
-
 
 void CameraManager::preGameHandler() {
 	this->setNewMainCamera(MAIN_CAMERA);

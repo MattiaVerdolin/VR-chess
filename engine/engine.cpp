@@ -579,169 +579,62 @@ bool ENG_API Eng::Base::init(void (*closeCallBack)())
 //      - Leap Motion (non-VR) -> renderLeapHands()
 //      - drawSkybox()
 //========================================================================
-void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const std::list<std::string>& menu)
+void ENG_API Eng::Base::begin3D(Camera* mainCamera,
+    Camera* menuCamera,
+    const std::list<std::string>& menu)
 {
-    // **Clear screen iniziale**
+    // Clear initial screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // **Salva viewport corrente**
+    // Save current viewport
     GLint prevViewport[4];
     glGetIntegerv(GL_VIEWPORT, prevViewport);
 
-    if (mainCamera == nullptr)
+    if (!mainCamera)
         return;
 
-    // **Funzione lambda: rendering Leap Motion (mani)**
-    auto renderLeapHands = [&](const LEAP_TRACKING_EVENT* l, const glm::mat4& leapView, const glm::mat4& leapProj) {
-        if (!l) return;
-
-        shaderLeap->render();
-        shaderLeap->setMatrix(leapProjLoc, leapProj);
-
-        // Offset per correggere la posizione delle mani nel mondo
-        glm::mat4 offsetDraw = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 1.0f, 0.5f))
-            * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
-        for (unsigned int h = 0; h < l->nHands; h++) {
-            LEAP_HAND hand = l->pHands[h];
-            glm::vec3 thumbTip, indexTip;
-
-            // Trova la posizione dei polpastrelli di pollice e indice
-            for (unsigned int d = 0; d < 5; d++) {
-                LEAP_DIGIT finger = hand.digits[d];
-                for (unsigned int b = 0; b < 4; b++) {
-                    LEAP_BONE bone = finger.bones[b];
-                    if (b == 3) { // Ultimo segmento (punta del dito)
-                        if (d == 0) thumbTip = glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
-                        if (d == 1) indexTip = glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
-                    }
-                }
-            }
-
-            // Calcola distanza tra pollice e indice (per "pinch detection")
-            float distance = glm::length(thumbTip - indexTip);
-
-            // Filtro per stabilizzare il pinch (evita oscillazioni rapide)
-            static float pinchFilter[2] = { 0.0f, 0.0f };
-            float alpha = 0.7f;
-            pinchFilter[h] = alpha * distance + (1 - alpha) * pinchFilter[h];
-            bool isPinching = pinchFilter[h] < 40.0f;
-
-            // Converte la posizione del pinch in coordinate mondo
-            glm::vec3 pinchCenter = 0.5f * (thumbTip + indexTip);
-            glm::mat4 offsetCoordinates = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 1.0f, 0.0f))
-                * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f))
-                * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f));
-            glm::vec3 pinchWorld = glm::vec3(offsetCoordinates * glm::vec4(pinchCenter, 1.0f));
-
-            // Salva stato e posizione della mano
-            hands[h].isPinching = isPinching;
-            hands[h].pinchPosition = pinchWorld;
-
-            // Colore diverso per mano 0 e 1
-            shaderLeap->setVec3(leapColorLoc, glm::vec3((float)h, (float)(1 - h), 0.5f));
-
-            // Funzione di utilità: disegna una sfera in posizione 'pos'
-            auto drawPart = [&](glm::vec3 pos) {
-                glm::mat4 c = glm::translate(glm::mat4(1.0f), pos);
-                shaderLeap->setMatrix(leapMVLoc, leapView * offsetDraw * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f)) * c);
-                glBindVertexArray(leapVao);
-                glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)leapVertices.size());
-                glBindVertexArray(0);
-                };
-
-            // Disegna: avambraccio, palmo e tutte le falangi delle dita
-            drawPart(glm::vec3(hand.arm.next_joint.x, hand.arm.next_joint.y, hand.arm.next_joint.z)); // Avambraccio
-            drawPart(glm::vec3(hand.palm.position.x, hand.palm.position.y, hand.palm.position.z));     // Palmo
-            for (unsigned int d = 0; d < 5; d++) {
-                LEAP_DIGIT finger = hand.digits[d];
-                for (unsigned int b = 0; b < 4; b++) {
-                    LEAP_BONE bone = finger.bones[b];
-                    drawPart(glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z));
-                }
-            }
-        }
-        };
-
-    // **Funzione lambda: disegno Skybox**
-    auto drawSkybox = [&](const glm::mat4& proj, const glm::mat4& view) {
-        // Setup profondità per skybox (il cubo viene disegnato "dietro" tutto)
-        glDepthFunc(GL_LEQUAL);
-        glDepthMask(GL_FALSE);
-        shaderCube->render();
-        glEnable(GL_CULL_FACE);
-        glCullFace(GL_FRONT);
-
-        // Imposta proiezione e modello
-        GLint locP = shaderCube->getParamLocation("projection");
-        GLint locMV = shaderCube->getParamLocation("modelview");
-        shaderCube->setMatrix(locP, proj);
-
-        // Mantieni solo la rotazione della view matrix (no traslazioni)
-        glm::mat4 rotOnly = glm::mat4(glm::mat3(view));
-        glm::mat4 skyModel = glm::scale(rotOnly, glm::vec3(50.0f));
-        shaderCube->setMatrix(locMV, skyModel);
-
-        // Disegna cubo
-        glBindVertexArray(globalVao);
-        glDrawElements(GL_TRIANGLES, sizeof(cubeFaces) / sizeof(unsigned short), GL_UNSIGNED_SHORT, nullptr);
-        glBindVertexArray(0);
-
-        // Ripristina stato
-        glDepthMask(GL_TRUE);
-        glDepthFunc(GL_LESS);
-        glCullFace(GL_BACK);
-        };
-
-    // **Modalità VR**
     if (reserved->vrEnabled) {
-        // Aggiorna la posizione della testa
+        // VR Mode
         ovr->update();
         glm::mat4 headPos = ovr->getModelviewMatrix();
 
-        // Offset di scena: pavimento, traslazioni e rotazioni iniziali
-        glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.5f, 0));
-        glm::mat4 horizontalOffset = glm::translate(glm::mat4(1.0f), glm::vec3(-0.2f, 0, 1.3f));
-        glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f), glm::radians(290.0f), glm::vec3(0, 1, 0));
+        glm::mat4 floorOffset = glm::translate(glm::mat4(1.0f), { 0, 0.5f, 0 });
+        glm::mat4 horizontalOffset = glm::translate(glm::mat4(1.0f), { -0.2f, 0, 1.3f });
+        glm::mat4 rotationOffset = glm::rotate(glm::mat4(1.0f), glm::radians(290.0f), { 0,1,0 });
 
-        // Loop sugli occhi (sinistro e destro)
         for (int eye = 0; eye < EYE_LAST; ++eye) {
-            fbo[eye]->render(); // Inizia rendering su FBO
+            fbo[eye]->render();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            // Calcola matrici di proiezione e modello-view per l'occhio corrente
-            OvVR::OvEye curEye = (OvVR::OvEye)eye;
+            OvVR::OvEye curEye = static_cast<OvVR::OvEye>(eye);
             glm::mat4 projMat = ovr->getProjMatrix(curEye, nearPlane, farPlane);
             glm::mat4 eye2head = ovr->getEye2HeadMatrix(curEye);
             glm::mat4 ovrProjMat = projMat * glm::inverse(eye2head);
             glm::mat4 ovrModelView = glm::inverse(floorOffset * rotationOffset * horizontalOffset * headPos);
 
-            // Disegna la skybox
+            // Draw skybox
             drawSkybox(ovrProjMat, ovrModelView);
 
-            // Rendering scena principale
+            // Main scene
             shader->render();
             shader->setMatrix(shader->getParamLocation("projection"), ovrProjMat);
             mainCamera->render();
             reserved->listOfScene.renderElements(ovrModelView, nearPlane, farPlane);
 
-            // Leap Motion (VR)
+            // Leap Motion VR
             if (leap) {
                 leap->update();
-                const LEAP_TRACKING_EVENT* l = leap->getCurFrame();
-                renderLeapHands(l, ovrModelView, ovrProjMat);
+                renderLeapHands(leap->getCurFrame(), ovrModelView, ovrProjMat);
             }
 
-            // Passa frame a OpenVR
             ovr->pass(curEye, fboTexId[eye]);
         }
 
-        // Disegna i due frame buffer sugli schermi (output)
+        // Composite and restore
         ovr->render();
         Fbo::disable();
         glViewport(0, 0, prevViewport[2], prevViewport[3]);
 
-        // Se il menu è attivo, copia l'immagine VR nel menu
         if (menuCamera && !menu.empty()) {
             glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo[0]->getHandle());
             glBlitFramebuffer(0, 0, fboWidth, fboHeight, 0, 0, APP_WINDOWSIZEX / 2, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
@@ -749,9 +642,8 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
             glBlitFramebuffer(0, 0, fboWidth, fboHeight, APP_WINDOWSIZEX / 2, 0, APP_WINDOWSIZEX, APP_WINDOWSIZEY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
         }
     }
-    // **Modalità Standard (non-VR)**
     else {
-        // Disegna la scena principale
+        // Standard Mode
         shader->render();
         shader->setMatrix(shader->getParamLocation("projection"), mainCamera->getProjectionMatrix());
         mainCamera->render();
@@ -761,18 +653,113 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
             mainCamera->getFarPlane()
         );
 
-        // Leap Motion (non-VR)
         if (leap) {
             leap->update();
-            const LEAP_TRACKING_EVENT* l = leap->getCurFrame();
-            renderLeapHands(l, mainCamera->getInverseCameraFinalMatrix(), mainCamera->getProjectionMatrix());
+            renderLeapHands(leap->getCurFrame(),
+                mainCamera->getInverseCameraFinalMatrix(),
+                mainCamera->getProjectionMatrix());
         }
 
-        // Skybox
         drawSkybox(mainCamera->getProjectionMatrix(), mainCamera->getInverseCameraFinalMatrix());
+    }
+
+    // Restore viewport
+    glViewport(prevViewport[0], prevViewport[1], prevViewport[2], prevViewport[3]);
+}
+
+void ENG_API Eng::Base::renderLeapHands(const LEAP_TRACKING_EVENT* event,
+    const glm::mat4& view,
+    const glm::mat4& proj)
+{
+    if (!event) return;
+
+    shaderLeap->render();
+    shaderLeap->setMatrix(leapProjLoc, proj);
+
+    glm::mat4 offsetDraw = glm::translate(glm::mat4(1.0f), { -0.5f,1.0f,0.5f })
+        * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), { 0,1,0 });
+
+    for (unsigned h = 0; h < event->nHands; ++h) {
+        const auto& hand = event->pHands[h];
+        glm::vec3 thumbTip, indexTip;
+
+        for (unsigned d = 0; d < 5; ++d) {
+            for (unsigned b = 0; b < 4; ++b) {
+                auto& bone = hand.digits[d].bones[b];
+                if (b == 3) {
+                    glm::vec3 tip(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z);
+                    if (d == 0) thumbTip = tip;
+                    if (d == 1) indexTip = tip;
+                }
+            }
+        }
+
+        float distance = glm::length(thumbTip - indexTip);
+        static float pinchFilter[2] = { 0.0f,0.0f };
+        float alpha = 0.7f;
+        pinchFilter[h] = alpha * distance + (1 - alpha) * pinchFilter[h];
+        bool isPinching = pinchFilter[h] < 40.0f;
+        glm::vec3 pinchCenter = 0.5f * (thumbTip + indexTip);
+
+        glm::mat4 coordOffset = glm::translate(glm::mat4(1.0f), { -0.5f,1.0f,0.0f })
+            * glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), { 0,1,0 })
+            * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f));
+        glm::vec3 pinchWorld = glm::vec3(coordOffset * glm::vec4(pinchCenter, 1.0f));
+
+        hands[h].isPinching = isPinching;
+        hands[h].pinchPosition = pinchWorld;
+
+        shaderLeap->setVec3(leapColorLoc, { float(h),(1 - float(h)),0.5f });
+
+        // draw parts
+        drawLeapPart(glm::vec3(hand.arm.next_joint.x, hand.arm.next_joint.y, hand.arm.next_joint.z), view, offsetDraw);
+        drawLeapPart(glm::vec3(hand.palm.position.x, hand.palm.position.y, hand.palm.position.z), view, offsetDraw);
+        for (unsigned d = 0; d < 5; ++d) {
+            for (unsigned b = 0; b < 4; ++b) {
+                auto& bone = hand.digits[d].bones[b];
+                drawLeapPart(glm::vec3(bone.next_joint.x, bone.next_joint.y, bone.next_joint.z), view, offsetDraw);
+            }
+        }
     }
 }
 
+void ENG_API Eng::Base::drawLeapPart(const glm::vec3& position,
+    const glm::mat4& view,
+    const glm::mat4& offsetDraw)
+{
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), position);
+    glm::mat4 mvp = view * offsetDraw * glm::scale(glm::mat4(1.0f), glm::vec3(0.001f)) * model;
+    shaderLeap->setMatrix(leapMVLoc, mvp);
+    glBindVertexArray(leapVao);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, static_cast<GLsizei>(leapVertices.size()));
+    glBindVertexArray(0);
+}
+
+void ENG_API Eng::Base::drawSkybox(const glm::mat4& proj,
+    const glm::mat4& view)
+{
+    glDepthFunc(GL_LEQUAL);
+    glDepthMask(GL_FALSE);
+    shaderCube->render();
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
+
+    GLint locP = shaderCube->getParamLocation("projection");
+    GLint locMV = shaderCube->getParamLocation("modelview");
+    shaderCube->setMatrix(locP, proj);
+
+    glm::mat4 rotOnly = glm::mat4(glm::mat3(view));
+    glm::mat4 skyModel = glm::scale(rotOnly, glm::vec3(50.0f));
+    shaderCube->setMatrix(locMV, skyModel);
+
+    glBindVertexArray(globalVao);
+    glDrawElements(GL_TRIANGLES, sizeof(cubeFaces) / sizeof(unsigned short), GL_UNSIGNED_SHORT, nullptr);
+    glBindVertexArray(0);
+
+    glDepthMask(GL_TRUE);
+    glDepthFunc(GL_LESS);
+    glCullFace(GL_BACK);
+}
 
 /**
  * Load cubemap into a texture.

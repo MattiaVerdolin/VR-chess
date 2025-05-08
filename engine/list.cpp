@@ -67,7 +67,9 @@ void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix, flo
 			float meshRadius = mesh->getBoundingRadius();
 			float dist = glm::length(centerEC - supCenterEC);
 			if (dist - meshRadius > supRadius) {
-				std::cout << mesh->getName() << std::endl;
+				std::string name = mesh->getName();
+				if (name != "SelectPointer")
+					std::cout << name << std::endl;
 				continue;
 			}
 		}
